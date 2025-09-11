@@ -11,5 +11,4 @@ instruction
 output
 cache
 colpali
-rag/qa/jsonl
-rag/qa/jsonl_backup_20250905T191639
+rag/qa
