@@ -14,3 +14,15 @@ colpali
 rag/qa
 textbook-extract
 gpt5
+
+# -----------------
+# Python / tooling
+# -----------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+*.cache/
+*.log
