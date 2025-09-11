@@ -11,4 +11,5 @@ instruction
 output
 cache
 colpali
-rag/qa
+rag/
+textbook-extract
