@@ -21,7 +21,7 @@ from typing import Any, Dict, List, Optional, Set, Tuple
 
 import numpy as np
 
-from .qdrant_bge import CFG, qdrant, CQ2, MedGemma, TextCrossReranker, rerank_with_text
+from .med4b_qdrant_bge import CFG, qdrant, CQ2, MedGemma, TextCrossReranker, rerank_with_text
 from qdrant_client.http.models import Filter, FieldCondition, MatchValue, MatchAny
 
 # -------------------- small utils --------------------

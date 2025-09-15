@@ -16,7 +16,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Set, Tuple
 
 # Import from the correct module path based on your structure
-from rag.reranking.qdrant_bge import (
+from rag.reranking.med4b_qdrant_bge import (
     CFG, qdrant, CQ2, MedGemma, TextCrossReranker, 
     rerank_with_text, find_case_dir, page_indices_to_paths
 )
@@ -159,10 +159,10 @@ class BatchProcessor:
         # Handle strict micrograph filtering
         if micrograph_only and micrograph_strict:
             strict_filter = Filter(must=musts + [FieldCondition(key="micrograph_like", match=MatchValue(value=True))])
-            from rag.reranking.qdrant_bge import _qdrant_search
+            from rag.reranking.med4b_qdrant_bge import _qdrant_search
             hits = _qdrant_search(self.client, qv, pool_size, strict_filter, CFG.SCORE_THRESHOLD)
         else:
-            from rag.reranking.qdrant_bge import _qdrant_search
+            from rag.reranking.med4b_qdrant_bge import _qdrant_search
             hits = _qdrant_search(self.client, qv, pool_size, base_filter, CFG.SCORE_THRESHOLD)
 
         # Convert to dict format
