@@ -54,8 +54,8 @@ from qdrant_client.http.models import (
 # ------------------------------
 @dataclass
 class CFG:
-    ROOT: Path = Path("/home/students/Leishmania")
-    EXTRACT_ROOT: Path = ROOT / "kaggle" / "working2" / "extract"  # case_dir/pages/page_*.png
+    ROOT: Path = Path(os.getenv("RAG_ROOT", "/home/students/Leishmania"))
+    EXTRACT_ROOT: Path = Path(os.getenv("RAG_EXTRACT_ROOT", str(ROOT / "kaggle" / "working2" / "extract")))  # case_dir/pages/page_*.png
 
     # Models
     RET_MODEL_ID: str = "vidore/colqwen2-v1.0-hf"
@@ -63,9 +63,9 @@ class CFG:
 
     # Re-ranker (text cross-encoder) — can be disabled from caller
     RERANKER_MODEL_ID: str = "BAAI/bge-reranker-v2-m3"
-    RERANK_MIN_EXCERPT_CHARS: int = 40   # gate influence if excerpt too short/missing
-    RERANK_ALPHA: float = 0.6            # weight for text re-ranker vs. ColQwen2 sim
-    RERANK_FALLBACK_ALPHA: float = 0.2   # downweight when excerpt is short/missing
+    RERANK_MIN_EXCERPT_CHARS: int = 30   # gate influence if excerpt too short/missing # 40
+    RERANK_ALPHA: float = 0.65            # weight for text re-ranker vs. ColQwen2 sim # 0.6
+    RERANK_FALLBACK_ALPHA: float = 0.25   # downweight when excerpt is short/missing # 0.2
 
     # HF cache / device
     HF_CACHE: Path = Path(os.getenv("TRANSFORMERS_CACHE", "/data4t/hf/transformers"))
@@ -77,24 +77,23 @@ class CFG:
     QDRANT_API_KEY: Optional[str] = os.getenv("QDRANT_API_KEY") or None
 
     # Indexing & generation
-    BATCH_EMBED: int = 8
+    BATCH_EMBED: int = 16 # 8
     LANGUAGE: str = "en"
-    MAX_NEW_TOKENS: int = 768
-    TOP_K: int = 12
+    MAX_NEW_TOKENS: int = 1024 # 768
+    TOP_K: int = 15 # 12
 
     # Retrieval scoring (None => no score_threshold)
     SCORE_THRESHOLD: Optional[float] = None
 
     # Payload limits
-    MAX_TEXT_EXCERPT: int = 1200
-    MAX_KEYWORDS: int = 25
+    MAX_TEXT_EXCERPT: int = 1500 # 1200
+    MAX_KEYWORDS: int = 35 # 25
 
     # Processor stability
     USE_FAST_PROCESSORS: bool = True
 
-    PDF_SEARCH_DIRS: Tuple[Path, ...] = (
-        Path("/home/students/Leishmania/data/standard"),
-        # Path("/home/students/Leishmania/data/fix"),
+    PDF_SEARCH_DIRS: Tuple[Path, ...] = tuple(
+        Path(p) for p in os.getenv("RAG_PDF_DIRS", f"{ROOT}/data/standard").split(":")
     )
 
 # ------------------------------
@@ -256,11 +255,36 @@ def extract_keywords(title: str, text: str, top_k: int = CFG.MAX_KEYWORDS) -> Li
     for w in words:
         if w in _STOP: continue
         counts[w] = counts.get(w, 0) + 1
-    boosts = {"leishmaniasis":3, "leishmania":3, "amastigotes":4, "promastigotes":3, "auricular":3,
-              "pinna":2, "hiv":3, "mucocutaneous":3, "visceral":3, "cutaneous":2, "martiniquensis":3,
-              "squamous":2, "carcinoma":2, "lupus":2, "vulgaris":2, "recidivans":3, "mimicking":2}
+    
+    # EXPANDED boost dictionary with more clinical terms
+    boosts = {
+        "leishmaniasis":4, "leishmania":4, "amastigotes":5, "promastigotes":4, 
+        "auricular":4, "pinna":3, "hiv":4, "mucocutaneous":4, "visceral":4, 
+        "cutaneous":3, "martiniquensis":4, "squamous":3, "carcinoma":3, 
+        "lupus":3, "vulgaris":3, "recidivans":4, "mimicking":3,
+        # New high-value terms
+        "kinetoplast":5, "giemsa":5, "wright":4, "histopathology":4,
+        "biopsy":4, "pcr":5, "its2":5, "culture":4, "diagnosis":4,
+        "treatment":3, "amphotericin":4, "antimony":4, "miltefosine":4,
+        "immunocompromised":4, "transplant":4, "lesion":3, "ulcer":3,
+        "nodule":3, "papule":3, "plaque":3, "erythematous":3,
+        "granuloma":4, "histiocytes":4, "macrophages":4, "lymphocytes":3,
+        "epithelioid":4, "necrosis":3, "pseudoepitheliomatous":4,
+        "hyperplasia":4, "acanthosis":3, "spongiosis":3
+    }
+    
+    # Apply n-gram extraction for compound terms
+    bigrams = []
+    for i in range(len(words)-1):
+        if words[i] not in _STOP and words[i+1] not in _STOP:
+            bigram = f"{words[i]}_{words[i+1]}"
+            if any(term in bigram for term in ["leishman", "donovan", "wright", "giemsa"]):
+                bigrams.append(bigram)
+                counts[bigram] = counts.get(bigram, 0) + 5  # High boost for diagnostic terms
+    
     for k,b in boosts.items():
         if k in counts: counts[k] *= b
+    
     return [w for w,_ in sorted(counts.items(), key=lambda kv: (-kv[1], kv[0]))[:top_k]]
 
 def guess_case_type(title: str, text: str) -> str:
@@ -310,11 +334,48 @@ def extract_entities(title: str, text: str) -> List[str]:
         r"martiniquensis", r"donovani", r"infantum", r"tropica", r"major", r"braziliensis", r"mexicana",
         r"amastigote[s]?", r"promastigote[s]?", r"macrophage[s]?", r"histiocyte[s]?", r"auricular", r"pinna",
         r"HIV", r"immunosuppression", r"immunocompromis(ed|ed)", r"squamous\s+cell\s+carcinoma", r"lupus\s+vulgaris",
-        r"recidivans"
+        r"recidivans", r"\bViannia\b", r"\bpanamensis\b", r"\bL\.\s*(?:panamensis|braziliensis|guyanensis)\b",
+        r"\bPCR\b", r"\bITS2\b", r"\bNovy[-–]Mac(?:Neal|Neill)[-–]Nicolle\b",
+        r"\bpentavalent\s+antimony\b", r"\bamphotericin(?:\s+B)?\b", r"\bliposomal amphotericin\b",
+        r"\bepitrochlear\b", r"\bsporotrichoid\b"
     ]:
         for m in re.findall(pat, s, flags=re.I):
             ents.add(m.strip())
     return sorted(list(ents))[:20]
+
+# ------------------------------
+# Evidence extraction shared helpers
+# ------------------------------
+# Expanded clinical terms for better evidence coverage (module-level for reuse)
+KEEP_TERMS_REGEX = re.compile(
+    r"\b(amastigote|Leishman[-\s]?Donovan|macrophage|histiocyte|granuloma|"
+    r"pseudoepitheliomatous|hyperplasia|suppurative|ulcer|nodule|nodular|plaque|papule|"
+    r"crust(?:ed|ing)?|induration|border|erythema(?:tous)?|cheek|face|facial|pinna|auricle|ear|"
+    r"Leishmania|leishmaniasis|cutaneous|mucocutaneous|visceral|promastigote|kinetoplast|"
+    r"sandfly|biopsy|PCR|ITS2|culture|Novy[-–]Mac(?:Neal|Neill)[-–]Nicolle|tissue\s+cultures?|"
+    r"immunocompromised|HIV|lesion|size|\bcm\b|\bmm\b|course|onset|month(?:s)?|evolved|progress(?:ed|ion)|"
+    r"left|right|lateral|medial|anterior|posterior|lymphadenopathy|epitrochlear|sporotrichoid|Peru|Amazon|"
+    r"antimony|pentavalent|amphotericin|liposomal|miltefosine|dose|dosage|\bmg\b|\bkg\b|treatment|regimen)\b",
+    re.I,
+)
+
+def safe_trim(text: str, max_len: int) -> str:
+    """Trim text safely, removing incomplete citations/brackets at the end."""
+    if len(text) <= max_len:
+        trimmed = text
+    else:
+        trimmed = text[:max_len]
+        # Find last complete sentence
+        last_period = trimmed.rfind('.')
+        if last_period > max_len * 0.7:  # If we have a decent amount before the period
+            trimmed = trimmed[:last_period + 1]
+        else:
+            trimmed = trimmed + "..."
+
+    # Remove incomplete brackets/citations at the end
+    trimmed = re.sub(r'\[[^\]]*$', '', trimmed).rstrip()
+    trimmed = re.sub(r'\([^\)]*$', '', trimmed).rstrip()
+    return trimmed
 
 # ------------------------------
 # Image hashing & metrics
@@ -448,20 +509,30 @@ class Gemini25:
 
     @staticmethod
     def _encode_image(pil_img: Image.Image) -> dict:
-        """Return an inline binary image part compatible with google-genai 0.6.0, stripping ICC."""
+        """Return an inline binary image part compatible with google-genai 0.6.0, with downsizing."""
         import io
-        # Defensive copy without ICC/profile metadata
         img = pil_img.copy()
+        
+        # Remove ICC profile if present
         if "icc_profile" in img.info:
             try:
                 del img.info["icc_profile"]
             except Exception:
                 pass
+        
+        # Downscale to max 1280px on longest side to reduce token usage
+        max_side = 1280
+        w, h = img.size
+        scale = min(1.0, max_side / max(w, h))
+        if scale < 1.0:
+            img = img.resize((int(w*scale), int(h*scale)), Image.LANCZOS)
+        
+        # Encode as JPEG instead of PNG (much smaller)
         buf = io.BytesIO()
-        # Re-encode as PNG (lossless) without extra metadata
-        img.save(buf, format="PNG")
+        img.save(buf, format="JPEG", quality=85, optimize=True, progressive=True)
         data = buf.getvalue()
-        return {"inline_data": {"mime_type": "image/png", "data": data}}
+        
+        return {"inline_data": {"mime_type": "image/jpeg", "data": data}}
 
     def _build_system_and_user(
         self,
@@ -471,33 +542,88 @@ class Gemini25:
         context_text: str = ""
     ):
         """
-        Build a compact, token-aware prompt. Keeps images <=3 and context <= ~12k chars.
+        Enhanced prompt building with medical focus
         """
-        # Hard cap images to avoid huge inputs
-        ims = ims[:3]
+        # Detect question type for tailored instructions
+        is_diagnostic = any(term in q.lower() for term in ["diagnosis", "identify", "stain", "microscopy"])
+        is_clinical = any(term in q.lower() for term in ["clinical", "presentation", "treatment"])
+        
+        # Limit images based on question type
+        if is_diagnostic:
+            ims = ims[:3]  # Allow more images for diagnostic questions
+        else:
+            ims = ims[:2]  # Standard limit
 
         if spans:
-            sys_instr = (
-                "You are a medical assistant analyzing clinical images and text evidence. "
-                "Base every factual claim on the provided evidence/images. Cite like [1], [2]. "
-                "Only include specific clinical details (side, size, dates) if explicitly present. "
-                "If missing, say: 'Clinical details not fully documented in provided evidence.'"
-            )
-            ev_text = "\n".join([f"[{i+1}] ({c}) {s}" for i, (s, c) in enumerate(spans)])
-            user_text = f"Question: {q}\n\nEvidence:\n{ev_text}\n"
+            # Enhanced system instruction based on question type
+            if is_diagnostic:
+                sys_instr = (
+                    "You are a medical pathology assistant analyzing microscopic and histopathological images. "
+                    "Focus on morphological features visible in the images: cell types, tissue architecture, staining patterns. "
+                    "Base every diagnostic finding on visible evidence. Cite sources as [1], [2], etc. "
+                    "For Leishmania cases, specifically look for: amastigotes (2-4μm oval bodies with nucleus and kinetoplast), "
+                    "parasitized macrophages, granulomatous inflammation, and tissue reaction patterns. "
+                    "Be precise about what you observe vs. what the text evidence states."
+                )
+            elif is_clinical:
+                sys_instr = (
+                    "You are a clinical medicine assistant analyzing patient cases with images and documentation. "
+                    "Focus on: clinical presentation timeline, lesion characteristics (size, location, appearance), "
+                    "disease progression, treatment response, and patient demographics when available. "
+                    "Base all statements on provided evidence. Cite as [1], [2]. "
+                    "If specific clinical details (dates, measurements, laterality) aren't in the evidence, "
+                    "state: 'Specific [detail type] not documented in available evidence.'"
+                )
+            else:
+                sys_instr = (
+                    "You are a medical assistant analyzing clinical cases with images and text evidence. "
+                    "Provide accurate, evidence-based responses. Distinguish between image observations and text citations. "
+                    "Cite all factual claims as [1], [2], etc. Avoid speculation beyond provided evidence."
+                )
+            
+            # Format evidence with medical context
+            ev_lines = []
+            for i, (s, c) in enumerate(spans):
+                # Clean up citation format
+                clean_cite = c.replace("unknown:", "").replace("p-1", "p0")
+                ev_lines.append(f"[{i+1}] (Page {clean_cite}): {s}")
+            
+            ev_text = "\n".join(ev_lines)
+            user_text = f"Medical Question: {q}\n\nEvidence Sources:\n{ev_text}\n"
+            
+            # Add focused instructions for common question types
+            if "species" in q.lower() or "identification" in q.lower():
+                user_text += "\nNote: Species identification requires molecular/culture evidence, not morphology alone.\n"
+            
         else:
             sys_instr = (
                 "You are a medical assistant analyzing clinical images. "
-                "Describe only what is supported by the images; avoid speculation."
+                "Describe only what is directly visible in the images. "
+                "Avoid speculation about diagnosis without supporting evidence."
             )
-            user_text = f"Question: {q}"
+            user_text = f"Medical Question: {q}"
 
         if context_text:
-            # Smaller budget to avoid hitting MAX_TOKENS due to oversized inputs
-            context_limit = 12000
+            # Smart context truncation preserving medical terms
+            context_limit = 8000  # Increased from 6000
             if len(context_text) > context_limit:
-                context_text = context_text[:context_limit] + "..."
-            user_text += f"\n\nAdditional Context:\n{context_text}\n"
+                # Try to preserve complete sentences with medical terms
+                sentences = context_text.split('. ')
+                medical_sentences = [s for s in sentences if any(
+                    term in s.lower() for term in [
+                        "leishmania", "diagnosis", "treatment", "clinical",
+                        "histopathology", "microscopy", "culture", "pcr"
+                    ]
+                )]
+                other_sentences = [s for s in sentences if s not in medical_sentences]
+                
+                rebuilt = ". ".join(medical_sentences[:50] + other_sentences[:30])
+                if len(rebuilt) > context_limit:
+                    context_text = rebuilt[:context_limit] + "..."
+                else:
+                    context_text = rebuilt
+            
+            user_text += f"\n\nAdditional Medical Context:\n{context_text}\n"
 
         parts = [{"text": user_text}]
         for im in ims:
@@ -512,13 +638,14 @@ class Gemini25:
         image_paths: List[Path],
         spans: List[Tuple[str, str]] = None,
         max_output_tokens: int = 512,
-        context_text: str = ""
+        context_text: str = "",
+        images_per_answer: int = 3  # ADD THIS PARAMETER
     ) -> str:
         spans = spans or []
-
-        # Load images safely; also cap to 3 in _build_system_and_user anyway
+        
+        # Load images safely
         ims = []
-        for p in image_paths:
+        for p in image_paths[:images_per_answer]:  # Still allow up to 3 but will use 2 in Stage A
             try:
                 im = Image.open(p).convert("RGB")
                 ims.append(im)
@@ -531,18 +658,18 @@ class Gemini25:
                 except Exception: pass
 
         try:
+            # Stage A: 2 images max + reduced context (6k chars)
             sys_instr, contents = self._build_system_and_user(
-                q, ims, spans, context_text=context_text
+                q, ims[:images_per_answer], spans, context_text=context_text 
             )
 
-            # Stage A: compact but generous
             cfgA = self.cfg_cls(
                 temperature=0.0, top_p=1.0, top_k=40,
-                # Keep output reasonable; huge values can produce empty cands on MAX_TOKENS
-                max_output_tokens=min(1024, max_output_tokens if max_output_tokens else 1024),
+                max_output_tokens=(max_output_tokens or 1024),  #min(768, max_output_tokens)
                 system_instruction=sys_instr,
                 response_mime_type="text/plain",
             )
+            
             respA = self.client.models.generate_content(
                 model=self.model_id, contents=contents, config=cfgA
             )
@@ -560,51 +687,160 @@ class Gemini25:
                                 s = getattr(part, "text", None)
                                 if s:
                                     t += s
-                    return (t or "").strip()
+                    
+                    t = (t or "").strip()
+                    
+                    # Log if blocked or empty
+                    if not t:
+                        pf = getattr(resp, "prompt_feedback", None)
+                        br = getattr(pf, "block_reason", None) if pf else None
+                        if br:
+                            import logging
+                            logging.warning(f"Gemini returned empty (Stage A). block_reason={br}")
+                    
+                    return t
                 except Exception:
                     return ""
 
             outA = _extract_text(respA)
+            # NEW: try to detect cut-off and continue
+            def _looks_incomplete(txt: str) -> bool:
+                if not txt:
+                    return False
+                import re as _re
+                s = txt.strip()
+                # If no terminal punctuation, clearly incomplete
+                if not _re.search(r"[.!?]" + r'"?$', s):
+                    return True
+                # Analyze the last sentence for truncated templates
+                sentences = _re.split(r"(?<=[.!?])\s+", s)
+                last = (sentences[-1] if sentences else s).strip().strip('"').strip("'")
+                last_low = last.lower()
+                # Ends with problematic connectors/prepositions
+                if _re.search(r"\b(by|with|including|include|such as|that|because|due to|via|as|which|where|when|to|of|for|in|on|and|or)\.?$", last_low):
+                    return True
+                if any(last_low.endswith(x) for x in ["are.", "were.", "is.", "include.", "including."]):
+                    return True
+                if "here are" in last_low:
+                    return True
+                if last_low.endswith(":") or last_low.endswith("are:") or last_low.endswith("include:"):
+                    return True
+                # Very short concluding sentence that starts a clause
+                if len(last.split()) <= 7 and _re.search(r"^(based on|in summary|in conclusion|overall|therefore)", last_low):
+                    return True
+                return False
+
+            # Some SDKs expose finish_reason; if available, use it:
+            finish_reason = getattr(getattr(respA, "candidates", [None])[0], "finish_reason", None)
+            if outA and (finish_reason == "MAX_TOKENS" or _looks_incomplete(outA)):
+                # Build continuation with FULL context preserved
+                cont_parts = [{"text": f"Previous partial answer:\n{outA}\n\nContinue from exactly where you stopped, completing the sentence:"}]
+                for im in ims[:2]:  # Keep same images
+                    cont_parts.append(self._encode_image(im))
+                
+                cont_contents = [{"role": "user", "parts": cont_parts}]
+                
+                cont_cfg = self.cfg_cls(
+                    temperature=0.0, top_p=1.0, top_k=40,
+                    max_output_tokens=384,
+                    system_instruction=sys_instr,  # REUSE the same system instruction
+                    response_mime_type="text/plain",
+                )
+                cont_resp = self.client.models.generate_content(
+                    model=self.model_id,
+                    contents=cont_contents,
+                    config=cont_cfg,
+                )
+                continuation = _extract_text(cont_resp)
+                
+                # Smart merge to avoid duplication
+                if continuation and not continuation.startswith(outA[-20:]):
+                    outA = (outA + " " + continuation).strip()
+                elif continuation:
+                    # Find overlap and merge
+                    overlap_len = 0
+                    for i in range(min(50, len(outA), len(continuation))):
+                        if outA[-i:] == continuation[:i]:
+                            overlap_len = i
+                    if overlap_len > 5:
+                        outA = outA + continuation[overlap_len:]
+                    else:
+                        outA = (outA + " " + continuation).strip()
             if outA:
                 return outA
 
-            # If we got here, we likely hit MAX_TOKENS or a weird empty candidate.
-            # Stage B: ultra-compact retry (1 image, no spans, trimmed context)
+            # Stage B: TRULY MINIMAL - 1 image, NO context, shorter output
             try:
-                trim_ctx = (context_text[:4000] + "...") if context_text else ""
                 one_img = ims[:1]
-                sys_instrB, contentsB = self._build_system_and_user(q, one_img, [], trim_ctx)
+                # Build without any context text
+                sys_instrB = "Answer the question concisely based only on the image shown."
+                user_parts = [{"text": f"Question: {q}"}]
+                if one_img:
+                    user_parts.append(self._encode_image(one_img[0]))
+                
+                contentsB = [{"role": "user", "parts": user_parts}]
+                
                 cfgB = self.cfg_cls(
                     temperature=0.0, top_p=1.0, top_k=40,
-                    max_output_tokens=512,
-                    system_instruction="Answer concisely using only the provided inputs. Cite as [1], [2] when applicable.",
+                    max_output_tokens=512,  # 384
+                    system_instruction=sys_instrB,
                     response_mime_type="text/plain",
                 )
+                
                 respB = self.client.models.generate_content(
                     model=self.model_id, contents=contentsB, config=cfgB
                 )
                 outB = _extract_text(respB)
                 if outB:
                     return outB
-            except Exception:
-                pass
+            except Exception as e:
+                import logging
+                logging.warning(f"Stage B failed: {e}")
 
-            # Stage C: text-only fallback (forces a textual answer)
+            # Stage C: Enhanced text-only with more spans
             try:
-                parts = [{"text": f"Question: {q}\n\nEvidence-only summary (no images):\n" +
-                                   "\n".join([f"[{i+1}] {s[:350]}" for i, (s, _) in enumerate(spans[:8])])}]
+                # Use up to 12 spans, 300 chars each
+                spans_for_c = spans[:12] if spans else []
+                parts = [{"text": f"Question: {q}\n\nEvidence snippets:\n" +
+                                "\n".join([f"[{i+1}] {s[:300]}" for i, (s, _) in enumerate(spans_for_c)])}]
+                
                 respC = self.client.models.generate_content(
                     model=self.model_id,
                     contents=[{"role": "user", "parts": parts}],
                     config=self.cfg_cls(
                         temperature=0.0, top_p=1.0, top_k=40,
-                        max_output_tokens=384,
-                        system_instruction="Summarize only what is explicitly in the snippets. No speculation.",
+                        max_output_tokens=768,  # was 384
+                        system_instruction="Extract and summarize only what is explicitly stated in the evidence snippets.",
                         response_mime_type="text/plain",
                     )
                 )
                 outC = _extract_text(respC)
-                return outC or "Insufficient evidence."
+                if outC:
+                    return outC
+                # Stage D: Text-only using full context when available
+                if context_text:
+                    partsD = [{"text": (
+                        "You are given clinical PDF text. Answer strictly from the context.\n"
+                        "If exact details (dates, measurements, laterality) are not present, state what is documented.\n\n"
+                        f"Question: {q}\n\nContext:\n{context_text[:12000]}\n"
+                    )}]
+                    respD = self.client.models.generate_content(
+                        model=self.model_id,
+                        contents=[{"role": "user", "parts": partsD}],
+                        config=self.cfg_cls(
+                            temperature=0.0, top_p=1.0, top_k=40,
+                            max_output_tokens=768,
+                            system_instruction=(
+                                "Extract and summarize only what is explicitly stated in the context; "
+                                "do not invent facts."
+                            ),
+                            response_mime_type="text/plain",
+                        )
+                    )
+                    outD = _extract_text(respD)
+                    if outD:
+                        return outD
+                return "Insufficient evidence."
             except Exception:
                 return "Insufficient evidence."
         finally:
@@ -671,55 +907,99 @@ def rerank_with_text(
     fallback_alpha: float = CFG.RERANK_FALLBACK_ALPHA
 ) -> List[Dict[str, Any]]:
     """
-    Rerank hits using late fusion of ColQwen2 similarity and text cross-encoder scores.
-    Falls back gracefully when text excerpts are missing or too short.
+    Enhanced reranking with medical relevance scoring
     """
     if not hits or not reranker:
         return hits
     
-    # Extract text excerpts and check validity
+    # Detect medical question type for adaptive alpha
+    medical_diagnostic = any(term in question.lower() for term in [
+        "diagnosis", "histopathology", "microscopy", "stain", "culture",
+        "pcr", "identification", "confirm", "differential"
+    ])
+    
+    medical_clinical = any(term in question.lower() for term in [
+        "clinical", "presentation", "symptoms", "signs", "course",
+        "progression", "treatment", "therapy", "outcome"
+    ])
+    
+    # Adjust alpha based on question type
+    if medical_diagnostic:
+        alpha = min(0.75, alpha + 0.15)  # Boost text reranker for diagnostic Qs
+    elif medical_clinical:
+        alpha = min(0.7, alpha + 0.1)   # Moderate boost for clinical Qs
+    
+    # Extract and validate excerpts
     excerpts = []
     valid_mask = []
+    medical_relevance = []
+    
     for h in hits:
         excerpt = (h.get("text_excerpt") or "").strip()
         excerpts.append(excerpt)
-        valid_mask.append(len(excerpt) >= min_excerpt_chars)
+        
+        # Check both length and medical content
+        has_medical = any(term in excerpt.lower() for term in [
+            "leishmania", "amastigote", "histopathology", "diagnosis",
+            "treatment", "clinical", "patient", "lesion", "biopsy"
+        ])
+        
+        is_valid = len(excerpt) >= min_excerpt_chars
+        valid_mask.append(is_valid)
+        medical_relevance.append(has_medical)
     
-    # Only score valid excerpts to save compute
-    valid_excerpts = [ex for ex, valid in zip(excerpts, valid_mask) if valid]
+    # Prioritize medical-relevant excerpts for scoring
+    valid_excerpts = []
+    for i, (ex, valid, medical) in enumerate(zip(excerpts, valid_mask, medical_relevance)):
+        if valid or (medical and len(ex) >= 20):  # Lower threshold for medical content
+            valid_excerpts.append(ex)
     
-    # Get cross-encoder scores for valid excerpts
+    # Get cross-encoder scores
     rerank_scores = [None] * len(hits)
     if valid_excerpts:
         try:
-            valid_scores = reranker.score(question, valid_excerpts)
-            score_iter = iter(valid_scores)
-            for i, valid in enumerate(valid_mask):
-                if valid:
+            scores = reranker.score(question, valid_excerpts)
+            score_iter = iter(scores)
+            for i, (valid, medical) in enumerate(zip(valid_mask, medical_relevance)):
+                if valid or (medical and len(excerpts[i]) >= 20):
                     rerank_scores[i] = next(score_iter)
         except Exception as e:
             logging.warning(f"Reranking failed: {e}")
             return hits
     
-    # Extract original similarity scores
+    # Extract original scores
     sim_scores = [float(h.get("score", 0.0)) for h in hits]
     
-    # Z-score normalize both score sets
+    # Medical relevance boost
+    for i, h in enumerate(hits):
+        if medical_relevance[i] and rerank_scores[i] is not None:
+            rerank_scores[i] *= 1.15  # Boost medical-relevant content
+    
+    # Z-score normalize
     z_sim = z_score_normalize(sim_scores)
     z_rerank = z_score_normalize([s if s is not None else 0.0 for s in rerank_scores])
     
-    # Late fusion with adaptive alpha
+    # Late fusion with adaptive weights
     fused_results = []
     for i, h in enumerate(hits):
-        # Use fallback alpha if text excerpt is invalid
-        effective_alpha = alpha if valid_mask[i] else fallback_alpha
+        # Dynamic alpha based on excerpt quality
+        if medical_relevance[i] and valid_mask[i]:
+            effective_alpha = alpha
+        elif valid_mask[i]:
+            effective_alpha = alpha * 0.9
+        else:
+            effective_alpha = fallback_alpha
         
         # Compute fused score
         fused_score = (1.0 - effective_alpha) * z_sim[i]
         if rerank_scores[i] is not None:
             fused_score += effective_alpha * z_rerank[i]
         
-        # Create enriched hit with debug info
+        # Page position boost for clinical questions
+        if medical_clinical and h.get("page_index", 999) <= 2:
+            fused_score *= 1.1
+        
+        # Create enriched hit
         enriched_hit = dict(h)
         enriched_hit.update({
             "fused_score": fused_score,
@@ -727,64 +1007,105 @@ def rerank_with_text(
             "rerank_logit": rerank_scores[i],
             "z_sim": z_sim[i],
             "z_rerank": z_rerank[i] if rerank_scores[i] is not None else None,
-            "text_valid": valid_mask[i]
+            "text_valid": valid_mask[i],
+            "medical_relevant": medical_relevance[i]
         })
         fused_results.append((fused_score, enriched_hit))
     
-    # Sort by fused score and return
+    # Sort by fused score
     fused_results.sort(key=lambda x: x[0], reverse=True)
     return [hit for _, hit in fused_results]
 
-def extractive_spans(hits: List[Dict[str, Any]], per_doc: int = 4, max_chars: int = 400) -> List[Tuple[str,str]]:
+def rebuild_spans_from_full_pages(hits, per_doc=5, max_chars=450):
+    from collections import defaultdict
+    out = []
+    by_doc = defaultdict(list)
+    for h in hits[:8]:
+        by_doc[h.get("doc_id")].append(h)
+    for doc_id, hs in by_doc.items():
+        case_dir = find_case_dir(doc_id, CFG.EXTRACT_ROOT)
+        pdf = find_case_pdf(case_dir) if case_dir else None
+        for h in hs[:3]:
+            idx0 = int(h.get("page_index", 0))
+            full = read_pdf_page_text(pdf, idx0) if pdf else ""
+            if not full:
+                # light OCR fallback just for this page
+                full = ocr_png_fallback(case_dir, idx0) if case_dir else ""
+            if not full:
+                continue
+            # reuse your sentence/keep_terms logic
+            sents = [s.strip() for s in re.split(r"(?<=[.!?])\s+", full) if len(s.strip()) >= 25]
+            picked = []
+            for s in sents:
+                if len(picked) >= per_doc: break
+                if KEEP_TERMS_REGEX.search(s):
+                    picked.append(s)
+            if len(picked) < per_doc:
+                extra = sorted([s for s in sents if s not in picked], key=len, reverse=True)
+                picked.extend(extra[:per_doc-len(picked)])
+            cite = f"{doc_id}:p{idx0+1}"
+            for s in picked[:per_doc]:
+                out.append((safe_trim(s, max_chars), cite))
+            if len(out) >= 20:
+                return out[:20]
+    return out[:20]
+
+def extractive_spans(hits: List[Dict[str, Any]], per_doc: int = 5, max_chars: int = 450) -> List[Tuple[str,str]]:
     """
-    Enhanced evidence extraction with comprehensive clinical term coverage.
-    Addresses Q001-style misses by including clinical descriptors.
+    Enhanced evidence extraction with better clinical term coverage and safe trimming.
+    Increased from per_doc=3/max_chars=300 to 5/450 for better coverage.
     """
-    # EXPANDED clinical terms for better evidence coverage
-    keep_terms = re.compile(
-        r"\b(amastigote|Leishman[-\s]?Donovan|macrophage|histiocyte|granuloma|"
-        r"pseudoepitheliomatous|hyperplasia|suppurative|ulcer|nodule|nodular|plaque|papule|"
-        r"crust(?:ed|ing)?|induration|border|erythema(?:tous)?|cheek|face|facial|pinna|auricle|ear|"
-        r"Leishmania|leishmaniasis|cutaneous|mucocutaneous|visceral|promastigote|kinetoplast|"
-        r"sandfly|diagnosis|treatment|biopsy|PCR|culture|immunocompromised|HIV|lesion|"
-        r"size|\bcm\b|\bmm\b|course|onset|month(?:s)?|evolved|progress(?:ed|ion)|"
-        r"October|November|December|January|February|March|April|May|June|July|August|September|"
-        r"left|right|lateral|medial|anterior|posterior|began|started|presented)\b",
-        re.I
-    )
-    
+    # Use module-level helpers for consistency
     out: List[Tuple[str, str]] = []
     for h in hits:
         txt = (h.get("text_excerpt") or "").strip()
         if not txt:
             continue
-            
+        
+        # Check if this excerpt is at the global cap (likely truncated)
+        is_truncated = len(txt) >= CFG.MAX_TEXT_EXCERPT
+        
         # Split into sentences, prioritize longer ones with clinical content
         sents = [s.strip() for s in re.split(r"(?<=[.!?])\s+", txt) if len(s.strip()) >= 25]
         
         # Triple priority: clinical terms + long sentences + page position
         page_idx = h.get("page_index", 999)
-        clinical_sents = [s for s in sents if keep_terms.search(s)]
+        clinical_sents = [s for s in sents if KEEP_TERMS_REGEX.search(s)]
         
-        # Boost early pages (often contain clinical history)
+        # Boost early pages for clinical history, later pages for treatment
         if page_idx <= 1:  # First 2 pages
-            clinical_sents = clinical_sents[:per_doc + 2]  # Extra sentences from early pages
+            chosen = clinical_sents[:per_doc + 1]  # Extra sentence from early pages
+        else:
+            chosen = clinical_sents[:per_doc]
         
-        # Secondary: longer sentences for context
-        other_sents = [s for s in sents if not keep_terms.search(s)]
-        other_sents = sorted(other_sents, key=len, reverse=True)
+        # Add non-clinical if needed
+        if len(chosen) < per_doc:
+            other_sents = [s for s in sents if not KEEP_TERMS_REGEX.search(s)]
+            other_sents = sorted(other_sents, key=len, reverse=True)
+            chosen.extend(other_sents[:per_doc - len(chosen)])
         
-        chosen = (clinical_sents + other_sents)[:per_doc]
         cite = f"{h.get('doc_id', 'unknown')}:p{int(h.get('page_index', -1)) + 1}"
         
-        for s in chosen:
-            truncated = s[:max_chars] + "..." if len(s) > max_chars else s
+        for s in chosen[:per_doc]:
+            truncated = safe_trim(s, max_chars)
             out.append((truncated, cite))
             
-        if len(out) >= 18:  # More evidence total for better coverage
+        if len(out) >= 20:  # Increased from 15
             break
-            
-    return out[:18]
+    # Fallbacks: if not enough spans were extracted from payload excerpts, rebuild from full PDF/PNG
+    if not out or len(out) < max(3, per_doc):
+        extra = rebuild_spans_from_full_pages(hits, per_doc=per_doc, max_chars=max_chars)
+        # De-duplicate while preserving order
+        seen = set()
+        merged = []
+        for s, c in (out + extra):
+            key = (s.strip().lower(), c)
+            if key not in seen:
+                seen.add(key)
+                merged.append((s, c))
+        out = merged
+
+    return out[:20]  # Return more spans
 
 # ------------------------------
 # Qdrant helpers
@@ -896,51 +1217,88 @@ def find_case_pdf(case_dir: Path) -> Optional[Path]:
 
 def read_pdf_page_text(pdf_path: Path, page_index: int) -> str:
     """
-    Robust page-text extractor:
-      1) PyMuPDF with stderr-suppression (avoids scary ICC spam)
-      2) pdfminer.six for the specific page if PyMuPDF fails / returns empty
-      3) Final PNG OCR fallback (existing helper) if both fail
+    Enhanced page-text extractor with better error handling and caching
     """
     if not pdf_path or not pdf_path.exists():
         return ""
+    
+    # Try cache first (add simple in-memory cache)
+    cache_key = f"{pdf_path}:{page_index}"
+    if not hasattr(read_pdf_page_text, "_cache"):
+        read_pdf_page_text._cache = {}
+    
+    if cache_key in read_pdf_page_text._cache:
+        return read_pdf_page_text._cache[cache_key]
 
-    # --- 1) PyMuPDF (quiet) ---
+    text = ""
+    
+    # --- 1) PyMuPDF with better extraction ---
     if _HAVE_PYMUPDF:
         try:
-            import contextlib, io, sys as _sys
+            import contextlib, io
             with contextlib.redirect_stderr(io.StringIO()):
                 with fitz.open(pdf_path) as doc:
                     if 0 <= page_index < len(doc):
-                        txt = (doc.load_page(page_index).get_text("text") or "").strip()
+                        page = doc.load_page(page_index)
+                        # Use multiple extraction methods
+                        txt = page.get_text("text") or ""
+                        if len(txt) < 50:  # If text is too short, try blocks
+                            blocks = page.get_text("blocks")
+                            txt = " ".join([b[4] for b in blocks if len(b) > 4])
+                        txt = txt.strip()
                         if txt:
-                            return txt
-                    # relaxed neighbor fallback
-                    for delta in (-1, 1):
-                        idx = page_index + delta
-                        if 0 <= idx < len(doc):
-                            t = (doc.load_page(idx).get_text("text") or "").strip()
-                            if t:
-                                return t
+                            text = txt
+                    
+                    # Smart neighbor fallback - check both directions
+                    if not text:
+                        for delta in [-1, 1, -2, 2]:
+                            idx = page_index + delta
+                            if 0 <= idx < len(doc):
+                                t = doc.load_page(idx).get_text("text") or ""
+                                if len(t) > 100:  # Only use if substantial
+                                    text = t
+                                    break
         except Exception:
-            pass  # fall through to pdfminer
+            pass
 
-    # --- 2) pdfminer.six (page-scoped) ---
-    try:
-        # Import lazily; pdfminer may be missing in some envs
-        from pdfminer.high_level import extract_text
-        txt = extract_text(str(pdf_path), page_numbers=[page_index]) or ""
-        txt = txt.strip()
-        if txt:
-            return txt
-    except Exception:
-        pass
+    # --- 2) pdfminer.six with better handling ---
+    if not text:
+        try:
+            from pdfminer.high_level import extract_text
+            from pdfminer.layout import LAParams
+            # Use layout analysis for better extraction
+            laparams = LAParams(detect_vertical=True, all_texts=True)
+            txt = extract_text(
+                str(pdf_path), 
+                page_numbers=[page_index], 
+                laparams=laparams,
+                maxpages=1
+            ) or ""
+            text = txt.strip()
+        except Exception:
+            pass
 
-    # --- 3) OCR the rendered PNG page (your existing fallback path uses page_index) ---
-    try:
-        case_dir = pdf_path.parent  # best-effort guess; your code calls ocr_png_fallback(case_dir, idx)
-        return ocr_png_fallback(case_dir, page_index) or ""
-    except Exception:
-        return ""
+    # --- 3) Enhanced OCR fallback ---
+    if not text or len(text) < 50:
+        try:
+            case_dir = pdf_path.parent
+            ocr_text = ocr_png_fallback(case_dir, page_index)
+            if ocr_text and len(ocr_text) > len(text):
+                text = ocr_text
+        except Exception:
+            pass
+    
+    # Cache the result
+    read_pdf_page_text._cache[cache_key] = text
+    
+    # Keep cache size reasonable
+    if len(read_pdf_page_text._cache) > 100:
+        # Remove oldest entries
+        keys = list(read_pdf_page_text._cache.keys())
+        for k in keys[:20]:
+            del read_pdf_page_text._cache[k]
+    
+    return text
 
 def qdrant_init():
     logging.info("Bootstrapping ColQwen2 to infer embedding dimension…")
@@ -1228,7 +1586,7 @@ def qdrant_ask_text(question: str, top_k: int = CFG.TOP_K,
 
     # --- Convert to raw_items (dicts) for reranking
     raw_items = []
-    for (_, _), (score, pl, tag) in merged.items():
+    for _, (score, pl, tag) in merged.items():
         raw_items.append({
             "rank": 0,  # will be set by reranker/ordering
             "score": float(score),
@@ -1339,22 +1697,87 @@ def answer_with_gemini(question: str, hits: List[Dict[str, Any]], take: int = 2)
     
     return {"answer": ans, "used_images": [str(p) for p in imgs], "evidence": spans}
 
-def ocr_png_fallback(case_dir: Path, page_index: int) -> str:
+def _preprocess_for_ocr(pil: Image.Image) -> Image.Image:
+    """Light, robust preproc for OCR: grayscale + contrast + binarize."""
+    import numpy as np
+    from PIL import ImageOps, ImageFilter
+
+    g = pil.convert("L")                     # grayscale
+    g = ImageOps.autocontrast(g)            # stretch
+    g = g.filter(ImageFilter.MedianFilter(3))
+    arr = np.array(g, dtype="uint8")
+    # simple adaptive-ish threshold
+    thr = max(100, min(175, int(arr.mean() + 0.5*arr.std())))
+    arr_bin = (arr > thr).astype("uint8") * 255
+    return Image.fromarray(arr_bin, mode="L")
+
+
+def ocr_png_tesseract(case_dir: Path, page_index: int) -> str:
+    """OCR a rendered PNG page with Tesseract (eng, LSTM-only, psm=6)."""
     try:
-        import easyocr
-        from PIL import Image
+        import pytesseract
     except Exception:
         return ""
     pm = load_page_map(case_dir)
     paths = page_indices_to_paths(case_dir, [page_index])
     if not paths:
         return ""
+    p = paths[0]
     try:
-        reader = easyocr.Reader(['en'], gpu=True)  # falls back to CPU if no GPU
-        result = reader.readtext(str(paths[0]), detail=0, paragraph=True)
-        return "\n".join([s for s in result if s]).strip()
+        with Image.open(p).convert("RGB") as im:
+            pim = _preprocess_for_ocr(im)
+            cfg = "--oem 1 --psm 6 -l eng"
+            txt = pytesseract.image_to_string(pim, config=cfg) or ""
+            return txt.strip()
     except Exception:
         return ""
+
+
+def _merge_ocr_text(primary: str, fallback: str) -> str:
+    """Prefer primary if reasonably long; else append fallback (dedup-ish)."""
+    import re as _re
+    A = (primary or "").strip()
+    B = (fallback or "").strip()
+    if len(A) >= 80:
+        return A
+    if not B:
+        return A
+    # If A is short, try to enrich it with unseen lines from B
+    a_lines = {ln.strip() for ln in A.splitlines() if ln.strip()}
+    b_lines = [ln.strip() for ln in B.splitlines() if ln.strip()]
+    extra = [ln for ln in b_lines if ln not in a_lines]
+    merged = (A + ("\n" if A and extra else "") + "\n".join(extra)).strip()
+    # Light cleanup: collapse spaces
+    merged = _re.sub(r"[ \t]+", " ", merged)
+    return merged
+
+def ocr_png_fallback(case_dir: Path, page_index: int) -> str:
+    """
+    Hybrid OCR:
+      1) EasyOCR (fast, GPU if available)
+      2) Tesseract (good on small captions / serif text)
+      Merge results to maximize recall for captions, figure legends, and tiny clinical text.
+    """
+    easy = ""
+    try:
+        import easyocr
+        pm = load_page_map(case_dir)
+        paths = page_indices_to_paths(case_dir, [page_index])
+        if paths:
+            reader = easyocr.Reader(['en'], gpu=True)  # auto CPU fallback
+            res = reader.readtext(str(paths[0]), detail=0, paragraph=True)
+            easy = "\n".join([s for s in res if s]).strip()
+    except Exception:
+        pass
+
+    tess = ""
+    try:
+        tess = ocr_png_tesseract(case_dir, page_index)
+    except Exception:
+        pass
+
+    merged = _merge_ocr_text(easy, tess)
+    return merged
 
 def backfill_text_excerpts(batch_size: int = 512):
     """Scan existing points and backfill missing text_excerpt fields."""

@@ -117,7 +117,7 @@ def select_images(seed: List[str], hits: List[Dict[str, Any]], take: int) -> Lis
                 if len(out) >= take:
                     return out
 
-    # 3) doc-scoped early pages (0..2) as a last resort
+    # 3) ranked pages from hits as a last resort (preserve retrieval order)
     fallback_doc = None
     for h in hits:
         if h.get("doc_id"):
@@ -127,7 +127,15 @@ def select_images(seed: List[str], hits: List[Dict[str, Any]], take: int) -> Lis
         case_dir = find_case_dir(fallback_doc, CFG.EXTRACT_ROOT)
         if case_dir:
             # Prefer page map when present; falls back to page_0001.png, etc.
-            for p in page_indices_to_paths(case_dir, [0, 1, 2]):
+            ranked_pages = []
+            for h in hits:
+                if h.get("doc_id") == fallback_doc:
+                    pi = h.get("page_index")
+                    if isinstance(pi, int) and pi not in ranked_pages:
+                        ranked_pages.append(pi)
+            if not ranked_pages:
+                ranked_pages = [0, 1, 2]
+            for p in page_indices_to_paths(case_dir, ranked_pages):
                 if p.exists():
                     sp = str(p)
                     if sp not in seen:
@@ -148,7 +156,25 @@ def select_images(seed: List[str], hits: List[Dict[str, Any]], take: int) -> Lis
     return out
 
 # -------------------- batch processor --------------------
-
+def _normalize_answer(text: str) -> str:
+    if not text:
+        return text
+    # collapse whitespace
+    t = _re.sub(r"\s+", " ", text).strip()
+    # remove duplicate sentences (order-preserving)
+    sents = _re.split(r"(?<=[.!?])\s+", t)
+    seen, uniq = set(), []
+    for s in sents:
+        key = _re.sub(r"\W+", "", s.lower())
+        if key and key not in seen:
+            seen.add(key)
+            uniq.append(s)
+    out = " ".join(uniq).strip()
+    out = _re.sub(r"\[(\d+)\.\]?$", r"[\1].", out)  # "[1." -> "[1]."
+    out = _re.sub(r"\[$", "", out)
+    if out and out[-1] not in ".!?":
+        out += "."
+    return out
 class BatchProcessor:
     """Optimized batch processor that loads models once and reuses them."""
     
@@ -195,7 +221,21 @@ class BatchProcessor:
             "lesion", "clinical", "course", "onset", "features", "history", 
             "size", "location", "referral", "evolution", "appearance"
         ])
-        if clinical_question:
+
+        treatment_question = any(term in question.lower() for term in [
+            "treatment", "dose", "dosage", "regimen", "therapy", "outcome", 
+            "follow-up", "response", "mg", "kg", "administered"
+        ])
+        
+        diagnostic_question = any(term in question.lower() for term in [
+            "diagnosis", "identify", "stain", "microscopy", "species", 
+            "PCR", "culture", "molecular", "sequencing", "identification"
+        ])
+
+        if treatment_question or diagnostic_question:
+            pool_multiplier = max(pool_multiplier, 4)
+            top_k = max(top_k, 10)  # Need more candidates for later pages
+        elif clinical_question:
             pool_multiplier = max(pool_multiplier, 4)
             top_k = max(top_k, 8)
 
@@ -269,7 +309,7 @@ class BatchProcessor:
 
         # Convert to dicts
         raw_items: List[Dict[str, Any]] = []
-        for (_, _), (score, pl, via) in merged.items():
+        for _, (score, pl, via) in merged.items():
             raw_items.append({
                 "rank": 0,
                 "score": float(score),
@@ -283,6 +323,22 @@ class BatchProcessor:
                 "text_excerpt": pl.get("text_excerpt"),
                 "via": via,
             })
+        
+        for item in raw_items:
+            page_idx = item.get("page_index", 999)
+            base_score = item["score"]
+            
+            # Apply question-aware page boosting
+            if treatment_question or diagnostic_question:
+                # Boost later pages for treatment/diagnostic info
+                if page_idx >= 3:
+                    item["score"] = base_score * 1.15
+                elif page_idx == 0:
+                    item["score"] = base_score * 0.85  # Slight penalty for first page
+            elif clinical_question:
+                # Keep early page boost for clinical presentation
+                if page_idx <= 2:
+                    item["score"] = base_score * 1.1
 
         # Pre-sort by similarity, trim pool
         raw_items.sort(key=lambda r: r["score"], reverse=True)
@@ -359,7 +415,9 @@ class BatchProcessor:
 
         return {"mode": "text", "question": question, "hits": selected}
     
-    def answer_with_images(self, question: str, image_paths: List[str], hits: List[Dict[str, Any]]) -> str:
+    def answer_with_images(self, question: str, image_paths: List[str], 
+                           hits: List[Dict[str, Any]],
+                           images_per_answer: int = 3) -> str:
         """
         Answer using Gemini with enhanced context, evidence spans, and clinical detail validation.
         Now with quiet PyMuPDF + pdfminer fallback to avoid MuPDF ICC crashes/noise.
@@ -369,12 +427,22 @@ class BatchProcessor:
             return "No valid images provided."
 
         # Evidence spans (more per doc for coverage)
-        spans = extractive_spans(hits, per_doc=5, max_chars=400)
+        spans = extractive_spans(hits, per_doc=5, max_chars=450) # from 5/400
 
         # Build augmented context: PDF early pages first, then ranked excerpts
         context_parts: List[str] = []
 
-        # 1) Early-page PDF context (p.1–3), suppressing MuPDF stderr
+        # Detect question types for context strategy
+        treatment_question = any(term in question.lower() for term in [
+            "treatment", "dose", "dosage", "regimen", "therapy", "outcome", 
+            "follow-up", "response", "mg", "kg", "administered"
+        ])
+        diagnostic_question = any(term in question.lower() for term in [
+            "diagnosis", "identify", "stain", "microscopy", "species", 
+            "pcr", "culture", "molecular", "sequencing", "identification"
+        ])
+
+        # 1) Early-page PDF context (p.1–5), suppressing MuPDF stderr
         doc_id_for_pdf = next((h.get("doc_id") for h in hits if h.get("doc_id")), None)
         if doc_id_for_pdf:
             case_dir = find_case_dir(doc_id_for_pdf, CFG.EXTRACT_ROOT)
@@ -387,14 +455,40 @@ class BatchProcessor:
                         buf = io.StringIO()
                         with contextlib.redirect_stderr(buf):
                             first_pages = []
-                            for i in range(3):
+                            for i in range(5):
                                 t = read_pdf_page_text(pdf, i)
                                 if t: first_pages.append(t)
                         early_text = " ".join(first_pages).strip()
                         if early_text:
-                            context_parts.append(f"[{doc_id_for_pdf} p.1-3] {early_text[:2500]}")
+                            context_parts.append(f"[{doc_id_for_pdf} p.1-5] {early_text[:3000]}")
                 except Exception as e:
                     print(f"[WARN] PDF context extraction failed: {e}")
+
+        # 1b) Targeted later-page PDF context for treatment/diagnostic
+        if (treatment_question or diagnostic_question) and doc_id_for_pdf:
+            case_dir = find_case_dir(doc_id_for_pdf, CFG.EXTRACT_ROOT)
+            if case_dir:
+                try:
+                    import contextlib, io
+                    from rag.test.gemini25pro_qdrant_bge import find_case_pdf, read_pdf_page_text
+                    pdf = find_case_pdf(case_dir)
+                    if pdf:
+                        buf = io.StringIO()
+                        with contextlib.redirect_stderr(buf):
+                            # choose up to 3 ranked later pages (>= page 3 / index >=2)
+                            later_idxs = []
+                            for h in hits:
+                                pi = h.get("page_index")
+                                if isinstance(pi, int) and pi >= 2 and pi not in later_idxs:
+                                    later_idxs.append(pi)
+                                if len(later_idxs) >= 3:
+                                    break
+                            for idx in later_idxs:
+                                t = read_pdf_page_text(pdf, idx)
+                                if t:
+                                    context_parts.append(f"[{doc_id_for_pdf} p.{idx+1}] {t[:1200]}")
+                except Exception as e:
+                    print(f"[WARN] PDF later-page context extraction failed: {e}")
 
         # 2) Prefer early, text-rich hits next
         early_hits = [h for h in hits[:12] if h.get("page_index", 999) <= 2]
@@ -428,8 +522,9 @@ class BatchProcessor:
         try:
             answer = self.gem.answer(
                 question, [str(p) for p in paths], spans=spans, context_text=ctx,
-                max_output_tokens=CFG.MAX_NEW_TOKENS
+                max_output_tokens=CFG.MAX_NEW_TOKENS, images_per_answer=images_per_answer
             )
+            answer = _normalize_answer(answer)
 
             if clinical_question and answer:
                 import re as _re
@@ -442,6 +537,71 @@ class BatchProcessor:
                 for pattern in unsupported_patterns:
                     if _re.search(pattern, answer, _re.I) and not _re.search(pattern, evidence_lower, _re.I):
                         print(f"[WARN] Potential unsupported detail in answer: {pattern}")
+
+            # Heuristic: incomplete-or-truncated answer detection
+            def _runner_looks_incomplete(txt: str) -> bool:
+                if not txt:
+                    return True
+                import re as _re
+                s = txt.strip()
+                # no terminal punctuation
+                if not _re.search(r"[.!?]" + r'"?$', s):
+                    return True
+                # bad endings
+                if _re.search(r"\b(by|with|including|include|such as|that|because|due to|via|as|which|where|when|to|of|for|in|on|and|or)\.?$", s.lower()):
+                    return True
+                if s.lower().endswith(":"):
+                    return True
+                return False
+
+            # Retry once with expanded context if insufficient
+            if answer.strip().lower().startswith("insufficient evidence"):
+                # Expand context using all evidence spans and more excerpts
+                more_ctx_parts = list(context_parts)
+                if spans:
+                    span_text = " ".join([s for s, _ in spans])
+                    more_ctx_parts.append(span_text[:6000])
+                # Add a couple more page excerpts from hits
+                for h in hits[:6]:
+                    ex = (h.get("text_excerpt") or "").strip()
+                    if ex:
+                        page_num = h.get("page_index", -1) + 1
+                        more_ctx_parts.append(f"[{h.get('doc_id','unknown')} p.{page_num}] {ex[:1200]}")
+                ctx2 = " ".join(more_ctx_parts)[:16000]
+                answer2 = self.gem.answer(
+                    question, [str(p) for p in paths], spans=spans, context_text=ctx2,
+                    max_output_tokens=CFG.MAX_NEW_TOKENS, images_per_answer=images_per_answer
+                )
+                answer2 = _normalize_answer(answer2)
+                if answer2:
+                    answer = answer2
+
+            # Retry once with continuation if incomplete
+            if _runner_looks_incomplete(answer):
+                # Favor same images; send prompt to continue with expanded context but short tokens
+                more_ctx = ctx
+                if len(more_ctx) < 12000:
+                    # Add more excerpts
+                    extra_excerpts = []
+                    for h in hits[:8]:
+                        ex = (h.get("text_excerpt") or "").strip()
+                        if ex:
+                            page_num = h.get("page_index", -1) + 1
+                            extra_excerpts.append(f"[{h.get('doc_id','unknown')} p.{page_num}] {ex[:1000]}")
+                    more_ctx = (ctx + " " + " ".join(extra_excerpts))[:16000]
+
+                continuation = self.gem.answer(
+                    question + "\n\nContinue completing the previous sentence and finish the answer.",
+                    [str(p) for p in paths], spans=spans, context_text=more_ctx,
+                    max_output_tokens=min(512, CFG.MAX_NEW_TOKENS), images_per_answer=images_per_answer
+                )
+                continuation = _normalize_answer(continuation)
+                if continuation and continuation not in answer:
+                    # Merge without duplication
+                    if continuation.startswith(answer[-50:]):
+                        answer = answer + continuation[len(answer[-50:]):]
+                    else:
+                        answer = (answer + " " + continuation).strip()
 
             return answer
         except Exception as e:
@@ -609,7 +769,10 @@ def main():
                     write_row({"error": "no_images_on_disk", **row_in, "hits": hits})
                     continue
 
-                answer_text = processor.answer_with_images(qtext, used_images, hits)
+                answer_text = processor.answer_with_images(
+                    qtext, used_images, hits, 
+                    images_per_answer=args.images_per_answer
+                )
 
                 out_rec = {
                     "question_id": row_in.get("question_id"),
