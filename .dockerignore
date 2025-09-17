@@ -1,0 +1,38 @@
+# Python/build
+__pycache__/
+*.pyc
+.venv/
+build/
+dist/
+
+# VCS & IDE
+.git/
+.gitignore
+.vscode/
+*.ipynb_checkpoints
+
+# Big data & caches (adjust to your tree)
+kaggle/
+data/
+datasets/
+extract/
+evaluation_results/
+working/
+working_v2/
+storage/
+vectordb/
+qdrant/
+*.ndjson
+*.pdf
+*.png
+*.jpg
+*.zip
+*.rar
+
+# Model caches
+.huggingface/
+huggingface/
+~/.cache/
+.cache/
+models/
+checkpoints/
