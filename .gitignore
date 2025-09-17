@@ -5,6 +5,7 @@ storage
 data.zip
 .venv
 .env
+.env.docker
 logs
 ragas
 instruction
