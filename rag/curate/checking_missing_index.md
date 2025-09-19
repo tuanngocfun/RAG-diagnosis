@@ -114,3 +114,17 @@ BY running:
 ```bash
 docker run --rm -it --gpus all --env-file /home/students/Leishmania/.env.docker -e RAG_ROOT=/app -e RAG_EXTRACT_ROOT=/app/kaggle/working2/extract -e RAG_PDF_DIRS="/app/data/standard" -e QDRANT_COLLECTION="leish_cases_pages" -v /home/students/Leishmania:/app -v /data4t/hf:/data4t/hf -w /app leish-gem25:latest python rag/curate/fix_text_extraction.py
 ```
+
+Or to reindex everything cleanly, follow the steps:
+1. Diagnose current issues:
+```bash
+docker run --rm -it --gpus all --user $(id -u):$(id -g) --env-file /home/students/Leishmania/.env.docker -e RAG_ROOT=/app -e RAG_EXTRACT_ROOT=/app/kaggle/working2/extract -e RAG_PDF_DIRS="/app/data/standard" -e QDRANT_COLLECTION="leish_cases_pages" -v /home/students/Leishmania:/app -v /data4t/hf:/data4t/hf -w /app leish-gem25:latest python rag/curate/diagnose_qdrant_duplicates.py
+```
+2. Clean re-index(recommended):
+```bash
+docker run --rm -it --gpus all --user $(id -u):$(id -g) --env-file /home/students/Leishmania/.env.docker -e RAG_ROOT=/app -e RAG_EXTRACT_ROOT=/app/kaggle/working2/extract -e RAG_PDF_DIRS="/app/data/standard" -e QDRANT_COLLECTION="leish_cases_pages" -v /home/students/Leishmania:/app -v /data4t/hf:/data4t/hf -w /app leish-gem25:latest python rag/curate/clean_reindex_qdrant.py
+```
+3. Verify success again:
+```bash
+docker run --rm -it --gpus all --user $(id -u):$(id -g) --env-file /home/students/Leishmania/.env.docker -e RAG_ROOT=/app -e RAG_EXTRACT_ROOT=/app/kaggle/working2/extract -e RAG_PDF_DIRS="/app/data/standard" -e QDRANT_COLLECTION="leish_cases_pages" -v /home/students/Leishmania:/app -v /data4t/hf:/data4t/hf -w /app leish-gem25:latest python rag/curate/diagnose_qdrant_duplicates.py
+```
