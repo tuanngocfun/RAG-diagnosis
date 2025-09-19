@@ -16,7 +16,7 @@ from typing import Any, Dict, List, Optional, Set, Tuple
 import re as _re
 
 # Import from the Gemini-enabled module
-from rag.test.medgemma4b_qdrant_bge_medcpt import (
+from rag.test.medgemma4b_qdrant_medcpt import (
     CFG, qdrant, CQ2, MedGemma4B, TextCrossReranker,
     rerank_with_text, rerank_with_case_level_cross_encoder, find_case_dir, page_indices_to_paths,
     _qdrant_search, extractive_spans, find_case_pdf, read_pdf_page_text
