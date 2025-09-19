@@ -99,8 +99,6 @@ class CFG:
 # ------------------------------
 # HF local cache helpers (offline-robust)
 # ------------------------------
-def _cache_repo_dir(model_id: str, cache_dir: Path) -> Path:
-    return cache_dir / f"models--{model_id.replace('/', '--')}"
 
 def resolve_local_model_dir(model_id: str, cache_dir: Path) -> str:
     """
