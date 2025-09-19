@@ -15,7 +15,7 @@ import json
 
 # Import from our RAG system
 sys.path.append('/app')
-from rag.test.medgemma4b_qdrant_bge_medcpt import (
+from rag.test.medgemma4b_qdrant_medcpt import (
     qdrant, find_case_pdf, read_pdf_page_text, ocr_png_tesseract,
     find_case_dir, CFG
 )
