@@ -815,13 +815,14 @@ class MedGemma4B:
                 do_sample=True,  # Enable sampling for diversity
                 num_beams=1,
                 top_p=0.92,  # Slightly higher for more diverse outputs
-                temperature=0.7,  # Higher temperature to reduce repetition
-                repetition_penalty=1.1,  # Add repetition penalty
+                temperature=0.8,  # Higher temperature to reduce repetition
+                repetition_penalty=1.2,  # Stronger repetition penalty
                 length_penalty=1.0,  # Encourage longer, complete answers
-                no_repeat_ngram_size=3,    # prevent verbatim repetition
-                min_new_tokens=64,          # ensure minimum generation
+                no_repeat_ngram_size=4,    # prevent verbatim repetition (increased)
+                min_new_tokens=32,          # reduce minimum to avoid padding
                 eos_token_id=eos_id,
                 pad_token_id=pad_id,
+                early_stopping=True,      # Stop when EOS is generated
             )
 
             with torch.inference_mode():
@@ -915,7 +916,30 @@ class MedGemma4B:
                     cites = ", ".join([f"[{i+1}]" for i in range(min(2, len(spans)))])
                     if snippet:
                         return f"Evidence summary {cites}: {snippet}"
-                return "Model generation failed without an explicit answer."
+                # Last resort: try OCR-based answer if images are available
+                if ims:
+                    try:
+                        # Try OCR on the images as final fallback
+                        ocr_text = ""
+                        try:
+                            import pytesseract
+                            for img in ims[:2]:  # Limit to first 2 images
+                                try:
+                                    text = pytesseract.image_to_string(img)
+                                    if text and len(text.strip()) > 20:
+                                        ocr_text += text.strip()[:200] + " "
+                                except Exception:
+                                    continue
+                        except ImportError:
+                            pass
+                        
+                        if ocr_text:
+                            return f"OCR-extracted content: {ocr_text.strip()}"
+                        else:
+                            return f"Insufficient evidence: No text content available for case images related to: {q[:80]}..."
+                    except Exception:
+                        pass
+                return "Insufficient text evidence available to generate a complete answer for this question."
         finally:
             _close_all()
     
@@ -1610,7 +1634,7 @@ def read_pdf_page_text(pdf_path: Path, page_index: int) -> str:
         except Exception:
             pass
 
-    # --- 3) Enhanced OCR fallback ---
+    # --- 3) MANDATORY OCR fallback when text is insufficient ---
     if not text or len(text) < 50:
         try:
             case_dir = pdf_path.parent
@@ -1652,6 +1676,20 @@ def build_payload(case_dir: Path, page_path: Path, page_idx: int, img: Image.Ima
     title = case_dir.name.replace("_", " ")
     pdf = find_case_pdf(case_dir)
     text = read_pdf_page_text(pdf, page_idx) if pdf else ""
+    
+    # Fallback to OCR if no PDF or insufficient text
+    if not text or len(text) < 30:
+        try:
+            ocr_text = ocr_png_fallback(case_dir, page_idx)
+            if ocr_text and len(ocr_text) > len(text or ""):
+                text = ocr_text
+        except Exception:
+            pass
+    
+    # If still no text, use title as fallback
+    if not text:
+        text = f"Case: {title} (page {page_idx + 1})"
+    
     # Sentence-safe truncation (prevents dangling "…" and mid-sentence cuts)
     text_excerpt = safe_trim(text, CFG.MAX_TEXT_EXCERPT)
 
@@ -1705,11 +1743,16 @@ def _page_text_for_embedding(case_dir: Path, pdf: Optional[Path], page_idx: int,
             txt = read_pdf_page_text(pdf, page_idx) or ""
         except Exception:
             txt = ""
-    if not txt:
+    
+    # Always try OCR fallback if no substantial text from PDF
+    if not txt or len(txt.strip()) < 50:
         try:
-            txt = ocr_png_fallback(case_dir, page_idx) or ""
+            ocr_text = ocr_png_fallback(case_dir, page_idx) or ""
+            if ocr_text and len(ocr_text.strip()) > len(txt.strip()):
+                txt = ocr_text
         except Exception:
-            txt = ""
+            pass
+    
     txt = txt.strip()
     if not txt:
         txt = title_fallback
@@ -2103,20 +2146,36 @@ def ocr_png_fallback(case_dir: Path, page_index: int) -> str:
         import easyocr
         pm = load_page_map(case_dir)
         paths = page_indices_to_paths(case_dir, [page_index])
-        if paths:
-            reader = easyocr.Reader(['en'], gpu=True)  # auto CPU fallback
-            res = reader.readtext(str(paths[0]), detail=0, paragraph=True)
-            easy = "\n".join([s for s in res if s]).strip()
-    except Exception:
-        pass
+        if paths and paths[0].exists():
+            # Use CPU for stability if GPU fails
+            for gpu_flag in [True, False]:
+                try:
+                    reader = easyocr.Reader(['en'], gpu=gpu_flag)
+                    res = reader.readtext(str(paths[0]), detail=0, paragraph=True)
+                    easy = "\n".join([s for s in res if s]).strip()
+                    break  # Success, exit the retry loop
+                except Exception as e:
+                    if not gpu_flag:  # Last attempt failed
+                        print(f"[WARN] EasyOCR failed on {paths[0]}: {e}")
+                    continue
+    except ImportError:
+        print("[WARN] EasyOCR not available, falling back to Tesseract only")
+    except Exception as e:
+        print(f"[WARN] EasyOCR setup failed: {e}")
 
     tess = ""
     try:
         tess = ocr_png_tesseract(case_dir, page_index)
-    except Exception:
-        pass
+    except Exception as e:
+        print(f"[WARN] Tesseract OCR failed: {e}")
 
     merged = _merge_ocr_text(easy, tess)
+    
+    # If OCR failed entirely, return a minimal description based on case title
+    if not merged:
+        title = case_dir.name.replace("_", " ")
+        return f"Medical case: {title} (page {page_index + 1}) - OCR extraction not available"
+    
     return merged
 
 def backfill_text_excerpts(batch_size: int = 512):
