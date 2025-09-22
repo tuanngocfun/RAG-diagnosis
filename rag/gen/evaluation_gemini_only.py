@@ -163,7 +163,8 @@ class TokenBucket:
         self.tokens -= 1.0
 
 class Gemini:
-    def __init__(self, api_key: str, model: str, rpm: int, cache_path: Path):
+    def __init__(self, api_key: str, model: str, rpm: int, cache_path: Path,
+                 thinking_budget: int = 128, include_thoughts: bool = False):
         from google import genai
         from google.genai import types as genai_types
         self.genai_types = genai_types
@@ -171,6 +172,8 @@ class Gemini:
         self.model = model
         self.bucket = TokenBucket(rpm)
         self.cache_path = cache_path
+        self.thinking_budget = thinking_budget
+        self.include_thoughts = include_thoughts
         self._cache: Dict[str, Dict[str, Any]] = {}
 
         # Normalize legacy cache rows (no 'ok' key) on load
@@ -308,7 +311,11 @@ class Gemini:
                     contents=[prompt],
                     config=self.genai_types.GenerateContentConfig(
                         temperature=0.0,
-                        response_mime_type="application/json"
+                        response_mime_type="application/json",
+                        thinking_config=self.genai_types.ThinkingConfig(
+                            thinking_budget=self.thinking_budget,
+                            include_thoughts=self.include_thoughts
+                        ),
                     ),
                 )
                 txt = (resp.text or "").strip()
@@ -594,12 +601,21 @@ class Config:
     GEMINI_MODEL: str = "gemini-2.5-pro"
     GEMINI_RPM: int = 5
     GEMINI_CACHE: Path = None  # set later
+    GEMINI_THINKING_BUDGET: int = 128
+    GEMINI_INCLUDE_THOUGHTS: bool = False
 
 # ========================
 # Core evaluation
 # ========================
 def evaluate(cfg: Config, *, strategy: str, stream_write, files: List[Path]) -> List[Dict[str, Any]]:
-    gem = Gemini(cfg.GOOGLE_API_KEY, cfg.GEMINI_MODEL, cfg.GEMINI_RPM, cfg.GEMINI_CACHE)
+    gem = Gemini(
+        cfg.GOOGLE_API_KEY,
+        cfg.GEMINI_MODEL,
+        cfg.GEMINI_RPM,
+        cfg.GEMINI_CACHE,
+        thinking_budget=cfg.GEMINI_THINKING_BUDGET,
+        include_thoughts=cfg.GEMINI_INCLUDE_THOUGHTS,
+    )
     answers_lut = read_answers_ndjson(cfg.ANSWERS_FILE)
 
     # Initialize counters for visibility
@@ -819,6 +835,10 @@ def main():
     ap.add_argument("--answers_file", type=str, default=None)
     ap.add_argument("--out_dir", type=str, required=True)
     ap.add_argument("--gemini_rpm", type=int, default=5)
+    ap.add_argument("--thinking_budget", type=int, default=None,
+                    help="Thinking token budget (Pro: min 128; Flash/Flash-Lite: 0 disables; -1 dynamic).")
+    ap.add_argument("--include_thoughts", action="store_true",
+                    help="Include thought summaries in response parts (costs extra tokens).")
     ap.add_argument("--strategy", choices=["all", "missing"], default="all",
                     help="all: judge all Qs; missing: reuse cached successful judgements only")
     ap.add_argument("--run_tag", type=str, default=None,
@@ -945,14 +965,35 @@ def main():
     if not key:
         logging.warning("GOOGLE_API_KEY is not set; Gemini calls will fail.")
 
+    # --- Resolve thinking budget (CLI > env > default) and clamp for Pro ---
+    tb = args.thinking_budget
+    if tb is None:
+        env_tb = os.getenv("GEMINI_THINKING_BUDGET")
+        if env_tb:
+            try: tb = int(env_tb)
+            except: tb = None
+    if tb is None:
+        tb = 128  # safe, low-cost default for Pro
+
+    model_name = "gemini-2.5-pro"  # fixed in this script; change here if you expose as arg
+    is_pro = "gemini-2.5-pro" in model_name
+    # Pro can't disable thinking; min budget 128 (except -1 for dynamic)
+    if is_pro and tb not in (-1,) and tb < 128:
+        logging.warning("Gemini-2.5-Pro requires thinking; clamping thinking_budget to >=128.")
+        tb = 128
+    if is_pro and tb == 0:
+        logging.warning("thinking_budget=0 disables thinking only for Flash/Flash-Lite; Pro ignores 0. Using 128.")
+        tb = 128
     cfg = Config(
         JSONL_DIR=jsonl_dir,
         OUTPUT_DIR=out_dir,
         ANSWERS_FILE=answers,
         GOOGLE_API_KEY=key,
-        GEMINI_MODEL="gemini-2.5-pro",
+        GEMINI_MODEL=model_name,
         GEMINI_RPM=int(args.gemini_rpm),
-        GEMINI_CACHE=gemini_cache
+        GEMINI_CACHE=gemini_cache,
+        GEMINI_THINKING_BUDGET=int(tb),
+        GEMINI_INCLUDE_THOUGHTS=bool(args.include_thoughts),
     )
 
     # STREAM PATH SELECTION LOGIC
@@ -1073,7 +1114,8 @@ def main():
                 "strategy": args.strategy,
                 "stream_path": str(stream_path),
                 "stream_append": args.stream_append,
-                "case_glob": args.case_glob,
+                "thinking_budget": int(tb),
+                "include_thoughts": bool(args.include_thoughts),
             },
             "env": {"GOOGLE_API_KEY_SET": bool(key)}
         }
