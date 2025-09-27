@@ -1,0 +1,24 @@
+# FastAPI Medical RAG Chatbot - Backend Requirements
+# Core API framework
+fastapi>=0.115.0
+uvicorn[standard]>=0.35.0
+python-multipart>=0.0.20
+
+# Pydantic for data validation
+pydantic>=2.11.0
+
+# Environment and configuration
+python-dotenv>=1.1.0
+
+# Additional dependencies for RAG integration
+transformers>=4.44.0
+torch>=2.0.0
+qdrant-client>=1.11.0
+Pillow>=10.0.0
+numpy>=1.24.0
+
+# PDF processing
+PyMuPDF>=1.23.0
+
+# Note: Some dependencies overlap with main requirements_recovered.txt
+# but are included here for completeness when building standalone containers
