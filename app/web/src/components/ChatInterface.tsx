@@ -338,7 +338,7 @@ export default function ChatInterface() {
           {messages.map((message) => (
             <div key={message.id} className="animate-fade-in">
               <div className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-4xl ${message.type === 'user' ? 'message-user' : 'message-assistant'}`}>
+                <div className={`max-w-4xl responsive-container ${message.type === 'user' ? 'message-user' : 'message-assistant'}`}>
                   {message.isLoading ? (
                     <div className="flex items-center space-x-2">
                       <div className="loading-dots">
@@ -350,7 +350,7 @@ export default function ChatInterface() {
                     </div>
                   ) : (
                     <>
-                        <div className="prose prose-sm max-w-none">
+                        <div className="prose prose-sm max-w-none break-words preserve-whitespace">
                         <div dangerouslySetInnerHTML={{ __html: message.content.replace(/\[(\d+)\]/g, '<sup class="citation">[$1]</sup>') }} />
                       </div>
                       
@@ -406,17 +406,17 @@ export default function ChatInterface() {
 
               {/* Evidence Section */}
               {message.type === 'assistant' && expandedEvidence === message.id && (
-                <div className="mt-4 bg-gray-50 border border-gray-200 rounded-lg overflow-hidden">
+                <div className="mt-4 bg-gray-50 border border-gray-200 rounded-lg overflow-hidden w-full">
                   {/* Sources */}
                   {message.evidence && message.evidence.length > 0 && (
                     <div className="p-4 border-b border-gray-200">
                       <h4 className="font-medium text-sm text-gray-900 mb-2">Sources</h4>
                       <div className="space-y-2">
                         {message.evidence.map(([span, cite], idx) => (
-                          <div key={idx} className="text-sm">
+                          <div key={idx} className="text-sm break-words">
                             <span className="font-medium text-gray-700">[{idx + 1}]</span>
-                            <span className="ml-2 text-gray-600">{span}</span>
-                            <span className="ml-2 text-xs text-gray-500">({cite})</span>
+                            <span className="ml-2 text-gray-600 break-words">{span}</span>
+                            <span className="ml-2 text-xs text-gray-500 break-words">({cite})</span>
                           </div>
                         ))}
                       </div>
@@ -425,9 +425,9 @@ export default function ChatInterface() {
 
                   {/* Retrieved Evidence Table */}
                   {message.hits && message.hits.length > 0 && (
-                    <div className="p-4">
+                    <div className="p-4 w-full">
                       <h4 className="font-medium text-sm text-gray-900 mb-3">Retrieved Evidence</h4>
-                      <div className="overflow-x-auto">
+                      <div className="table-responsive w-full">
                         <table className="evidence-table">
                           <thead>
                             <tr>
@@ -445,15 +445,15 @@ export default function ChatInterface() {
                               <tr key={`${hit.doc_id}-${hit.page_index}`}>
                                 <td>{hit.rank}</td>
                                 <td>{formatScore(hit.score)}</td>
-                                <td className="text-xs font-mono">{hit.doc_id}</td>
+                                <td className="text-xs font-mono break-long-words">{hit.doc_id}</td>
                                 <td>{hit.page_index}</td>
                                 <td>
-                                  <span className="text-xs px-2 py-1 bg-gray-100 rounded">
+                                  <span className="text-xs px-2 py-1 bg-gray-100 rounded whitespace-nowrap">
                                     {hit.micrograph_like ? '🔬' : '📄'} {hit.page_kind}
                                   </span>
                                 </td>
-                                <td className="text-xs">{formatKeywords(hit.keywords)}</td>
-                                <td className="text-xs max-w-xs truncate">{hit.text_excerpt}</td>
+                                <td className="text-xs break-words">{formatKeywords(hit.keywords)}</td>
+                                <td className="text-xs max-w-xs break-words">{hit.text_excerpt}</td>
                               </tr>
                             ))}
                           </tbody>
