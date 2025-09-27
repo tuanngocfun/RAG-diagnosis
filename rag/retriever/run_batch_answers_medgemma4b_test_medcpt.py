@@ -16,6 +16,9 @@ from typing import Any, Dict, List, Optional, Set, Tuple
 import re as _re
 import math
 from collections import Counter
+import numpy as np
+import torch
+from PIL import Image
 
 # Import from the Gemini-enabled module
 from rag.retriever.medgemma4b_qdrant_crossencoder_medcpt import (
@@ -317,104 +320,102 @@ def select_images(seed: List[str], hits: List[Dict[str, Any]], take: int, target
 
 # -------------------- batch processor --------------------
 def _normalize_answer(text: str) -> str:
+    """
+    FIXED: Better normalization that handles garbage output, repetition, and prompt leakage
+    """
     if not text:
         return text
-    t = text
     
-    # Remove leading echoed question and 'Answer:' label if present
-    t = _re.sub(r"^\s*(?:Question\s*:\s*.*?)?\b(?:Answer|ANSWER)\s*:\s*", "", t, flags=_re.I | _re.S)
+    t = text.strip()
     
-    # If multiple 'Final Answer:' blocks exist, keep only the last one
+    # Early garbage detection - truncate very long outputs
+    if len(t) > 4000:
+        print("⚠️ [FIX] Truncating very long answer (likely repetitive)")
+        t = t[:2000] + "..."
+    
+    # Remove prompt leakage patterns first (CRITICAL FIX)
+    t = _re.sub(r'^\s*(?:user\s+)?(?:You are a medical expert[^.]*\.)?', '', t, flags=_re.I)
+    t = _re.sub(r'Evidence Sources:\s*\[?\d+\]?[^.]*\.', '', t, flags=_re.I)
+    t = _re.sub(r'User has uploaded \d+ files:[^.]*\.', '', t, flags=_re.I)
+    t = _re.sub(r'Please analyze both the uploaded content[^.]*\.', '', t, flags=_re.I)
+    
+    # ENHANCED: Remove diagnostic instruction echoing (NEW FIX)
+    t = _re.sub(r'Medical Question:\s*Provide a systematic medical diagnosis for:[^.]*\.?', '', t, flags=_re.I)
+    t = _re.sub(r'Please structure your diagnostic analysis as follows:[^.]*\.?', '', t, flags=_re.I)
+    t = _re.sub(r'Key clinical findings from the evidence[^.]*\.?', '', t, flags=_re.I)
+    t = _re.sub(r'Relevant differential diagnoses to consider[^.]*\.?', '', t, flags=_re.I)
+    t = _re.sub(r'Most likely diagnosis with supporting reasoning[^.]*\.?', '', t, flags=_re.I)
+    t = _re.sub(r'Diagnostic methods or confirmatory tests mentioned[^.]*\.?', '', t, flags=_re.I)
+    t = _re.sub(r'Focus on medical analysis rather than case descriptions[^.]*\.?', '', t, flags=_re.I)
+    t = _re.sub(r'Continue the diagnostic analysis:[^.]*\.?', '', t, flags=_re.I)
+    
+    # Remove answer prefixes and labels  
+    t = _re.sub(r'^\s*(?:Question\s*:\s*.*?)?\b(?:Answer|ANSWER|MEDICAL ANALYSIS)\s*:\s*', '', t, flags=_re.I | _re.S)
+    
+    # Handle Final Answer sections
     idx = t.lower().rfind("final answer:")
     if idx != -1:
         tail = t[idx + len("final answer:"):].strip()
-        if tail:
+        if tail and len(tail) < len(t) * 0.8:
             t = tail
     
-    # Strip any remaining leading 'Final Answer:', 'ANSWER:', etc.
-    t = _re.sub(r"^(?:final\s+)?answer\s*:\s*", "", t, flags=_re.I).strip()
+    # Remove repetitive case descriptions (ENHANCED)
+    t = _re.sub(r'(?:\b\d+\s+\d+\s+A\s+\d+-YEAR-OLD\s+[A-Z\s]+\s+WITH\s+A\s+LESION[^.]*\.?\s*){2,}', 
+               '', t, flags=_re.I)
+    t = _re.sub(r'(?:The lesion progressed quickly from a sore to eat through[^.]*\.?\s*){2,}', 
+               'The lesion progressed quickly.', t, flags=_re.I)
     
-    # Remove LaTeX box wrappers and inline math markers 
-    t = _re.sub(r"\\boxed\\{([^}]*)\\}", r"\1", t)
-    t = _re.sub(r"\$\$?(.*?)\$\$?", r"\1", t, flags=_re.S)
-    
-    # Remove generic prefixes that cause repetition
-    generic_prefixes = [
-        r"^Evidence summary \[\d+\], \[\d+\]:\s*",
-        r"^Based on the (?:evidence provided|provided evidence)[,:]?\s*",  # handles both orders
-        r"^According to the evidence[,:]?\s*",
-        r"^The evidence shows[,:]?\s*",
-        r"^From the evidence[,:]?\s*",  # new pattern
-        r"^The provided evidence (?:shows|indicates|suggests)[,:]?\s*",  # new pattern
-    ]
-    for prefix in generic_prefixes:
-        t = _re.sub(prefix, "", t, flags=_re.I)
+    # Remove LaTeX and formatting
+    t = _re.sub(r'\\boxed\\{([^}]*)\\}', r'\1', t)
+    t = _re.sub(r'\$\$?(.*?)\$\$?', r'\1', t, flags=_re.S)
     
     # Normalize whitespace
-    t = _re.sub(r"\s+", " ", t).strip()
+    t = _re.sub(r'\s+', ' ', t).strip()
     
-    # Enhanced duplicate sentence removal with better sentence splitting
-    sents = _re.split(r'(?<=[.!?])(?:["\')\]\}]+)?(?:\s+)', t)
-    seen, uniq = set(), []
+    # Enhanced sentence deduplication (IMPROVED)
+    sentences = _re.split(r'(?<=[.!?])(?:["\')\]\}]+)?(?:\s+)', t)
+    seen = set()
+    unique_sentences = []
     
-    for s in sents:
-        s = s.strip()
-        if len(s) < 10:  # Skip very short fragments
+    for sentence in sentences:
+        sentence = sentence.strip()
+        if len(sentence) < 15:
             continue
-            
-        # Create a more sophisticated deduplication key
-        key = _re.sub(r"\W+", "", s.lower())
-        key = _re.sub(r"\d+", "N", key)  # Normalize numbers
         
-        # Skip sentences that are too generic or repetitive
-        if any(generic in s.lower() for generic in [
-            "cutaneous leishmaniasis (cl) is a parasitic disease",
-            "leishmaniasis is a parasitic disease", 
-            "cutaneous leishmaniasis is a disease",
-            "this diagnosis should be considered"
+        # Create deduplication key
+        key = _re.sub(r'\W+', '', sentence.lower())[:50]  # First 50 chars only
+        
+        # Skip obvious repetitive patterns (ENHANCED)
+        if any(pattern in sentence.lower() for pattern in [
+            "year-old boy from laos", "year-old man from cambodia",
+            "progressed quickly from", "medical expert", "evidence sources",
+            "you are a medical", "user has uploaded"
         ]):
             continue
-            
-        if key and key not in seen and len(key) > 15:  # Require substantial content
+        
+        if key and key not in seen:
             seen.add(key)
-            uniq.append(s)
+            unique_sentences.append(sentence)
+            
+            # Limit sentences to prevent runaway (CRITICAL FIX)
+            if len(unique_sentences) >= 6:
+                break
     
-    out = " ".join(uniq).strip()
-    # --- NEW: collapse back-to-back whole-block duplication (A + A) ---
-    def _collapse_back_to_back_repetition(s: str) -> str:
-        import difflib
-        s = s.strip()
-        if len(s) < 120:
-            return s
-        n = len(s)
-        for delta in range(-20, 21, 2):
-            mid = n // 2 + delta
-            if 50 < mid < n - 50:
-                a, b = s[:mid].strip(), s[mid:].strip()
-                if difflib.SequenceMatcher(None, a, b).ratio() > 0.975:
-                    return a
-        return s
-
-    out = _collapse_back_to_back_repetition(out)
-
-    # --- NEW: dedupe repeated paragraphs/blocks (robust to weak punctuation) ---
-    parts = [p.strip() for p in _re.split(r"(?:\s{2,}|\n+|\[.+?p\.\d+\])", out) if p.strip()]
-    seen_blocks, uniq_blocks = set(), []
-    for p in parts:
-        k = _re.sub(r"\W+", "", p.lower())
-        if k and k not in seen_blocks:
-            seen_blocks.add(k)
-            uniq_blocks.append(p)
-    out = " ".join(uniq_blocks).strip()
+    result = " ".join(unique_sentences).strip()
     
-    # Ensure proper ending punctuation
-    if out and out[-1] not in ".!?":
-        out += "."
+    # Ensure proper ending
+    if result and result[-1] not in '.!?':
+        last_punct = max(result.rfind('.'), result.rfind('!'), result.rfind('?'))
+        if last_punct > len(result) * 0.7:
+            result = result[:last_punct + 1]
+        else:
+            result += "."
     
-    # Remove trailing incomplete citations or fragments
-    out = _re.sub(r"\s*\[\d+\]?\.?\s*$", ".", out)
+    # Final sanity check (CRITICAL FIX)
+    if len(result) < 30 or result.count(' ') < 4:
+        return "Unable to generate a clear medical answer from the available information."
     
-    return out
+    return result
 class BatchProcessor:
     """Optimized batch processor that loads models once and reuses them."""
     
@@ -460,31 +461,88 @@ class BatchProcessor:
                             any_keywords: Optional[str] = None,
                             micrograph_only: bool = False,
                             micrograph_strict: bool = False,
-                            pool_multiplier: int = 3) -> Dict[str, Any]:
+                            pool_multiplier: int = 3,
+                            uploaded_images: Optional[List[str]] = None) -> Dict[str, Any]:
         """
-        Enhanced with imaging question detection
+        Enhanced with imaging question detection and multimodal retrieval support
         """
+        from PIL import Image
+        import torch
+        import numpy as np
+        
+        # Text embedding (always present)
         qv_text = self.encoder.embed_texts([question])[0]
+        print(f"[DEBUG] Text embedding shape: {qv_text.shape}, first 5 values: {qv_text[:5]}")
+        
+        # Image embeddings from uploaded images (NEW MULTIMODAL FEATURE)
+        uploaded_image_embeddings = []
+        if uploaded_images:
+            print(f"[INFO] Processing {len(uploaded_images)} uploaded images for multimodal retrieval")
+            valid_images = []
+            for img_path in uploaded_images:
+                try:
+                    if Path(img_path).exists():
+                        with Image.open(img_path).convert("RGB") as img:
+                            valid_images.append(img.copy())
+                except Exception as e:
+                    print(f"[WARN] Failed to load uploaded image {img_path}: {e}")
+            
+            if valid_images:
+                try:
+                    raw_embeddings = self.encoder.embed_images(valid_images)
+                    
+                    # Handle different tensor types and formats with robust type checking
+                    # Convert to list of numpy arrays to avoid boolean evaluation issues
+                    if hasattr(raw_embeddings, 'dtype'):  # Check for tensor-like objects first
+                        print(f"[DEBUG] Raw embedding tensor dtype: {raw_embeddings.dtype}, shape: {getattr(raw_embeddings, 'shape', 'no shape')}")
+                        # Convert any tensor type to Float32 for compatibility
+                        if hasattr(raw_embeddings, 'float'):
+                            embedding_array = raw_embeddings.float().cpu().numpy()
+                            uploaded_image_embeddings = [embedding_array[i] for i in range(len(embedding_array))]
+                            print(f"[INFO] Converted tensor embeddings to Float32 for {len(uploaded_image_embeddings)} uploaded images")
+                        else:
+                            embedding_array = np.array(raw_embeddings, dtype=np.float32)
+                            uploaded_image_embeddings = [embedding_array[i] for i in range(len(embedding_array))]
+                            print(f"[INFO] Converted tensor-like embeddings to numpy for {len(uploaded_image_embeddings)} uploaded images")
+                    elif isinstance(raw_embeddings, np.ndarray):
+                        embedding_array = raw_embeddings.astype(np.float32)
+                        uploaded_image_embeddings = [embedding_array[i] for i in range(len(embedding_array))]
+                        print(f"[INFO] Generated embeddings (numpy) for {len(uploaded_image_embeddings)} uploaded images")
+                    else:
+                        # Fallback: try to convert to numpy array
+                        embedding_array = np.array(raw_embeddings, dtype=np.float32)
+                        uploaded_image_embeddings = [embedding_array[i] for i in range(len(embedding_array))]
+                        print(f"[INFO] Generated embeddings (converted) for {len(uploaded_image_embeddings)} uploaded images")
+                        
+                except Exception as e:
+                    print(f"[WARN] Failed to embed uploaded images: {e}")
+                    print(f"[DEBUG] Exception type: {type(e)}, args: {e.args}")
+                    uploaded_image_embeddings = []
 
         # Detect question types
         ql = question.lower()
+        print(f"[DEBUG] Processing question: {repr(question)}")
         imaging_terms = ["neuroimaging","mri","ct","computed tomography","magnetic resonance",
                         "flair","dwi","adc","t1","t2","contrast","enhancement","lesion",
                         "brain","encephal","cns","cranial"]
         clinical_terms = ["lesion", "clinical", "course", "onset", "features", "history", 
                         "size", "location", "referral", "evolution", "appearance"]
         treatment_terms = ["treatment", "dose", "dosage", "regimen", "therapy", "outcome", 
-                        "follow-up", "response", "mg", "kg", "administered"]
+                        "follow-up", "response", "mg", "kg", "administered", "cure", "procedure"]
         diagnostic_terms = ["diagnosis", "identify", "stain", "microscopy", "species", 
-                        "pcr", "culture", "molecular", "sequencing", "identification"]
+                        "pcr", "culture", "molecular", "sequencing", "identification", "having", "tell me what"]
 
         imaging_question = any(t in ql for t in imaging_terms)
         clinical_question = any(t in ql for t in clinical_terms)
         treatment_question = any(t in ql for t in treatment_terms)
         diagnostic_question = any(t in ql for t in diagnostic_terms)
 
-        # Adjust pool size based on question type
-        if imaging_question:
+        # Adjust pool size based on question type and uploaded images
+        if uploaded_image_embeddings:
+            pool_multiplier = max(pool_multiplier, 4)  # Expand search when we have uploaded images
+            top_k = max(top_k, 10)  # Increase result count for better fusion
+            print(f"[INFO] Multimodal mode: expanding search pool to {pool_multiplier}x, top_k={top_k}")
+        elif imaging_question:
             pool_multiplier = max(pool_multiplier, 4)
             top_k = max(top_k, 12)
         elif treatment_question or diagnostic_question:
@@ -502,7 +560,7 @@ class BatchProcessor:
         if case_type:
             musts.append(FieldCondition(key="case_type", match=MatchValue(value=case_type)))
 
-        if imaging_question:
+        if imaging_question or uploaded_image_embeddings:  # Boost visual content when we have uploaded images
             should += [
                 FieldCondition(key="micrograph_like", match=MatchValue(value=True)),
                 FieldCondition(key="page_kind", match=MatchValue(value="figure_or_micrograph")),
@@ -596,7 +654,43 @@ class BatchProcessor:
                     merged[k] = (sc, pl, tag)
 
         _add(hits_text, "text")
-        _add(hits_img,  "image")
+        _add(hits_img,  "db_image")
+        
+        # NEW: Uploaded image-based retrieval (the key fix!)
+        if uploaded_image_embeddings:
+            print(f"[INFO] Performing uploaded image-based retrieval...")
+            uploaded_hits_all = []
+            for i, img_embedding in enumerate(uploaded_image_embeddings):
+                try:
+                    # Ensure embedding is the right format for Qdrant search (numpy array)
+                    if isinstance(img_embedding, np.ndarray):
+                        search_embedding = img_embedding.flatten().astype(np.float32)
+                    else:
+                        search_embedding = np.array(img_embedding, dtype=np.float32)
+                    
+                    print(f"[DEBUG] Using embedding of type {type(search_embedding)} with shape {search_embedding.shape}")
+                    
+                    # Search using uploaded image embedding
+                    hits_uploaded = _qdrant_search(self.client, search_embedding, pool_size, base_filter, CFG.SCORE_THRESHOLD, using="image")
+                    uploaded_hits_all.extend(hits_uploaded)
+                    print(f"[INFO] Uploaded image {i+1} retrieval: {len(hits_uploaded)} results")
+                except Exception as e:
+                    print(f"[WARN] Failed to search with uploaded image {i+1}: {e}")
+                    print(f"[DEBUG] Embedding details - type: {type(img_embedding)}, shape: {getattr(img_embedding, 'shape', 'no shape')}")
+                    import traceback
+                    print(f"[DEBUG] Full traceback: {traceback.format_exc()}")
+            
+            # Add uploaded image results with higher weight since they're user-provided
+            def _add_weighted(points, tag, weight=1.0):
+                for pt in points or []:
+                    k = _key(pt)
+                    sc = float(getattr(pt, "score", 0.0)) * weight
+                    pl = getattr(pt, "payload", {}) or {}
+                    if (k not in merged) or (sc > merged[k][0]):
+                        merged[k] = (sc, pl, tag)
+            
+            _add_weighted(uploaded_hits_all, "uploaded_image", weight=1.3)
+            print(f"[INFO] Total uploaded image results: {len(uploaded_hits_all)}")
 
         # Convert to dicts
         raw_items: List[Dict[str, Any]] = []
@@ -619,6 +713,11 @@ class BatchProcessor:
         for item in raw_items:
             page_idx = item.get("page_index", 999)
             base_score = item["score"]
+            
+            # NEW: Boost results from uploaded image searches (key multimodal enhancement)
+            if item.get("via") == "uploaded_image":
+                item["score"] = base_score * 1.25  # Significant boost for user-uploaded image matches
+                print(f"[DEBUG] Boosted uploaded image match: {item.get('doc_id')} page {page_idx}")
             
             # Apply question-aware page boosting and content-based boosting
             if treatment_question or diagnostic_question:
@@ -677,6 +776,10 @@ class BatchProcessor:
                     seen.add(key)
 
         # --- Apply appropriate reranking strategy based on constraints
+        print(f"[DEBUG] After merge: {len(raw_items)} items")
+        for i, item in enumerate(raw_items[:5]):
+            print(f"[DEBUG] Item {i+1}: {item.get('doc_id', 'N/A')} page {item.get('page_index', 'N/A')} score={item.get('score', 0):.4f}")
+        
         pre_rerank_pool = [dict(r) for r in raw_items[:20]]  # Always store pre-rerank state
         post_rerank_pool = []  # Initialize to avoid undefined variable issues
         if self.reranker and raw_items:
@@ -725,7 +828,7 @@ class BatchProcessor:
             post_rerank_pool = [dict(r) for r in raw_items[:20]]
                 
             
-        # --- Final selection with clinical bias to early/text-rich pages
+        # --- Final selection with clinical bias and diversity enforcement
         # Use stable preference sorting that preserves reranker order within groups
         if clinical_question:
             # Use stable sort keys that group desired items first, without reordering within groups
@@ -734,9 +837,54 @@ class BatchProcessor:
                 text_ok = 0 if len((r.get("text_excerpt") or "")) > 100 else 1
                 return (page_ok, text_ok)
 
-            selected = sorted(raw_items, key=bias_tuple)[:top_k]
+            candidates = sorted(raw_items, key=bias_tuple)
         else:
-            selected = raw_items[:top_k]
+            candidates = raw_items
+        
+        # Enforce diversity to prevent same-page repetition and similar content
+        selected = []
+        seen_pages = set()
+        seen_excerpts = set()
+        
+        for candidate in candidates:
+            if len(selected) >= top_k:
+                break
+                
+            # Diversity checks
+            page_key = (candidate.get("doc_id"), candidate.get("page_index"))
+            excerpt = (candidate.get("text_excerpt") or "").strip()[:200]  # First 200 chars for similarity
+            
+            # Skip if we've seen this exact page
+            if page_key in seen_pages:
+                continue
+                
+            # Skip if we've seen very similar content (helps prevent duplicate evidence)
+            excerpt_norm = _re.sub(r'\W+', '', excerpt.lower())
+            if len(excerpt_norm) > 50:  # Only check substantial excerpts
+                is_duplicate = False
+                for seen_excerpt in seen_excerpts:
+                    if len(seen_excerpt) > 50:
+                        # Check for high similarity (>80% overlap)
+                        import difflib
+                        similarity = difflib.SequenceMatcher(None, excerpt_norm, seen_excerpt).ratio()
+                        if similarity > 0.8:
+                            is_duplicate = True
+                            break
+                
+                if is_duplicate:
+                    print(f"[DEBUG] Skipping duplicate content from {candidate.get('doc_id')} page {candidate.get('page_index')}")
+                    continue
+                    
+                seen_excerpts.add(excerpt_norm)
+            
+            selected.append(candidate)
+            seen_pages.add(page_key)
+
+        # If we don't have enough diverse results, fill with best remaining (relaxed diversity)
+        if len(selected) < top_k:
+            for candidate in candidates:
+                if candidate not in selected and len(selected) < top_k:
+                    selected.append(candidate)
 
         # set ranks
         for i, r in enumerate(selected, 1):
@@ -808,9 +956,11 @@ class BatchProcessor:
 
         # Add question hash to context for uniqueness across different questions
         question_hash = hashlib.md5(question.encode()).hexdigest()[:8]
+        print(f"[DEBUG] Question hash: {question_hash}")
         
         # Evidence spans (more per doc for coverage) - now question-aware
         spans = extractive_spans(hits, per_doc=6, max_chars=500, question=question) # Enhanced with question context
+        print(f"[DEBUG] Extracted {len(spans)} spans for question analysis")
 
         # Build augmented context: PDF early pages first, then ranked excerpts
         context_parts: List[str] = []
@@ -832,35 +982,70 @@ class BatchProcessor:
             "histopathology", "histopathologic", "findings", "biopsy", "inflammatory", "amastigotes"
         ])
 
-        # Add question-specific context prefix
-        context_parts.append(f"Question-specific context for: {question}")
+        # Enhanced question type detection for better context building - DEFINE BEFORE USE
+        diagnostic_all = any(term in question.lower() for term in [
+            "diagnosis", "diagnose", "identify", "disease", "condition", "what is", "which disease", "having"
+        ])
+        procedure_question = any(term in question.lower() for term in [
+            "procedure", "cure", "how to treat", "treatment steps", "therapy", "management"
+        ])
+
+        # Add question-specific context prefix with enhanced discrimination
+        if procedure_question:
+            context_parts.append(f"TREATMENT/PROCEDURE ANALYSIS for: {question}")
+            context_parts.append("Focus on therapeutic interventions, treatment protocols, and management strategies.")
+        elif diagnostic_all:
+            context_parts.append(f"DIAGNOSTIC ANALYSIS for: {question}")
+            context_parts.append("Focus on diagnostic criteria, identification methods, and differential diagnoses.")
+        elif clinical_question:
+            context_parts.append(f"CLINICAL PRESENTATION ANALYSIS for: {question}")
+            context_parts.append("Focus on clinical features, symptoms, and patient presentation.")
+        else:
+            context_parts.append(f"MEDICAL ANALYSIS for: {question}")
+        
+        context_parts.append(f"Question ID: {question_hash}")
+        print(f"[DEBUG] Question type - Diagnostic: {diagnostic_all}, Treatment: {treatment_question}, Procedure: {procedure_question}, Clinical: {clinical_question}, Histopath: {histopath_question}")
         
         # Filter hits based on question relevance to build focused context
         filtered_hits = []
-        for hit in hits[:12]:  # Limit to top hits
+        for hit in hits[:15]:  # Increase pool for better selection
             excerpt = (hit.get("text_excerpt") or "").strip()
-            if not excerpt:
+            if not excerpt or len(excerpt) < 30:  # Skip very short excerpts
                 continue
             
             excerpt_lower = excerpt.lower()
             relevance_score = 0
             
-            # Score relevance based on question type
-            if clinical_question:
-                clinical_terms = ["patient", "lesion", "nodule", "ulcer", "clinical", "presentation", "onset", "course", "size", "location"]
-                relevance_score += sum(1 for term in clinical_terms if term in excerpt_lower)
+            # Enhanced relevance scoring for different question types
+            if diagnostic_all:
+                # For diagnostic questions, prioritize medical findings and methods
+                diagnostic_terms = [
+                    "diagnosis", "identified", "species", "microscopy", "pcr", "culture", 
+                    "biopsy", "histopathology", "staining", "morphology", "amastigotes",
+                    "leishmania", "cutaneous", "visceral", "mucocutaneous", "parasites"
+                ]
+                relevance_score += sum(3 for term in diagnostic_terms if term in excerpt_lower)
+                # Penalize case descriptions for diagnostic questions
+                if any(phrase in excerpt_lower for phrase in [
+                    "year-old", "from laos", "from cambodia", "progressed quickly"
+                ]):
+                    relevance_score -= 2
             
-            if diagnostic_question:
-                diagnostic_terms = ["pcr", "culture", "sequencing", "dna", "specimens", "biopsy", "identification", "species", "methods"]
-                relevance_score += sum(2 for term in diagnostic_terms if term in excerpt_lower)
+            if clinical_question:
+                clinical_terms = ["patient", "lesion", "nodule", "ulcer", "clinical", "presentation", "onset", "course", "size", "location", "symptoms"]
+                relevance_score += sum(2 for term in clinical_terms if term in excerpt_lower)
             
             if treatment_question:
-                treatment_terms = ["treatment", "therapy", "dose", "antimony", "amphotericin", "outcome", "response"]
-                relevance_score += sum(2 for term in treatment_terms if term in excerpt_lower)
+                treatment_terms = ["treatment", "therapy", "dose", "antimony", "amphotericin", "outcome", "response", "cure", "healing"]
+                relevance_score += sum(3 for term in treatment_terms if term in excerpt_lower)
             
             if histopath_question:
-                histopath_terms = ["histopathology", "biopsy", "inflammatory", "amastigotes", "macrophages", "granuloma"]
-                relevance_score += sum(2 for term in histopath_terms if term in excerpt_lower)
+                histopath_terms = ["histopathology", "biopsy", "inflammatory", "amastigotes", "macrophages", "granuloma", "tissue", "cells"]
+                relevance_score += sum(3 for term in histopath_terms if term in excerpt_lower)
+            
+            # Bonus for medical terminology and scientific content
+            medical_bonus_terms = ["microscopic", "molecular", "endemic", "epidemiological", "pathogenesis", "immunology"]
+            relevance_score += sum(1 for term in medical_bonus_terms if term in excerpt_lower)
             
             if relevance_score > 0:
                 hit_copy = hit.copy()
@@ -931,27 +1116,69 @@ class BatchProcessor:
         early_hits = [h for h in selected_hits if h.get("page_index", 999) <= 2]
         other_hits = [h for h in selected_hits if h.get("page_index", 999) > 2]
 
-        def _truncate_preserving_clinical(excerpt: str, limit: int = 800) -> str:
+        def _truncate_preserving_medical(excerpt: str, limit: int = 1000) -> str:
+            """Enhanced truncation that preserves important medical content"""
             if len(excerpt) <= limit:
                 return excerpt
-            import re as _re
-            m = _re.search(r'[^.]*(?:lesion|nodule|ulcer|crust|cheek|face|onset|month|cm|mm|diameter)[^.]*\.', excerpt, _re.I)
-            if m:
-                start_pos = max(0, m.start() - 200)
+            import re as _re  # Ensure _re is available
+            
+            # For diagnostic questions, prioritize diagnostic content
+            if diagnostic_all:
+                diagnostic_patterns = [
+                    r'[^.]*(?:diagnosis|identified|species|amastigotes|leishmania|pcr|culture|microscopy)[^.]*\.',
+                    r'[^.]*(?:biopsy|histopathology|staining|morphology|parasites)[^.]*\.',
+                    r'[^.]*(?:cutaneous|visceral|mucocutaneous)[^.]*\.'
+                ]
+                for pattern in diagnostic_patterns:
+                    m = _re.search(pattern, excerpt, _re.I)
+                    if m:
+                        start_pos = max(0, m.start() - 300)
+                        return excerpt[start_pos:start_pos + limit] + "..."
+            
+            # For clinical questions, preserve specific findings
+            clinical_match = _re.search(r'[^.]*(?:lesion|nodule|ulcer|crust|onset|month|cm|mm|diameter|clinical|symptoms)[^.]*\.', excerpt, _re.I)
+            if clinical_match:
+                start_pos = max(0, clinical_match.start() - 200)
                 return excerpt[start_pos:start_pos + limit] + "..."
+            
+            # Default truncation from beginning
             return excerpt[:limit] + "..."
 
-        # Prioritize hits based on question relevance score
+        # Prioritize hits based on question relevance score and avoid repetitive content
         all_selected = sorted(early_hits + other_hits, key=lambda h: h.get("context_relevance", 0), reverse=True)
-        for h in all_selected:
+        seen_excerpts = set()
+        
+        for h in all_selected[:10]:  # Limit to top 10 most relevant
             excerpt = (h.get("text_excerpt") or "").strip()
-            if excerpt:
-                page_num = h.get("page_index", -1) + 1
-                relevance_note = f" [rel:{h.get('context_relevance', 0)}]" if h.get("context_relevance", 0) > 0 else ""
-                context_parts.append(f"[{h.get('doc_id','unknown')} p.{page_num}{relevance_note}] {_truncate_preserving_clinical(excerpt)}")
+            if not excerpt:
+                continue
+                
+            # Skip if we've seen very similar content
+            import re as _re  # Ensure _re is available in this scope
+            excerpt_key = _re.sub(r"\W+", "", excerpt.lower())[:100]
+            if excerpt_key in seen_excerpts:
+                continue
+            seen_excerpts.add(excerpt_key)
+            
+            # Skip excerpts that are mostly case descriptions for diagnostic questions
+            if diagnostic_all and any(phrase in excerpt.lower() for phrase in [
+                "year-old boy from laos", "year-old man from cambodia", 
+                "progressed quickly from a sore to eat through"
+            ]):
+                continue
+            
+            page_num = h.get("page_index", -1) + 1
+            # Remove relevance note for cleaner context
+            truncated_excerpt = _truncate_preserving_medical(excerpt)
+            context_parts.append(f"[{h.get('doc_id','unknown')} p.{page_num}] {truncated_excerpt}")
 
-        # 3) Assemble manageable context (~15k chars max here; Gemini builder will cap again)
-        ctx = " ".join(context_parts)[:15000]
+        # 3) Assemble focused medical context (larger for diagnostic questions)
+        max_context_length = 18000 if diagnostic_all else 15000
+        ctx = " ".join(context_parts)[:max_context_length]
+        
+        # For diagnostic questions, add a brief medical context primer
+        if diagnostic_all and ctx:
+            ctx = "Medical diagnostic context - focus on identifying disease characteristics, diagnostic methods, and clinical findings:\n\n" + ctx
 
         # Clinical QA heuristics (optional safety checks)
         clinical_question = any(term in question.lower() for term in [
@@ -960,21 +1187,135 @@ class BatchProcessor:
         ])
 
         try:
+            # FIXED: Simple question formatting - no complex instructions
+            enhanced_question = question
+            if diagnostic_all:
+                # Simple diagnostic question - let the model's training handle the format
+                enhanced_question = f"What is the diagnosis for this medical condition? {question}"
+            
+            # Add question uniqueness markers to avoid cached responses
             answer = self.gem.answer(
-                question, [str(p) for p in paths], spans=spans, context_text=ctx,
+                enhanced_question, [str(p) for p in paths], spans=spans, context_text=ctx,
                 max_output_tokens=max(1024, CFG.MAX_NEW_TOKENS), images_per_answer=images_per_answer
             )
+            print(f"[DEBUG] Original question: {repr(question[:100])}")
+            print(f"[DEBUG] Enhanced question: {repr(enhanced_question[:200])}")
+            print(f"[DEBUG] MedGemma answer before normalize: {repr(answer[:500])}")
             answer = _normalize_answer(answer)
+            print(f"[DEBUG] Answer after normalize: {repr(answer[:500])}")
+            
+            # ENHANCED: Handle "insufficient details" responses when image processing fails
+            if answer and ("insufficient details" in answer.lower() or 
+                          "not certain due to lack" in answer.lower() or
+                          "consider performing other relevant test" in answer.lower()):
+                print(f"[INFO] Detected insufficient details response, attempting evidence-based answer")
+                
+                # Build a better response using available evidence
+                evidence_text = ""
+                if spans:
+                    # Use the best evidence spans to provide a helpful response
+                    relevant_evidence = []
+                    for span_text, citation in spans[:3]:
+                        if len(span_text.strip()) > 30:
+                            relevant_evidence.append(span_text.strip())
+                    
+                    if relevant_evidence:
+                        evidence_text = " ".join(relevant_evidence)[:800]  # Limit length
+                        
+                        # Try to generate a better answer using the evidence
+                        try:
+                            better_answer = self.gem.answer(
+                                f"Based on this medical evidence, answer: {question}\n\nEvidence: {evidence_text}",
+                                [str(p) for p in paths[:1]],  # Use just one image to reduce complexity
+                                spans=[],
+                                context_text="",
+                                max_output_tokens=200,
+                                images_per_answer=1
+                            )
+                            
+                            better_normalized = _normalize_answer(better_answer)
+                            
+                            # Use the better answer if it's actually better
+                            if (better_normalized and 
+                                len(better_normalized) > 50 and
+                                "insufficient details" not in better_normalized.lower() and
+                                better_normalized != answer):
+                                answer = better_normalized
+                                print(f"[INFO] Used evidence-based fallback answer: {repr(answer[:100])}")
+                        except Exception as e:
+                            print(f"[WARN] Evidence-based fallback failed: {e}")
+                
+                # If we still have insufficient details and no good evidence, provide helpful guidance
+                if "insufficient details" in answer.lower() and not evidence_text:
+                    answer = ("The uploaded image quality may be insufficient for detailed medical analysis. "
+                             "For accurate diagnosis, please provide: 1) Higher resolution images, "
+                             "2) Multiple views of the affected area, 3) Clinical history and symptoms.")
+            
+            # Enhanced evidence-as-answer detection and prevention
             if answer and spans:
                 # Check if answer is just a concatenation of our spans
                 first_spans_text = " ".join([s for s, _ in spans[:3]]).strip().lower()
                 answer_lower = answer.lower()
+                
+                # Multiple checks for evidence regurgitation
+                is_evidence_dump = False
+                
+                # Check 1: Direct span concatenation
                 if len(first_spans_text) >= 80 and (
                     answer_lower.startswith(first_spans_text[:80]) or
                     first_spans_text[:80] in answer_lower[:100]
                 ):
-                    # Likely a raw span dump - force retry with expanded context
-                    answer = "Insufficient evidence to answer the question directly."
+                    is_evidence_dump = True
+                
+                # Check 2: Answer starts with evidence-like patterns
+                evidence_patterns = [
+                    r"^(?:insufficient evidence|key evidence|from the evidence|evidence summary)",
+                    r"^\[?\d+\]?\s*[A-Z][^.]{20,}\.?\s*\[?\d+\]?",  # Looks like cited evidence
+                    r"^(?:The|This)\s+(?:case|patient|lesion).{20,}(?:from|in)\s+(?:Laos|Cambodia|Peru)"  # Case descriptions
+                ]
+                
+                for pattern in evidence_patterns:
+                    if _re.search(pattern, answer, _re.I):
+                        is_evidence_dump = True
+                        break
+                
+                # Check 3: Answer is mostly just reformatted spans
+                import difflib
+                answer_words = set(_re.findall(r'\w+', answer_lower))
+                span_words = set(_re.findall(r'\w+', first_spans_text))
+                if len(answer_words) > 10 and len(span_words) > 10:
+                    overlap_ratio = len(answer_words & span_words) / len(answer_words)
+                    if overlap_ratio > 0.8:  # 80% word overlap suggests evidence regurgitation
+                        is_evidence_dump = True
+                
+                if is_evidence_dump:
+                    print(f"[WARN] Detected evidence regurgitation, attempting simplified retry")
+                    # Retry with a much simpler, more direct prompt
+                    try:
+                        retry_answer = self.gem.answer(
+                            f"Provide a direct medical diagnosis or answer for: {question}",
+                            [str(p) for p in paths[:2]],  # Fewer images to reduce confusion
+                            spans=[],  # No spans to avoid regurgitation
+                            context_text="",  # Minimal context
+                            max_output_tokens=300,
+                            images_per_answer=min(2, images_per_answer)
+                        )
+                        retry_normalized = _normalize_answer(retry_answer)
+                        
+                        # Check if retry was successful (not just more evidence)
+                        if (retry_normalized and 
+                            len(retry_normalized) > 30 and
+                            not _re.search(r"^(?:insufficient|from the evidence|key evidence)", retry_normalized.lower()) and
+                            retry_normalized.lower() not in first_spans_text):
+                            answer = retry_normalized
+                            print(f"[INFO] Successful retry produced: {repr(answer[:100])}")
+                        else:
+                            # If retry also fails, provide a clear failure message
+                            answer = "Unable to generate a reliable medical answer from the available case information."
+                            print(f"[WARN] Retry also produced evidence regurgitation, using failure message")
+                    except Exception as e:
+                        print(f"[ERROR] Retry failed: {e}")
+                        answer = "Medical answer generation failed - unable to process case information effectively."
 
             if clinical_question and answer:
                 import re as _re
@@ -1024,47 +1365,89 @@ class BatchProcessor:
 
             # Retry once with expanded context if insufficient
             if answer.strip().lower().startswith("insufficient evidence"):
+                # For diagnostic questions, try a different approach
+                if diagnostic_all:
+                    # Retry with more targeted diagnostic prompting
+                    diagnostic_retry_question = (
+                        f"Based on the available medical evidence and images, what can you determine about: {question}\n\n"
+                        "Even with limited information, please provide:\n"
+                        "- Any visible clinical findings\n"
+                        "- Possible diagnostic considerations\n"
+                        "- What additional information would be helpful\n\n"
+                        "Use only the evidence provided."
+                    )
+                else:
+                    diagnostic_retry_question = question
+                
                 # Expand context using all evidence spans and more excerpts
                 more_ctx_parts = list(context_parts)
                 if spans:
                     span_text = " ".join([s for s, _ in spans])
-                    more_ctx_parts.append(span_text[:6000])
-                # Add a couple more page excerpts from selected hits
-                for h in selected_hits[:6]:
+                    more_ctx_parts.append("Key Evidence Summary: " + span_text[:6000])
+                
+                # Add more relevant excerpts (avoid repetitive ones)
+                added_excerpts = 0
+                for h in selected_hits[:8]:
+                    if added_excerpts >= 4:  # Limit additional context
+                        break
                     ex = (h.get("text_excerpt") or "").strip()
-                    if ex:
-                        page_num = h.get("page_index", -1) + 1
-                        more_ctx_parts.append(f"[{h.get('doc_id','unknown')} p.{page_num}] {ex[:1200]}")
-                ctx2 = " ".join(more_ctx_parts)[:16000]
+                    if ex and len(ex) > 100:  # Only substantial excerpts
+                        # Skip if it's mainly case description
+                        if not any(desc in ex.lower() for desc in [
+                            "year-old", "progressed quickly", "from laos", "from cambodia"
+                        ]):
+                            page_num = h.get("page_index", -1) + 1
+                            more_ctx_parts.append(f"[{h.get('doc_id','unknown')} p.{page_num}] {ex[:1500]}")
+                            added_excerpts += 1
+                
+                ctx2 = " ".join(more_ctx_parts)[:18000]
                 answer2 = self.gem.answer(
-                    question, [str(p) for p in paths], spans=spans, context_text=ctx2,
+                    diagnostic_retry_question, [str(p) for p in paths], spans=spans, context_text=ctx2,
                     max_output_tokens=CFG.MAX_NEW_TOKENS, images_per_answer=images_per_answer
                 )
                 answer2 = _normalize_answer(answer2)
-                if answer2:
+                if answer2 and not answer2.strip().lower().startswith("insufficient evidence"):
                     answer = answer2
 
             # Retry once with continuation if incomplete
             if _runner_looks_incomplete(answer):
-                # Use a continuation prompt that seeds with the incomplete part
-                cont_prompt = answer.rstrip() + " ..."  # Seed continuation
+                if diagnostic_all:
+                    # For diagnostic questions, try to complete the analysis
+                    cont_prompt = (
+                        f"Continue the diagnostic analysis: {answer.rstrip()}\n\n"
+                        "Please complete the medical assessment by providing:\n"
+                        "- Final diagnostic conclusion\n"
+                        "- Supporting evidence from the case\n"
+                        "- Any relevant clinical considerations"
+                    )
+                else:
+                    # Use a continuation prompt that seeds with the incomplete part
+                    cont_prompt = answer.rstrip() + " ..."
                 
                 continuation = self.gem.answer(
                     cont_prompt,
                     [str(p) for p in paths],
                     spans=spans,
                     context_text=ctx,
-                    max_output_tokens=min(256, CFG.MAX_NEW_TOKENS//4),
+                    max_output_tokens=min(512, CFG.MAX_NEW_TOKENS//2),  # Allow more tokens for completion
                     images_per_answer=images_per_answer
                 )
                 continuation = _normalize_answer(continuation)
                 
                 if continuation and len(continuation) > 10:
                     # Smart merge without duplication
-                    if answer.endswith(".") and continuation.startswith(answer[-50:]):
-                        answer = answer[:-1] + continuation[len(answer[-50:]):]
-                    else:
+                    if diagnostic_all:
+                        # For diagnostic questions, append as separate analysis
                         answer = (answer.rstrip(".") + " " + continuation).strip()
+                    else:
+                        # Standard continuation logic
+                        if answer.endswith(".") and continuation.startswith(answer[-50:]):
+                            answer = answer[:-1] + continuation[len(answer[-50:]):]
+                        else:
+                            answer = (answer.rstrip(".") + " " + continuation).strip()
+                    
+                    # Final normalization
+                    answer = _normalize_answer(answer)
 
             return answer
         except Exception as e:

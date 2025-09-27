@@ -504,6 +504,11 @@ class CQ2:
             pooled = feats.mean(dim=1)
         else:
             pooled = feats
+        
+        # Ensure proper dtype conversion before CPU transfer
+        if pooled.dtype == torch.bfloat16:
+            pooled = pooled.float()
+        
         return pooled.detach().cpu().numpy().astype(np.float32)
 
     @torch.inference_mode()
@@ -537,6 +542,11 @@ class CQ2:
             pooled = feats.mean(dim=1) if mask is None else self._pool(feats, mask)
         else:
             pooled = feats
+        
+        # Ensure proper dtype conversion before CPU transfer
+        if pooled.dtype == torch.bfloat16:
+            pooled = pooled.float()
+            
         return pooled.detach().cpu().numpy().astype(np.float32)
     
 # MedGemma-4B-IT generator (HF, offline)
@@ -609,60 +619,48 @@ class MedGemma4B:
         context_text: str,
     ) -> str:
         """
-        Build a single text prompt that includes the question, formatted evidence spans,
-        and optional context. Keep it model-agnostic for HF generation.
+        FIXED: Simplified prompt builder that prevents garbage generation
         """
-        is_diagnostic = any(term in q.lower() for term in ["diagnosis", "identify", "stain", "microscopy"]) 
-        is_clinical = any(term in q.lower() for term in ["clinical", "presentation", "treatment"]) 
-
-        # Enhanced system instruction with question-specific guidance
-        if is_diagnostic:
-            sys_instr = (
-                "You are a medical pathology expert. Answer the specific diagnostic question using ONLY the provided evidence. "
-                "Focus on: microscopic findings, histopathological features, diagnostic tests, and species identification. "
-                "For Leishmania: identify amastigotes (2-4 µm oval bodies with nucleus and kinetoplast), parasitized macrophages, "
-                "tissue inflammation patterns. Be specific about what was found, not general information. Cite evidence as [1], [2]."
-            )
-        elif is_clinical:
-            sys_instr = (
-                "You are a clinical medicine expert. Answer the specific clinical question using ONLY the provided evidence. "
-                "Focus on: patient presentation, lesion characteristics, disease course, treatment details, and outcomes. "
-                "Include specific measurements, locations, durations, and drug names/doses when present in evidence. Cite as [1], [2]."
-            )
+        # Detect question type for focused instruction
+        q_lower = q.lower()
+        is_treatment = any(term in q_lower for term in ["cure", "treat", "therapy", "management"])
+        is_diagnostic = any(term in q_lower for term in ["diagnosis", "identify", "what is", "disease"])
+        
+        # Use simple, focused instructions
+        if is_treatment:
+            instruction = "Provide a concise treatment answer (2-3 sentences maximum):"
+        elif is_diagnostic:
+            instruction = "Provide a clear diagnostic assessment (2-3 sentences maximum):"
         else:
-            sys_instr = (
-                "You are a medical expert. Answer the specific question using ONLY the provided evidence. "
-                "Be precise and avoid generic statements. Focus on the exact information requested."
-            )
-
-        # Evidence formatting
-        ev_text = ""
+            instruction = "Provide a focused medical answer (2-3 sentences maximum):"
+        
+        # Build concise evidence (LIMIT TO PREVENT OVERFLOW)
+        evidence_text = ""
         if spans:
-            lines = []
-            for i, (s, c) in enumerate(spans[:12]):
-                clean_cite = c.replace("unknown:", "").strip()
-                lines.append(f"[{i+1}] ({clean_cite}) {s}")
-            ev_text = "Evidence Sources:\n" + "\n".join(lines) + "\n\n"
+            # Only use top 3 most relevant spans to prevent information overload
+            relevant_spans = []
+            for span_text, citation in spans[:3]:
+                if len(span_text.strip()) > 20:  # Only substantial spans
+                    relevant_spans.append(span_text.strip()[:200])  # Truncate long spans
+            
+            if relevant_spans:
+                evidence_text = "Evidence: " + " ".join(relevant_spans)
+        
+        # Add minimal context (HEAVILY TRUNCATED)
+        if context_text and len(context_text) > 500:
+            context_text = context_text[:500] + "..."
+        
+        # Create SIMPLE, focused prompt (NO COMPLEX INSTRUCTIONS)
+        prompt = f"""Medical Question: {q}
 
-        ctx = ""
-        if context_text:
-            # Keep within a reasonable length and try to preserve medically-relevant text
-            ctx = context_text[: min(len(context_text), 12000)]
-            ctx = f"Additional Medical Context (truncated):\n{ctx}\n\n"
+{instruction}
 
-        prompt = (
-            f"{sys_instr}\n\n"
-            f"QUESTION TO ANSWER: {q}\n\n"
-            f"{ev_text}"
-            f"{ctx}"
-            f"INSTRUCTIONS:\n"
-            f"1. Answer ONLY the specific question asked\n"
-            f"2. Use specific details from the evidence, not general medical knowledge\n"
-            f"3. Include relevant citations [1], [2] for key facts\n"
-            f"4. Provide a complete answer in 4-8 sentences\n"
-            f"5. Do NOT repeat the question or add unrelated information\n\n"
-            f"ANSWER:"
-        )
+{evidence_text}
+
+{context_text}
+
+Answer:"""
+        
         return prompt
 
     @staticmethod
@@ -716,27 +714,36 @@ class MedGemma4B:
             # Enhanced system instruction based on question type
             if is_diagnostic:
                 sys_instr = (
-                    "You are a medical pathology assistant analyzing microscopic and histopathological images. "
-                    "Focus on morphological features visible in the images: cell types, tissue architecture, staining patterns. "
-                    "Base every diagnostic finding on visible evidence. Cite sources as [1], [2], etc. "
-                    "For Leishmania cases, specifically look for: amastigotes (2-4μm oval bodies with nucleus and kinetoplast), "
-                    "parasitized macrophages, granulomatous inflammation, and tissue reaction patterns. "
-                    "Be precise about what you observe vs. what the text evidence states."
+                    "You are a medical diagnostician analyzing clinical case images and documentation. "
+                    "Your task is to provide a systematic diagnostic assessment based on the available evidence. "
+                    "Structure your response as follows: "
+                    "1) Key clinical findings from images and text, "
+                    "2) Differential diagnosis considerations, "
+                    "3) Most likely diagnosis with reasoning. "
+                    "For parasitic infections, specifically mention: morphological features, tissue reactions, "
+                    "geographic/epidemiologic factors, and diagnostic methods used. "
+                    "Avoid repeating case titles or descriptive headers. Focus on medical analysis. "
+                    "Cite evidence as [1], [2], etc."
                 )
             elif is_clinical:
                 sys_instr = (
-                    "You are a clinical medicine assistant analyzing patient cases with images and documentation. "
-                    "Focus on: clinical presentation timeline, lesion characteristics (size, location, appearance), "
-                    "disease progression, treatment response, and patient demographics when available. "
-                    "Base all statements on provided evidence. Cite as [1], [2]. "
-                    "If specific clinical details (dates, measurements, laterality) aren't in the evidence, "
-                    "state: 'Specific [detail type] not documented in available evidence.'"
+                    "You are a clinical medicine specialist analyzing patient presentation and disease course. "
+                    "Provide a concise clinical summary focusing on: "
+                    "1) Patient demographics and presentation, "
+                    "2) Lesion characteristics and evolution, "
+                    "3) Geographic/travel history relevance, "
+                    "4) Treatment approach and outcomes. "
+                    "Avoid repeating case numbers or titles. Present information in a flowing narrative. "
+                    "Only include details supported by evidence [1], [2], etc. "
+                    "If key details are missing, briefly note: 'Additional [detail] not documented.'"
                 )
             else:
                 sys_instr = (
-                    "You are a medical assistant analyzing clinical cases with images and text evidence. "
-                    "Provide accurate, evidence-based responses. Distinguish between image observations and text citations. "
-                    "Cite all factual claims as [1], [2], etc. Avoid speculation beyond provided evidence."
+                    "You are a medical expert providing evidence-based analysis of clinical cases. "
+                    "Answer the specific question asked using the provided evidence and images. "
+                    "Structure your response logically and avoid repeating case identifiers or titles. "
+                    "Focus on medical content and reasoning. Cite sources as [1], [2], etc. "
+                    "Provide complete, precise answers without unnecessary repetition."
                 )
             
             # Format evidence with medical context
@@ -801,8 +808,16 @@ class MedGemma4B:
     ) -> str:
         spans = spans or []
 
-        # Limit number of images to avoid OOM and match model expectations
-        img_paths = list(image_paths[: max(1, int(images_per_answer or 1))])
+        # FIXED: Better image validation and limiting
+        img_paths = []
+        for path in image_paths[:min(2, int(images_per_answer or 1))]:  # Hard limit to 2 images
+            try:
+                if Path(path).exists() and Path(path).stat().st_size > 0:
+                    img_paths.append(path)
+            except Exception:
+                continue
+        
+        print(f"[DEBUG] Validated {len(img_paths)} images from {len(image_paths)} provided")
 
         # Build prompt
         prompt = self._build_prompt_text(q, spans, context_text)
@@ -824,27 +839,127 @@ class MedGemma4B:
                     pass
 
         try:
-            # Build chat-style prompt if template available
+            # FIXED: Use proper MedGemma 4B-IT message format instead of manual tokens
+            if ims:
+                print(f"[DEBUG] Preparing multimodal input with {len(ims)} images")
+                # Create proper message structure as shown in MedGemma notebooks
+                messages = [
+                    {
+                        "role": "user",
+                        "content": [
+                            {"type": "text", "text": prompt}
+                        ] + [{"type": "image", "image": img} for img in ims]
+                    }
+                ]
+            else:
+                print(f"[DEBUG] Preparing text-only input")
+                # Text-only message structure
+                messages = [
+                    {
+                        "role": "user", 
+                        "content": [{"type": "text", "text": prompt}]
+                    }
+                ]
+
+            # Use processor.apply_chat_template() as shown in notebooks
             chat_prompt = None
-            if self.tokenizer is not None and hasattr(self.tokenizer, "apply_chat_template"):
+            if self.processor is not None and hasattr(self.processor, "apply_chat_template"):
                 try:
-                    messages = [{"role": "user", "content": prompt}]
-                    chat_prompt = self.tokenizer.apply_chat_template(
+                    chat_prompt = self.processor.apply_chat_template(
                         messages, tokenize=False, add_generation_prompt=True
                     )
-                except Exception:
+                    print(f"[DEBUG] Processor chat template applied successfully")
+                    print(f"[DEBUG] Chat prompt length: {len(chat_prompt)} chars")
+                except Exception as e:
+                    print(f"[DEBUG] Processor chat template failed: {e}")
                     chat_prompt = None
 
-            # Primary: image + text
+            # Fallback to tokenizer if processor fails
+            if chat_prompt is None and self.tokenizer is not None and hasattr(self.tokenizer, "apply_chat_template"):
+                try:
+                    # Flatten content for tokenizer (it may not support structured content)
+                    simple_messages = [{"role": "user", "content": prompt}]
+                    chat_prompt = self.tokenizer.apply_chat_template(
+                        simple_messages, tokenize=False, add_generation_prompt=True
+                    )
+                    print(f"[DEBUG] Tokenizer chat template applied as fallback")
+                except Exception as e:
+                    print(f"[DEBUG] Tokenizer chat template also failed: {e}")
+                    chat_prompt = None
+
+            # Final fallback to raw prompt
             text_for_gen = chat_prompt or prompt
-            if ims:
-                inputs = self.processor(
-                    text=text_for_gen,
-                    images=ims,  # always pass list for consistency
-                    return_tensors="pt",
-                )
-            else:
-                inputs = self.processor(text=text_for_gen, return_tensors="pt")
+            print(f"[DEBUG] Final text_for_gen length: {len(text_for_gen)} chars")
+            print(f"[DEBUG] Images to process: {len(ims)}")
+            
+            try:
+                # FIXED: Use proper MedGemma 4B-IT processor call as shown in notebooks
+                if ims:
+                    print(f"[INFO] Processing multimodal input with {len(ims)} images")
+                    # Method 1: Try with structured messages (preferred)
+                    try:
+                        inputs = self.processor.apply_chat_template(
+                            messages,
+                            add_generation_prompt=True,
+                            tokenize=True,
+                            return_dict=True,
+                            return_tensors="pt",
+                        )
+                        print(f"[DEBUG] Structured message processing succeeded")
+                    except Exception as e:
+                        print(f"[DEBUG] Structured processing failed: {e}")
+                        # Method 2: Fallback to text+images format
+                        inputs = self.processor(
+                            text=text_for_gen,
+                            images=ims,
+                            return_tensors="pt",
+                        )
+                        print(f"[DEBUG] Text+images fallback succeeded")
+                else:
+                    print(f"[INFO] Processing text-only input")
+                    # Text-only processing - try structured first, then simple
+                    try:
+                        inputs = self.processor.apply_chat_template(
+                            messages,
+                            add_generation_prompt=True,
+                            tokenize=True,
+                            return_dict=True,
+                            return_tensors="pt",
+                        )
+                        print(f"[DEBUG] Text-only structured processing succeeded")
+                    except Exception as e:
+                        print(f"[DEBUG] Text-only structured failed: {e}")
+                        inputs = self.processor(text=text_for_gen, return_tensors="pt")
+                        print(f"[DEBUG] Simple text processing succeeded")
+                    
+                print(f"[DEBUG] Final inputs keys: {list(inputs.keys())}")
+                if "input_ids" in inputs:
+                    print(f"[DEBUG] Input IDs shape: {inputs['input_ids'].shape}")
+                
+            except ValueError as e:
+                error_msg = str(e).lower()
+                if "image tokens" in error_msg or "image" in error_msg:
+                    print(f"[WARN] Multimodal processing failed, using text-only: {e}")
+                    # Complete fallback to text-only
+                    try:
+                        inputs = self.processor(text=text_for_gen, return_tensors="pt")
+                        ims = []  # Clear images since we're falling back
+                        print(f"[DEBUG] Text-only fallback succeeded")
+                    except Exception as fallback_e:
+                        print(f"[ERROR] Even text-only fallback failed: {fallback_e}")
+                        raise
+                else:
+                    print(f"[ERROR] Processing failed: {type(e).__name__}: {e}")
+                    raise
+            except Exception as e:
+                print(f"[ERROR] Processing failed: {type(e).__name__}: {e}")
+                print(f"[DEBUG] Processor type: {type(self.processor)}")
+                print(f"[DEBUG] Text sample: {repr(text_for_gen[:200])}")
+                print(f"[DEBUG] Image types: {[type(img) for img in ims]}")
+                print(f"[DEBUG] Messages structure: {messages}")
+                import traceback
+                print(f"[DEBUG] Full traceback: {traceback.format_exc()}")
+                raise
 
             # Move to device
             inputs = {k: (v.to(self.model.device) if hasattr(v, "to") else v) for k, v in inputs.items()}
@@ -854,40 +969,101 @@ class MedGemma4B:
             if self.tokenizer is not None:
                 pad_id = self.tokenizer.pad_token_id if self.tokenizer.pad_token_id is not None else eos_id
 
+            # Adjust parameters based on question type for better responses
+            is_diagnostic_q = any(term in prompt.lower() for term in ["diagnose", "diagnosis", "identify", "disease"])
+            
+            # Add entropy to avoid cached responses - use question hash as seed
+            import hashlib
+            import random
+            question_hash = int(hashlib.md5(q.encode()).hexdigest()[:8], 16)
+            random.seed(question_hash)
+            temperature_offset = random.uniform(-0.1, 0.1)
+            
+            # FIXED: Conservative generation parameters to prevent garbage output
+            safe_max_tokens = min(int(max_output_tokens or 512), 256)  # Much more conservative
+            
             gen_kwargs = dict(
-                max_new_tokens=int(max_output_tokens or 1024),  # Increased from 512 default
-                do_sample=True,  # Enable sampling for diversity
+                max_new_tokens=safe_max_tokens,
+                min_new_tokens=20,  # Minimum reasonable response
+                do_sample=True,
                 num_beams=1,
-                top_p=0.92,  # Slightly higher for more diverse outputs
-                temperature=0.8,  # Higher temperature to reduce repetition
-                repetition_penalty=1.2,  # Stronger repetition penalty
-                length_penalty=1.0,  # Encourage longer, complete answers
-                no_repeat_ngram_size=4,    # prevent verbatim repetition (increased)
-                min_new_tokens=32,          # reduce minimum to avoid padding
+                top_p=0.9,  # More focused sampling
+                temperature=0.7,  # Stable temperature
+                repetition_penalty=1.2,  # Strong penalty for repetition
+                length_penalty=0.9,  # Slight preference for shorter answers
+                no_repeat_ngram_size=4,  # Prevent repetitive phrases
                 eos_token_id=eos_id,
                 pad_token_id=pad_id,
-                early_stopping=True,      # Stop when EOS is generated
+                early_stopping=True,  # Stop when complete
             )
+            # FIXED: Remove the else branch - use single conservative parameter set
 
-            with torch.inference_mode():
-                generated = self.model.generate(**inputs, **{k: v for k, v in gen_kwargs.items() if v is not None})
+            # DEBUG: Log key generation parameters
+            print(f"[DEBUG] Generation parameters: max_new_tokens={gen_kwargs.get('max_new_tokens')}, temperature={gen_kwargs.get('temperature')}")
+            print(f"[DEBUG] Prompt text (first 200 chars): {repr(text_for_gen[:200])}")  
+            print(f"[DEBUG] Number of images: {len(ims)}")
+            
+            try:
+                # Get input length for proper decoding (following notebook pattern)
+                input_len = inputs["input_ids"].shape[-1] if "input_ids" in inputs else 0
+                print(f"[DEBUG] Input length: {input_len}")
+                
+                with torch.inference_mode():
+                    generated = self.model.generate(**inputs, **{k: v for k, v in gen_kwargs.items() if v is not None})
+                    
+                # Extract only the new tokens (following notebook pattern)
+                if input_len > 0 and len(generated.shape) > 1:
+                    new_tokens = generated[0][input_len:]
+                    print(f"[DEBUG] Generated {len(new_tokens)} new tokens")
+                else:
+                    new_tokens = generated[0] if len(generated.shape) > 1 else generated
+                    print(f"[DEBUG] Using full generation ({len(new_tokens)} tokens)")
+                    
+            except Exception as e:
+                print(f"[ERROR] Model generation failed: {type(e).__name__}: {e}")
+                print(f"[DEBUG] Inputs keys: {list(inputs.keys())}")
+                print(f"[DEBUG] Input shapes: {[(k, getattr(v, 'shape', 'no shape')) for k, v in inputs.items()]}")
+                print(f"[DEBUG] Gen kwargs: {gen_kwargs}")
+                import traceback
+                print(f"[DEBUG] Full traceback: {traceback.format_exc()}")
+                raise  # Re-raise the exception to trigger fallback logic
 
-            if self.tokenizer is not None:
-                out = self.tokenizer.batch_decode(generated, skip_special_tokens=True)
-            else:
-                # Try processor decode
-                decode = getattr(self.processor, "batch_decode", None)
-                out = decode(generated, skip_special_tokens=True) if callable(decode) else None
+            # Decode using processor (preferred) or tokenizer fallback
+            try:
+                if self.processor is not None:
+                    text = self.processor.decode(new_tokens, skip_special_tokens=True)
+                    print(f"[DEBUG] Used processor.decode()")
+                elif self.tokenizer is not None:
+                    text = self.tokenizer.decode(new_tokens, skip_special_tokens=True)
+                    print(f"[DEBUG] Used tokenizer.decode()")
+                else:
+                    text = ""
+                    print(f"[WARN] No decoder available")
+            except Exception as e:
+                print(f"[WARN] Decode failed: {e}, trying batch_decode")
+                # Fallback to batch decode
+                if self.tokenizer is not None:
+                    out = self.tokenizer.batch_decode([new_tokens], skip_special_tokens=True)
+                    text = out[0] if out else ""
+                else:
+                    text = ""
 
-            text = (out[0] if isinstance(out, list) and out else "")
             text = (text or "").strip()
+            print(f"[DEBUG] Decoded output: {repr(text[:300])}")
             def _normalize_gen_out(txt: str) -> str:
                 import re as _re
                 if not txt:
                     return txt
                 t = txt
-                # Drop echoed question and 'Answer:' prefix
-                t = _re.sub(r"^\s*Question\s*:\s*.*?\bAnswer\s*:\s*", "", t, flags=_re.I | _re.S)
+                
+                # Remove echoed prompts and prefixes
+                t = _re.sub(r"^\s*(?:Question|QUESTION|MEDICAL QUESTION)\s*:\s*.*?(?:Answer|ANSWER|MEDICAL ANALYSIS)\s*:\s*", "", t, flags=_re.I | _re.S)
+                t = _re.sub(r"^\s*(?:Answer|ANSWER|MEDICAL ANALYSIS)\s*:\s*", "", t, flags=_re.I)
+                
+                # Remove case title repetitions early
+                t = _re.sub(r"\b\d+\s+\d+\s+A\s+\d+-YEAR-OLD\s+[A-Z\s]+\s+WITH\s+[A-Z\s]+\s*[.M]*\s*", "", t, flags=_re.I | _re.M)
+                t = _re.sub(r"The lesion progressed quickly from a sore to eat through[^.]*\.\s*(?=The lesion progressed quickly)", "", t, flags=_re.I)
+                
                 # Keep last 'Final Answer:' block if repeated
                 idx = t.lower().rfind("final answer:")
                 if idx != -1:
@@ -895,24 +1071,40 @@ class MedGemma4B:
                     if tail:
                         t = tail
                 t = _re.sub(r"^final\s+answer:\s*", "", t, flags=_re.I).strip()
+                
                 # Remove LaTeX wrappers
                 t = _re.sub(r"\\boxed\\{([^}]*)\\}", r"\1", t)
                 t = _re.sub(r"\$\$?(.*?)\$\$?", r"\1", t, flags=_re.S)
-                # Collapse whitespace
+                
+                # Improve sentence structure
                 t = _re.sub(r"\s+", " ", t).strip()
                 t = _re.sub(r"\s*(?:…|\.{3,})\s*$", ".", t)
+                
+                # Ensure proper ending
+                if t and not t.endswith((".", "!", "?")):
+                    t += "."
+                
                 return t
 
             if text:
+                print(f"[DEBUG] Before normalization: {repr(text[:300])}")
                 norm = _normalize_gen_out(text)
+                print(f"[DEBUG] After local normalization: {repr(norm[:300])}")
                 if norm:
                     return norm
 
             # Fallback: text-only generation if image path failed silently
-            inputs2 = self.processor(text=prompt, return_tensors="pt")
-            inputs2 = {k: (v.to(self.model.device) if hasattr(v, "to") else v) for k, v in inputs2.items()}
-            with torch.inference_mode():
-                generated2 = self.model.generate(**inputs2, **{k: v for k, v in gen_kwargs.items() if v is not None})
+            try:
+                # Remove image tokens for text-only fallback
+                text_only_prompt = prompt.replace("<image>\n", "").replace("<image>", "")
+                inputs2 = self.processor(text=text_only_prompt, return_tensors="pt")
+                inputs2 = {k: (v.to(self.model.device) if hasattr(v, "to") else v) for k, v in inputs2.items()}
+                with torch.inference_mode():
+                    generated2 = self.model.generate(**inputs2, **{k: v for k, v in gen_kwargs.items() if v is not None})
+            except Exception as e:
+                print(f"[ERROR] Fallback text-only generation failed: {type(e).__name__}: {e}")
+                print(f"[DEBUG] Fallback inputs keys: {list(inputs2.keys()) if 'inputs2' in locals() else 'N/A'}")
+                raise  # Re-raise to trigger the final retry
             if self.tokenizer is not None:
                 out2 = self.tokenizer.batch_decode(generated2, skip_special_tokens=True)
             else:
@@ -923,13 +1115,52 @@ class MedGemma4B:
             if norm2:
                 return norm2
 
-            # Span-based fallback summary instead of an empty/insufficient message
-            if spans:
-                snippet = " ".join([s for s, _ in spans[:4]]).strip()
-                cites = ", ".join([f"[{i+1}]" for i in range(min(4, len(spans)))])
-                if snippet:
-                    return f"Insufficient evidence to answer the question directly. Key evidence {cites}: {snippet}"
-            return "No explicit answer generated; evidence indicates limited but relevant details were extracted."
+            # Force a final retry with minimal constraints instead of returning evidence
+            try:
+                # Attempt simple direct generation without complex prompting
+                simple_prompt = f"Medical Question: {q}\n\nProvide a concise medical answer based on the available information."
+                # Ensure no image tokens in simple text-only generation
+                simple_prompt = simple_prompt.replace("<image>\n", "").replace("<image>", "")
+                simple_inputs = self.processor(text=simple_prompt, return_tensors="pt")
+                simple_inputs = {k: (v.to(self.model.device) if hasattr(v, "to") else v) for k, v in simple_inputs.items()}
+                
+                try:
+                    with torch.inference_mode():
+                        simple_gen = self.model.generate(
+                            **simple_inputs,
+                            max_new_tokens=256,
+                            min_new_tokens=30,
+                            do_sample=True,
+                            temperature=0.8,
+                            top_p=0.9,
+                            repetition_penalty=1.3,
+                            no_repeat_ngram_size=4,
+                            eos_token_id=eos_id,
+                            pad_token_id=pad_id,
+                            early_stopping=True
+                        )
+                except Exception as e:
+                    print(f"[ERROR] Simple retry generation failed: {type(e).__name__}: {e}")
+                    print(f"[DEBUG] Simple inputs keys: {list(simple_inputs.keys())}")
+                    raise  # Re-raise to trigger the final fallback
+                
+                if self.tokenizer is not None:
+                    simple_out = self.tokenizer.batch_decode(simple_gen, skip_special_tokens=True)
+                else:
+                    decode = getattr(self.processor, "batch_decode", None)
+                    simple_out = decode(simple_gen, skip_special_tokens=True) if callable(decode) else None
+                
+                simple_text = (simple_out[0] if isinstance(simple_out, list) and simple_out else "").strip()
+                simple_norm = _normalize_gen_out(simple_text)
+                
+                # Only return if we get a substantive answer (not evidence regurgitation)
+                if simple_norm and len(simple_norm) > 50 and not simple_norm.lower().startswith(("insufficient", "no evidence", "from the evidence")):
+                    return simple_norm
+            except Exception:
+                pass
+            
+            # Final fallback: clear failure message instead of evidence dump
+            return "Unable to generate a complete medical answer from the available information."
         except Exception:
             # Last resort: try a minimal text-only prompt without spans/context
             try:
@@ -948,42 +1179,13 @@ class MedGemma4B:
                 norm3 = _normalize_gen_out(txt3)
                 if norm3:
                     return norm3
-                if spans:
-                    snippet = " ".join([s for s, _ in spans[:3]]).strip()
-                    cites = ", ".join([f"[{i+1}]" for i in range(min(3, len(spans)))])
-                    if snippet:
-                        return f"From the evidence {cites}: {snippet}"
-                return "No direct answer generated from the model."
+                # Don't return evidence as answer - signal clear failure
+                return "Model generation failed - unable to produce a medical answer."
             except Exception:
-                if spans:
-                    snippet = " ".join([s for s, _ in spans[:2]]).strip()
-                    cites = ", ".join([f"[{i+1}]" for i in range(min(2, len(spans)))])
-                    if snippet:
-                        return f"Evidence summary {cites}: {snippet}"
-                # Last resort: try OCR-based answer if images are available
-                if ims:
-                    try:
-                        # Try OCR on the images as final fallback
-                        ocr_text = ""
-                        try:
-                            import pytesseract
-                            for img in ims[:2]:  # Limit to first 2 images
-                                try:
-                                    text = pytesseract.image_to_string(img)
-                                    if text and len(text.strip()) > 20:
-                                        ocr_text += text.strip()[:200] + " "
-                                except Exception:
-                                    continue
-                        except ImportError:
-                            pass
-                        
-                        if ocr_text:
-                            return f"OCR-extracted content: {ocr_text.strip()}"
-                        else:
-                            return f"Insufficient evidence: No text content available for case images related to: {q[:80]}..."
-                    except Exception:
-                        pass
-                return "Insufficient text evidence available to generate a complete answer for this question."
+                # Don't return evidence snippets as answers
+                # OCR should not be used as a medical answer fallback
+                pass
+                return "Medical answer generation failed due to processing errors."
         finally:
             _close_all()
 
