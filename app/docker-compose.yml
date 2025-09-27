@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  medical-rag-chatbot:
+    build: .
+    ports:
+      - "8000:8000"
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - ../rag:/rag  # Mount the RAG module
+      - ../.env:/app/.env  # Mount environment file
+    environment:
+      - PYTHONPATH=/app
+    working_dir: /app
+    command: tail -f /dev/null  # Keep container running
+    
+  # Optional: separate services for backend and frontend
+  backend:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - ../rag:/rag
+      - ../.env:/app/.env
+    environment:
+      - PYTHONPATH=/app
+    working_dir: /app/server
+    command: ["python3", "main.py"]
+    profiles: ["services"]
+    
+  frontend:
+    build: .
+    ports:
+      - "3000:3000" 
+    volumes:
+      - .:/app
+    working_dir: /app/web
+    command: ["npm", "run", "dev"]
+    profiles: ["services"]
+    depends_on:
+      - backend
