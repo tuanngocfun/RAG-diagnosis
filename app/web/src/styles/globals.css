@@ -80,18 +80,54 @@
   
   /* Evidence table styles */
   .evidence-table {
-    @apply min-w-full divide-y divide-gray-200;
+    @apply w-full divide-y divide-gray-200;
+    border-collapse: collapse;
   }
   
   .evidence-table th {
-    @apply px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50;
+    @apply px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50;
   }
   
   .evidence-table td {
-    @apply px-4 py-3 text-sm text-gray-900;
+    @apply px-3 py-2 text-sm text-gray-900;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    max-width: 200px;
+  }
+  
+  /* Column-specific widths for better distribution */
+  .evidence-table th:nth-child(1), /* Rank */
+  .evidence-table td:nth-child(1) {
+    width: 8%;
+  }
+  
+  .evidence-table th:nth-child(2), /* Score */
+  .evidence-table td:nth-child(2) {
+    width: 10%;
+  }
+  
+  .evidence-table th:nth-child(3), /* Doc ID */
+  .evidence-table td:nth-child(3) {
+    width: 15%;
+  }
+  
+  .evidence-table th:nth-child(4), /* Page */
+  .evidence-table td:nth-child(4) {
+    width: 8%;
+  }
+  
+  .evidence-table th:nth-child(5), /* Type */
+  .evidence-table td:nth-child(5) {
+    width: 12%;
+  }
+  
+  .evidence-table th:nth-child(6), /* Keywords */
+  .evidence-table td:nth-child(6) {
+    width: 15%;
+  }
+  
+  .evidence-table th:nth-child(7), /* Excerpt */
+  .evidence-table td:nth-child(7) {
+    width: 32%;
   }
   
   /* Loading animations */
@@ -148,12 +184,14 @@
   
   /* Responsive table wrapper */
   .table-responsive {
+    width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
   
   .table-responsive table {
-    min-width: 600px;
+    width: 100%;
+    table-layout: fixed;
   }
   
   /* Mobile-friendly chat layout */
@@ -165,7 +203,15 @@
     
     .evidence-table th,
     .evidence-table td {
-      @apply px-2 py-2 text-xs;
+      @apply px-2 py-1 text-xs;
+    }
+    
+    .evidence-table {
+      table-layout: auto;
+    }
+    
+    .table-responsive {
+      font-size: 0.75rem;
     }
     
     .image-thumbnail {
