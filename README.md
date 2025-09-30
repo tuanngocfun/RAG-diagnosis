@@ -1220,7 +1220,3 @@ MIT License (see LICENSE file).
 | Use Case | Focused case review | Broad knowledge augmentation |
 | Setup Complexity | Minimal | Requires vector DB |
 | Evidence Traceability | Limited | High (citations, source linking) |
-
----
-
-If you enrich this README further, keep sections modular so individual components (prompting, retriever, frontend) remain independently understandable.
