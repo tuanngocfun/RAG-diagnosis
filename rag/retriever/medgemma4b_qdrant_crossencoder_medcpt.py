@@ -816,8 +816,6 @@ Answer:"""
                     img_paths.append(path)
             except Exception:
                 continue
-        
-        print(f"[DEBUG] Validated {len(img_paths)} images from {len(image_paths)} provided")
 
         # Build prompt
         prompt = self._build_prompt_text(q, spans, context_text)
@@ -841,7 +839,6 @@ Answer:"""
         try:
             # FIXED: Use proper MedGemma 4B-IT message format instead of manual tokens
             if ims:
-                print(f"[DEBUG] Preparing multimodal input with {len(ims)} images")
                 # Create proper message structure as shown in MedGemma notebooks
                 messages = [
                     {
@@ -852,7 +849,6 @@ Answer:"""
                     }
                 ]
             else:
-                print(f"[DEBUG] Preparing text-only input")
                 # Text-only message structure
                 messages = [
                     {
@@ -868,8 +864,6 @@ Answer:"""
                     chat_prompt = self.processor.apply_chat_template(
                         messages, tokenize=False, add_generation_prompt=True
                     )
-                    print(f"[DEBUG] Processor chat template applied successfully")
-                    print(f"[DEBUG] Chat prompt length: {len(chat_prompt)} chars")
                 except Exception as e:
                     print(f"[DEBUG] Processor chat template failed: {e}")
                     chat_prompt = None
@@ -882,20 +876,16 @@ Answer:"""
                     chat_prompt = self.tokenizer.apply_chat_template(
                         simple_messages, tokenize=False, add_generation_prompt=True
                     )
-                    print(f"[DEBUG] Tokenizer chat template applied as fallback")
                 except Exception as e:
                     print(f"[DEBUG] Tokenizer chat template also failed: {e}")
                     chat_prompt = None
 
             # Final fallback to raw prompt
             text_for_gen = chat_prompt or prompt
-            print(f"[DEBUG] Final text_for_gen length: {len(text_for_gen)} chars")
-            print(f"[DEBUG] Images to process: {len(ims)}")
             
             try:
                 # FIXED: Use proper MedGemma 4B-IT processor call as shown in notebooks
                 if ims:
-                    print(f"[INFO] Processing multimodal input with {len(ims)} images")
                     # Method 1: Try with structured messages (preferred)
                     try:
                         inputs = self.processor.apply_chat_template(
@@ -905,9 +895,7 @@ Answer:"""
                             return_dict=True,
                             return_tensors="pt",
                         )
-                        print(f"[DEBUG] Structured message processing succeeded")
                     except Exception as e:
-                        print(f"[DEBUG] Structured processing failed: {e}")
                         # Method 2: Fallback to text+images format
                         inputs = self.processor(
                             text=text_for_gen,
@@ -926,15 +914,10 @@ Answer:"""
                             return_dict=True,
                             return_tensors="pt",
                         )
-                        print(f"[DEBUG] Text-only structured processing succeeded")
                     except Exception as e:
                         print(f"[DEBUG] Text-only structured failed: {e}")
                         inputs = self.processor(text=text_for_gen, return_tensors="pt")
                         print(f"[DEBUG] Simple text processing succeeded")
-                    
-                print(f"[DEBUG] Final inputs keys: {list(inputs.keys())}")
-                if "input_ids" in inputs:
-                    print(f"[DEBUG] Input IDs shape: {inputs['input_ids'].shape}")
                 
             except ValueError as e:
                 error_msg = str(e).lower()
@@ -944,7 +927,6 @@ Answer:"""
                     try:
                         inputs = self.processor(text=text_for_gen, return_tensors="pt")
                         ims = []  # Clear images since we're falling back
-                        print(f"[DEBUG] Text-only fallback succeeded")
                     except Exception as fallback_e:
                         print(f"[ERROR] Even text-only fallback failed: {fallback_e}")
                         raise
@@ -990,23 +972,15 @@ Answer:"""
                 top_p=0.9,  # More focused sampling
                 temperature=0.7,  # Stable temperature
                 repetition_penalty=1.2,  # Strong penalty for repetition
-                length_penalty=0.9,  # Slight preference for shorter answers
                 no_repeat_ngram_size=4,  # Prevent repetitive phrases
                 eos_token_id=eos_id,
-                pad_token_id=pad_id,
-                early_stopping=True,  # Stop when complete
+                pad_token_id=pad_id
             )
             # FIXED: Remove the else branch - use single conservative parameter set
-
-            # DEBUG: Log key generation parameters
-            print(f"[DEBUG] Generation parameters: max_new_tokens={gen_kwargs.get('max_new_tokens')}, temperature={gen_kwargs.get('temperature')}")
-            print(f"[DEBUG] Prompt text (first 200 chars): {repr(text_for_gen[:200])}")  
-            print(f"[DEBUG] Number of images: {len(ims)}")
             
             try:
                 # Get input length for proper decoding (following notebook pattern)
                 input_len = inputs["input_ids"].shape[-1] if "input_ids" in inputs else 0
-                print(f"[DEBUG] Input length: {input_len}")
                 
                 with torch.inference_mode():
                     generated = self.model.generate(**inputs, **{k: v for k, v in gen_kwargs.items() if v is not None})
@@ -1014,10 +988,8 @@ Answer:"""
                 # Extract only the new tokens (following notebook pattern)
                 if input_len > 0 and len(generated.shape) > 1:
                     new_tokens = generated[0][input_len:]
-                    print(f"[DEBUG] Generated {len(new_tokens)} new tokens")
                 else:
                     new_tokens = generated[0] if len(generated.shape) > 1 else generated
-                    print(f"[DEBUG] Using full generation ({len(new_tokens)} tokens)")
                     
             except Exception as e:
                 print(f"[ERROR] Model generation failed: {type(e).__name__}: {e}")
@@ -1032,10 +1004,8 @@ Answer:"""
             try:
                 if self.processor is not None:
                     text = self.processor.decode(new_tokens, skip_special_tokens=True)
-                    print(f"[DEBUG] Used processor.decode()")
                 elif self.tokenizer is not None:
                     text = self.tokenizer.decode(new_tokens, skip_special_tokens=True)
-                    print(f"[DEBUG] Used tokenizer.decode()")
                 else:
                     text = ""
                     print(f"[WARN] No decoder available")
@@ -1049,7 +1019,6 @@ Answer:"""
                     text = ""
 
             text = (text or "").strip()
-            print(f"[DEBUG] Decoded output: {repr(text[:300])}")
             def _normalize_gen_out(txt: str) -> str:
                 import re as _re
                 if not txt:
@@ -1087,9 +1056,7 @@ Answer:"""
                 return t
 
             if text:
-                print(f"[DEBUG] Before normalization: {repr(text[:300])}")
                 norm = _normalize_gen_out(text)
-                print(f"[DEBUG] After local normalization: {repr(norm[:300])}")
                 if norm:
                     return norm
 
@@ -1136,8 +1103,7 @@ Answer:"""
                             repetition_penalty=1.3,
                             no_repeat_ngram_size=4,
                             eos_token_id=eos_id,
-                            pad_token_id=pad_id,
-                            early_stopping=True
+                            pad_token_id=pad_id
                         )
                 except Exception as e:
                     print(f"[ERROR] Simple retry generation failed: {type(e).__name__}: {e}")

@@ -472,12 +472,10 @@ class BatchProcessor:
         
         # Text embedding (always present)
         qv_text = self.encoder.embed_texts([question])[0]
-        print(f"[DEBUG] Text embedding shape: {qv_text.shape}, first 5 values: {qv_text[:5]}")
         
         # Image embeddings from uploaded images (NEW MULTIMODAL FEATURE)
         uploaded_image_embeddings = []
         if uploaded_images:
-            print(f"[INFO] Processing {len(uploaded_images)} uploaded images for multimodal retrieval")
             valid_images = []
             for img_path in uploaded_images:
                 try:
@@ -494,7 +492,6 @@ class BatchProcessor:
                     # Handle different tensor types and formats with robust type checking
                     # Convert to list of numpy arrays to avoid boolean evaluation issues
                     if hasattr(raw_embeddings, 'dtype'):  # Check for tensor-like objects first
-                        print(f"[DEBUG] Raw embedding tensor dtype: {raw_embeddings.dtype}, shape: {getattr(raw_embeddings, 'shape', 'no shape')}")
                         # Convert any tensor type to Float32 for compatibility
                         if hasattr(raw_embeddings, 'float'):
                             embedding_array = raw_embeddings.float().cpu().numpy()
@@ -521,7 +518,6 @@ class BatchProcessor:
 
         # Detect question types
         ql = question.lower()
-        print(f"[DEBUG] Processing question: {repr(question)}")
         imaging_terms = ["neuroimaging","mri","ct","computed tomography","magnetic resonance",
                         "flair","dwi","adc","t1","t2","contrast","enhancement","lesion",
                         "brain","encephal","cns","cranial"]
@@ -668,8 +664,6 @@ class BatchProcessor:
                     else:
                         search_embedding = np.array(img_embedding, dtype=np.float32)
                     
-                    print(f"[DEBUG] Using embedding of type {type(search_embedding)} with shape {search_embedding.shape}")
-                    
                     # Search using uploaded image embedding
                     hits_uploaded = _qdrant_search(self.client, search_embedding, pool_size, base_filter, CFG.SCORE_THRESHOLD, using="image")
                     uploaded_hits_all.extend(hits_uploaded)
@@ -717,7 +711,6 @@ class BatchProcessor:
             # NEW: Boost results from uploaded image searches (key multimodal enhancement)
             if item.get("via") == "uploaded_image":
                 item["score"] = base_score * 1.25  # Significant boost for user-uploaded image matches
-                print(f"[DEBUG] Boosted uploaded image match: {item.get('doc_id')} page {page_idx}")
             
             # Apply question-aware page boosting and content-based boosting
             if treatment_question or diagnostic_question:
@@ -776,9 +769,6 @@ class BatchProcessor:
                     seen.add(key)
 
         # --- Apply appropriate reranking strategy based on constraints
-        print(f"[DEBUG] After merge: {len(raw_items)} items")
-        for i, item in enumerate(raw_items[:5]):
-            print(f"[DEBUG] Item {i+1}: {item.get('doc_id', 'N/A')} page {item.get('page_index', 'N/A')} score={item.get('score', 0):.4f}")
         
         pre_rerank_pool = [dict(r) for r in raw_items[:20]]  # Always store pre-rerank state
         post_rerank_pool = []  # Initialize to avoid undefined variable issues
@@ -789,7 +779,6 @@ class BatchProcessor:
                 
                 if doc_id:
                     # Single document: use page-level reranking (case-level would be no-op)
-                    print(f"[INFO] Using page-level reranking for single doc: {doc_id}")
                     reranked_items = rerank_with_text(
                         question, raw_items, self.reranker,
                         alpha=0.5 if clinical_question else CFG.RERANK_ALPHA,
@@ -798,7 +787,6 @@ class BatchProcessor:
                     )
                 else:
                     # Multiple documents: use case-level reranking
-                    print(f"[INFO] Using case-level reranking across multiple docs")
                     reranked_items = rerank_with_case_level_cross_encoder(
                         question, raw_items, self.reranker,
                         top_cases=5,
@@ -956,11 +944,9 @@ class BatchProcessor:
 
         # Add question hash to context for uniqueness across different questions
         question_hash = hashlib.md5(question.encode()).hexdigest()[:8]
-        print(f"[DEBUG] Question hash: {question_hash}")
         
         # Evidence spans (more per doc for coverage) - now question-aware
         spans = extractive_spans(hits, per_doc=6, max_chars=500, question=question) # Enhanced with question context
-        print(f"[DEBUG] Extracted {len(spans)} spans for question analysis")
 
         # Build augmented context: PDF early pages first, then ranked excerpts
         context_parts: List[str] = []
@@ -1004,7 +990,6 @@ class BatchProcessor:
             context_parts.append(f"MEDICAL ANALYSIS for: {question}")
         
         context_parts.append(f"Question ID: {question_hash}")
-        print(f"[DEBUG] Question type - Diagnostic: {diagnostic_all}, Treatment: {treatment_question}, Procedure: {procedure_question}, Clinical: {clinical_question}, Histopath: {histopath_question}")
         
         # Filter hits based on question relevance to build focused context
         filtered_hits = []
@@ -1198,12 +1183,7 @@ class BatchProcessor:
                 enhanced_question, [str(p) for p in paths], spans=spans, context_text=ctx,
                 max_output_tokens=max(1024, CFG.MAX_NEW_TOKENS), images_per_answer=images_per_answer
             )
-            print(f"[DEBUG] Original question: {repr(question[:100])}")
-            print(f"[DEBUG] Enhanced question: {repr(enhanced_question[:200])}")
-            print(f"[DEBUG] MedGemma answer before normalize: {repr(answer[:500])}")
             answer = _normalize_answer(answer)
-            print(f"[DEBUG] Answer after normalize: {repr(answer[:500])}")
-            
             # ENHANCED: Handle "insufficient details" responses when image processing fails
             if answer and ("insufficient details" in answer.lower() or 
                           "not certain due to lack" in answer.lower() or
