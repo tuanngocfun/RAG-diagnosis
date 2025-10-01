@@ -41,7 +41,8 @@ def create_unique_retrieval_name(row):
         'Cross-encoder + MedCPT reranker (patched final)': 'CrossEnc+MedCPT-Patched',
         'Offline eval: Gemini2.5 + BGE reranker': 'Gemini25+BGE-Offline',
         'Offline eval: MedGemma4b + MedCPT reranker': 'MedGemma4b+MedCPT-Offline',
-        'Standalone Gemini2.5 (no retriever)': 'Gemini25-Standalone'
+        'Standalone Gemini2.5 (no retriever)': 'Gemini25-Standalone',
+        'Standalone MedGemma4b (no retriever)': 'MedGemma4b-Standalone'
     }
     
     # Use mapping if available
@@ -381,7 +382,7 @@ def main():
     """Main function to generate all retrieval evaluation visualizations."""
     # Setup paths
     script_dir = Path(__file__).parent
-    csv_path = script_dir / 'retrieval_experiments_comparison_updated.csv'
+    csv_path = script_dir / 'Final_Retrieval_Experiments_Comparison.csv'
     output_dir = script_dir
     
     print("🔄 Loading retrieval experiments data...")
