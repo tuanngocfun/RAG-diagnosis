@@ -27,7 +27,8 @@ def create_unique_rag_name(row):
         'RTX3090 cross-enc MedCPT (final, all)': 'CrossEnc-MedCPT-Final',
         'bi-encoder reranker (all)': 'BiEncoder-Rerank',
         'cross-encoder reranker (all)': 'CrossEnc-Rerank',
-        'cross-encoder MedCPT pool6 top6 (all)': 'CrossEnc-MedCPT-Pool6'
+        'cross-encoder MedCPT pool6 top6 (all)': 'CrossEnc-MedCPT-Pool6',
+        'MedGemma4B standalone (all)': 'MedGemma4B-Standalone'
     }
     
     return name_mapping.get(name, name[:20])
@@ -43,15 +44,16 @@ def create_unique_retrieval_name(row):
         'Cross-encoder + MedCPT reranker (patched final)': 'CrossEnc+MedCPT-Patched',
         'Offline eval: Gemini2.5 + BGE reranker': 'Gemini25+BGE-Offline',
         'Offline eval: MedGemma4b + MedCPT reranker': 'MedGemma4b+MedCPT-Offline',
-        'Standalone Gemini2.5 (no retriever)': 'Gemini25-Standalone'
+        'Standalone Gemini2.5 (no retriever)': 'Gemini25-Standalone',
+        'Standalone MedGemma4b (no retriever)': 'MedGemma4b-Standalone'
     }
     
     return name_mapping.get(name, name[:20])
 
 def load_both_datasets(script_dir):
     """Load and prepare both RAG and retrieval datasets."""
-    rag_path = script_dir / 'rag_gemini_eval_comparison_2025-09-29.csv'
-    retrieval_path = script_dir / 'retrieval_experiments_comparison_updated.csv'
+    rag_path = script_dir / 'Updated_RAG_experiment_comparison_with_MedGemma4B_standalone.csv'
+    retrieval_path = script_dir / 'Final_Retrieval_Experiments_Comparison.csv'
     
     # Load RAG data
     rag_df = pd.read_csv(rag_path)
