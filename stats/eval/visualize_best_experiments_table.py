@@ -546,7 +546,7 @@ def create_comparative_summary(retrieval_df, rag_df, output_dir):
 def main():
     """Main function to generate all comparison tables and visualizations."""
     # Setup paths
-    script_dir = Path(__file__).parent
+    script_dir = Path(__file__).parent / 'updated' / 'best_exp'
     retrieval_path = script_dir / 'Final_Retrieval_Experiments_Comparison.csv'
     rag_path = script_dir / 'Updated_RAG_experiment_comparison_with_MedGemma4B_standalone.csv'
     output_dir = script_dir
