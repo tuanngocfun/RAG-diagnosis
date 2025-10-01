@@ -41,7 +41,8 @@ def create_unique_rag_name(row):
         'RTX3090 cross-enc MedCPT (final, all)': 'CrossEnc-MedCPT-Final',
         'bi-encoder reranker (all)': 'BiEncoder-Rerank',
         'cross-encoder reranker (all)': 'CrossEnc-Rerank',
-        'cross-encoder MedCPT pool6 top6 (all)': 'CrossEnc-MedCPT-Pool6'
+        'cross-encoder MedCPT pool6 top6 (all)': 'CrossEnc-MedCPT-Pool6',
+        'MedGemma4B standalone (all)': 'MedGemma4B-Standalone'
     }
     
     # Use mapping if available, otherwise create from components
@@ -310,7 +311,7 @@ def main():
     """Main function to generate all RAG evaluation visualizations."""
     # Setup paths
     script_dir = Path(__file__).parent
-    csv_path = script_dir / 'rag_gemini_eval_comparison_2025-09-29.csv'
+    csv_path = script_dir / 'Updated_RAG_experiment_comparison_with_MedGemma4B_standalone.csv'
     output_dir = script_dir
     
     print("🔄 Loading RAG evaluation data...")
