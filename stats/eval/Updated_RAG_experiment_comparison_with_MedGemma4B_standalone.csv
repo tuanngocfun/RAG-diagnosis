@@ -1,0 +1,9 @@
+run,timestamp,avg_exact_match,avg_f1,avg_faithfulness,avg_correctness,avg_completeness,retrieval_recall_coverage,rank_F1,rank_faithfulness,rank_correctness,rank_completeness,path
+"text_size12k, token1024 (missing)",2025-09-18 06:38:31,0.0,0.17288996265341033,0.3454009433962264,0.390436320754717,0.3355856918238994,0.0,1,7,3,5,gemini_eval_rag_text_size12k_tokensize1024_gem25-gemini-rpm-5-strategy-missing
+gem25-gemini-rpm-5 (missing),2025-09-15 12:55:57,0.0009433962264150943,0.13027103141284918,0.3875,0.3108883647798742,0.2915762578616352,0.0,2,4,6,6,gemini_eval_only_gem25-gemini-rpm-5-strategy-missing
+gemimi_rerank_rag_test (all),2025-09-11 09:41:47,0.0,0.07177190302172595,0.3474685534591195,0.3985062893081761,0.4870322327044026,0.0,3,6,1,1,gemimi_rerank_rag_test-gemini-rpm-5-strategy-all
+"RTX3090 cross-enc MedCPT (final, all)",2025-09-28 17:39:56,0.0,0.07145863767153456,0.4894103773584905,0.39766116352201264,0.3804449685534591,0.0,4,1,2,2,rtx3090/gemini_eval_rag_medgemma4b_crossencoder_reranker_final-gemini-rpm-5-strategy-all
+bi-encoder reranker (all),2025-09-21 09:43:16,0.0,0.07124271007281528,0.3588993710691824,0.2725353773584906,0.24765330188679244,0.0,5,5,7,7,gemini_eval_rag_medgemma4b_biencoder_reranker-gemini-rpm-5-strategy-all
+cross-encoder reranker (all),2025-09-22 09:16:19,0.0,0.06144210349393268,0.4595283018867924,0.37570440251572323,0.3525872641509434,0.0,6,3,4,3,gemini_eval_rag_medgemma4b_crossencoder_reranker-gemini-rpm-5-strategy-all
+cross-encoder MedCPT pool6 top6 (all),2025-09-23 14:56:23,0.0,0.061358317252455816,0.46975235849056607,0.3746462264150944,0.34611635220125786,0.0,7,2,5,4,gemini_eval_rag_medgemma4b_crossencoder_medcpt_reranker_pool6_top6-gemini-rpm-5-strategy-all
+MedGemma4B standalone (all),2025-09-30 12:00:58,0.0,0.05969932606185729,0.2337625786163522,0.20050707547169816,0.19121069182389938,0.0,8,8,8,8,gemini_eval_medgemma4b_standalone-gemini-rpm-5-strategy-all
