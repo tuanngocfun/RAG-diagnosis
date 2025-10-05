@@ -22,14 +22,14 @@ def create_unique_rag_name(row):
     name = row['run']
     
     name_mapping = {
-        'text_size12k, token1024 (missing)': 'Gemini25-12k-1024tok',
-        'gem25-gemini-rpm-5 (missing)': 'Gemini25-Base',
-        'gemimi_rerank_rag_test (all)': 'Gemini-Rerank-RAG',
-        'RTX3090 cross-enc MedCPT (final, all)': 'CrossEnc-MedCPT-Final',
-        'bi-encoder reranker (all)': 'BiEncoder-Rerank',
-        'cross-encoder reranker (all)': 'CrossEnc-Rerank',
-        'cross-encoder MedCPT pool6 top6 (all)': 'CrossEnc-MedCPT-Pool6',
-        'MedGemma4B standalone (all)': 'MedGemma4B-Standalone'
+        'text_size12k, token1024 (missing)': 'Gemini 2.5 Pro: 12k-1024tok',
+        'gem25-gemini-rpm-5 (missing)': 'Gemini 2.5 Pro: Base',
+        'gemimi_rerank_rag_test (all)': 'Gemini 2.5 Pro: Rerank-RAG',
+        'RTX3090 cross-enc MedCPT (final, all)': 'MedGemma-4B: CrossEnc-MedCPT',
+        'bi-encoder reranker (all)': 'MedGemma-4B: BiEncoder',
+        'cross-encoder reranker (all)': 'MedGemma-4B: CrossEnc',
+        'cross-encoder MedCPT pool6 top6 (all)': 'MedGemma-4B: CrossEnc-Pool6',
+        'MedGemma4B standalone (all)': 'MedGemma-4B: Standalone'
     }
     
     return name_mapping.get(name, name[:20])
@@ -546,7 +546,7 @@ def create_comparative_summary(retrieval_df, rag_df, output_dir):
 def main():
     """Main function to generate all comparison tables and visualizations."""
     # Setup paths
-    script_dir = Path(__file__).parent / 'updated' / 'best_exp'
+    script_dir = Path(__file__).parent
     retrieval_path = script_dir / 'Final_Retrieval_Experiments_Comparison.csv'
     rag_path = script_dir / 'Updated_RAG_experiment_comparison_with_MedGemma4B_standalone.csv'
     output_dir = script_dir
