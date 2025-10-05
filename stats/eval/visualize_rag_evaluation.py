@@ -35,14 +35,14 @@ def create_unique_rag_name(row):
     
     # Define mapping for cleaner names
     name_mapping = {
-        'text_size12k, token1024 (missing)': 'Gemini25-12k-1024tok',
-        'gem25-gemini-rpm-5 (missing)': 'Gemini25-Base',
-        'gemimi_rerank_rag_test (all)': 'Gemini-Rerank-RAG',
-        'RTX3090 cross-enc MedCPT (final, all)': 'CrossEnc-MedCPT-Final',
-        'bi-encoder reranker (all)': 'BiEncoder-Rerank',
-        'cross-encoder reranker (all)': 'CrossEnc-Rerank',
-        'cross-encoder MedCPT pool6 top6 (all)': 'CrossEnc-MedCPT-Pool6',
-        'MedGemma4B standalone (all)': 'MedGemma4B-Standalone'
+        'text_size12k, token1024 (missing)': 'Gemini 2.5 Pro: 12k-1024tok',
+        'gem25-gemini-rpm-5 (missing)': 'Gemini 2.5 Pro: Base',
+        'gemimi_rerank_rag_test (all)': 'Gemini 2.5 Pro: Rerank-RAG',
+        'RTX3090 cross-enc MedCPT (final, all)': 'MedGemma-4B: CrossEnc-MedCPT',
+        'bi-encoder reranker (all)': 'MedGemma-4B: BiEncoder',
+        'cross-encoder reranker (all)': 'MedGemma-4B: CrossEnc',
+        'cross-encoder MedCPT pool6 top6 (all)': 'MedGemma-4B: CrossEnc-Pool6',
+        'MedGemma4B standalone (all)': 'MedGemma-4B: Standalone'
     }
     
     # Use mapping if available, otherwise create from components
