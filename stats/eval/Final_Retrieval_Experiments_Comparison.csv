@@ -1,0 +1,9 @@
+experiment,generator_model,reranker,type,total_queries,successful_queries,queries_with_gold_pages,MRR@k,nDCG@k,Recall@k,Precision@k,doc_recall@k,text_coverage@k,duplicate_ratio@k,pass_rate,eval_folder
+RAG: MedGemma-4B-IT + Bi-encoder MedCPT,MedGemma-4B-IT,Bi-encoder + MedCPT,inline_eval,922,874,369,0.748871,0.828134,0.913279,0.153388,0.947939,0.235466,0.052061,0.0,gemini_eval_rag_medgemma4b_biencoder_reranker-gemini-rpm-5-strategy-all
+RAG: MedGemma-4B-IT + Cross-encoder MedCPT pool6 top6,MedGemma-4B-IT,Cross-encoder + MedCPT pool6 top6,inline_eval,922,784,369,0.67159,0.720689,0.837398,0.175068,0.850325,0.28243,0.149675,0.1898,gemini_eval_rag_medgemma4b_crossencoder_medcpt_reranker_pool6_top6-gemini-rpm-5-strategy-all
+RAG: MedGemma-4B-IT + Cross-encoder MedCPT,MedGemma-4B-IT,Cross-encoder + MedCPT,inline_eval,922,784,369,0.671977,0.71932,0.840108,0.17561,0.850325,0.289262,0.149675,0.1898,gemini_eval_rag_medgemma4b_crossencoder_reranker-gemini-rpm-5-strategy-all
+RAG: MedGemma-4B-IT + Cross-encoder MedCPT (RTX3090 final),MedGemma-4B-IT,Cross-encoder + MedCPT (patched),inline_eval,922,776,368,0.675,0.720232,0.839674,0.175815,0.849015,0.288074,0.150985,0.1941,rtx3090/gemini_eval_rag_medgemma4b_crossencoder_reranker_final-gemini-rpm-5-strategy-all
+Offline RAG: Gemini 2.5 Pro + BGE reranker,Gemini 2.5 Pro,BGE reranker,posthoc_eval,912,866,912,1.0,0.997195,1.0,0.284988,1.0,0.380044,0.018366,,retrieval_offline_gemini25_bge_reranker
+Offline RAG: MedGemma-4B-IT + MedCPT reranker,MedGemma-4B-IT,MedCPT reranker,posthoc_eval,922,922,922,1.0,0.936925,1.0,0.216052,1.0,0.250542,0.0,,retrieval_offline_medgemma4b_medcpt_reranker
+Standalone Gemini 2.5 Pro (no RAG),Gemini 2.5 Pro,None (no retriever),posthoc_eval,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,retrieval_offline_standalone_gem25
+Standalone MedGemma-4B-IT (no RAG),MedGemma-4B-IT,None (no retriever),posthoc_eval,0,0,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,retrieval_offline_standalone_medgemma4b
