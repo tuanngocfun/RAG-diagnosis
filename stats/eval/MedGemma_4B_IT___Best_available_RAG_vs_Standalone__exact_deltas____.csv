@@ -1,0 +1,5 @@
+Metric,MedGemma Standalone,MedGemma Best (available RAG run),Best RAG Run (name),Absolute Δ (Best - Standalone),Relative Δ (%)
+F1,0.0597,0.0715,"RTX3090 cross-enc MedCPT (final, all)",0.0118,19.8
+Faithfulness,0.2338,0.4894,"RTX3090 cross-enc MedCPT (final, all)",0.2556,109.4
+Correctness,0.2005,0.3977,"RTX3090 cross-enc MedCPT (final, all)",0.1972,98.3
+Completeness,0.1912,0.3804,"RTX3090 cross-enc MedCPT (final, all)",0.1892,98.9
