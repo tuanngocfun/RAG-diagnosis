@@ -1,0 +1,2607 @@
+[
+  {
+    "node_id": "http://example.org/leishmania/VL",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Visceral Leishmaniasis",
+    "node_synonyms": [
+      "Visceral Leishmaniasis",
+      "Visceral Leishmaniasis (VL)",
+      "Visceral Leishmaniasis (Kala-azar)",
+      "Kala-azar",
+      "Systemic Leishmaniasis",
+      "VL",
+      "Visceral Leishmaniasis (Kala-Azar)",
+      "Pediatric Visceral Leishmaniasis",
+      "Atypical Visceral Leishmaniasis",
+      "Atypical Visceral Leishmaniasis with cutaneous involvement",
+      "Afebrile Visceral Leishmaniasis",
+      "Visceral Leishmaniasis with HIV co-infection",
+      "Visceral Leishmaniasis with HIV Co-infection",
+      "Visceral Leishmaniasis with Disseminated Cutaneous Leishmaniasis",
+      "Visceral Leishmaniasis with Disseminated Cutaneous Leishmaniasis (DCL)",
+      "Visceral Leishmaniasis with cutaneous involvement",
+      "Simultaneous VL and CL",
+      "Visceral Leishmaniasis with neurological involvement",
+      "Visceral Leishmaniasis in HIV co-infected patients",
+      "Visceral Leishmaniasis mimicking Multiple Myeloma",
+      "Visceral Leishmaniasis presenting as Splenic Peliosis",
+      "Visceral Leishmaniasis coinfected with Malaria",
+      "Visceral Leishmaniasis coinfected with Plasmodium vivax",
+      "Visceral Leishmaniasis with pancytopenia",
+      "Hemophagocytic Lymphohistiocytosis (HLH) secondary to VL",
+      "Leishmania colitis",
+      "Intestinal leishmaniasis",
+      "Visceral leishmaniasis with severe duodenal involvement",
+      "Visceral leishmaniasis with enteropathy",
+      "Visceral leishmaniasis with esophageal involvement",
+      "Visceral leishmaniasis with scrotal and penile involvement",
+      "Leishmania infantum Infection",
+      "Leishmania donovani Infection",
+      "Localized leishmanial lymphadenopathy",
+      "Pediatric lymphatic leishmaniasis"
+    ],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Leishmania_donovani",
+    "node_type": "http://example.org/entity",
+    "node_label": "Leishmania donovani",
+    "node_synonyms": [],
+    "original_type": "Species"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Leishmania_infantum",
+    "node_type": "http://example.org/entity",
+    "node_label": "Leishmania infantum",
+    "node_synonyms": [],
+    "original_type": "Species"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Leishmania_infantum/chagasi",
+    "node_type": "http://example.org/entity",
+    "node_label": "Leishmania infantum/chagasi",
+    "node_synonyms": [],
+    "original_type": "Species"
+  },
+  {
+    "node_id": "http://example.org/leishmania/PKDL",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Post-Kala-Azar Dermal Leishmaniasis",
+    "node_synonyms": [
+      "Post-Kala-Azar Dermal Leishmaniasis",
+      "Post Kala-Azar Dermal Leishmaniasis",
+      "Para-Kala-Azar Dermal Leishmaniasis",
+      "Para Kala-Azar Dermal Leishmaniasis",
+      "PKDL",
+      "Macular PKDL",
+      "Papular PKDL",
+      "Nodular PKDL",
+      "Micropapular/Miliary PKDL",
+      "Widespread Nodular PKDL",
+      "Erythrodermic PKDL",
+      "Indian erythrodermic postkala-azar dermal leishmaniasis",
+      "Severe PKDL (Grade 2)",
+      "PKDL with Mucosal Involvement",
+      "PKDL with lingual mucosal involvement",
+      "Post-kala-azar Dermal Leishmaniasis with Mucosal Involvement",
+      "Post-kala-azar Dermal Leishmaniasis (PKDL) and Uveitis",
+      "PKDL with auricular lesions",
+      "PKDL with ocular involvement",
+      "Mucosal PKDL",
+      "PKDL in HIV/AIDS",
+      "Post-kala-azar Dermal Leishmaniasis associated with AIDS",
+      "PKDL as Immune Reconstitution Inflammatory Syndrome (IRIS)",
+      "PKDL with Concurrent Relapsing Visceral Leishmaniasis",
+      "PKDL co-infected with Leprosy",
+      "PKDL with atypical presentation",
+      "PKDL mimicking Systemic Lupus Erythematosus"
+    ],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/CL",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Cutaneous Leishmaniasis",
+    "node_synonyms": [
+      "Cutaneous Leishmaniasis",
+      "Cutaneous Leishmaniasis (CL)",
+      "Old World Cutaneous Leishmaniasis",
+      "New World Cutaneous Leishmaniasis",
+      "American Cutaneous Leishmaniasis",
+      "American Cutaneous Leishmaniasis (ACL)",
+      "Lupoid Cutaneous Leishmaniasis",
+      "Old World Cutaneous Leishmaniasis",
+      "New World Cutaneous Leishmaniasis",
+      "New World cutaneous leishmaniasis (NWCL)",
+      "American Cutaneous Leishmaniasis (ACL)",
+      "Localized American Cutaneous Leishmaniasis",
+      "Zoonotic Cutaneous Leishmaniasis",
+      "Imported cutaneous leishmaniasis",
+      "Diffuse Cutaneous Leishmaniasis",
+      "Diffused Cutaneous Leishmaniasis (DCL)",
+      "Disseminated Cutaneous Leishmaniasis",
+      "Disseminated cutaneous leishmaniasis mimicking histoid leprosy",
+      "Leishmaniasis Recidivans (Lupoid Leishmaniasis)",
+      "Leishmaniasis Recidivans (LR)",
+      "Leishmaniasis Recidivans with Mucosal Involvement",
+      "Multidermatomal zosteriform lupoid cutaneous leishmaniasis",
+      "Zosteriform cutaneous leishmaniasis",
+      "Chronic Cutaneous Leishmaniasis",
+      "Chronic Cutaneous Leishmaniasis (Late-onset)",
+      "Chronic Cutaneous Leishmaniasis (Papulonodular form)",
+      "Chronic Cutaneous Leishmaniasis (Tumoral subtype)",
+      "Chronic Cutaneous Leishmaniasis (Verrucous subtype)",
+      "Chronic Cutaneous Leishmaniasis (Sporotrichoid subtype)",
+      "Chronic Cutaneous Leishmaniasis (Plaque form)",
+      "Chronic Cutaneous Leishmaniasis (Annular and Gyrate subtype)",
+      "Chronic Cutaneous Leishmaniasis (Erysipeloid subtype)",
+      "Chronic Cutaneous Leishmaniasis (Ulcerative form)",
+      "Atypical Cutaneous Leishmaniasis (Mimicking Sarcoidosis/Lymphoma/Acne Agminata)",
+      "Atypical Cutaneous Leishmaniasis (sarcoidosis/lymphoma/acne agminata-like)",
+      "Cutaneous leishmaniasis with atypical clinical manifestations",
+      "Cutaneous leishmaniasis with psoriasiform presentation",
+      "Cutaneous leishmaniasis mimicking psoriasis",
+      "Erysipeloid Cutaneous Leishmaniasis",
+      "Erysipelas-like cutaneous leishmaniasis",
+      "Localized Cutaneous Leishmaniasis (Pediatric)",
+      "Localized Cutaneous Leishmaniasis",
+      "Localized cutaneous leishmaniasis of the cheek",
+      "Vesicular Cutaneous Leishmaniasis",
+      "Eczematous Cutaneous Leishmaniasis",
+      "Eczema-like Leishmaniasis",
+      "Exophytic Cutaneous Leishmaniasis",
+      "Sporotrichoid Cutaneous Leishmaniasis",
+      "Cutaneous leishmaniasis with sporotrichoid lymphangitis",
+      "New World cutaneous leishmaniasis with nodular lymphangitis",
+      "Annular Cutaneous Leishmaniasis",
+      "Auricular Cutaneous Leishmaniasis",
+      "Diffuse Nodular Cutaneous Leishmaniasis",
+      "Diffuse Truncal Nodular Cutaneous Leishmaniasis",
+      "Diffuse Facial Nodular Cutaneous Leishmaniasis",
+      "Paronychia-like Cutaneous Leishmaniasis",
+      "Cutaneous Leishmaniasis with a Paronychia-like Lesion",
+      "Sausage-like Cutaneous Leishmaniasis",
+      "Lupus Vulgaris-like Cutaneous Leishmaniasis",
+      "Lupoid Cutaneous Leishmaniasis",
+      "Mutilating Lupoid Leishmaniasis",
+      "Lupoid cutaneous leishmaniasis mimicking verruca plana",
+      "Rosacea-like Cutaneous Leishmaniasis",
+      "Squamous Cell Carcinoma-like Cutaneous Leishmaniasis",
+      "Cutaneous leishmaniasis mimicking squamous cell carcinoma",
+      "Keratoacanthoma-like Cutaneous Leishmaniasis",
+      "Pyoderma Gangrenosum-like Cutaneous Leishmaniasis",
+      "B-cell Lymphoma-like Cutaneous Leishmaniasis",
+      "Cutaneous leishmaniasis mimicking cutaneous pseudolymphoma",
+      "Grouping Pattern Cutaneous Leishmaniasis",
+      "Panniculitis-like Cutaneous Leishmaniasis",
+      "Dermatitis-like Cutaneous Leishmaniasis",
+      "Ecthyma-like Cutaneous Leishmaniasis",
+      "Verruca-like Cutaneous Leishmaniasis",
+      "Keloid-like Cutaneous Leishmaniasis",
+      "Cutaneous Leishmaniasis on the Scalp",
+      "Palmar Cutaneous Leishmaniasis",
+      "Cutaneous Leishmaniasis on the Eyelid",
+      "Eyelid leishmaniasis",
+      "Ocular Leishmaniasis",
+      "Ocular Leishmaniasis presenting as Chronic Ulcerative Blepharoconjunctivitis",
+      "Cutaneous Leishmaniasis on the Ear",
+      "Cutaneous Leishmaniasis on the Lip",
+      "Cutaneous Leishmaniasis of the lower lip",
+      "Cutaneous leishmaniasis mimicking granulomatous cheilitis",
+      "Genital Cutaneous Leishmaniasis",
+      "Cutaneous Leishmaniasis presenting as a postoperative granuloma",
+      "Recurrent cutaneous leishmaniasis",
+      "Cutaneous Leishmaniasis with Malignant Transformation (BCC/Lymphoma)",
+      "Cutaneous Leishmaniasis with African Rickettsiosis",
+      "Cutaneous Leishmaniasis embedded in Squamous Cell Carcinoma",
+      "Basal Cell Carcinoma superimposed on CL",
+      "Squamous Cell Carcinoma superimposed on CL",
+      "Cutaneous T-Cell Lymphoma coexisting with CL",
+      "Cutaneous Leishmaniasis (Pseudolymphoma mimic)",
+      "Cutaneous Leishmaniasis (Lymphoma mimic)",
+      "Cutaneous leishmaniasis mimicking Anaplastic Large T-cell Lymphoma",
+      "Cutaneous Leishmaniasis (Leprosy mimic)",
+      "Diffuse Cutaneous Leishmaniasis mimicking Borderline-tuberculoid Leprosy",
+      "Cutaneous Leishmaniasis (Lupus mimic)",
+      "Cutaneous leishmaniasis mimicking Discoid Lupus Erythematosus",
+      "Cutaneous Leishmaniasis (Acne agminata mimic)",
+      "Cutaneous Leishmaniasis (Spitz nevus mimic)",
+      "Cutaneous Leishmaniasis (Deep fungal mimic)",
+      "Cutaneous Leishmaniasis (Syphilis mimic)",
+      "Cutaneous leishmaniasis mimicking Secondary Syphilis",
+      "Cutaneous Leishmaniasis (Tuberculosis mimic)",
+      "Cutaneous Leishmaniasis (Mycosis fungoides mimic)",
+      "Cutaneous Leishmaniasis (Sarcoidosis mimic)",
+      "Cutaneous leishmaniasis mimicking Sarcoidosis",
+      "Cutaneous Leishmaniasis (Pityriasis lichenoides mimic)",
+      "Cutaneous Leishmaniasis (Lichen planus mimic)",
+      "Cutaneous leishmaniasis in HIV-positive patient",
+      "Disseminated cutaneous leishmaniasis in HIV-positive patient"
+    ],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Leishmania_major",
+    "node_type": "http://example.org/entity",
+    "node_label": "Leishmania major",
+    "node_synonyms": [],
+    "original_type": "Species"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Leishmania_tropica",
+    "node_type": "http://example.org/entity",
+    "node_label": "Leishmania tropica",
+    "node_synonyms": [],
+    "original_type": "Species"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Leishmania_aethiopica",
+    "node_type": "http://example.org/entity",
+    "node_label": "Leishmania aethiopica",
+    "node_synonyms": [],
+    "original_type": "Species"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Leishmania_Viannia_braziliensis",
+    "node_type": "http://example.org/entity",
+    "node_label": "Leishmania (Viannia) braziliensis",
+    "node_synonyms": [],
+    "original_type": "Species"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Leishmania_Viannia_guyanensis",
+    "node_type": "http://example.org/entity",
+    "node_label": "Leishmania (Viannia) guyanensis",
+    "node_synonyms": [],
+    "original_type": "Species"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Leishmania_mexicana",
+    "node_type": "http://example.org/entity",
+    "node_label": "Leishmania mexicana",
+    "node_synonyms": [],
+    "original_type": "Species"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Leishmania_amazonensis",
+    "node_type": "http://example.org/entity",
+    "node_label": "Leishmania amazonensis",
+    "node_synonyms": [],
+    "original_type": "Species"
+  },
+  {
+    "node_id": "http://example.org/leishmania/ML",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Mucosal Leishmaniasis",
+    "node_synonyms": [
+      "Mucosal Leishmaniasis",
+      "Mucosal Leishmaniasis (ML)",
+      "Mucocutaneous Leishmaniasis",
+      "Mucocutaneous Leishmaniasis (MCL)",
+      "Lip Leishmaniasis",
+      "Oral Leishmaniasis",
+      "Oral Mucosal Leishmaniasis (Localized)",
+      "Oral mucous membrane leishmaniasis",
+      "Primary mucosal leishmaniasis of the oral cavity",
+      "Nasal Mucosal Leishmaniasis",
+      "Nasal mucocutaneous leishmaniasis",
+      "Endonasal Leishmaniasis",
+      "Endonasal mucocutaneous leishmaniasis",
+      "Mucosal leishmaniasis involving the nostril and maxillary sinus",
+      "Espundia",
+      "Laryngeal Leishmaniasis",
+      "Isolated primary laryngeal leishmaniasis",
+      "Isolated laryngeal leishmaniasis",
+      "Isolated laryngeal mucosal leishmaniasis due to L. infantum",
+      "Laryngeal leishmaniasis with mucocutaneous involvement",
+      "Pharyngeal Leishmaniasis",
+      "Nasopharyngeal Leishmaniasis",
+      "Disseminated mucocutaneous leishmaniasis",
+      "Atypical mucocutaneous leishmaniasis",
+      "Mucocutaneous leishmaniasis with diffuse desquamative rash",
+      "Nasal mucocutaneous leishmaniasis inducing cytotoxic T-cell lymphoma",
+      "Multifocal mucocutaneous leishmaniasis",
+      "Multifocal mucocutaneous leishmaniasis masquerading as idiopathic midline granulomatous disease",
+      "Mucocutaneous leishmaniasis with ocular involvement",
+      "Lip Leishmaniasis (Labial ML)",
+      "Macrocheilitis (Leishmanial)",
+      "Primary Mucosal Leishmaniasis (Lip)",
+      "Mucosal Leishmaniasis mimicking Basal Cell Carcinoma",
+      "Mucocutaneous Leishmaniasis mimicking Malignancy",
+      "Mucocutaneous Leishmaniasis with Malignant Transformation",
+      "Old World Mucosal Leishmaniasis (Leishmania donovani/infantum)",
+      "Refractory Mucosal Leishmaniasis",
+      "Refractory Mucocutaneous Leishmaniasis"
+    ],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Leishmania_Viannia_panamensis",
+    "node_type": "http://example.org/entity",
+    "node_label": "Leishmania (Viannia) panamensis",
+    "node_synonyms": [],
+    "original_type": "Species"
+  },
+  {
+    "node_id": "http://example.org/leishmania/NON_LEISH",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Non-Leishmaniasis",
+    "node_synonyms": [
+      "Non-Leishmaniasis",
+      "Non Leishmaniasis",
+      "No evidence of Leishmaniasis",
+      "Alternative diagnosis",
+      "Non-leishmanial infection",
+      "Not Leishmaniasis",
+      "Other Diagnosis",
+      "Leprosy",
+      "Borderline-tuberculoid Leprosy",
+      "Indeterminate Leprosy",
+      "Lupus Vulgaris",
+      "Cutaneous tuberculosis",
+      "Papulonecrotic tuberculid",
+      "Papulonecrotic tuberculid (cutaneous tuberculosis)",
+      "Chromoblastomycosis",
+      "Cutaneous phaeohyphomycosis",
+      "Cutaneous phaeohyphomycosis presenting as ecthyma-like lesions",
+      "Lymphocutaneous Sporotrichosis",
+      "Noma (Cancrum oris)",
+      "Noma",
+      "Sarcoidosis",
+      "Squamous Cell Carcinoma",
+      "Basal Cell Carcinoma",
+      "Kaposi's sarcoma",
+      "Kaposi's sarcoma (Gastrointestinal and Cutaneous)",
+      "Deep Fungal Infection",
+      "Cutaneous T-Cell Lymphoma",
+      "Mycosis fungoides",
+      "Cytotoxic T-cell lymphoma",
+      "Cellulitis",
+      "Ecthyma gangrenosum"
+    ],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/UNCERTAIN",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Uncertain / Indeterminate",
+    "node_synonyms": [
+      "Uncertain",
+      "Uncertain / Insufficient Evidence",
+      "Indeterminate",
+      "Indeterminate diagnosis",
+      "Insufficient information",
+      "Not enough data to classify",
+      "Suspicious for Leishmaniasis \u2013 not confirmed",
+      "Possible Leishmaniasis",
+      "Unclear diagnosis"
+    ],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_17",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Interleukin Receptor Common gamma Subunit",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_18",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Job Syndrome",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_19",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "X-Linked Combined Immunodeficiency Diseases",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_20",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Genetic Predisposition to Disease",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_21",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "T-Lymphocyte Subsets",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_22",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Adenoma, Pleomorphic",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_23",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Palatal Neoplasms",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_24",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Palate, Hard",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_25",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Leishmaniasis, Visceral",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_26",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Leishmaniasis, Cutaneous",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_27",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Pulmonary Disease, Chronic Obstructive",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_28",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Opium Dependence",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_29",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Autoimmune Lymphoproliferative Syndrome",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_30",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Immunosuppressive Agents",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_31",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Protein Kinase C-Delta",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_32",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Sirolimus",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_33",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Carcinoma, Squamous Cell",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_34",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Heart Neoplasms",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_35",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Myxoma",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_36",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Thrombosis",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_37",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Breast Neoplasms",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_38",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Heart Diseases",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_39",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Rectal Neoplasms",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_40",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Tongue Neoplasms",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_41",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Amphotericin B",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_42",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Leishmania",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_43",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Dna, Kinetoplast",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_44",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Duodenal Neoplasms",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_45",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Ovarian Neoplasms",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_46",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Ampulla Of Vater",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_47",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Common Bile Duct",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_48",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Atherosclerosis",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_49",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Coronary Artery Disease",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_50",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Erectile Dysfunction",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_51",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Adrenergic Beta-Antagonists",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_52",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Arteries",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_53",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Disease Progression",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_54",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Face",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_55",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Leishmaniasis, Mucocutaneous",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_56",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Mouth Diseases",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Anatomy_57",
+    "node_type": "http://purl.obolibrary.org/obo/UBERON_0001062",
+    "node_label": "Skin",
+    "node_synonyms": [],
+    "original_type": "Anatomy"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_58",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Immunologic Deficiency Syndromes",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_59",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Macrophage Activation Syndrome",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_60",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Rab27 Gtp-Binding Proteins",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_61",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Adrenal Cortex Hormones",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_62",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Lymphohistiocytosis, Hemophagocytic",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_63",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Piebaldism",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_64",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Primary Immunodeficiency Diseases",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_65",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Griscelli Syndrome Type 2",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_66",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Communicable Diseases, Imported",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_67",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Leishmania Tropica",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_68",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Skin",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_69",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Hiv Infections",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_70",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Dexamethasone",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_71",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Acquired Immunodeficiency Syndrome",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_72",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Paracoccidioidomycosis",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_73",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Coinfection",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_74",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Kidney",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_75",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Synovial Membrane",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_76",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Meglumine",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_77",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Organometallic Compounds",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_78",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Meglumine Antimoniate",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_79",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Pregnancy Complications, Infectious",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_80",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Leukocytes, Mononuclear",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_81",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Bisphosphonate-Associated Osteonecrosis of the Jaw",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_82",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Mouth Mucosa",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_83",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Hyperplasia",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_84",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Budd-Chiari Syndrome",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_85",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Liver Diseases",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_86",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Acute Disease",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_87",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Cysts",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_88",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Carcinoma, Hepatocellular",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_89",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Liver Neoplasms",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_90",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Hepacivirus",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_91",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Hepatitis C",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_92",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Headache Disorders, Secondary",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_93",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Pseudotumor Cerebri",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_94",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Puerperal Disorders",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_95",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Acetazolamide",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_96",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Cerebral Veins",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_97",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Diuretics",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_98",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Autoimmune Diseases",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_99",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Encephalitis",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_100",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Intracellular Signaling Peptides and Proteins",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_101",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Sars-Cov-2",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_102",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Autoantibodies",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_103",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Cognitive Dysfunction",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_104",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Glucocorticoids",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_105",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Hyponatremia",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_106",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Methylprednisolone",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_107",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Prednisone",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_108",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Carcinoma, Basal Cell",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_109",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Skin Neoplasms",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_110",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Antiprotozoal Agents",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_111",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Leishmania Infantum",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_112",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Eosinophilia",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_113",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Liver Abscess",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_114",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Epstein-Barr Virus Infections",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_115",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Herpesvirus 4, Human",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_116",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Leishmania Donovani",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_117",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Mycosis Fungoides",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_118",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Syndrome",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_119",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Agammaglobulinemia",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_120",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Adenosine Deaminase",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_121",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Fluorodeoxyglucose F18",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_122",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Miltefosine",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_123",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Anti-Hiv Agents",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Anatomy_124",
+    "node_type": "http://purl.obolibrary.org/obo/UBERON_0001062",
+    "node_label": "Bone Marrow Examination",
+    "node_synonyms": [],
+    "original_type": "Anatomy"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Anatomy_125",
+    "node_type": "http://purl.obolibrary.org/obo/UBERON_0001062",
+    "node_label": "Liver Transplantation",
+    "node_synonyms": [],
+    "original_type": "Anatomy"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_126",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Daunorubicin",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_127",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Hyper-IgM Immunodeficiency Syndrome",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_128",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Cd40 Ligand",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_129",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "T-Lymphocytes",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_130",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Hodgkin Disease",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_131",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Nose",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_132",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Tuberculosis, Cutaneous",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_133",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Antitubercular Agents",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_134",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Mycobacterium Tuberculosis",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Anatomy_135",
+    "node_type": "http://purl.obolibrary.org/obo/UBERON_0001062",
+    "node_label": "Skin Tests",
+    "node_synonyms": [],
+    "original_type": "Anatomy"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_136",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Conjunctival Diseases",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_137",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Eye Infections, Parasitic",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_138",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Leishmania Major",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_139",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Nose Diseases",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_140",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Nasal Obstruction",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_141",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Liposomal Amphotericin B",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_142",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Pyoderma Gangrenosum",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_143",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Down Syndrome",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_144",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "B7-H1 Antigen",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_145",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Leishmaniasis, Diffuse Cutaneous",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_146",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Antigens, Protozoan",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_147",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Cytokines",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_148",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Granzymes",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_149",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Interferon-Gamma",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_150",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Macrophages",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Pathogen_151",
+    "node_type": "http://purl.obolibrary.org/obo/NCBITaxon_5658",
+    "node_label": "Leishmania amazonensis",
+    "node_synonyms": [],
+    "original_type": "Pathogen"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_152",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Neuroendocrine Tumors",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_153",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Retroperitoneal Neoplasms",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_154",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Schistosomiasis",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_155",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Lung Neoplasms",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_156",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Precancerous Conditions",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_157",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Anti-Inflammatory Agents, Non-Steroidal",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_158",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Ear Cartilage",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_159",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Polychondritis, Relapsing",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_160",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Hyper-IgM Immunodeficiency Syndrome, Type 1",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_161",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Antifungal Agents",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_162",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Itraconazole",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_163",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Antimony",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_164",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Dna, Intergenic",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_165",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Dna, Protozoan",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_166",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Suramin",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_167",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Trypanocidal Agents",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_168",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Trypanosomiasis, African",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_169",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Dendritic Cells",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_170",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Mycobacterium avium-intracellulare Infection",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_171",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Receptors, Interferon",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Anatomy_172",
+    "node_type": "http://purl.obolibrary.org/obo/UBERON_0001062",
+    "node_label": "Bone Marrow",
+    "node_synonyms": [],
+    "original_type": "Anatomy"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_173",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Chromosomes, Human, Pair 14",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_174",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Chromosomes, Human, Pair 2",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_175",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Leukemia, Myeloid, Acute",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_176",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Mutant Chimeric Proteins",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_177",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Oncogene Proteins, Fusion",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_178",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Carbamazepine",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_179",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Stevens-Johnson Syndrome",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_180",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Botulinum Toxins, Type A",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_181",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Neuromuscular Agents",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_182",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Whim Syndrome",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_183",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Lip Diseases",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_184",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Candidiasis, Chronic Mucocutaneous",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_185",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Stat1 Transcription Factor",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_186",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Antineoplastic Combined Chemotherapy Protocols",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_187",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Immunoglobulins, Intravenous",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_188",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Agranulocytosis",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_189",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Bendamustine Hydrochloride",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_190",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Rituximab",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_191",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Drugs, Generic",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_192",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Neglected Diseases",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_193",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Phosphorylcholine",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_194",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Necrobiosis Lipoidica",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_195",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Anti-Retroviral Agents",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_196",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Antimetabolites, Antineoplastic",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_197",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Azacitidine",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_198",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Htlv-I Infections",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_199",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Myelodysplastic Syndromes",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_200",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Human T-Lymphotropic Virus 1",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_201",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Granuloma, Plasma Cell",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_202",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Kidney Diseases",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_203",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Kidney Neoplasms",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_204",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Kidney Pelvis",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Anatomy_205",
+    "node_type": "http://purl.obolibrary.org/obo/UBERON_0001062",
+    "node_label": "Kidney Pelvis",
+    "node_synonyms": [],
+    "original_type": "Anatomy"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_206",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Communicable Diseases",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_207",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Paracoccidioides",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_208",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Leishmania Guyanensis",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_209",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Leishmaniavirus",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_210",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Gata2 Transcription Factor",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_211",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Mycobacterium Infections, Nontuberculous",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_212",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Disease Management",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_213",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Killer Cells, Natural",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_214",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Chagas Disease",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_215",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Skin Diseases",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_216",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Trypanosoma Cruzi",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_217",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Bacteria",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_218",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Fluconazole",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_219",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Antibodies, Antiphospholipid",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_220",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Antiphospholipid Syndrome",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_221",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Covid-19",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_222",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Vasculitis",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_223",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Liver",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_224",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Exophiala",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Anatomy_225",
+    "node_type": "http://purl.obolibrary.org/obo/UBERON_0001062",
+    "node_label": "Kidney Transplantation",
+    "node_synonyms": [],
+    "original_type": "Anatomy"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_226",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Phaeohyphomycosis",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_227",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Opportunistic Infections",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_228",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Osteopetrosis",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_229",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Skull",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_230",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Spine",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_231",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Respiratory Insufficiency",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_232",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Cocaine-Related Disorders",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Disease_233",
+    "node_type": "http://purl.obolibrary.org/obo/DOID_4",
+    "node_label": "Infectious Disease Transmission, Vertical",
+    "node_synonyms": [],
+    "original_type": "Disease"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Pathogen_234",
+    "node_type": "http://purl.obolibrary.org/obo/NCBITaxon_5658",
+    "node_label": "Leishmania infantum",
+    "node_synonyms": [],
+    "original_type": "Pathogen"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Symptom_235",
+    "node_type": "http://purl.obolibrary.org/obo/SYMP_0000462",
+    "node_label": "Anemia",
+    "node_synonyms": [],
+    "original_type": "Symptom"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Symptom_236",
+    "node_type": "http://purl.obolibrary.org/obo/SYMP_0000462",
+    "node_label": "Thrombocytopenia",
+    "node_synonyms": [],
+    "original_type": "Symptom"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Symptom_237",
+    "node_type": "http://purl.obolibrary.org/obo/SYMP_0000462",
+    "node_label": "Skin Lesion",
+    "node_synonyms": [],
+    "original_type": "Symptom"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_238",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Allopurinol",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_239",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Amastigotes",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_240",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Pcr",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_241",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Ifa",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_242",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Antimonial",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_243",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Pentavalent Antimonial",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_244",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Dat",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Anatomy_245",
+    "node_type": "http://purl.obolibrary.org/obo/UBERON_0001062",
+    "node_label": "Liver",
+    "node_synonyms": [],
+    "original_type": "Anatomy"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Anatomy_246",
+    "node_type": "http://purl.obolibrary.org/obo/UBERON_0001062",
+    "node_label": "Face",
+    "node_synonyms": [],
+    "original_type": "Anatomy"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Pathogen_247",
+    "node_type": "http://purl.obolibrary.org/obo/NCBITaxon_5658",
+    "node_label": "Leishmania major",
+    "node_synonyms": [],
+    "original_type": "Pathogen"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Anatomy_248",
+    "node_type": "http://purl.obolibrary.org/obo/UBERON_0001062",
+    "node_label": "Lymph Node",
+    "node_synonyms": [],
+    "original_type": "Anatomy"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Symptom_249",
+    "node_type": "http://purl.obolibrary.org/obo/SYMP_0000462",
+    "node_label": "Fever",
+    "node_synonyms": [],
+    "original_type": "Symptom"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Symptom_250",
+    "node_type": "http://purl.obolibrary.org/obo/SYMP_0000462",
+    "node_label": "Splenomegaly",
+    "node_synonyms": [],
+    "original_type": "Symptom"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Symptom_251",
+    "node_type": "http://purl.obolibrary.org/obo/SYMP_0000462",
+    "node_label": "Pancytopenia",
+    "node_synonyms": [],
+    "original_type": "Symptom"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_252",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Bone Marrow Biopsy",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_253",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Polymerase Chain Reaction",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_254",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Culture",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Anatomy_255",
+    "node_type": "http://purl.obolibrary.org/obo/UBERON_0001062",
+    "node_label": "Spleen",
+    "node_synonyms": [],
+    "original_type": "Anatomy"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Symptom_256",
+    "node_type": "http://purl.obolibrary.org/obo/SYMP_0000462",
+    "node_label": "Fatigue",
+    "node_synonyms": [],
+    "original_type": "Symptom"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Symptom_257",
+    "node_type": "http://purl.obolibrary.org/obo/SYMP_0000462",
+    "node_label": "Hepatomegaly",
+    "node_synonyms": [],
+    "original_type": "Symptom"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_258",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Smear",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_259",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Peripheral Smear",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Symptom_260",
+    "node_type": "http://purl.obolibrary.org/obo/SYMP_0000462",
+    "node_label": "Hepatosplenomegaly",
+    "node_synonyms": [],
+    "original_type": "Symptom"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Symptom_261",
+    "node_type": "http://purl.obolibrary.org/obo/SYMP_0000462",
+    "node_label": "Ulcer",
+    "node_synonyms": [],
+    "original_type": "Symptom"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Anatomy_262",
+    "node_type": "http://purl.obolibrary.org/obo/UBERON_0001062",
+    "node_label": "Extremities",
+    "node_synonyms": [],
+    "original_type": "Anatomy"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Symptom_263",
+    "node_type": "http://purl.obolibrary.org/obo/SYMP_0000462",
+    "node_label": "Weight Loss",
+    "node_synonyms": [],
+    "original_type": "Symptom"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_264",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Bone Marrow Aspirate",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_265",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Lst",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_266",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Glucantime",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_267",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Bone Marrow Aspiration",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_268",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Skin Biopsy",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_269",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Punch Biopsy",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_270",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Scraping",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_271",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Giemsa Stain",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_272",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Giemsa-Stained",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_273",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Promastigotes",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_274",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Ambisome",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_275",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Impavido",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_276",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Immunohistochemistry",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Symptom_277",
+    "node_type": "http://purl.obolibrary.org/obo/SYMP_0000462",
+    "node_label": "Nodule",
+    "node_synonyms": [],
+    "original_type": "Symptom"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Symptom_278",
+    "node_type": "http://purl.obolibrary.org/obo/SYMP_0000462",
+    "node_label": "Papule",
+    "node_synonyms": [],
+    "original_type": "Symptom"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_279",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Incisional Biopsy",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_280",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Bone Marrow Smear",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_281",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "H&E Stain",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_282",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Needle Aspiration",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Symptom_283",
+    "node_type": "http://purl.obolibrary.org/obo/SYMP_0000462",
+    "node_label": "Lymphadenopathy",
+    "node_synonyms": [],
+    "original_type": "Symptom"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_284",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Real-Time Pcr",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Pathogen_285",
+    "node_type": "http://purl.obolibrary.org/obo/NCBITaxon_5658",
+    "node_label": "Leishmania donovani",
+    "node_synonyms": [],
+    "original_type": "Pathogen"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Symptom_286",
+    "node_type": "http://purl.obolibrary.org/obo/SYMP_0000462",
+    "node_label": "Malaise",
+    "node_synonyms": [],
+    "original_type": "Symptom"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_287",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Elisa",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_288",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Conventional Amphotericin",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_289",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Leishman-Donovan Bodies",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_290",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Rk39",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Symptom_291",
+    "node_type": "http://purl.obolibrary.org/obo/SYMP_0000462",
+    "node_label": "Epistaxis",
+    "node_synonyms": [],
+    "original_type": "Symptom"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_292",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "L-Amb",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Pathogen_293",
+    "node_type": "http://purl.obolibrary.org/obo/NCBITaxon_5658",
+    "node_label": "Leishmania tropica",
+    "node_synonyms": [],
+    "original_type": "Pathogen"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Pathogen_294",
+    "node_type": "http://purl.obolibrary.org/obo/NCBITaxon_5658",
+    "node_label": "Leishmania braziliensis",
+    "node_synonyms": [],
+    "original_type": "Pathogen"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_295",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Qpcr",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_296",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Lymph Node Aspirate",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_297",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Ifat",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Symptom_298",
+    "node_type": "http://purl.obolibrary.org/obo/SYMP_0000462",
+    "node_label": "Plaque",
+    "node_synonyms": [],
+    "original_type": "Symptom"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Anatomy_299",
+    "node_type": "http://purl.obolibrary.org/obo/UBERON_0001062",
+    "node_label": "Nasal Mucosa",
+    "node_synonyms": [],
+    "original_type": "Anatomy"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Anatomy_300",
+    "node_type": "http://purl.obolibrary.org/obo/UBERON_0001062",
+    "node_label": "Oral Mucosa",
+    "node_synonyms": [],
+    "original_type": "Anatomy"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_301",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Sodium Stibogluconate",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_302",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Ssg",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_303",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Pentavalent Antimony",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Symptom_304",
+    "node_type": "http://purl.obolibrary.org/obo/SYMP_0000462",
+    "node_label": "Anorexia",
+    "node_synonyms": [],
+    "original_type": "Symptom"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_305",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Amphotericin B Deoxycholate",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_306",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Sb5+",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_307",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Fine Needle Aspiration",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Anatomy_308",
+    "node_type": "http://purl.obolibrary.org/obo/UBERON_0001062",
+    "node_label": "Trunk",
+    "node_synonyms": [],
+    "original_type": "Anatomy"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Pathogen_309",
+    "node_type": "http://purl.obolibrary.org/obo/NCBITaxon_5658",
+    "node_label": "Leishmania mexicana",
+    "node_synonyms": [],
+    "original_type": "Pathogen"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_310",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Cryotherapy",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_311",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Intralesional",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Pathogen_312",
+    "node_type": "http://purl.obolibrary.org/obo/NCBITaxon_5658",
+    "node_label": "Leishmania aethiopica",
+    "node_synonyms": [],
+    "original_type": "Pathogen"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_313",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Paromomycin",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_314",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Nnn Medium",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_315",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Splenic Aspirate",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_316",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Splenic Aspiration",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_317",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Pentamidine",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Symptom_318",
+    "node_type": "http://purl.obolibrary.org/obo/SYMP_0000462",
+    "node_label": "Nasal Congestion",
+    "node_synonyms": [],
+    "original_type": "Symptom"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_319",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Ihc",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_320",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Fnac",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_321",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "fine needle aspiration cytology",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_322",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Aspiration Cytology",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_323",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Voriconazole",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Symptom_324",
+    "node_type": "http://purl.obolibrary.org/obo/SYMP_0000462",
+    "node_label": "Mucosal Lesion",
+    "node_synonyms": [],
+    "original_type": "Symptom"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_325",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Ld Bodies",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_326",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Rk39 Rapid Test",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_327",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Pentostam",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_328",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Leishmanin Skin Test",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_329",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Skin Scraping",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_330",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Rk39 Test",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Drug_331",
+    "node_type": "http://purl.obolibrary.org/obo/CHEBI_23888",
+    "node_label": "Ketoconazole",
+    "node_synonyms": [],
+    "original_type": "Drug"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Procedure_332",
+    "node_type": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "node_label": "Direct Agglutination Test",
+    "node_synonyms": [],
+    "original_type": "Procedure"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Pathogen_333",
+    "node_type": "http://purl.obolibrary.org/obo/NCBITaxon_5658",
+    "node_label": "Leishmania guyanensis",
+    "node_synonyms": [],
+    "original_type": "Pathogen"
+  },
+  {
+    "node_id": "http://example.org/leishmania/Pathogen_334",
+    "node_type": "http://purl.obolibrary.org/obo/NCBITaxon_5658",
+    "node_label": "Leishmania panamensis",
+    "node_synonyms": [],
+    "original_type": "Pathogen"
+  }
+]
