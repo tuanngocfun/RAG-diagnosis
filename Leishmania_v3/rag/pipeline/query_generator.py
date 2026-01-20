@@ -646,7 +646,8 @@ def load_and_generate(
     
     # Generate queries
     if standardized:
-        queries = generate_standardized_queries(cases, images_dir, ["Q1", "MULTIMODAL"])
+        # Include Q3 for baseline comparison (per Grok 4.1 recommendation)
+        queries = generate_standardized_queries(cases, images_dir, ["Q1", "Q3", "MULTIMODAL"])
         
         if output_path:
             output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -690,15 +691,16 @@ def load_and_generate(
 
 
 if __name__ == "__main__":
-    from .config import TEST_JSONL, IMAGES_DIR, DATA_ROOT
+    from .config import TEST_JSONL, IMAGES_DIR, SPLIT_DIR
     
     queries = load_and_generate(
         TEST_JSONL,
         IMAGES_DIR,
-        DATA_ROOT / "eval_queries.jsonl"
+        SPLIT_DIR / "eval_queries.jsonl"  # Save to verified dataset dir
     )
     
     print(f"Generated {len(queries)} queries")
     for qt in ["Q1_symptom_only", "Q2_symptom_exposure", "Q3_image_only"]:
         count = sum(1 for q in queries if q.query_type == qt)
         print(f"  {qt}: {count}")
+

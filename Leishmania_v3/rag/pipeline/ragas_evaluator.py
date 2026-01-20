@@ -143,6 +143,7 @@ def calculate_diagnosis_accuracy(
 # =============================================================================
 
 # Diagnosis equivalence prompt following Q1 paper methodology
+# Updated per Claude 4.5 + Grok 4.1 review: stricter differential scoring, hedge penalty, species matching
 DIAGNOSIS_EQUIVALENCE_PROMPT = """You are a specialist medical evaluator assessing diagnostic accuracy.
 
 ## Ground Truth Diagnosis
@@ -153,26 +154,33 @@ DIAGNOSIS_EQUIVALENCE_PROMPT = """You are a specialist medical evaluator assessi
 ## Predicted Answer
 {prediction}
 
-## Evaluation Criteria (per Dinc et al., 2025 - Comparative Analysis of LLMs)
+## Evaluation Criteria (per Dinc et al., 2025 + Grok 4.1 review)
 
 Assess if the predicted answer contains the CORRECT diagnosis based on:
 
-1. **EXACT MATCH (1.0)**: The prediction explicitly states the ground truth diagnosis
-   - Example: GT="Visceral Leishmaniasis", Pred="The patient has Visceral Leishmaniasis" → 1.0
+1. **EXACT MATCH (1.0)**: The prediction explicitly states the ground truth diagnosis as PRIMARY
+   - Example: GT="Visceral Leishmaniasis", Pred="Primary Diagnosis: Visceral Leishmaniasis" → 1.0
 
-2. **SYNONYM/CLINICALLY EQUIVALENT (1.0)**: Different terms for the same condition
+2. **SYNONYM/CLINICALLY EQUIVALENT (1.0)**: Different terms for the same condition as PRIMARY
    - "Kala-azar" = "Visceral Leishmaniasis" → 1.0
    - "Cutaneous Leishmaniasis" = "Oriental Sore" = "Baghdad Boil" → 1.0
    - "L. donovani infection" = "Visceral Leishmaniasis" → 1.0
 
-3. **CORRECT IN DIFFERENTIAL (1.0)**: If top-3 differential includes the correct diagnosis
-   - If prediction lists multiple possibilities and GT is in top 3 → 1.0
+3. **CORRECT IN DIFFERENTIAL (ranked score)**: If prediction lists differentials:
+   - GT is #1 in differential list (but not stated as primary) → 0.75
+   - GT is #2 or #3 in differential list → 0.5
+   - GT is #4 or lower in differential list → 0.25
 
-4. **PARTIAL CREDIT (0.5)**: Correct disease family but wrong subtype
+4. **HEDGE WITH CORRECT MENTION (0.5)**: Model hedges but mentions correct answer
+   - Prediction says "insufficient evidence" or "cannot determine" or "unclear"
+   - BUT mentions the correct diagnosis somewhere in the answer
+   - This indicates possible parametric knowledge usage
+
+5. **PARTIAL CREDIT (0.5)**: Correct disease family but wrong subtype
    - GT="Cutaneous Leishmaniasis", Pred="Leishmaniasis (type unspecified)" → 0.5
    - GT="Visceral Leishmaniasis", Pred="Mucocutaneous Leishmaniasis" → 0.5
 
-5. **INCORRECT (0.0)**: Wrong diagnosis or unrelated condition
+6. **INCORRECT (0.0)**: Wrong diagnosis or unrelated condition
    - GT="Leishmaniasis", Pred="Malaria" → 0.0
    - GT="Cutaneous Leishmaniasis", Pred="Psoriasis" → 0.0
 
@@ -182,12 +190,17 @@ Assess if the predicted answer contains the CORRECT diagnosis based on:
 - MCL = Mucocutaneous Leishmaniasis = Espundia
 - PKDL = Post-Kala-azar Dermal Leishmaniasis
 
+## Species Matching (for diagnosis_type_score adjustment)
+- Exact species match or equivalent (L. infantum ≈ L. donovani for VL): no penalty
+- Species not mentioned but type correct: multiply type_score by 0.9
+- Wrong species mentioned: multiply type_score by 0.5
+
 ## Output (JSON only)
 Respond with ONLY valid JSON:
 {{
-    "diagnosis_score": <0.0 | 0.5 | 1.0>,
-    "diagnosis_type_score": <0.0 | 0.5 | 1.0>,
-    "reasoning": "<brief clinical explanation for scores>"
+    "diagnosis_score": <0.0 | 0.25 | 0.5 | 0.75 | 1.0>,
+    "diagnosis_type_score": <0.0 | 0.25 | 0.5 | 0.75 | 1.0>,
+    "reasoning": "<brief clinical explanation including species assessment>"
 }}"""
 
 
@@ -568,6 +581,16 @@ class RAGAsLibraryEvaluator:
                 result.diagnosis_accuracy = legacy_scores["diagnosis_accuracy"]
                 result.diagnosis_type_accuracy = legacy_scores["diagnosis_type_accuracy"]
                 result.diagnosis_method = "string_match_fallback"
+        
+        # Flag parametric knowledge usage (per Claude 4.5 + Grok 4.1 analysis)
+        # If context is irrelevant but diagnosis is correct, LLM is using pre-trained knowledge
+        if result.context_relevance is not None and result.diagnosis_accuracy is not None:
+            if result.context_relevance < 0.2 and result.diagnosis_accuracy >= 0.8:
+                result.traces["parametric_knowledge_suspected"] = True
+                result.traces["grounded_accuracy"] = 0.0  # Not grounded in retrieval
+            else:
+                result.traces["parametric_knowledge_suspected"] = False
+                result.traces["grounded_accuracy"] = result.diagnosis_accuracy
         
         return result
 

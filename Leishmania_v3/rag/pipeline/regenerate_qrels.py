@@ -12,7 +12,7 @@ Usage:
 import json
 from pathlib import Path
 
-from .config import TRAIN_JSONL, TEST_JSONL, ENTITY_LINKS, DATA_ROOT
+from .config import TRAIN_JSONL, TEST_JSONL, ENTITY_LINKS, DATA_ROOT, SPLIT_DIR
 from .qrels_generator import generate_qrels, load_entity_links
 
 
@@ -59,13 +59,13 @@ def regenerate_qrels(
     qrels = generate_qrels(
         test_case_ids=test_ids,
         train_case_ids=train_ids,
-        all_entities=all_entities,
+        entity_links_path=ENTITY_LINKS,  # Pass path, not loaded dict
         top_k=top_k,
         exclude_generic_cl=exclude_generic_cl
     )
     
-    # Save
-    output_path = DATA_ROOT / output_name
+    # Save to SPLIT_DIR (verified dataset)
+    output_path = SPLIT_DIR / output_name
     with open(output_path, "w") as f:
         json.dump(qrels, f, indent=2)
     

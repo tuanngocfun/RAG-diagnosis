@@ -124,8 +124,9 @@ def run_multimodal_evaluation(
         Path to run directory
     """
     # Handle mutable default args properly (per GPT 5.2)
+    # Added Q1_Q3_multimodal_diagnosis per Claude 4.5 + Grok 4.1 review
     if query_types is None:
-        query_types = ["Q1_symptom_only", "Q3_image_only"]
+        query_types = ["Q1_symptom_only", "Q3_image_only", "Q1_Q3_multimodal_diagnosis"]
     if k_values is None:
         k_values = [5, 10]
     
@@ -137,16 +138,17 @@ def run_multimodal_evaluation(
     run_dir = RUNS_DIR / run_id
     run_dir.mkdir(parents=True, exist_ok=True)
     
-    # Load qrels (keyed by case_id) - versioned per GPT 5.2 #2
-    with open(DATA_ROOT / qrels_file) as f:
+    # Load qrels (keyed by case_id) - from SPLIT_DIR (verified dataset)
+    from .config import SPLIT_DIR
+    with open(SPLIT_DIR / qrels_file) as f:
         original_qrels = json.load(f)
     
-    # Load versioned queries (per GPT 5.2 #2)
+    # Load versioned queries from SPLIT_DIR (verified dataset)
     from .config import DATASET_VERSION
-    queries_file = DATA_ROOT / f"eval_queries_{DATASET_VERSION}.jsonl"
+    queries_file = SPLIT_DIR / f"eval_queries_{DATASET_VERSION}.jsonl"
     if not queries_file.exists():
         # Fallback to legacy path
-        queries_file = DATA_ROOT / "eval_queries.jsonl"
+        queries_file = SPLIT_DIR / "eval_queries.jsonl"
         print(f"Warning: Using legacy queries file: {queries_file}")
     
     with open(queries_file) as f:
@@ -228,8 +230,13 @@ def run_multimodal_evaluation(
     for q in queries:
         case_id = q["case_id"]
         query_type = q["query_type"]
-        query_text = q.get("text")
+        # Support both legacy (text) and new (clinical_context) field naming
+        query_text = q.get("text") or q.get("clinical_context") or q.get("formatted_query", "")
+        # Support both legacy (image_path) and new (query_images) field naming
         image_path = q.get("image_path")
+        if not image_path:
+            query_images_list = q.get("query_images", [])
+            image_path = query_images_list[0] if query_images_list else None
         
         # CRITICAL FIX: Use unique qid to prevent collision (per GPT 5.2)
         qid = f"{case_id}::{query_type}"
@@ -239,7 +246,8 @@ def run_multimodal_evaluation(
         skip_reason = None
         
         # === Q3: Image-only query (TRUE MULTIMODAL) ===
-        if query_type == "Q3_image_only":
+        # Support both legacy (Q3_image_only) and new (Q3_image_diagnosis) naming
+        if query_type in ["Q3_image_only", "Q3_image_diagnosis"]:
             stats["Q3"]["attempted"] += 1
             
             if not image_path:
@@ -266,7 +274,8 @@ def run_multimodal_evaluation(
                     skip_reason = "no_results"
         
         # === Q1/Q2: Text query ===
-        elif query_type in ["Q1_symptom_only", "Q2_symptom_exposure"]:
+        # Support both legacy (Q1_symptom_only) and new (Q1_diagnosis) naming
+        elif query_type in ["Q1_symptom_only", "Q2_symptom_exposure", "Q1_diagnosis", "Q2_diagnosis_exposure"]:
             stat_key = "Q1" if "Q1" in query_type else "Q2"
             stats[stat_key]["attempted"] += 1
             
@@ -305,6 +314,57 @@ def run_multimodal_evaluation(
                 
                 if results:
                     stats[stat_key]["success"] += 1
+                else:
+                    stats["skip_reasons"]["no_results"] += 1
+                    skip_reason = "no_results"
+        
+        # === Q1_Q3: Combined Multimodal Query (per Claude 4.5 + Grok 4.1) ===
+        elif query_type == "Q1_Q3_multimodal_diagnosis":
+            # Initialize multimodal stats if not present
+            if "MULTIMODAL" not in stats:
+                stats["MULTIMODAL"] = {"attempted": 0, "success": 0}
+            stats["MULTIMODAL"]["attempted"] += 1
+            
+            # Get image path from query if available
+            query_images_list = q.get("query_images", [])
+            first_image = query_images_list[0] if query_images_list else None
+            
+            if not query_text and not first_image:
+                stats["skip_reasons"]["no_text"] += 1
+                skip_reason = "no_text_or_image"
+            else:
+                # Combine text and image retrieval using 2-lane fusion
+                text_results = []
+                image_results = []
+                
+                # Lane 1: Text retrieval
+                if query_text:
+                    text_results = lane1.retrieve_hybrid(query_text, top_k=20)
+                
+                # Lane 2: Image retrieval (if image available)
+                if first_image and Path(first_image).exists():
+                    raw_img_results = lane2.retrieve_by_image_path(
+                        first_image, 
+                        top_k=20,
+                        search_captions=(image_search_mode == "captions")
+                    )
+                    image_results = [(cid, score) for cid, score, _ in raw_img_results]
+                
+                # Combine with RRF fusion
+                if text_results and image_results:
+                    results = rrf_fusion(text_results, image_results)[:20]
+                    stage = "hybrid+biomedclip_fusion"
+                elif text_results:
+                    results = text_results[:20]
+                    stage = "hybrid_text_only"
+                elif image_results:
+                    results = image_results[:20]
+                    stage = "biomedclip_image_only"
+                else:
+                    results = []
+                
+                if results:
+                    stats["MULTIMODAL"]["success"] += 1
                 else:
                     stats["skip_reasons"]["no_results"] += 1
                     skip_reason = "no_results"
@@ -368,10 +428,16 @@ def run_multimodal_evaluation(
                 "species": test_case.get("species", "")
             }
         
+        # Build proper query for RAGAS: question + clinical context
+        # FIXED: Previously only had clinical_context, RAGAS needs actual question to evaluate relevance
+        question = q.get("question", "What is the diagnosis?")
+        full_query_for_ragas = f"{question}\n\nClinical Context: {query_text[:300]}" if query_text else question
+        
         retrieval_records.append({
             "qid": qid,
             "query_type": query_type,
-            "query": query_text[:200] if query_text else f"[IMAGE: {Path(image_path).name}]",
+            "query": full_query_for_ragas,  # FIXED: Now includes question for RAGAS
+            "clinical_context": query_text[:200] if query_text else "",  # Preserved for reference
             "contexts": contexts,
             "query_images": query_images,        # NEW: from TEST case
             "context_images": context_images[:5], # NEW: from TRAIN cases
@@ -410,7 +476,7 @@ def run_multimodal_evaluation(
             row.append(f"{metrics.get('ap', 0):.4f}")
             writer.writerow(row)
     
-    # Save summary
+    # Save summary (grounded_accuracy added per Grok 4.1 recommendation)
     summary = {
         "run_id": run_id,
         "query_types": query_types,
@@ -422,9 +488,25 @@ def run_multimodal_evaluation(
             "ndcg": {f"@{k}": eval_results.ndcg_at_k.get(k, 0) for k in k_values},
             "precision": {f"@{k}": eval_results.precision_at_k.get(k, 0) for k in k_values},
             "mrr": eval_results.mrr,
-            "map": eval_results.map_score
+            "map": eval_results.map_score,
+            "grounded_accuracy": None  # Populated after RAGAS eval
         }
     }
+    
+    # If ragas.jsonl exists, calculate grounded_accuracy (per Grok 4.1 Fix 5)
+    ragas_file = run_dir / "ragas.jsonl"
+    if ragas_file.exists():
+        try:
+            with open(ragas_file) as f:
+                ragas_results = [json.loads(l) for l in f]
+            grounded_scores = [r.get("traces", {}).get("grounded_accuracy") 
+                               for r in ragas_results 
+                               if r.get("traces", {}).get("grounded_accuracy") is not None]
+            if grounded_scores:
+                summary["metrics"]["grounded_accuracy"] = sum(grounded_scores) / len(grounded_scores)
+        except Exception as e:
+            print(f"Note: Could not read grounded_accuracy from ragas.jsonl: {e}")
+    
     with open(run_dir / "summary.json", "w") as f:
         json.dump(summary, f, indent=2)
     
@@ -434,8 +516,9 @@ def run_multimodal_evaluation(
     print(f"{'='*60}")
     print(f"Query Types: {query_types}")
     print(f"Query Stats:")
-    for qt in ["Q1", "Q2", "Q3"]:
-        print(f"  {qt}: {stats[qt]['success']}/{stats[qt]['attempted']} successful")
+    for qt in ["Q1", "Q2", "Q3", "MULTIMODAL"]:
+        if qt in stats:
+            print(f"  {qt}: {stats[qt]['success']}/{stats[qt]['attempted']} successful")
     print(f"Skip Reasons: {stats['skip_reasons']}")
     print(f"Method: {method} (rerank={rerank})")
     print(f"\nMetrics:")

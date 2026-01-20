@@ -123,25 +123,31 @@ RESEARCH QUERY:
 RETRIEVED CASE REPORT EXCERPTS:
 {context_text}
 
-## CRITICAL INSTRUCTION (FAITHFULNESS ENFORCEMENT)
-You MUST base your diagnosis ONLY on the retrieved case excerpts above.
-If the retrieved contexts do NOT contain sufficient evidence for a confident diagnosis:
-1. State "**Primary Diagnosis:** Insufficient evidence from retrieved cases"
-2. Explain specifically what information is missing
-3. Do NOT guess based on general medical knowledge
+## EVIDENCE PRIORITY INSTRUCTION (AUGMENTATION MODE)
+Use the retrieved case excerpts as PRIMARY evidence for your diagnosis.
 
-This faithfulness constraint is critical for evaluating the RAG retrieval quality.
+WHEN RETRIEVED EVIDENCE IS SUFFICIENT:
+- Base your diagnosis primarily on the retrieved cases
+- Cite retrieved cases using their IDs (e.g., "Case PMC123456")
+
+WHEN RETRIEVED EVIDENCE IS INSUFFICIENT:
+- You MAY supplement with your medical knowledge
+- Mark such reasoning with: "(based on general medical knowledge)"
+- Still provide a diagnosis assessment rather than refusing to answer
+
+This ensures RAG augments rather than replaces your medical expertise.
 
 TASK:
-Based ONLY on the information in the retrieved case excerpts, provide a structured diagnosis assessment.
+Provide a structured diagnosis assessment, prioritizing retrieved evidence.
 
 REQUIRED OUTPUT FORMAT:
 
 ## DIAGNOSIS PREDICTION
-**Primary Diagnosis:** [State your diagnosis, e.g., "Cutaneous Leishmaniasis", "Visceral Leishmaniasis", "PKDL", "Mucocutaneous Leishmaniasis", or "Insufficient evidence from retrieved cases"]
-**Diagnosis Type:** [CL, VL, MCL, PKDL, Other, or "Cannot determine"]
-**Species (if determinable):** [e.g., "L. donovani", "L. tropica", "L. major", or "Not determinable from context"]
+**Primary Diagnosis:** [State your diagnosis, e.g., "Cutaneous Leishmaniasis", "Visceral Leishmaniasis", "PKDL", "Mucocutaneous Leishmaniasis"]
+**Diagnosis Type:** [CL, VL, MCL, PKDL, Other]
+**Species (if determinable):** [e.g., "L. donovani", "L. tropica", "L. major", or "Not determinable"]
 **Confidence:** [High/Medium/Low based on available evidence]
+**Evidence Source:** [Retrieved cases only / Retrieved + general knowledge]
 
 ## SUPPORTING EVIDENCE
 - Key clinical findings from retrieved cases
@@ -258,7 +264,8 @@ class GeminiGenerator:
         self,
         query: str,
         contexts: List[Dict],
-        image_paths: List[str] = None
+        image_paths: List[str] = None,
+        use_rag_prompt: bool = True  # NEW: allows bypassing RAG prompt for No-RAG baseline
     ) -> str:
         """
         Generate answer for query given contexts with TRUE MULTIMODAL support.
@@ -269,6 +276,8 @@ class GeminiGenerator:
             query: Query text
             contexts: Retrieved contexts (from retriever, NOT qrels)
             image_paths: List of image file paths to include
+            use_rag_prompt: If True, wrap query with RAG faithfulness prompt.
+                           If False, use query directly (for No-RAG baseline).
         
         Returns:
             Generated answer text
@@ -276,7 +285,12 @@ class GeminiGenerator:
         import base64
         from pathlib import Path as P
         
-        prompt = build_rag_prompt(query, contexts, self.include_images)
+        # Build prompt based on mode
+        if use_rag_prompt:
+            prompt = build_rag_prompt(query, contexts, self.include_images)
+        else:
+            # No-RAG mode: use query directly as prompt (already formatted)
+            prompt = query
         
         # Build multimodal content list
         contents = []

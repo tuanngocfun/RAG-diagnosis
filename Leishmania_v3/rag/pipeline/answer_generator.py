@@ -152,6 +152,11 @@ def generate_answers(
         query_images = sample.get("query_images", [])
         ground_truth = sample.get("ground_truth", None)
         
+        # Log image loading status (per Claude 4.5 Fix 4)
+        if query_images:
+            valid_count = sum(1 for p in query_images if Path(p).exists())
+            print(f"  [{qid}] query_images: {valid_count}/{len(query_images)} valid")
+        
         # Generate answer - pass query_images for TRUE multimodal (per GPT 5.2 fix)
         # query_images = images from TEST case (the patient to diagnose)
         # context_images = images from TRAIN cases (retrieved evidence)

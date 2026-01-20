@@ -441,7 +441,7 @@ def index_train_data(
     Returns:
         Dict with indexing stats
     """
-    from .config import DATASET_VERSION, DATA_ROOT
+    from .config import DATASET_VERSION, SPLIT_DIR
     
     # Versioned collection names per GPT 5.2 checkpoint #2
     E5_COLLECTION = f"cases_text_e5_1024_{DATASET_VERSION}"
@@ -489,8 +489,8 @@ def index_train_data(
     bm25 = get_bm25_retriever()
     bm25.fit_from_cases(cases)
     
-    # Save BM25 index (versioned)
-    bm25_path = DATA_ROOT / f"bm25_index_{DATASET_VERSION}.json"
+    # Save BM25 index (versioned) to SPLIT_DIR
+    bm25_path = SPLIT_DIR / f"bm25_index_{DATASET_VERSION}.json"
     bm25.save(bm25_path)
     print(f"Saved BM25 index to {bm25_path}")
     
