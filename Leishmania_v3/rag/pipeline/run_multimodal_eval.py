@@ -493,19 +493,8 @@ def run_multimodal_evaluation(
         }
     }
     
-    # If ragas.jsonl exists, calculate grounded_accuracy (per Grok 4.1 Fix 5)
-    ragas_file = run_dir / "ragas.jsonl"
-    if ragas_file.exists():
-        try:
-            with open(ragas_file) as f:
-                ragas_results = [json.loads(l) for l in f]
-            grounded_scores = [r.get("traces", {}).get("grounded_accuracy") 
-                               for r in ragas_results 
-                               if r.get("traces", {}).get("grounded_accuracy") is not None]
-            if grounded_scores:
-                summary["metrics"]["grounded_accuracy"] = sum(grounded_scores) / len(grounded_scores)
-        except Exception as e:
-            print(f"Note: Could not read grounded_accuracy from ragas.jsonl: {e}")
+    # NOTE: RAGAS metrics are added separately via rag/update_summary_ragas.py
+    # This keeps the pipeline modular - run retrieval first, then RAGAS evaluation separately
     
     with open(run_dir / "summary.json", "w") as f:
         json.dump(summary, f, indent=2)

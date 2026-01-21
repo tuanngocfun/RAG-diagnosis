@@ -16,7 +16,7 @@ from dataclasses import dataclass, asdict, field
 
 # Import from package (ensures HF cache is set)
 from . import DATA_ROOT, TRAIN_JSONL, RUNS_DIR
-from .generators import GeminiGenerator, MedGemmaGenerator
+from .generators import GeminiGenerator, MedGemmaGenerator, Gemma3Generator, QwenVLGenerator
 
 
 # Derive paths
@@ -91,7 +91,8 @@ def extract_citations(answer: str, contexts: List[Dict]) -> List[str]:
 def generate_answers(
     run_dir: Path,
     retrieval_file: str = "retrieval.jsonl",
-    generator_type: str = "gemini",  # "gemini" or "medgemma"
+    generator_type: str = "gemini",  # "gemini", "medgemma", "gemma3", or "qwen_vl"
+    model_variant: str = "12b",  # Model size variant: "7b", "12b", "27b" etc
     output_file: str = None,  # Custom output filename (default: answers.jsonl)
     **generator_kwargs
 ) -> Path:
@@ -106,7 +107,10 @@ def generate_answers(
     Args:
         run_dir: Path to run directory
         retrieval_file: Retrieval JSONL from retriever
-        generator_type: "gemini" or "medgemma"
+        generator_type: "gemini", "medgemma", "gemma3", or "qwen_vl"
+        model_variant: Model size variant (e.g., "7b", "12b", "27b")
+                       - gemma3: "12b" or "27b"
+                       - qwen_vl: "7b" or "72b"
         output_file: Output filename (default: answers.jsonl)
         **generator_kwargs: Args for generator
     
@@ -130,10 +134,14 @@ def generate_answers(
             case = json.loads(line)
             train_cases[case["case_id"]] = case
     
-    # Initialize generator
-    if generator_type == "medgemma":
+    # Initialize generator based on type
+    if generator_type == "qwen_vl":
+        generator = QwenVLGenerator(variant=model_variant, **generator_kwargs)
+    elif generator_type == "gemma3":
+        generator = Gemma3Generator(variant=model_variant, **generator_kwargs)
+    elif generator_type == "medgemma":
         generator = MedGemmaGenerator(**generator_kwargs)
-    else:
+    else:  # default to gemini
         generator = GeminiGenerator(**generator_kwargs)
     
     print(f"Generating answers for {len(samples)} queries with {generator.model_name}...")
