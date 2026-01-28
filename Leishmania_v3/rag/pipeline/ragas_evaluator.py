@@ -502,6 +502,11 @@ class RAGAsLibraryEvaluator:
         - context_images: Images from TRAIN cases (retrieved contexts)
         - For multimodal metrics, use query_images (the actual test case images)
         
+        NO-RAG BASELINE HANDLING:
+        - If contexts is empty, skip retrieval-grounded metrics (faithfulness, relevance, context_relevance)
+        - These metrics are conceptually undefined without retrieved contexts
+        - Only diagnosis accuracy via LLM judge will be evaluated
+        
         Args:
             qid: Query ID
             query: User query (user_input)
@@ -519,50 +524,63 @@ class RAGAsLibraryEvaluator:
         if query_images is None and image_paths is not None:
             query_images = image_paths
         
+        # Detect no-RAG baseline (empty contexts)
+        is_norag = not contexts or len(contexts) == 0
+        
         result = RAGAsResult(
             qid=qid,
             judge_model=self.model_name,
             traces={
                 "has_query_images": bool(query_images),
                 "has_context_images": bool(context_images),
-                "has_ground_truth": bool(ground_truth)
+                "has_ground_truth": bool(ground_truth),
+                "is_norag_baseline": is_norag
             }
         )
         
-        # For multimodal metrics: Use query images (from TEST case) + text contexts
-        # NOT context_images (from TRAIN cases) per GPT 5.2 trap detection
-        retrieved_contexts = contexts.copy()
-        if query_images:
-            retrieved_contexts.extend(query_images)
-        
-        # Run metrics SEQUENTIALLY to avoid rate limiting (GPT 5.2 advice)
-        try:
-            result.multimodal_faithfulness = await self.evaluate_multimodal_faithfulness(
-                response=answer,
-                retrieved_contexts=retrieved_contexts
-            )
-        except Exception as e:
-            print(f"MultiModalFaithfulness error: {e}")
-        
-        try:
-            result.multimodal_relevance = await self.evaluate_multimodal_relevance(
-                user_input=query,
-                response=answer,
-                retrieved_contexts=retrieved_contexts
-            )
-        except Exception as e:
-            print(f"MultiModalRelevance error: {e}")
-        
-        try:
-            result.context_relevance = await self.evaluate_context_relevance(
-                user_input=query,
-                retrieved_contexts=contexts  # Only text for context relevance
-            )
-        except Exception as e:
-            print(f"ContextRelevance error: {e}")
+        # Skip retrieval-grounded metrics for no-RAG baseline
+        if is_norag:
+            # These metrics require retrieved contexts - skip for no-RAG
+            result.multimodal_faithfulness = None
+            result.multimodal_relevance = None
+            result.context_relevance = None
+            result.traces["skipped_ragas"] = "No contexts (no-RAG baseline)"
+        else:
+            # For multimodal metrics: Use query images (from TEST case) + text contexts
+            # NOT context_images (from TRAIN cases) per GPT 5.2 trap detection
+            retrieved_contexts = contexts.copy()
+            if query_images:
+                retrieved_contexts.extend(query_images)
+            
+            # Run metrics SEQUENTIALLY to avoid rate limiting (GPT 5.2 advice)
+            try:
+                result.multimodal_faithfulness = await self.evaluate_multimodal_faithfulness(
+                    response=answer,
+                    retrieved_contexts=retrieved_contexts
+                )
+            except Exception as e:
+                print(f"MultiModalFaithfulness error: {e}")
+            
+            try:
+                result.multimodal_relevance = await self.evaluate_multimodal_relevance(
+                    user_input=query,
+                    response=answer,
+                    retrieved_contexts=retrieved_contexts
+                )
+            except Exception as e:
+                print(f"MultiModalRelevance error: {e}")
+            
+            try:
+                result.context_relevance = await self.evaluate_context_relevance(
+                    user_input=query,
+                    retrieved_contexts=contexts  # Only text for context relevance
+                )
+            except Exception as e:
+                print(f"ContextRelevance error: {e}")
         
         # Calculate diagnosis accuracy using LLM-as-Judge (Q1 Standard)
         # Per Dinc et al. (2025): LLM judges achieve Kappa=0.852 with specialists
+        # NOTE: This works for BOTH RAG and no-RAG baselines
         if ground_truth:
             try:
                 diag_result = await self.evaluate_diagnosis_equivalence(
@@ -583,8 +601,16 @@ class RAGAsLibraryEvaluator:
                 result.diagnosis_method = "string_match_fallback"
         
         # Flag parametric knowledge usage (per Claude 4.5 + Grok 4.1 analysis)
-        # If context is irrelevant but diagnosis is correct, LLM is using pre-trained knowledge
-        if result.context_relevance is not None and result.diagnosis_accuracy is not None:
+        # For no-RAG baseline, all correct answers are by definition from parametric knowledge
+        if is_norag:
+            if result.diagnosis_accuracy is not None and result.diagnosis_accuracy >= 0.5:
+                result.traces["parametric_knowledge_suspected"] = True
+                result.traces["grounded_accuracy"] = 0.0  # No retrieval = no grounding
+            else:
+                result.traces["parametric_knowledge_suspected"] = False
+                result.traces["grounded_accuracy"] = 0.0
+        elif result.context_relevance is not None and result.diagnosis_accuracy is not None:
+            # RAG case: If context is irrelevant but diagnosis is correct, LLM is using pre-trained knowledge
             if result.context_relevance < 0.2 and result.diagnosis_accuracy >= 0.8:
                 result.traces["parametric_knowledge_suspected"] = True
                 result.traces["grounded_accuracy"] = 0.0  # Not grounded in retrieval

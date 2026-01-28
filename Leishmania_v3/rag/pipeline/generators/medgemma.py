@@ -3,12 +3,17 @@ MedGemma Answer Generator
 
 Local HuggingFace generation using google/medgemma-4b-it.
 For research experiments - runs on local GPU.
+
+Updated to have same interface as Gemma3Generator for fair comparison.
 """
 import os
 from typing import Dict, List, Optional
 
 # Import from package to ensure HF cache is set
 from .. import DATA_ROOT
+
+# Import centralized prompt builder
+from ...configs.prompt_mode import build_rag_prompt as _build_rag_prompt, PromptMode
 
 
 # Default cache path
@@ -17,23 +22,43 @@ HF_CACHE = os.environ.get("TRANSFORMERS_CACHE", "/data4t/hf/transformers")
 
 def build_rag_prompt(
     query: str,
-    contexts: List[Dict]
+    contexts: List[Dict],
+    query_images: List[str] = None,
+    context_images: List[str] = None,
+    prompt_mode: PromptMode = PromptMode.BALANCED
 ) -> str:
-    """Build RAG prompt for MedGemma."""
-    context_text = ""
-    for i, ctx in enumerate(contexts, 1):
-        context_text += f"\n[Context {i}] (Case: {ctx.get('doc_id', 'unknown')})\n"
-        context_text += ctx.get("text", "")[:2000]  # Aligned with Gemini for fair comparison
+    """
+    Build RAG prompt for MedGemma - BALANCED for domain-specialized models.
     
-    return f"""You are a medical expert for Leishmaniasis diagnosis.
-Answer based on the retrieved contexts. Cite cases using [Case: PMC...].
+    WRAPPER: Delegates to centralized build_rag_prompt from configs/prompt_mode.py
+    Default mode is BALANCED (original MedGemma behavior - synergy with parametric knowledge).
+    
+    Per paper "RAG-Enhanced Open SLMs for Hypertension Management":
+    - RAG should NOT degrade model performance
+    - For domain-specialized models, allow synergy between parametric + retrieved knowledge
+    - Do NOT force override of model's medical training
+    
+    Args:
+        query: Clinical question
+        contexts: Retrieved contexts
+        query_images: Patient image paths
+        context_images: Evidence image paths
+        prompt_mode: Which prompt template to use (default: BALANCED)
+    """
+    return _build_rag_prompt(
+        query=query,
+        contexts=contexts,
+        mode=prompt_mode,
+        query_images=query_images,
+        context_images=context_images,
+        max_chars_per_context=2000,
+        include_context_images=True,
+        is_text_only_model=True  # MedGemma is text-only
+    )
 
-QUERY: {query}
 
-CONTEXTS:
-{context_text}
 
-ANSWER:"""
+
 
 
 class MedGemmaGenerator:
@@ -41,6 +66,7 @@ class MedGemmaGenerator:
     Generate answers using local MedGemma-4b-it.
     
     Runs on local GPU with HuggingFace transformers.
+    Text-only model (no vision support).
     """
     
     MODEL_ID = "google/medgemma-4b-it"
@@ -50,7 +76,7 @@ class MedGemmaGenerator:
         model_path: str = None,
         device: str = None,
         temperature: float = 0.3,
-        max_tokens: int = 512,
+        max_tokens: int = 1024,  # Aligned with Gemma3
         cache_dir: str = None
     ):
         """
@@ -87,6 +113,7 @@ class MedGemmaGenerator:
         # Load model
         print(f"Loading MedGemma from {self.model_name}...")
         print(f"  Cache dir: {self.cache_dir}")
+        print(f"  Device: {self.device}")
         
         self.tokenizer = AutoTokenizer.from_pretrained(
             self.model_name,
@@ -102,13 +129,14 @@ class MedGemmaGenerator:
             trust_remote_code=True
         )
         
-        print(f"✓ MedGemma loaded on {self.device}")
+        print(f"✓ MedGemma loaded: {self.model_name}")
     
     def generate(
         self,
         query: str,
         contexts: List[Dict],
-        image_paths: List[str] = None  # Not used for text-only
+        image_paths: List[str] = None,
+        use_rag_prompt: bool = True  # NEW: same as Gemma3Generator
     ) -> str:
         """
         Generate answer using MedGemma.
@@ -116,19 +144,24 @@ class MedGemmaGenerator:
         Args:
             query: Query text
             contexts: Retrieved contexts
-            image_paths: Ignored (MedGemma is text-only)
+            image_paths: Ignored (MedGemma is text-only, but kept for API consistency)
+            use_rag_prompt: If True, use RAG-formatted prompt; if False, use query directly
         
         Returns:
             Generated answer text
         """
-        prompt = build_rag_prompt(query, contexts)
+        if use_rag_prompt:
+            prompt = build_rag_prompt(query, contexts, image_paths if image_paths else None)
+        else:
+            # No-RAG mode: use query directly without retrieval prompt
+            prompt = query
         
         try:
             inputs = self.tokenizer(
                 prompt,
                 return_tensors="pt",
                 truncation=True,
-                max_length=2048
+                max_length=16384  # Aligned with Gemma3
             ).to(self.device)
             
             with self._torch.no_grad():
@@ -146,7 +179,7 @@ class MedGemmaGenerator:
             return answer.strip()
             
         except Exception as e:
-            return f"[Generation Error: {e}]"
+            return f"[Generation Error: {type(e).__name__}: {e}]"
     
     def generate_batch(
         self,
@@ -157,7 +190,7 @@ class MedGemmaGenerator:
         Generate answers for multiple samples.
         
         Args:
-            samples: List of {qid, query, contexts}
+            samples: List of {qid, query, contexts, query_images}
             progress: Show progress
         
         Returns:
@@ -168,7 +201,8 @@ class MedGemmaGenerator:
         for i, sample in enumerate(samples):
             answer = self.generate(
                 sample["query"],
-                sample.get("contexts", [])
+                sample.get("contexts", []),
+                image_paths=sample.get("query_images", [])
             )
             
             results.append({
@@ -184,6 +218,11 @@ class MedGemmaGenerator:
         return results
 
 
+def get_medgemma_generator() -> MedGemmaGenerator:
+    """Convenience function to get MedGemma generator."""
+    return MedGemmaGenerator()
+
+
 if __name__ == "__main__":
     print("Testing MedGemma Generator...")
     print(f"HF Cache: {HF_CACHE}")
@@ -192,6 +231,14 @@ if __name__ == "__main__":
     try:
         gen = MedGemmaGenerator()
         print(f"✓ Loaded: {gen.model_name}")
+        
+        # Test generation
+        test_answer = gen.generate(
+            "What are symptoms of visceral leishmaniasis?",
+            [{"doc_id": "PMC123", "text": "Fever, weight loss, splenomegaly..."}]
+        )
+        print(f"✓ Generated: {test_answer[:100]}...")
     except Exception as e:
         print(f"⚠ Could not load MedGemma: {e}")
         print("  (Model may need to be downloaded first)")
+

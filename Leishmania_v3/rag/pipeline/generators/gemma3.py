@@ -13,6 +13,9 @@ from pathlib import Path
 # Import from package to ensure HF cache is set
 from .. import DATA_ROOT
 
+# Import centralized prompt builder
+from ...configs.prompt_mode import build_rag_prompt as _build_rag_prompt, PromptMode
+
 # Default cache path
 HF_CACHE = os.environ.get("TRANSFORMERS_CACHE", "/data4t/hf/transformers")
 
@@ -29,45 +32,40 @@ def build_rag_prompt(
     query: str,
     contexts: List[Dict],
     query_images: List[str] = None,
-    context_images: List[str] = None
+    context_images: List[str] = None,
+    prompt_mode: PromptMode = PromptMode.STRICT_CONTEXT
 ) -> str:
-    """Build RAG prompt for Gemma 3."""
-    context_text = ""
-    for i, ctx in enumerate(contexts, 1):
-        context_text += f"\n[Context {i}] (Case: {ctx.get('doc_id', 'unknown')})\n"
-        context_text += ctx.get("text", "")[:2000]  # Aligned with Gemini
+    """
+    Build RAG prompt for Gemma 3 - ALIGNED with Gemini for fair comparison.
     
-    image_sections = ""
-    if query_images:
-        image_sections += f"\n\n## PATIENT IMAGES\n[{len(query_images)} patient image(s) attached]\n"
-    if context_images:
-        image_sections += f"\n## EVIDENCE IMAGES\n[{len(context_images)} supporting image(s) from similar cases]\n"
+    WRAPPER: Delegates to centralized build_rag_prompt from configs/prompt_mode.py
+    Default mode is STRICT_CONTEXT (aligned with Gemini behavior).
     
-    return f"""You are a medical expert specializing in Leishmaniasis diagnosis.
+    Per GPT 5.2 recommendations:
+    - Same structure as gemini.py build_rag_prompt
+    - Explicit REQUIRED OUTPUT FORMAT section
+    - FAITHFULNESS ENFORCEMENT
+    - Same output headers for LLM judge parsing
+    
+    Args:
+        query: Clinical question
+        contexts: Retrieved contexts
+        query_images: Patient image paths
+        context_images: Evidence image paths
+        prompt_mode: Which prompt template to use (default: STRICT_CONTEXT)
+    """
+    return _build_rag_prompt(
+        query=query,
+        contexts=contexts,
+        mode=prompt_mode,
+        query_images=query_images,
+        context_images=context_images,
+        max_chars_per_context=2000,
+        include_context_images=True,
+        is_text_only_model=False  # Gemma3 can have vision variant
+    )
 
-IMPORTANT: This is for RESEARCH and EVALUATION purposes only.
-Base your diagnosis primarily on the retrieved case excerpts.
 
-QUERY:
-{query}
-{image_sections}
-RETRIEVED CASES:
-{context_text}
-
-TASK: Provide a diagnosis assessment.
-
-## DIAGNOSIS PREDICTION
-**Primary Diagnosis:** [Your diagnosis]
-**Diagnosis Type:** [CL, VL, MCL, PKDL, Other]
-**Species (if determinable):** [e.g., L. donovani, L. tropica, or "Not determinable"]
-**Confidence:** [High/Medium/Low]
-**Evidence Source:** [Retrieved cases only / Retrieved + general knowledge]
-
-## SUPPORTING EVIDENCE
-- Key findings from retrieved cases
-- Cite cases using their IDs (e.g., "Case PMC123456")
-
-DIAGNOSIS ASSESSMENT:"""
 
 
 class Gemma3Generator:

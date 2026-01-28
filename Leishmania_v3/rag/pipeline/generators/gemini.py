@@ -16,6 +16,9 @@ from typing import Dict, List, Optional, Tuple
 # Import from package to ensure dotenv is loaded
 from .. import GOOGLE_API_KEY
 
+# Import centralized prompt builder
+from ...configs.prompt_mode import build_rag_prompt as _build_rag_prompt, PromptMode
+
 
 # Stable Gemini model IDs (GA June 2025)
 GEMINI_MODELS = {
@@ -80,83 +83,33 @@ def build_rag_prompt(
     contexts: List[Dict],
     include_images: bool = True,
     query_images: List[str] = None,
-    context_images: List[str] = None
+    context_images: List[str] = None,
+    prompt_mode: PromptMode = PromptMode.STRICT_CONTEXT
 ) -> str:
     """
     Build RAG prompt with diagnosis-focused output format.
     
-    Per GPT 5.2 recommendations + diagnosis accuracy fix:
-    - Frame as evidence extraction for research (safety filter compliant)
-    - EXPLICITLY REQUEST diagnosis prediction (CRITICAL for evaluation)
-    - Structure output to include diagnosis type and species prediction
-    - FAITHFULNESS ENFORCEMENT: Refuse to guess when evidence insufficient
-    - Separate patient images from evidence images (per user feedback)
+    WRAPPER: Delegates to centralized build_rag_prompt from configs/prompt_mode.py
+    Default mode is STRICT_CONTEXT (original Gemini behavior).
+    
+    Args:
+        query: Clinical question
+        contexts: Retrieved contexts
+        include_images: Whether to include image references in context
+        query_images: Patient image paths
+        context_images: Evidence image paths from retrieved cases
+        prompt_mode: Which prompt template to use (default: STRICT_CONTEXT)
     """
-    context_text = ""
-    for i, ctx in enumerate(contexts, 1):
-        context_text += f"\n[Context {i}] (Case: {ctx.get('doc_id', 'unknown')})\n"
-        context_text += ctx.get("text", "")[:2000]  # Aligned with retrieval truncation
-        
-        if include_images and ctx.get("image_paths"):
-            context_text += f"\n[{len(ctx['image_paths'])} associated medical images]"
-    
-    # Build image context sections (per user feedback)
-    image_sections = ""
-    if query_images:
-        image_sections += f"\n\n## PATIENT IMAGES (from the case to diagnose)\n"
-        image_sections += f"[{len(query_images)} patient image(s) attached - examine these for diagnosis]\n"
-    
-    if context_images:
-        image_sections += f"\n## EVIDENCE IMAGES (from retrieved training cases)\n"
-        image_sections += f"[{len(context_images)} supporting image(s) from similar cases for reference]\n"
-    
-    return f"""You are an AI research assistant helping with an academic thesis on leishmaniasis case reports.
-
-IMPORTANT CONTEXT:
-- This is strictly for RESEARCH and EVALUATION purposes
-- The data consists of de-identified case reports from PubMed Central (PMC)
-- Do NOT provide medical advice or treatment recommendations
-
-RESEARCH QUERY:
-{query}
-{image_sections}
-RETRIEVED CASE REPORT EXCERPTS:
-{context_text}
-
-## EVIDENCE PRIORITY INSTRUCTION (AUGMENTATION MODE)
-Use the retrieved case excerpts as PRIMARY evidence for your diagnosis.
-
-WHEN RETRIEVED EVIDENCE IS SUFFICIENT:
-- Base your diagnosis primarily on the retrieved cases
-- Cite retrieved cases using their IDs (e.g., "Case PMC123456")
-
-WHEN RETRIEVED EVIDENCE IS INSUFFICIENT:
-- You MAY supplement with your medical knowledge
-- Mark such reasoning with: "(based on general medical knowledge)"
-- Still provide a diagnosis assessment rather than refusing to answer
-
-This ensures RAG augments rather than replaces your medical expertise.
-
-TASK:
-Provide a structured diagnosis assessment, prioritizing retrieved evidence.
-
-REQUIRED OUTPUT FORMAT:
-
-## DIAGNOSIS PREDICTION
-**Primary Diagnosis:** [State your diagnosis, e.g., "Cutaneous Leishmaniasis", "Visceral Leishmaniasis", "PKDL", "Mucocutaneous Leishmaniasis"]
-**Diagnosis Type:** [CL, VL, MCL, PKDL, Other]
-**Species (if determinable):** [e.g., "L. donovani", "L. tropica", "L. major", or "Not determinable"]
-**Confidence:** [High/Medium/Low based on available evidence]
-**Evidence Source:** [Retrieved cases only / Retrieved + general knowledge]
-
-## SUPPORTING EVIDENCE
-- Key clinical findings from retrieved cases
-- Cite cases using their IDs (e.g., "Case PMC123456")
-
-## DIFFERENTIAL CONSIDERATIONS
-- Alternative diagnoses to consider if evidence is limited
-
-DIAGNOSIS ASSESSMENT:"""
+    return _build_rag_prompt(
+        query=query,
+        contexts=contexts,
+        mode=prompt_mode,
+        query_images=query_images,
+        context_images=context_images,
+        max_chars_per_context=2000,
+        include_context_images=include_images,
+        is_text_only_model=False
+    )
 
 
 class GeminiGenerator:

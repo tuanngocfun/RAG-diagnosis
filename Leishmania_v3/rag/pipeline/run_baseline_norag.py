@@ -21,7 +21,7 @@ from typing import Dict, List, Optional
 from dataclasses import dataclass, asdict, field
 
 from .config import SPLIT_DIR, RUNS_DIR, TEST_JSONL, IMAGES_DIR, DATASET_VERSION
-from .generators import GeminiGenerator
+from .generators import GeminiGenerator, Gemma3Generator, MedGemmaGenerator
 
 
 @dataclass
@@ -109,6 +109,8 @@ def run_baseline_norag(
     query_types: Optional[List[str]] = None,
     run_id: Optional[str] = None,
     generator_model: str = None,
+    generator_type: str = "gemini",  # "gemini", "gemma3", or "medgemma"
+    model_variant: str = "12b",  # For Gemma3: "12b" or "27b" (ignored for medgemma)
 ) -> Path:
     """
     Run no-RAG baseline generation.
@@ -153,9 +155,16 @@ def run_baseline_norag(
     print(f"Query types: {query_types}")
     print(f"Total queries: {len(queries)}")
     
-    # Initialize generator
-    generator = GeminiGenerator(model=generator_model, include_images=True)
-    print(f"Generator: {generator.model_name}")
+    # Initialize generator based on type
+    if generator_type == "gemma3":
+        generator = Gemma3Generator(variant=model_variant)
+        print(f"Generator: Gemma 3 {model_variant} (local)")
+    elif generator_type == "medgemma":
+        generator = MedGemmaGenerator()
+        print(f"Generator: MedGemma 4B (local, text-only)")
+    else:
+        generator = GeminiGenerator(model=generator_model, include_images=True)
+        print(f"Generator: {generator.model_name}")
     
     # Save config
     config = BaselineRunConfig(
