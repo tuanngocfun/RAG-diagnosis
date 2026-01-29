@@ -676,6 +676,10 @@ def run_ragas_evaluation(
                     completed_qids.add(r["qid"])
         if completed_qids:
             print(f"  Resume: Skipping {len(completed_qids)} already completed samples")
+    else:
+        # Starting fresh: clear output file to avoid duplicates
+        if output_path.exists():
+            output_path.unlink()
     
     # Limit samples for debugging
     if max_samples:
@@ -718,8 +722,13 @@ def run_ragas_evaluation(
                 context_images=context_images,
                 ground_truth=ground_truth
             )
-            results.append(asdict(result))
+            result_dict = asdict(result)
+            results.append(result_dict)
             evaluated_count += 1
+            
+            # INCREMENTAL SAVE: Write result immediately (crash-safe)
+            with open(output_path, "a") as f:
+                f.write(json.dumps(result_dict) + "\n")
             
             # Progress (include diagnosis accuracy if available)
             diag_str = ""
@@ -737,11 +746,8 @@ def run_ragas_evaluation(
     # Run async evaluation
     results = asyncio.run(evaluate_all())
     
-    # Save results
-    output_path = run_dir / "ragas.jsonl"
-    with open(output_path, "w") as f:
-        for r in results:
-            f.write(json.dumps(r) + "\n")
+    # Results are already saved incrementally during evaluation
+    # No batch write needed - prevents duplicate entries on resume
     
     # Compute and print aggregates
     n = len(results)
