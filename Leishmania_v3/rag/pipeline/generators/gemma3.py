@@ -83,7 +83,8 @@ class Gemma3Generator:
         temperature: float = 0.3,
         max_tokens: int = 1024,
         cache_dir: str = None,
-        use_vision: bool = False
+        use_vision: bool = False,
+        prompt_mode: PromptMode = PromptMode.STRICT_CONTEXT
     ):
         """
         Initialize Gemma 3 generator.
@@ -95,7 +96,9 @@ class Gemma3Generator:
             max_tokens: Max new tokens
             cache_dir: HuggingFace cache directory
             use_vision: If True, use vision-enabled variant for multimodal
+            prompt_mode: Prompt template mode (STRICT_CONTEXT, BALANCED, NO_CONTEXT)
         """
+        self.prompt_mode = prompt_mode
         try:
             from transformers import AutoTokenizer, AutoModelForCausalLM, AutoProcessor
             import torch
@@ -198,7 +201,11 @@ class Gemma3Generator:
             Generated answer text
         """
         if use_rag_prompt:
-            prompt = build_rag_prompt(query, contexts, image_paths if image_paths else None)
+            prompt = build_rag_prompt(
+                query, contexts, 
+                query_images=image_paths if image_paths else None,
+                prompt_mode=self.prompt_mode
+            )
         else:
             prompt = query
         
