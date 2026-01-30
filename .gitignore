@@ -170,3 +170,11 @@ credentials/
 ############################################
 config.local.*
 settings.local.*
+
+# Text + run artifacts
+*.txt
+*.text
+*.log
+*.out
+*.err
+*.trace
