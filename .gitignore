@@ -33,7 +33,7 @@ pip-wheel-metadata/
 ############################################
 # 4. Data files (raw, processed, derived)
 ############################################
-data/
+/data/*
 datasets/
 dataset/
 raw_data/
@@ -216,3 +216,32 @@ pnpm-debug.log*
 # Environment files (frontend)
 .env
 .env.*
+
+############################################
+# 16. Exceptions: track code/scripts only in /data
+############################################
+
+# --- guideline_textbook: keep only scripts/config ---
+!/data/guideline_textbook/
+ /data/guideline_textbook/**
+!/data/guideline_textbook/**/*.py
+!/data/guideline_textbook/**/*.sh
+!/data/guideline_textbook/**/*.bash
+!/data/guideline_textbook/**/*.zsh
+!/data/guideline_textbook/**/*.yaml
+!/data/guideline_textbook/**/*.yml
+!/data/guideline_textbook/**/*.toml
+!/data/guideline_textbook/**/*.ini
+!/data/guideline_textbook/**/*.cfg
+!/data/guideline_textbook/**/*.txt
+
+# --- articles: keep only metadata + code (NOT pdf/images) ---
+!/data/articles/
+ /data/articles/**
+!/data/articles/**/*.py
+!/data/articles/**/*.json
+!/data/articles/**/*.jsonl
+!/data/articles/**/*.yaml
+!/data/articles/**/*.yml
+!/data/articles/**/*.txt
+
