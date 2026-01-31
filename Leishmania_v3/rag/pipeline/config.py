@@ -70,7 +70,11 @@ DATA_ROOT = Path(__file__).parent.parent.parent / "data" / "leishmaniasis_multim
 # Split files: 143 verified Leishmaniasis cases with article-based splitting
 # (114 train / 29 test, no article overlap, anti-leakage verified)
 SPLIT_DIR = Path(__file__).parent.parent.parent / "data" / "leishmaniasis_verified"
-TRAIN_JSONL = SPLIT_DIR / "train.jsonl"  # 114 cases
+
+# Use extended dataset with articles/guidelines (118 entries) or original (114)
+USE_EXTENDED_DATA = True  # Set to False for A/B testing against original
+_train_file = "train_extended.jsonl" if USE_EXTENDED_DATA else "train.jsonl"
+TRAIN_JSONL = SPLIT_DIR / _train_file
 TEST_JSONL = SPLIT_DIR / "test.jsonl"    # 29 cases
 
 # Legacy paths (for reference only - DO NOT USE for new experiments)

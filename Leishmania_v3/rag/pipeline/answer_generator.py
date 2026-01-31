@@ -94,6 +94,7 @@ def generate_answers(
     generator_type: str = "gemini",  # "gemini", "medgemma", "gemma3", or "qwen_vl"
     model_variant: str = "12b",  # Model size variant: "7b", "12b", "27b" etc
     output_file: str = None,  # Custom output filename (default: answers.jsonl)
+    prompt_mode = None,  # PromptMode enum - handled separately from generator_kwargs
     **generator_kwargs
 ) -> Path:
     """
@@ -112,7 +113,8 @@ def generate_answers(
                        - gemma3: "12b" or "27b"
                        - qwen_vl: "7b" or "72b"
         output_file: Output filename (default: answers.jsonl)
-        **generator_kwargs: Args for generator
+        prompt_mode: PromptMode enum (affects prompt building, not generator init)
+        **generator_kwargs: Args for generator (model-specific)
     
     Returns:
         Path to answers.jsonl
@@ -134,6 +136,10 @@ def generate_answers(
             case = json.loads(line)
             train_cases[case["case_id"]] = case
     
+    # Remove prompt_mode from generator_kwargs if accidentally passed
+    # (prompt_mode is used for prompt building, not generator init)
+    generator_kwargs.pop("prompt_mode", None)
+    
     # Initialize generator based on type
     if generator_type == "qwen_vl":
         generator = QwenVLGenerator(variant=model_variant, **generator_kwargs)
@@ -143,6 +149,10 @@ def generate_answers(
         generator = MedGemmaGenerator(**generator_kwargs)
     else:  # default to gemini
         generator = GeminiGenerator(**generator_kwargs)
+    
+    # Log prompt_mode if specified
+    if prompt_mode:
+        print(f"Using prompt mode: {prompt_mode}")
     
     print(f"Generating answers for {len(samples)} queries with {generator.model_name}...")
     
