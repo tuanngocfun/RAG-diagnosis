@@ -1,0 +1,102 @@
+\chapter{Dataset and Data Preparation}
+\label{ch:dataset}
+% Chapter 3: Dataset and Data Preparation (10-12 pages)
+
+%
+% Section: Data Sources
+%
+\section{Data Sources}
+\label{sec:dataset:sources}
+
+\subsection{MultiCaRe Dataset Overview}
+\label{subsec:dataset:sources:multicare}
+
+\subsection{PubMed Central Case Reports}
+\label{subsec:dataset:sources:pmc}
+
+\subsection{Data Extraction Pipeline}
+\label{subsec:dataset:sources:extraction}
+
+%
+% Section: Leishmaniasis Case Curation
+%
+\section{Leishmaniasis Case Curation}
+\label{sec:dataset:curation}
+
+\subsection{Case Selection Criteria}
+\label{subsec:dataset:curation:criteria}
+
+\subsection{Verification Pipeline}
+\label{subsec:dataset:curation:verification}
+% 406 → 143 verified cases
+
+\subsection{Diagnosis Type Classification}
+\label{subsec:dataset:curation:diagnosis}
+% CL, VL, MCL, PKDL
+
+\subsection{Species Identification}
+\label{subsec:dataset:curation:species}
+
+%
+% Section: Image Processing
+%
+\section{Image Processing}
+\label{sec:dataset:images}
+
+\subsection{Clinical Image Extraction}
+\label{subsec:dataset:images:extraction}
+
+\subsection{Caption Alignment}
+\label{subsec:dataset:images:captions}
+
+\subsection{Image Quality Filtering}
+\label{subsec:dataset:images:quality}
+
+%
+% Section: Train/Test Split Design
+%
+\section{Train/Test Split Design}
+\label{sec:dataset:split}
+
+\subsection{Article-based Splitting}
+\label{subsec:dataset:split:article}
+% No data leakage
+
+\subsection{Split Statistics}
+\label{subsec:dataset:split:statistics}
+% 114 train / 29 test
+
+\subsection{Disjointness Verification}
+\label{subsec:dataset:split:verification}
+
+%
+% Section: Query Generation
+%
+\section{Query Generation}
+\label{sec:dataset:queries}
+
+\subsection{Query Types}
+\label{subsec:dataset:queries:types}
+% Q1 (text-only), Q1+Q3 (multimodal), Q3 (image-only)
+
+\subsection{Symptom Extraction with Leak Pattern Filtering}
+\label{subsec:dataset:queries:extraction}
+
+\subsection{Query Template Design}
+\label{subsec:dataset:queries:templates}
+
+%
+% Section: Ground Truth Generation
+%
+\section{Ground Truth (QRels) Generation}
+\label{sec:dataset:qrels}
+
+\subsection{Relevance Grading}
+\label{subsec:dataset:qrels:grading}
+% 0-3 scale
+
+\subsection{Diagnosis Type Matching}
+\label{subsec:dataset:qrels:diagnosis}
+
+\subsection{Species-level Matching}
+\label{subsec:dataset:qrels:species}

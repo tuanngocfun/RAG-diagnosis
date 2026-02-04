@@ -1,0 +1,16 @@
+%*******************************************************
+% Table of Contents
+%*******************************************************
+% Prof. Andreas: ToC should not be too long
+% tocdepth=2 means: chapter, section, subsection (no subsubsection)
+% secnumdepth=3 means: subsubsections are numbered but not in ToC
+\pagestyle{scrheadings}
+\refstepcounter{dummy}
+\pdfbookmark[0]{Contents}{tableofcontents}
+\setcounter{tocdepth}{2} % <-- 2 includes up to subsections in the ToC (not deeper)
+\setcounter{secnumdepth}{3} % <-- 3 numbers up to subsubsections in text
+\manualmark
+\markboth{\spacedlowsmallcaps{\contentsname}}{\spacedlowsmallcaps{\contentsname}}
+\tableofcontents
+
+\cleardoublepage

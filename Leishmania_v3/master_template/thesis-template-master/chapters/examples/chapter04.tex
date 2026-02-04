@@ -1,0 +1,169 @@
+\chapter{System Architecture and Methodology}
+\label{ch:methodology}
+% Chapter 4: System Architecture and Methodology (15-18 pages)
+
+%
+% Section: System Overview
+%
+\section{System Overview}
+\label{sec:methodology:overview}
+
+% Prof. Andreas: "4.1 Sys Overview ← should contain picture (Lane1 / Lane2)"
+% System architecture diagram showing the two-lane retrieval + generator pipeline
+
+This section presents an overview of the proposed multimodal RAG system for Leishmaniasis diagnosis. The architecture follows a two-lane design that separates text-based retrieval from vision-language retrieval, allowing each modality to leverage domain-specific encoders optimized for medical content.
+
+\begin{figure}[htbp]
+  \centering
+  % TODO: Replace with actual architecture diagram
+  % Suggested diagram structure:
+  % Lane 1: Query Text → E5-large-instruct → Dense Retrieval → RRF Fusion ↘
+  %                    → BM25 Sparse Retrieval →                         ↗  → Retrieved Docs
+  % Lane 2: Query Image → BiomedCLIP → Cross-modal Retrieval →          ↗
+  % Retrieved Docs → Context Builder → LLM (MedGemma/Gemini) → Diagnosis
+  \fbox{\parbox{0.9\textwidth}{\centering\vspace{3cm}
+    \textbf{[System Architecture Diagram Placeholder]}\\[1em]
+    Two-Lane Retrieval Architecture:\\
+    Lane 1: Text Retrieval (E5-large-instruct + BM25 → RRF Fusion)\\
+    Lane 2: Vision-Language Retrieval (BiomedCLIP)\\
+    → Context Integration → Answer Generation (LLM)
+  \vspace{3cm}}}
+  \caption[Two-Lane RAG Architecture]{Overview of the two-lane multimodal RAG architecture. Lane 1 handles text-based retrieval using E5-large-instruct dense embeddings combined with BM25 sparse retrieval via Reciprocal Rank Fusion (RRF). Lane 2 processes visual queries using BiomedCLIP for cross-modal image-text matching. Retrieved contexts from both lanes are integrated and passed to the generator (MedGemma or Gemini) for diagnosis generation.}
+  \label{fig:methodology:architecture}
+\end{figure}
+
+\subsection{Design Goals and Requirements}
+\label{subsec:methodology:overview:goals}
+
+\subsection{Architecture Philosophy}
+\label{subsec:methodology:overview:philosophy}
+% Two-lane approach rationale
+
+%
+% Section: Retriever Model Specifications
+% Prof. Andreas: "retriever model . tex" - describe retriever model clearly
+%
+\section{Retriever Model Specifications}
+\label{sec:methodology:retriever}
+
+% Prof. Andreas: Document model parameters (size, dim, RAG settings) for fair comparison
+% "models same parameters / model size / dim / rag"
+
+This section documents the retriever models used in our system with their key specifications for reproducibility and fair comparison.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Retriever Model Specifications}
+  \label{tab:methodology:retriever-specs}
+  \begin{tabularx}{\textwidth}{lXX}
+    \toprule
+    \textbf{Component} & \textbf{Lane 1 (Text)} & \textbf{Lane 2 (Vision-Language)} \\
+    \midrule
+    Model & E5-large-instruct & BiomedCLIP \\
+    Base Architecture & BERT-large & ViT-B/16 + BioBERT \\
+    Embedding Dimension & 1024 & 512 \\
+    Model Size & 335M parameters & 151M parameters \\
+    Pooling Strategy & Mean pooling & [CLS] token \\
+    Normalization & L2 normalized & L2 normalized \\
+    Index Type & HNSW (Qdrant) & HNSW (Qdrant) \\
+    Sparse Component & BM25 (k1=1.5, b=0.75) & N/A \\
+    Fusion Method & RRF (k=60) & Direct similarity \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+%
+% Section: Lane 1 - Text Retrieval
+%
+\section{Lane 1: Text Retrieval}
+\label{sec:methodology:lane1}
+
+\subsection{E5-large-instruct Encoder}
+\label{subsec:methodology:lane1:e5}
+% 1024-dimensional embeddings
+
+\subsection{BM25 Sparse Retrieval}
+\label{subsec:methodology:lane1:bm25}
+
+\subsection{Hybrid Fusion with RRF}
+\label{subsec:methodology:lane1:rrf}
+% Reciprocal Rank Fusion
+
+%
+% Section: Lane 2 - Vision-Language Retrieval
+%
+\section{Lane 2: Vision-Language Retrieval}
+\label{sec:methodology:lane2}
+
+\subsection{BiomedCLIP Model}
+\label{subsec:methodology:lane2:biomedclip}
+% 512-dimensional embeddings
+
+\subsection{Cross-modal Similarity Computation}
+\label{subsec:methodology:lane2:similarity}
+
+\subsection{Image-Query Matching}
+\label{subsec:methodology:lane2:matching}
+
+%
+% Section: Index Construction
+%
+\section{Index Construction}
+\label{sec:methodology:indexing}
+
+\subsection{Qdrant Vector Database}
+\label{subsec:methodology:indexing:qdrant}
+
+\subsection{Collection Design}
+\label{subsec:methodology:indexing:collections}
+% Versioning (v143)
+
+\subsection{Stable Hashing for Reproducibility}
+\label{subsec:methodology:indexing:hashing}
+
+%
+% Section: Retrieval Pipeline
+%
+\section{Retrieval Pipeline}
+\label{sec:methodology:retrieval}
+
+\subsection{Query Processing}
+\label{subsec:methodology:retrieval:query}
+
+\subsection{Two-Lane Search Execution}
+\label{subsec:methodology:retrieval:execution}
+
+\subsection{Result Aggregation}
+\label{subsec:methodology:retrieval:aggregation}
+
+%
+% Section: Answer Generation
+%
+\section{Answer Generation}
+\label{sec:methodology:generation}
+
+\subsection{Prompt Engineering}
+\label{subsec:methodology:generation:prompts}
+% Augmentation-based approach
+
+\subsection{Context Integration}
+\label{subsec:methodology:generation:context}
+
+\subsection{Generator Model Options}
+\label{subsec:methodology:generation:models}
+% Gemini, MedGemma, etc.
+
+%
+% Section: Multimodal Integration
+%
+\section{Multimodal Integration}
+\label{sec:methodology:multimodal}
+
+\subsection{Image Embedding Strategy}
+\label{subsec:methodology:multimodal:embedding}
+
+\subsection{Text-Image Fusion}
+\label{subsec:methodology:multimodal:fusion}
+
+\subsection{Visual Context in Generation}
+\label{subsec:methodology:multimodal:visual}
