@@ -245,3 +245,8 @@ pnpm-debug.log*
 !/data/articles/**/*.yml
 !/data/articles/**/*.txt
 
+# Allow thesis template docs/assets
+!Leishmania_v3/master_template/thesis-template-master/README.md
+!Leishmania_v3/master_template/thesis-template-master/docs/*.pdf
+!Leishmania_v3/master_template/thesis-template-master/gfx/**/*.pdf
+!Leishmania_v3/master_template/thesis-template-master/gfx/**/*.eps
