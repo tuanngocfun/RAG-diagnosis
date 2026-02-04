@@ -20,11 +20,13 @@ from ...configs.prompt_mode import build_rag_prompt as _build_rag_prompt, Prompt
 HF_CACHE = os.environ.get("TRANSFORMERS_CACHE", "/data4t/hf/transformers")
 
 # Gemma 3 model variants
+# NOTE: Gemma 3 4B/12B/27B are ALL natively multimodal!
+# They support text + image input without separate "vision" variants.
+# The -it suffix means "instruction-tuned"
 GEMMA3_MODELS = {
-    "12b": "google/gemma-3-12b-it",
-    "27b": "google/gemma-3-27b-it",
-    "12b-vision": "google/gemma-3-12b-vision-it",
-    "27b-vision": "google/gemma-3-27b-vision-it",
+    "4b": "google/gemma-3-4b-it",      # 4B multimodal
+    "12b": "google/gemma-3-12b-it",    # 12B multimodal (same model handles vision)
+    "27b": "google/gemma-3-27b-it",    # 27B multimodal
 }
 
 
@@ -101,6 +103,8 @@ class Gemma3Generator:
         self.prompt_mode = prompt_mode
         try:
             from transformers import AutoTokenizer, AutoModelForCausalLM, AutoProcessor
+            # FIX: Gemma3 multimodal requires Gemma3ForConditionalGeneration
+            from transformers import Gemma3ForConditionalGeneration
             import torch
         except ImportError:
             raise ImportError("pip install transformers torch")
@@ -116,10 +120,9 @@ class Gemma3Generator:
         self.use_vision = use_vision
         
         # Select model variant
-        if use_vision:
-            model_key = f"{variant}-vision"
-        else:
-            model_key = variant
+        # NOTE: Gemma 3 models are natively multimodal - same model handles text + vision
+        # use_vision flag controls whether we use AutoProcessor (for images) or just tokenizer
+        model_key = variant
         
         if model_key not in GEMMA3_MODELS:
             raise ValueError(f"Unknown variant: {model_key}. Choose from: {list(GEMMA3_MODELS.keys())}")
@@ -132,11 +135,42 @@ class Gemma3Generator:
             "do_sample": temperature > 0
         }
         
+        # =====================================================================
+        # SMART GPU DETECTION + QUANTIZATION FALLBACK
+        # Based on research:
+        # - Gemma 3 12B text-only: ~24GB FP16
+        # - Gemma 3 12B multimodal: ~31GB FP16 (extra for image processing)
+        # - Gemma 3 12B quantized (4-bit): ~10GB
+        # =====================================================================
+        vram_gb = 0
+        use_quantization = False
+        
+        if torch.cuda.is_available():
+            vram_bytes = torch.cuda.get_device_properties(0).total_memory
+            vram_gb = vram_bytes / (1024 ** 3)
+            
+            # VRAM requirements differ based on text-only vs multimodal
+            if use_vision:
+                # Multimodal mode requires more VRAM for image processing
+                vram_needed = {"4b": 12, "12b": 31, "27b": 60}
+            else:
+                # Text-only mode (more efficient)
+                vram_needed = {"4b": 10, "12b": 24, "27b": 56}
+            
+            required = vram_needed.get(model_key, 28)
+            
+            if vram_gb < required:
+                use_quantization = True
+                print(f"  ⚠ GPU VRAM: {vram_gb:.1f}GB < {required}GB required for {'multimodal' if use_vision else 'text-only'}")
+                print(f"  → Using 4-bit quantization to prevent CPU offload")
+        
         # Load model
         print(f"Loading Gemma 3 from {self.model_name}...")
         print(f"  Cache dir: {self.cache_dir}")
         print(f"  Device: {self.device}")
         print(f"  Vision: {self.use_vision}")
+        print(f"  GPU VRAM: {vram_gb:.1f}GB")
+        print(f"  Quantization: {'4-bit' if use_quantization else 'None (FP16)'}")
         
         if use_vision:
             # Use processor for vision models
@@ -154,18 +188,48 @@ class Gemma3Generator:
                 trust_remote_code=True
             )
         
-        self.model = AutoModelForCausalLM.from_pretrained(
-            self.model_name,
-            cache_dir=self.cache_dir,
-            torch_dtype="auto",
-            device_map="auto",
-            trust_remote_code=True
-        )
+        # Build model loading kwargs
+        model_kwargs = {
+            "cache_dir": self.cache_dir,
+            "torch_dtype": "auto",
+            "device_map": "auto",
+            "trust_remote_code": True
+        }
         
-        print(f"✓ Gemma 3 loaded: {self.model_name}")
+        if use_quantization:
+            try:
+                from transformers import BitsAndBytesConfig
+                model_kwargs["quantization_config"] = BitsAndBytesConfig(
+                    load_in_4bit=True,
+                    bnb_4bit_compute_dtype=torch.float16,
+                    bnb_4bit_use_double_quant=True,
+                    bnb_4bit_quant_type="nf4"
+                )
+            except ImportError:
+                print("  ⚠ BitsAndBytes not installed, using standard loading")
+                print("  → pip install bitsandbytes to enable 4-bit quantization")
+        
+        # FIX: Use correct model class for vision vs text-only
+        if use_vision:
+            # Gemma3ForConditionalGeneration is required for multimodal
+            self.model = Gemma3ForConditionalGeneration.from_pretrained(
+                self.model_name,
+                **model_kwargs
+            )
+        else:
+            # Text-only mode can use standard AutoModelForCausalLM
+            self.model = AutoModelForCausalLM.from_pretrained(
+                self.model_name,
+                **model_kwargs
+            )
+        
+        print(f"✓ Gemma 3 loaded: {self.model_name} (vision={use_vision})")
     
     def _load_images(self, image_paths: List[str]) -> List:
-        """Load images for vision model."""
+        """Load images for vision model.
+        
+        Per Grok 4.1: Gemma3 expects images resized to 896x896.
+        """
         if self._PIL is None:
             from PIL import Image
             self._PIL = Image
@@ -175,7 +239,10 @@ class Gemma3Generator:
             p = Path(path)
             if p.exists():
                 try:
-                    img = self._PIL.Image.open(p).convert("RGB")
+                    img = self._PIL.open(p).convert("RGB")
+                    # FIX: Resize to 896x896 per Grok 4.1 recommendation
+                    # Gemma3 SigLIP encoder expects this resolution
+                    img = img.resize((896, 896), self._PIL.Resampling.LANCZOS)
                     images.append(img)
                 except Exception as e:
                     print(f"Warning: Could not load image {path}: {e}")
@@ -211,14 +278,32 @@ class Gemma3Generator:
         
         try:
             if self.use_vision and image_paths:
-                # Multimodal generation
+                # Multimodal generation using chat template
+                # FIX: Per HuggingFace docs, Gemma3 requires structured messages
+                # with {"type": "image"} format and apply_chat_template
                 images = self._load_images(image_paths)
                 if images:
-                    inputs = self.processor(
-                        text=prompt,
-                        images=images,
+                    # Build structured message content
+                    content = []
+                    
+                    # Add images first (Gemma3 expects images before text)
+                    for img in images:
+                        content.append({"type": "image", "image": img})
+                    
+                    # Add text prompt
+                    content.append({"type": "text", "text": prompt})
+                    
+                    # Build messages in chat format
+                    messages = [{"role": "user", "content": content}]
+                    
+                    # Use processor.apply_chat_template (required for multimodal)
+                    inputs = self.processor.apply_chat_template(
+                        messages,
+                        add_generation_prompt=True,
+                        tokenize=True,
+                        return_dict=True,
                         return_tensors="pt"
-                    ).to(self.device)
+                    ).to(self.model.device)
                 else:
                     # Fall back to text-only if no valid images
                     inputs = self.tokenizer(
@@ -244,8 +329,11 @@ class Gemma3Generator:
                 )
             
             # Decode only new tokens
-            input_len = inputs.input_ids.shape[1] if hasattr(inputs, 'input_ids') else inputs['input_ids'].shape[1]
-            answer = self.tokenizer.decode(
+            input_len = inputs['input_ids'].shape[1]
+            answer = self.processor.decode(
+                outputs[0][input_len:],
+                skip_special_tokens=True
+            ) if self.use_vision else self.tokenizer.decode(
                 outputs[0][input_len:],
                 skip_special_tokens=True
             )

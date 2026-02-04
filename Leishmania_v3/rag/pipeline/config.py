@@ -125,6 +125,37 @@ GENERATOR_MODEL = "gemini-2.5-pro"  # Primary (not flash preview)
 GENERATOR_MODEL_MEDGEMMA = "google/medgemma-4b-it"  # Local experiment
 
 # =============================================================================
+# Adaptive RAG Configuration (per GPT 5.2, Gemini 3 Pro, Grok 4.1 recommendations)
+# =============================================================================
+# Confidence gating: Only use RAG when retrieval confidence is high enough
+# Prevents noisy retrievals from hurting specialized models like MedGemma
+ADAPTIVE_RAG = {
+    "enabled": True,  # Master switch for adaptive RAG
+    
+    # Query-type specific thresholds (different score scales)
+    # Text queries (E5+BM25 hybrid): scores typically 0.01-0.03
+    # Image queries (BiomedCLIP): scores typically 0.3-0.5
+    "thresholds": {
+        "Q1_diagnosis": 0.018,      # Text-only: slightly above median
+        "Q3_image_diagnosis": 0.35,  # Image: needs high confidence
+        "Q1_Q3_multimodal_diagnosis": 0.025,  # Multimodal: higher bar
+        "default": 0.015,  # Fallback threshold
+    },
+    
+    # Margin threshold (score_top1 - score_top3)
+    # Higher margin = more confident retrieval
+    "margin_threshold": 0.002,
+    
+    # Soft gating: reduce k instead of dropping all contexts
+    "soft_gating": True,
+    "low_confidence_k": 1,  # Use only top-1 when uncertain
+    "high_confidence_k": 5,  # Use full k when confident
+    
+    # Prompt mode routing
+    "use_norag_prompt_on_fallback": True,  # Switch to no-RAG prompt template
+}
+
+# =============================================================================
 # Runs Directory
 # =============================================================================
 RUNS_DIR = Path(__file__).parent.parent / "runs"

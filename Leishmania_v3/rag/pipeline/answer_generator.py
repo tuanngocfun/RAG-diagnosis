@@ -30,6 +30,7 @@ class AnswerRecord:
     CRITICAL (per GPT 5.2):
     - query_images: Images from TEST case (the query)
     - context_images: Images from TRAIN cases (retrieved contexts)
+    - gating_info: Instrumentation for adaptive RAG decisions
     """
     qid: str
     query: str
@@ -44,6 +45,11 @@ class AnswerRecord:
     # Legacy (deprecated - use context_images)
     image_paths: List[str] = field(default_factory=list)
     decoding_params: Dict = field(default_factory=dict)
+    # NEW: Instrumentation per GPT 5.2 review
+    gating_info: str = ""              # What gating decision was made
+    query_type: str = ""               # Q1_diagnosis, Q3_image_diagnosis, etc.
+    top_score: float = 0.0             # Top context score
+    threshold_used: float = 0.0        # Threshold applied
 
 
 def enrich_contexts_with_images(
@@ -140,11 +146,22 @@ def generate_answers(
     # (prompt_mode is used for prompt building, not generator init)
     generator_kwargs.pop("prompt_mode", None)
     
+    # Check if we have image queries (Q3 or multimodal)
+    has_image_queries = any(
+        "Q3" in s.get("query_type", "") or "multimodal" in s.get("query_type", "").lower()
+        for s in samples
+    )
+    
     # Initialize generator based on type
     if generator_type == "qwen_vl":
         generator = QwenVLGenerator(variant=model_variant, **generator_kwargs)
     elif generator_type == "gemma3":
-        generator = Gemma3Generator(variant=model_variant, **generator_kwargs)
+        # Enable vision mode if we have image queries
+        generator = Gemma3Generator(
+            variant=model_variant, 
+            use_vision=has_image_queries,  # Auto-enable vision for image queries
+            **generator_kwargs
+        )
     elif generator_type == "medgemma":
         generator = MedGemmaGenerator(**generator_kwargs)
     else:  # default to gemini
@@ -178,6 +195,65 @@ def generate_answers(
         # Generate answer - pass query_images for TRUE multimodal (per GPT 5.2 fix)
         # query_images = images from TEST case (the patient to diagnose)
         # context_images = images from TRAIN cases (retrieved evidence)
+        
+        # =================================================================
+        # ADAPTIVE RAG: Query-type router + confidence gating
+        # Per verified data: Q3 no-RAG=84.6% > Q3 RAG=76.9% 
+        # =================================================================
+        from .config import ADAPTIVE_RAG
+        
+        original_contexts = contexts.copy()
+        use_norag_prompt = False
+        gating_info = ""
+        query_type = sample.get("query_type", "default")
+        top_score = 0.0
+        threshold_used = 0.0
+        
+        # =================================================================
+        # QUERY-TYPE ROUTER (per GPT 5.2 verified analysis)
+        # Q3 image queries: RAG hurts by 7.7%, so disable RAG entirely
+        # =================================================================
+        if query_type == "Q3_image_diagnosis":
+            contexts = []  # NO-RAG for Q3
+            gating_info = "[ROUTER] Q3 → NO-RAG (verified: 84.6% vs 76.9%)"
+            print(f"  [{qid}] {gating_info}")
+        elif ADAPTIVE_RAG.get("enabled", False) and contexts:
+            # Standard gating for Q1 and MM (they benefit from RAG)
+            threshold = ADAPTIVE_RAG.get("thresholds", {}).get(
+                query_type, ADAPTIVE_RAG.get("thresholds", {}).get("default", 0.015)
+            )
+            threshold_used = threshold
+            margin_threshold = ADAPTIVE_RAG.get("margin_threshold", 0.002)
+            
+            # Compute scores from contexts
+            ctx_scores = [c.get("score", 0.0) for c in contexts]
+            ctx_scores_sorted = sorted(ctx_scores, reverse=True)
+            
+            top_score = ctx_scores_sorted[0] if ctx_scores_sorted else 0.0
+            top3_score = ctx_scores_sorted[2] if len(ctx_scores_sorted) > 2 else ctx_scores_sorted[-1] if ctx_scores_sorted else 0.0
+            margin = top_score - top3_score
+            
+            # Determine confidence level
+            is_confident = top_score >= threshold and margin >= margin_threshold
+            
+            if is_confident:
+                # High confidence: use all contexts
+                gating_info = f"[GATE ON] score={top_score:.4f}>={threshold:.4f}"
+            elif ADAPTIVE_RAG.get("soft_gating", False):
+                # Medium confidence: use only top-k contexts (soft gating)
+                soft_k = ADAPTIVE_RAG.get("low_confidence_k", 1)
+                contexts = contexts[:soft_k]
+                gating_info = f"[SOFT GATE] score={top_score:.4f}, using top-{soft_k}"
+            else:
+                # Low confidence: fall back to no-RAG
+                contexts = []
+                use_norag_prompt = ADAPTIVE_RAG.get("use_norag_prompt_on_fallback", True)
+                gating_info = f"[GATE OFF] score={top_score:.4f}<{threshold:.4f}"
+            
+            if gating_info:
+                print(f"  [{qid}] {gating_info}")
+        
+        # Generate answer (with potentially reduced/empty contexts)
         answer = generator.generate(
             query, 
             contexts, 
@@ -198,7 +274,12 @@ def generate_answers(
             context_images=context_images[:5],   # TRAIN case images
             ground_truth=ground_truth,
             image_paths=query_images[:5],        # FIXED: was context_images (BUG!)
-            decoding_params=generator.decoding_params
+            decoding_params=generator.decoding_params,
+            # NEW: Instrumentation per GPT 5.2
+            gating_info=gating_info,
+            query_type=query_type,
+            top_score=top_score,
+            threshold_used=threshold_used
         )
         records.append(asdict(record))
         

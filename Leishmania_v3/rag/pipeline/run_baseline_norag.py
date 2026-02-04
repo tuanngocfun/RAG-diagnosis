@@ -156,9 +156,17 @@ def run_baseline_norag(
     print(f"Total queries: {len(queries)}")
     
     # Initialize generator based on type
+    # Check if we have image queries (same logic as answer_generator.py for parity)
+    has_image_queries = any(
+        "Q3" in q.get("query_type", "") or "multimodal" in q.get("query_type", "").lower()
+        for q in queries
+    )
+    
     if generator_type == "gemma3":
-        generator = Gemma3Generator(variant=model_variant)
-        print(f"Generator: Gemma 3 {model_variant} (local)")
+        # FIX: Enable vision mode if we have image queries (SAME as RAG pipeline!)
+        # Previously was missing use_vision, causing unfair comparison
+        generator = Gemma3Generator(variant=model_variant, use_vision=has_image_queries)
+        print(f"Generator: Gemma 3 {model_variant} (local, vision={has_image_queries})")
     elif generator_type == "medgemma":
         generator = MedGemmaGenerator()
         print(f"Generator: MedGemma 4B (local, text-only)")
@@ -306,12 +314,22 @@ if __name__ == "__main__":
     parser.add_argument("--query-types", nargs="+", 
                         default=["Q1_diagnosis", "Q3_image_diagnosis", "Q1_Q3_multimodal_diagnosis"],
                         help="Query types to evaluate")
-    parser.add_argument("--model", default=None, help="Gemini model")
+    parser.add_argument("--generator", default="gemini", choices=["gemini", "gemma3", "medgemma"],
+                        help="Generator type: gemini (default), gemma3, medgemma")
+    parser.add_argument("--variant", default="12b", help="Model variant (for gemma3: 12b, 27b)")
+    parser.add_argument("--model", default=None, help="Specific model name (for Gemini)")
     
     args = parser.parse_args()
     
-    run_baseline_norag(
+    run_dir = run_baseline_norag(
         query_types=args.query_types,
         run_id=args.run_id,
-        generator_model=args.model
+        generator_model=args.model,
+        generator_type=args.generator,
+        model_variant=args.variant
     )
+    
+    # Run RAGAS evaluation after generating answers
+    print("\nRunning RAGAS evaluation...")
+    from .ragas_evaluator import run_ragas_evaluation
+    run_ragas_evaluation(run_dir, answers_file="answers_gemini.jsonl", delay_seconds=1.5)

@@ -32,58 +32,214 @@ from .retriever import Lane1Retriever, Lane2Retriever, rrf_fusion
 from .reranker import get_medcpt_reranker
 
 
-def extract_query_focused_snippet(case_text: str, query: str, max_chars: int = 1500) -> str:
+def extract_query_focused_snippet(case_text: str, query: str, max_chars: int = 2500) -> str:
     """
-    Extract query-relevant portion of case text (per GPT 5.2 feedback).
+    Extract query-relevant portion of case text with diagnosis coverage guarantee.
     
-    Instead of taking first N chars, uses BM25-style term overlap to
-    select the most relevant sentences for the query.
+    Enhanced version per GPT 5.2 "head+tail+must-include" strategy:
+    1. MUST-INCLUDE: Sentences with diagnosis-bearing keywords (forced)
+    2. TAIL: Last 800 chars (diagnosis often at end of case reports)
+    3. QUERY-FOCUSED: BM25-style term overlap for remaining budget
     
     Args:
         case_text: Full case report text
         query: Query text to match against
-        max_chars: Maximum characters to return
+        max_chars: Maximum characters to return (default increased to 2500)
     
     Returns:
-        Query-focused excerpt prioritizing relevant sentences
+        Query-focused excerpt guaranteeing diagnosis coverage
     """
-    if not case_text or not query:
-        return case_text[:max_chars] if case_text else ""
+    if not case_text:
+        return ""
+    
+    if not query:
+        return case_text[:max_chars]
     
     # Split into sentences
     sentences = re.split(r'(?<=[.!?])\s+', case_text)
     if not sentences:
         return case_text[:max_chars]
     
-    # Extract query terms (lowercase, basic tokenization)
-    query_terms = set(re.findall(r'\b\w{3,}\b', query.lower()))
+    # 1. MUST-INCLUDE: Sentences with diagnosis-bearing keywords
+    diagnosis_patterns = [
+        r'leishman\w*', r'kala-azar', r'rk39', r'amastigot', 
+        r'donovan\s*bod', r'confirmed', r'diagnos(?:ed|is)', 
+        r'positive\s+(?:for|result)', r'visceral', r'cutaneous',
+        r'bone\s*marrow', r'PCR\s+(?:test|positive|showed)'
+    ]
+    must_include = set()
+    for sent in sentences:
+        if any(re.search(p, sent, re.IGNORECASE) for p in diagnosis_patterns):
+            must_include.add(sent)
     
-    # Score each sentence by term overlap with query
+    # 2. TAIL: Last portion of text (diagnosis often at end)
+    tail_chars = 800
+    tail_text = case_text[-tail_chars:] if len(case_text) > tail_chars else ""
+    tail_sentences = set()
+    if tail_text:
+        # Find sentences that appear in the tail
+        for sent in sentences:
+            if sent in tail_text or tail_text.find(sent[:50]) >= 0:
+                tail_sentences.add(sent)
+    
+    # 3. QUERY-FOCUSED: Standard BM25-style overlap
+    query_terms = set(re.findall(r'\b\w{3,}\b', query.lower()))
     scored = []
     for sent in sentences:
+        if sent in must_include or sent in tail_sentences:
+            continue  # Already included via other mechanisms
         sent_terms = set(re.findall(r'\b\w{3,}\b', sent.lower()))
-        # BM25-style overlap: count matching terms
         overlap = len(query_terms & sent_terms)
         scored.append((overlap, sent))
-    
-    # Sort by relevance (highest first)
     scored.sort(key=lambda x: -x[0])
     
-    # Take top sentences up to max_chars
-    result = []
-    total = 0
-    for score, sent in scored:
-        if total + len(sent) + 1 > max_chars:
-            # If we have nothing yet, take truncated first sentence
-            if not result:
-                result.append(sent[:max_chars])
-            break
-        result.append(sent)
-        total += len(sent) + 1  # +1 for space
+    # 4. COMBINE: must-include first, then tail, then query-focused
+    combined = set(must_include) | tail_sentences
+    remaining_chars = max_chars - sum(len(s) + 1 for s in combined)
     
-    # Return in original order for coherence
-    original_order = [s for s in sentences if s in result]
-    return ' '.join(original_order) if original_order else case_text[:max_chars]
+    # Add query-focused sentences within remaining budget
+    for _, sent in scored:
+        if remaining_chars <= len(sent) + 1:
+            break
+        combined.add(sent)
+        remaining_chars -= len(sent) + 1
+    
+    # Return in ORIGINAL document order for coherence
+    original_order = [s for s in sentences if s in combined]
+    result = ' '.join(original_order)
+    
+    # Final safety: truncate if still over budget
+    return result[:max_chars] if len(result) > max_chars else result
+
+
+# ==============================================================================
+# TYPE-AWARE SOFT RERANK (per GPT 5.2 Level B)
+# Purpose: Reduce harm from wrong-subtype contexts
+# WARNING: Uses query keywords to infer subtype, NOT ground truth (data leakage)
+# ==============================================================================
+
+def infer_query_subtype(query_text: str) -> tuple:
+    """
+    Infer Leishmaniasis subtype from query symptoms.
+    
+    Per Gemini 3 Pro: Do NOT use ground truth labels - that's data leakage.
+    Instead, use high-precision keyword patterns from the query text.
+    
+    Returns:
+        (subtype: str, confidence: float)
+        subtype is one of: 'Visceral', 'Cutaneous', 'Mucocutaneous', 'PKDL', 'Unknown'
+    """
+    if not query_text:
+        return ('Unknown', 0.0)
+    
+    q = query_text.lower()
+    
+    # High-confidence patterns (per Gemini 3 Pro recommendation)
+    # These are explicit mentions or pathognomonic symptoms
+    
+    # PKDL: Very specific patterns
+    if any(k in q for k in ['post-kala', 'pkdl', 'post kala-azar', 'dermal leishmaniasis']):
+        return ('PKDL', 0.95)
+    
+    # Mucocutaneous: Mucosal involvement is distinctive
+    if any(k in q for k in ['mucosal', 'mucocutaneous', 'mcl', 'nasal septum', 
+                             'nasal mucosa', 'palate ulcer', 'oronasal', 'espundia']):
+        return ('Mucocutaneous', 0.9)
+    
+    # Visceral: Systemic symptoms with organ involvement
+    visceral_patterns = ['splenomegaly', 'hepatomegaly', 'pancytopenia', 'kala-azar',
+                        'visceral leishmaniasis', 'bone marrow aspirate', 'ld bodies',
+                        'leishman-donovan', 'fever.*weight loss.*spleen']
+    if any(k in q for k in visceral_patterns[:7]):  # Explicit mentions
+        return ('Visceral', 0.85)
+    if re.search(r'fever.{0,50}(spleen|hepato)', q):  # Pattern-based
+        return ('Visceral', 0.7)
+    
+    # Cutaneous: Skin lesions without mucosal involvement
+    cutaneous_patterns = ['cutaneous leishmaniasis', 'skin ulcer', 'skin nodule',
+                          'papule', 'oriental sore', 'skin lesion', 'delhi boil']
+    if any(k in q for k in cutaneous_patterns):
+        # Check NOT mucosal (to differentiate from MCL)
+        if not any(m in q for m in ['mucosa', 'nasal', 'palate']):
+            return ('Cutaneous', 0.7)
+    
+    # Low confidence: Generic skin mention (could be CL or MCL)
+    if 'ulcer' in q or 'nodule' in q or 'lesion' in q:
+        return ('Cutaneous', 0.4)  # Low confidence - no filtering
+    
+    # Unknown: No clear signal - don't filter
+    return ('Unknown', 0.0)
+
+
+def infer_doc_subtype(doc_text: str) -> str:
+    """
+    Infer subtype from document/context text.
+    Uses same patterns but returns just the type (for corpus annotation).
+    """
+    subtype, conf = infer_query_subtype(doc_text)
+    return subtype if conf > 0.5 else 'Unknown'
+
+
+def soft_rerank_by_subtype(
+    contexts: List[Dict], 
+    query_text: str,
+    train_cases: Dict = None
+) -> List[Dict]:
+    """
+    Soft rerank contexts by subtype match/mismatch.
+    
+    Per GPT 5.2 Level B approach:
+    - If query subtype inferred with high confidence:
+      - Boost matching subtype docs (+0.005)
+      - Penalize mismatching docs (-0.003 * confidence)
+    - If low confidence: return unchanged (don't risk filtering correct docs)
+    
+    Args:
+        contexts: List of context dicts with 'doc_id', 'score', 'text'
+        query_text: Query text to infer subtype from
+        train_cases: Optional dict of train cases for additional metadata
+    
+    Returns:
+        Reranked contexts list
+    """
+    query_subtype, query_conf = infer_query_subtype(query_text)
+    
+    # Don't rerank if confidence too low
+    if query_subtype == 'Unknown' or query_conf < 0.5:
+        return contexts
+    
+    reranked = []
+    for ctx in contexts:
+        original_score = ctx.get('score', 0.0)
+        adjustment = 0.0
+        
+        # Infer doc subtype from context text
+        doc_subtype = infer_doc_subtype(ctx.get('text', ''))
+        
+        # Also check train_cases metadata if available
+        if train_cases and ctx.get('doc_id') in train_cases:
+            case_meta = train_cases[ctx['doc_id']]
+            # Use explicit label if available
+            if case_meta.get('diagnosis_type'):
+                doc_subtype = case_meta['diagnosis_type']
+        
+        # Apply adjustment
+        if doc_subtype != 'Unknown':
+            if query_subtype.lower() in doc_subtype.lower() or doc_subtype.lower() in query_subtype.lower():
+                adjustment = +0.005  # Small boost for match
+            else:
+                adjustment = -0.003 * query_conf  # Penalty scales with confidence
+        
+        reranked.append({
+            **ctx,
+            'score': original_score + adjustment,
+            '_subtype_match': f'{query_subtype}({query_conf:.2f}) vs {doc_subtype}'
+        })
+    
+    # Sort by adjusted score
+    reranked.sort(key=lambda x: x['score'], reverse=True)
+    
+    return reranked
 
 
 @dataclass
@@ -408,6 +564,13 @@ def run_multimodal_evaluation(
                     filename = img.get("file") or img.get("file_name", "")
                     if filename:
                         context_images.append(str(IMAGES_DIR / cid / filename))
+        
+        # APPLY TYPE-AWARE SOFT RERANK (per GPT 5.2 Level B)
+        # Reduces harm from wrong-subtype contexts without hard filtering
+        # DISABLED: Investigation shows this may hurt more than help
+        # TODO: Fix subtype inference before re-enabling
+        # if contexts and query_text:
+        #     contexts = soft_rerank_by_subtype(contexts, query_text, train_cases)
         
         # Extract query images and ground truth from TEST case (per GPT 5.2)
         query_images = []
