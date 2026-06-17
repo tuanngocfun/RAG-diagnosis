@@ -1,0 +1,328 @@
+{
+  "test_time": "2026-06-13 08:15:05",
+  "total_cases": 3,
+  "successful_cases": 3,
+  "results": [
+    {
+      "case_id": "PMC3140149_01",
+      "expected_diagnosis": "PKDL (Post-Kala-Azar Dermal Leishmaniasis)",
+      "category": "limitation",
+      "notes": "PKDL case - tests subtype differentiation",
+      "clinical_text": "A 45-year-old HIV-positive man presented with nodules and plaques on the nasal area, the dorsum of the left wrist, the right index finger, and the back, and had cervical lymphadenopathy. He reported a history of fever 6 months earlier when he was working in the state of Bihar. Since then he complained of mild, intermittent fever and weight loss. Routine blood and urine examinations did not reveal any abnormalities. Enzyme-linked immunosorbent assay testing for HIV was positive, and his CD4 count was 210 cells/μL.",
+      "assistant_markdown": "> Safety boundary: research decision support only; not ground truth, not clinical validation, and not a diagnosis system.\n\n## Supportive Differential (Not a Diagnosis)\n**Rank 1 supportive consideration:** Mucocutaneous Leishmaniasis (Mucocutaneous form)\n**Rank 1 Diagnosis Type:** MCL\n**Rank 1 Species (if determinable):** Not determinable\n**Rank 1 Confidence:** Medium\n**Rank 2:** Visceral Leishmaniasis (VL)\n**Rank 3:** Non-Leishmaniasis (e.g., Mycobacterial infection, Metastatic malignancy)\n**Most supported option in this research demo:** Mucocutaneous Leishmaniasis (Mucocutaneous form)\n**Evidence source used by the model:** Both\n\n## SUPPORTING EVIDENCE\n*   The patient presents with mucocutaneous lesions (nodules and plaques on the nasal area) alongside cutaneous lesions (dorsum of wrist, finger, back) and lymphadenopathy, which is consistent with the spectrum of leishmaniasis.\n*   The clinical presentation of fever, weight loss, and chronic lesions following potential exposure in Bihar raises concern for mucocutaneous leishmaniasis (Context 1).\n*   The presence of mucocutaneous involvement warrants prompt tissue confirmation, as suggested by Context 1.\n*   The patient's immunosuppressed state (HIV positive, CD4 count 210 cells/μL) increases susceptibility to disseminated or mucocutaneous forms.\n\n## DIFFERENTIAL CONSIDERATIONS\n*   **Visceral Leishmaniasis (VL):** Suggested by the chronic systemic symptoms (fever, weight loss), but the primary presentation here is mucocutaneous/cutaneous, making MCL a stronger initial fit, though VL must be ruled out due to the systemic illness.\n*   **Non-Leishmaniasis:** Chronic infections (e.g., Tuberculosis, fungal infections) or dermatological malignancies must be considered given the chronicity and location of the lesions.\n\n## UNCERTAINTY AND MISSING INFORMATION\nThe definitive diagnosis requires tissue biopsy confirmation of amastigotes or parasite DNA detection, which is currently missing. The distinction between mucocutaneous and cutaneous forms relies heavily on the extent of mucosal involvement, which needs clearer visualization or biopsy confirmation.\n\n## SUGGESTED CONFIRMATORY TESTS OR CLINICIAN REVIEW\nTissue biopsy of the nasal lesion should be obtained for microscopic examination (looking for amastigotes) or molecular confirmation (PCR). Serological testing should be interpreted cautiously given the patient's HIV status and disease stage. Clinician review is needed to assess the extent of mucosal destruction.\n\n## EVIDENCE USED\nMedical knowledge regarding leishmaniasis spectrum and Context 1 (Mucocutaneous lesions prompting tissue confirmation).",
+      "safety_state": "generated_support",
+      "evidence": [
+        {
+          "chunk_id": "mcl-002",
+          "confirmatory": true,
+          "diagnosis_label": "Mucocutaneous leishmaniasis",
+          "excerpt": "Palatal or nasal mucosal lesions with compatible epidemiology should raise concern for mucocutaneous leishmaniasis and prompt tissue confirmation.",
+          "score": 0.2451,
+          "source_case_id": "case-mcl-002",
+          "title": "Palatal and nasal mucosal disease in leishmaniasis"
+        },
+        {
+          "chunk_id": "vl-001",
+          "confirmatory": true,
+          "diagnosis_label": "Visceral leishmaniasis",
+          "excerpt": "Prolonged fever, weight loss, pancytopenia, and splenomegaly are classic features of visceral leishmaniasis. Bone marrow or tissue confirmation is typically required.",
+          "score": 0.2321,
+          "source_case_id": "case-vl-001",
+          "title": "Visceral leishmaniasis with prolonged fever and splenomegaly"
+        },
+        {
+          "chunk_id": "mcl-001",
+          "confirmatory": false,
+          "diagnosis_label": "Mucocutaneous leishmaniasis",
+          "excerpt": "Nasal septal destruction, oral ulceration, and mucosal inflammation after prior cutaneous disease support mucocutaneous leishmaniasis.",
+          "score": 0.164,
+          "source_case_id": "case-mcl-001",
+          "title": "Mucocutaneous leishmaniasis with nasal and oral involvement"
+        }
+      ],
+      "metadata": {
+        "provider_mode": "real_gpu_gemma4",
+        "model_name": "google/gemma-4-E4B-it",
+        "elapsed_seconds": 64.2
+      },
+      "raw_response": {
+        "assistant_markdown": "> Safety boundary: research decision support only; not ground truth, not clinical validation, and not a diagnosis system.\n\n## Supportive Differential (Not a Diagnosis)\n**Rank 1 supportive consideration:** Mucocutaneous Leishmaniasis (Mucocutaneous form)\n**Rank 1 Diagnosis Type:** MCL\n**Rank 1 Species (if determinable):** Not determinable\n**Rank 1 Confidence:** Medium\n**Rank 2:** Visceral Leishmaniasis (VL)\n**Rank 3:** Non-Leishmaniasis (e.g., Mycobacterial infection, Metastatic malignancy)\n**Most supported option in this research demo:** Mucocutaneous Leishmaniasis (Mucocutaneous form)\n**Evidence source used by the model:** Both\n\n## SUPPORTING EVIDENCE\n*   The patient presents with mucocutaneous lesions (nodules and plaques on the nasal area) alongside cutaneous lesions (dorsum of wrist, finger, back) and lymphadenopathy, which is consistent with the spectrum of leishmaniasis.\n*   The clinical presentation of fever, weight loss, and chronic lesions following potential exposure in Bihar raises concern for mucocutaneous leishmaniasis (Context 1).\n*   The presence of mucocutaneous involvement warrants prompt tissue confirmation, as suggested by Context 1.\n*   The patient's immunosuppressed state (HIV positive, CD4 count 210 cells/μL) increases susceptibility to disseminated or mucocutaneous forms.\n\n## DIFFERENTIAL CONSIDERATIONS\n*   **Visceral Leishmaniasis (VL):** Suggested by the chronic systemic symptoms (fever, weight loss), but the primary presentation here is mucocutaneous/cutaneous, making MCL a stronger initial fit, though VL must be ruled out due to the systemic illness.\n*   **Non-Leishmaniasis:** Chronic infections (e.g., Tuberculosis, fungal infections) or dermatological malignancies must be considered given the chronicity and location of the lesions.\n\n## UNCERTAINTY AND MISSING INFORMATION\nThe definitive diagnosis requires tissue biopsy confirmation of amastigotes or parasite DNA detection, which is currently missing. The distinction between mucocutaneous and cutaneous forms relies heavily on the extent of mucosal involvement, which needs clearer visualization or biopsy confirmation.\n\n## SUGGESTED CONFIRMATORY TESTS OR CLINICIAN REVIEW\nTissue biopsy of the nasal lesion should be obtained for microscopic examination (looking for amastigotes) or molecular confirmation (PCR). Serological testing should be interpreted cautiously given the patient's HIV status and disease stage. Clinician review is needed to assess the extent of mucosal destruction.\n\n## EVIDENCE USED\nMedical knowledge regarding leishmaniasis spectrum and Context 1 (Mucocutaneous lesions prompting tissue confirmation).",
+        "disclaimer": "Decision support only. This demo uses local Gemma 4 GPU generation with a small local demo KB. It is not clinical deployment, has not been clinician-validated, and must not be used as a diagnosis system.",
+        "evidence": [
+          {
+            "chunk_id": "mcl-002",
+            "confirmatory": true,
+            "diagnosis_label": "Mucocutaneous leishmaniasis",
+            "excerpt": "Palatal or nasal mucosal lesions with compatible epidemiology should raise concern for mucocutaneous leishmaniasis and prompt tissue confirmation.",
+            "score": 0.2451,
+            "source_case_id": "case-mcl-002",
+            "title": "Palatal and nasal mucosal disease in leishmaniasis"
+          },
+          {
+            "chunk_id": "vl-001",
+            "confirmatory": true,
+            "diagnosis_label": "Visceral leishmaniasis",
+            "excerpt": "Prolonged fever, weight loss, pancytopenia, and splenomegaly are classic features of visceral leishmaniasis. Bone marrow or tissue confirmation is typically required.",
+            "score": 0.2321,
+            "source_case_id": "case-vl-001",
+            "title": "Visceral leishmaniasis with prolonged fever and splenomegaly"
+          },
+          {
+            "chunk_id": "mcl-001",
+            "confirmatory": false,
+            "diagnosis_label": "Mucocutaneous leishmaniasis",
+            "excerpt": "Nasal septal destruction, oral ulceration, and mucosal inflammation after prior cutaneous disease support mucocutaneous leishmaniasis.",
+            "score": 0.164,
+            "source_case_id": "case-mcl-001",
+            "title": "Mucocutaneous leishmaniasis with nasal and oral involvement"
+          }
+        ],
+        "model_name": "google/gemma-4-E4B-it",
+        "needed_next_inputs": [
+          "clinician review",
+          "confirmatory laboratory or histopathology testing"
+        ],
+        "provider_mode": "real_gpu_gemma4",
+        "request_id": "eval_PMC3140149_01",
+        "runtime_metadata": {
+          "device_kind": "local_gpu",
+          "generation_latency_seconds": 64.19244299799902,
+          "gpu_memory_allocated_mib": 8881.3,
+          "gpu_memory_reserved_mib": 10092.0,
+          "gpu_name": "NVIDIA TITAN RTX",
+          "gpu_peak_memory_allocated_mib": 9656.0,
+          "hf_device_placement": [
+            "cuda:0"
+          ],
+          "image_tensor_fallback_reason": "",
+          "image_tensor_fallback_used": false,
+          "memory_total_mb": 24020,
+          "model_load_seconds": 7.653274466007133,
+          "model_name": "google/gemma-4-E4B-it",
+          "prompt_context_count": 4,
+          "provider_mode": "real_gpu_gemma4",
+          "quantization_mode": "4-bit",
+          "query_image_tensor_count": 1
+        },
+        "safety_state": "generated_support",
+        "timing_ms": 64194
+      },
+      "success": true,
+      "error": null
+    },
+    {
+      "case_id": "PMC7310364_01",
+      "expected_diagnosis": "MCL (Mucocutaneous Leishmaniasis)",
+      "category": "success",
+      "notes": "Classic MCL - best demo case",
+      "clinical_text": "In 2014, a 35-year-old male resident of Rio de Janeiro was admitted with ulcerated lesions on his nasal septum, nasal cavity, palate, and balanopreputial sulcus. The patient had a past history of alcohol and cocaine abuse. The lesions initially appeared in 2013 as erythematous and painful papules that grew progressively larger. Additional symptoms included headache, nasal obstruction, asthenia, and weight loss. The initial differential diagnoses included MCL, paracoccidioidomycosis, neoplasia, granulomatosis with polyangiitis, and tuberculosis.",
+      "assistant_markdown": "> Safety boundary: research decision support only; not ground truth, not clinical validation, and not a diagnosis system.\n\n## Supportive Differential (Not a Diagnosis)\n**Rank 1 supportive consideration:** Mucocutaneous Leishmaniasis (Mucosal form)\n**Rank 1 Diagnosis Type:** MCL\n**Rank 1 Species (if determinable):** Not determinable\n**Rank 1 Confidence:** Medium\n**Rank 2:** Tuberculosis (Mucosal form)\n**Rank 3:** Granulomatosis with polyangiitis\n**Most supported option in this research demo:** Mucocutaneous Leishmaniasis (Mucosal form)\n**Evidence source used by the model:** Both\n\n## SUPPORTING EVIDENCE\n- Clinical presentation includes ulcerated lesions on the nasal septum, nasal cavity, and palate, consistent with mucocutaneous involvement.\n- The progression from erythematous/painful papules to ulcerated lesions supports a chronic, progressive infectious process.\n- The patient's history of immunosuppression risk factors (alcohol/cocaine abuse) is relevant in infectious disease context.\n- Reference Case [Context 1] supports that palatal or nasal mucosal lesions raise concern for mucocutaneous leishmaniasis.\n- Reference Case [Context 2] describes nasal septal destruction and oral ulceration consistent with mucocutaneous leishmaniasis.\n\n## DIFFERENTIAL CONSIDERATIONS\nMucocutaneous Leishmaniasis (Mucosal form)\nNasopharyngeal Tuberculosis\nLeishmaniasis (Cutaneous form, if mucosal involvement is secondary)\nNeoplasia (e.g., Squamous Cell Carcinoma)\nGranulomatosis with polyangiitis (GPA)\nParacoccidioidomycosis\n\n## DIAGNOSIS ASSESSMENT\nThe clinical presentation of progressive, ulcerated lesions involving the nasal septum, nasal cavity, and palate in a patient with systemic symptoms (headache, asthenia, weight loss) is highly concerning for Mucocutaneous Leishmaniasis (MCL). This presentation aligns closely with the findings described in the supporting literature regarding mucosal involvement. However, the differential diagnosis remains broad, as other conditions like advanced tuberculosis or GPA can mimic these mucosal lesions. The patient's history of substance abuse introduces confounding factors regarding immune status and wound healing. Tissue biopsy confirmation remains critical to differentiate between parasitic infection, fungal infection, or malignancy.",
+      "safety_state": "generated_support",
+      "evidence": [
+        {
+          "chunk_id": "mcl-002",
+          "confirmatory": true,
+          "diagnosis_label": "Mucocutaneous leishmaniasis",
+          "excerpt": "Palatal or nasal mucosal lesions with compatible epidemiology should raise concern for mucocutaneous leishmaniasis and prompt tissue confirmation.",
+          "score": 0.4018,
+          "source_case_id": "case-mcl-002",
+          "title": "Palatal and nasal mucosal disease in leishmaniasis"
+        },
+        {
+          "chunk_id": "mcl-001",
+          "confirmatory": false,
+          "diagnosis_label": "Mucocutaneous leishmaniasis",
+          "excerpt": "Nasal septal destruction, oral ulceration, and mucosal inflammation after prior cutaneous disease support mucocutaneous leishmaniasis.",
+          "score": 0.2822,
+          "source_case_id": "case-mcl-001",
+          "title": "Mucocutaneous leishmaniasis with nasal and oral involvement"
+        },
+        {
+          "chunk_id": "cl-001",
+          "confirmatory": true,
+          "diagnosis_label": "Cutaneous leishmaniasis",
+          "excerpt": "A patient with an ulcerated plaque on the forearm after sandfly exposure had a lesion smear showing amastigotes. The presentation was consistent with localized cutaneous leishmaniasis.",
+          "score": 0.1821,
+          "source_case_id": "case-cl-001",
+          "title": "Cutaneous leishmaniasis with ulcer and smear-confirmed amastigotes"
+        }
+      ],
+      "metadata": {
+        "provider_mode": "real_gpu_gemma4",
+        "model_name": "google/gemma-4-E4B-it",
+        "elapsed_seconds": 53.96
+      },
+      "raw_response": {
+        "assistant_markdown": "> Safety boundary: research decision support only; not ground truth, not clinical validation, and not a diagnosis system.\n\n## Supportive Differential (Not a Diagnosis)\n**Rank 1 supportive consideration:** Mucocutaneous Leishmaniasis (Mucosal form)\n**Rank 1 Diagnosis Type:** MCL\n**Rank 1 Species (if determinable):** Not determinable\n**Rank 1 Confidence:** Medium\n**Rank 2:** Tuberculosis (Mucosal form)\n**Rank 3:** Granulomatosis with polyangiitis\n**Most supported option in this research demo:** Mucocutaneous Leishmaniasis (Mucosal form)\n**Evidence source used by the model:** Both\n\n## SUPPORTING EVIDENCE\n- Clinical presentation includes ulcerated lesions on the nasal septum, nasal cavity, and palate, consistent with mucocutaneous involvement.\n- The progression from erythematous/painful papules to ulcerated lesions supports a chronic, progressive infectious process.\n- The patient's history of immunosuppression risk factors (alcohol/cocaine abuse) is relevant in infectious disease context.\n- Reference Case [Context 1] supports that palatal or nasal mucosal lesions raise concern for mucocutaneous leishmaniasis.\n- Reference Case [Context 2] describes nasal septal destruction and oral ulceration consistent with mucocutaneous leishmaniasis.\n\n## DIFFERENTIAL CONSIDERATIONS\nMucocutaneous Leishmaniasis (Mucosal form)\nNasopharyngeal Tuberculosis\nLeishmaniasis (Cutaneous form, if mucosal involvement is secondary)\nNeoplasia (e.g., Squamous Cell Carcinoma)\nGranulomatosis with polyangiitis (GPA)\nParacoccidioidomycosis\n\n## DIAGNOSIS ASSESSMENT\nThe clinical presentation of progressive, ulcerated lesions involving the nasal septum, nasal cavity, and palate in a patient with systemic symptoms (headache, asthenia, weight loss) is highly concerning for Mucocutaneous Leishmaniasis (MCL). This presentation aligns closely with the findings described in the supporting literature regarding mucosal involvement. However, the differential diagnosis remains broad, as other conditions like advanced tuberculosis or GPA can mimic these mucosal lesions. The patient's history of substance abuse introduces confounding factors regarding immune status and wound healing. Tissue biopsy confirmation remains critical to differentiate between parasitic infection, fungal infection, or malignancy.",
+        "disclaimer": "Decision support only. This demo uses local Gemma 4 GPU generation with a small local demo KB. It is not clinical deployment, has not been clinician-validated, and must not be used as a diagnosis system.",
+        "evidence": [
+          {
+            "chunk_id": "mcl-002",
+            "confirmatory": true,
+            "diagnosis_label": "Mucocutaneous leishmaniasis",
+            "excerpt": "Palatal or nasal mucosal lesions with compatible epidemiology should raise concern for mucocutaneous leishmaniasis and prompt tissue confirmation.",
+            "score": 0.4018,
+            "source_case_id": "case-mcl-002",
+            "title": "Palatal and nasal mucosal disease in leishmaniasis"
+          },
+          {
+            "chunk_id": "mcl-001",
+            "confirmatory": false,
+            "diagnosis_label": "Mucocutaneous leishmaniasis",
+            "excerpt": "Nasal septal destruction, oral ulceration, and mucosal inflammation after prior cutaneous disease support mucocutaneous leishmaniasis.",
+            "score": 0.2822,
+            "source_case_id": "case-mcl-001",
+            "title": "Mucocutaneous leishmaniasis with nasal and oral involvement"
+          },
+          {
+            "chunk_id": "cl-001",
+            "confirmatory": true,
+            "diagnosis_label": "Cutaneous leishmaniasis",
+            "excerpt": "A patient with an ulcerated plaque on the forearm after sandfly exposure had a lesion smear showing amastigotes. The presentation was consistent with localized cutaneous leishmaniasis.",
+            "score": 0.1821,
+            "source_case_id": "case-cl-001",
+            "title": "Cutaneous leishmaniasis with ulcer and smear-confirmed amastigotes"
+          }
+        ],
+        "model_name": "google/gemma-4-E4B-it",
+        "needed_next_inputs": [
+          "clinician review",
+          "confirmatory laboratory or histopathology testing"
+        ],
+        "provider_mode": "real_gpu_gemma4",
+        "request_id": "eval_PMC7310364_01",
+        "runtime_metadata": {
+          "device_kind": "local_gpu",
+          "generation_latency_seconds": 53.9597391159914,
+          "gpu_memory_allocated_mib": 8881.3,
+          "gpu_memory_reserved_mib": 10092.0,
+          "gpu_name": "NVIDIA TITAN RTX",
+          "gpu_peak_memory_allocated_mib": 9656.2,
+          "hf_device_placement": [
+            "cuda:0"
+          ],
+          "image_tensor_fallback_reason": "",
+          "image_tensor_fallback_used": false,
+          "memory_total_mb": 24020,
+          "model_load_seconds": 7.653274466007133,
+          "model_name": "google/gemma-4-E4B-it",
+          "prompt_context_count": 4,
+          "provider_mode": "real_gpu_gemma4",
+          "quantization_mode": "4-bit",
+          "query_image_tensor_count": 1
+        },
+        "safety_state": "generated_support",
+        "timing_ms": 53962
+      },
+      "success": true,
+      "error": null
+    },
+    {
+      "case_id": "PMC10122573_02",
+      "expected_diagnosis": "Atypical anorectal/perianal MCL",
+      "category": "limitation",
+      "notes": "Atypical anorectal presentation - difficult case",
+      "clinical_text": "In January 2019, a 40-year-old male patient presented with bleeding per-rectum, fever, loss of appetite, weight loss, and stool incontinence of 7 months, associated with generalized body swelling of 2 months. He had a mass around his anus for 10 years, which he considered as hemorrhoids and was not treated medically. On investigation, an abdominal CT scan showed a 4 cm long polypoid enhancing mass in the anorectal junction with adjacent nodular fat stranding in the mesorectum. There was minimal ascites, with bilateral pleural effusion. The conclusion was an anorectal mass, likely carcinoma, with ascites and bilateral pleural effusion. Serum albumin was 1.2 mg/dl, and an HIV test was negative.",
+      "assistant_markdown": "> Safety boundary: research decision support only; not ground truth, not clinical validation, and not a diagnosis system.\n\n## Supportive Differential (Not a Diagnosis)\n**Rank 1 supportive consideration:** Gastrointestinal Malignancy (e.g., Colorectal Carcinoma)\n**Rank 1 Diagnosis Type:** Non-Leishmaniasis\n**Rank 1 Species (if determinable):** Not determinable\n**Rank 1 Confidence:** Medium\n**Rank 2:** Visceral Leishmaniasis (VL)\n**Rank 3:** Lymphoma/Other anorectal neoplasm\n**Most supported option in this research demo:** Gastrointestinal Malignancy (e.g., Colorectal Carcinoma)\n**Evidence source used by the model:** Medical knowledge\n\n## SUPPORTING EVIDENCE\n- Patient presents with a chronic (10-year) anorectal mass, which is highly suggestive of a neoplasm rather than an acute parasitic infection.\n- CT findings of a polypoid enhancing mass in the anorectal junction with adjacent nodular fat stranding and effusion are consistent with advanced malignancy.\n- Systemic symptoms (fever, weight loss, appetite loss) and hypoalbuminemia (1.2 mg/dl) suggest chronic systemic illness, which overlaps between malignancy and VL.\n- The presentation differs significantly from the classic localized skin lesions described in cutaneous leishmaniasis reference cases.\n- The presence of bilateral pleural effusion and ascites raises concerns for advanced intra-abdominal/pelvic malignancy or severe VL.\n\n## DIFFERENTIAL CONSIDERATIONS\n**Leishmaniasis:** Visceral Leishmaniasis (VL) should be considered due to chronic fever, weight loss, and effusion (similar to Context 1), but the primary presentation is a long-standing, localized anorectal mass, which is less typical for VL than for malignancy.\n**Non-Leishmaniasis:** Colorectal carcinoma, anorectal abscess/mass, or metastatic neoplasm must be prioritized given the duration and location of the primary lesion.\n\n## UNCERTAINTY AND MISSING INFORMATION\nThe definitive etiology of the anorectal mass is unknown without biopsy/histopathology. The systemic symptoms overlap significantly between advanced malignancy and VL, making differentiation impossible based on imaging and clinical history alone.\n\n## SUGGESTED CONFIRMATORY TESTS OR CLINICIAN REVIEW\nUrgent tissue biopsy of the anorectal mass is required for definitive diagnosis. Serological testing for Leishmaniasis should be pursued alongside malignancy workup, but biopsy findings will guide immediate management.\n\n## EVIDENCE USED\nMedical knowledge, Context 1 (for VL overlap), and the detailed clinical presentation provided in the query.",
+      "safety_state": "generated_support",
+      "evidence": [
+        {
+          "chunk_id": "vl-001",
+          "confirmatory": true,
+          "diagnosis_label": "Visceral leishmaniasis",
+          "excerpt": "Prolonged fever, weight loss, pancytopenia, and splenomegaly are classic features of visceral leishmaniasis. Bone marrow or tissue confirmation is typically required.",
+          "score": 0.2285,
+          "source_case_id": "case-vl-001",
+          "title": "Visceral leishmaniasis with prolonged fever and splenomegaly"
+        },
+        {
+          "chunk_id": "cl-001",
+          "confirmatory": true,
+          "diagnosis_label": "Cutaneous leishmaniasis",
+          "excerpt": "A patient with an ulcerated plaque on the forearm after sandfly exposure had a lesion smear showing amastigotes. The presentation was consistent with localized cutaneous leishmaniasis.",
+          "score": 0.1419,
+          "source_case_id": "case-cl-001",
+          "title": "Cutaneous leishmaniasis with ulcer and smear-confirmed amastigotes"
+        },
+        {
+          "chunk_id": "vl-002",
+          "confirmatory": false,
+          "diagnosis_label": "Visceral leishmaniasis",
+          "excerpt": "Kala-azar often presents with hepatosplenomegaly, chronic fever, anemia, and systemic illness rather than an isolated skin ulcer.",
+          "score": 0.1139,
+          "source_case_id": "case-vl-002",
+          "title": "Kala-azar pattern with hepatosplenomegaly"
+        }
+      ],
+      "metadata": {
+        "provider_mode": "real_gpu_gemma4",
+        "model_name": "google/gemma-4-E4B-it",
+        "elapsed_seconds": 61.24
+      },
+      "raw_response": {
+        "assistant_markdown": "> Safety boundary: research decision support only; not ground truth, not clinical validation, and not a diagnosis system.\n\n## Supportive Differential (Not a Diagnosis)\n**Rank 1 supportive consideration:** Gastrointestinal Malignancy (e.g., Colorectal Carcinoma)\n**Rank 1 Diagnosis Type:** Non-Leishmaniasis\n**Rank 1 Species (if determinable):** Not determinable\n**Rank 1 Confidence:** Medium\n**Rank 2:** Visceral Leishmaniasis (VL)\n**Rank 3:** Lymphoma/Other anorectal neoplasm\n**Most supported option in this research demo:** Gastrointestinal Malignancy (e.g., Colorectal Carcinoma)\n**Evidence source used by the model:** Medical knowledge\n\n## SUPPORTING EVIDENCE\n- Patient presents with a chronic (10-year) anorectal mass, which is highly suggestive of a neoplasm rather than an acute parasitic infection.\n- CT findings of a polypoid enhancing mass in the anorectal junction with adjacent nodular fat stranding and effusion are consistent with advanced malignancy.\n- Systemic symptoms (fever, weight loss, appetite loss) and hypoalbuminemia (1.2 mg/dl) suggest chronic systemic illness, which overlaps between malignancy and VL.\n- The presentation differs significantly from the classic localized skin lesions described in cutaneous leishmaniasis reference cases.\n- The presence of bilateral pleural effusion and ascites raises concerns for advanced intra-abdominal/pelvic malignancy or severe VL.\n\n## DIFFERENTIAL CONSIDERATIONS\n**Leishmaniasis:** Visceral Leishmaniasis (VL) should be considered due to chronic fever, weight loss, and effusion (similar to Context 1), but the primary presentation is a long-standing, localized anorectal mass, which is less typical for VL than for malignancy.\n**Non-Leishmaniasis:** Colorectal carcinoma, anorectal abscess/mass, or metastatic neoplasm must be prioritized given the duration and location of the primary lesion.\n\n## UNCERTAINTY AND MISSING INFORMATION\nThe definitive etiology of the anorectal mass is unknown without biopsy/histopathology. The systemic symptoms overlap significantly between advanced malignancy and VL, making differentiation impossible based on imaging and clinical history alone.\n\n## SUGGESTED CONFIRMATORY TESTS OR CLINICIAN REVIEW\nUrgent tissue biopsy of the anorectal mass is required for definitive diagnosis. Serological testing for Leishmaniasis should be pursued alongside malignancy workup, but biopsy findings will guide immediate management.\n\n## EVIDENCE USED\nMedical knowledge, Context 1 (for VL overlap), and the detailed clinical presentation provided in the query.",
+        "disclaimer": "Decision support only. This demo uses local Gemma 4 GPU generation with a small local demo KB. It is not clinical deployment, has not been clinician-validated, and must not be used as a diagnosis system.",
+        "evidence": [
+          {
+            "chunk_id": "vl-001",
+            "confirmatory": true,
+            "diagnosis_label": "Visceral leishmaniasis",
+            "excerpt": "Prolonged fever, weight loss, pancytopenia, and splenomegaly are classic features of visceral leishmaniasis. Bone marrow or tissue confirmation is typically required.",
+            "score": 0.2285,
+            "source_case_id": "case-vl-001",
+            "title": "Visceral leishmaniasis with prolonged fever and splenomegaly"
+          },
+          {
+            "chunk_id": "cl-001",
+            "confirmatory": true,
+            "diagnosis_label": "Cutaneous leishmaniasis",
+            "excerpt": "A patient with an ulcerated plaque on the forearm after sandfly exposure had a lesion smear showing amastigotes. The presentation was consistent with localized cutaneous leishmaniasis.",
+            "score": 0.1419,
+            "source_case_id": "case-cl-001",
+            "title": "Cutaneous leishmaniasis with ulcer and smear-confirmed amastigotes"
+          },
+          {
+            "chunk_id": "vl-002",
+            "confirmatory": false,
+            "diagnosis_label": "Visceral leishmaniasis",
+            "excerpt": "Kala-azar often presents with hepatosplenomegaly, chronic fever, anemia, and systemic illness rather than an isolated skin ulcer.",
+            "score": 0.1139,
+            "source_case_id": "case-vl-002",
+            "title": "Kala-azar pattern with hepatosplenomegaly"
+          }
+        ],
+        "model_name": "google/gemma-4-E4B-it",
+        "needed_next_inputs": [
+          "clinician review",
+          "confirmatory laboratory or histopathology testing"
+        ],
+        "provider_mode": "real_gpu_gemma4",
+        "request_id": "eval_PMC10122573_02",
+        "runtime_metadata": {
+          "device_kind": "local_gpu",
+          "generation_latency_seconds": 61.23256879299879,
+          "gpu_memory_allocated_mib": 8881.3,
+          "gpu_memory_reserved_mib": 10092.0,
+          "gpu_name": "NVIDIA TITAN RTX",
+          "gpu_peak_memory_allocated_mib": 9658.4,
+          "hf_device_placement": [
+            "cuda:0"
+          ],
+          "image_tensor_fallback_reason": "",
+          "image_tensor_fallback_used": false,
+          "memory_total_mb": 24020,
+          "model_load_seconds": 7.653274466007133,
+          "model_name": "google/gemma-4-E4B-it",
+          "prompt_context_count": 4,
+          "provider_mode": "real_gpu_gemma4",
+          "quantization_mode": "4-bit",
+          "query_image_tensor_count": 1
+        },
+        "safety_state": "generated_support",
+        "timing_ms": 61234
+      },
+      "success": true,
+      "error": null
+    }
+  ]
+}

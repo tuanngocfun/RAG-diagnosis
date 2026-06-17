@@ -1,0 +1,26 @@
+# RAG Diagnosis Repository Index
+
+Use this file as the quick routing map for AI coding agents.
+
+## Read First
+
+1. `AGENTS.md` - repo-level safety and workflow rules.
+2. `README.md` - legacy project overview and environment notes.
+3. `docs/harness-engineering/README.md` - harness operating model.
+4. `presentation/v12d/README.md` - canonical V12d defense deck package.
+
+## Main Work Areas
+
+- Pipeline code: `rag/pipeline/`
+- Pipeline tests: `rag/tests/`
+- Query/config contracts: `rag/configs/`
+- Local demo backend/UI: `demo/flutter/`
+- Final defense package: `presentation/v12d/`
+- Selected experiment traces: `experiments/structured_cases_v4_2_2_rtx6000/`
+- Dataset ledger: `data/whole_multicare_dataset/`
+
+## Clinical-Safety Boundary
+
+This repository supports research evaluation and thesis demonstration only. It
+does not provide clinical advice, deployment-ready triage, or image-only
+diagnosis.

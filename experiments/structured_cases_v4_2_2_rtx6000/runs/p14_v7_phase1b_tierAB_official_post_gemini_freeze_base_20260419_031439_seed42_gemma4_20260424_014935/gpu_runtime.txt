@@ -1,0 +1,14 @@
+[gpu-telemetry] started_at=2026-04-23T18:49:34Z
+[gpu-telemetry] runtime_log=/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/runtimes/rag/multimodal/gemma4_tensor_on.txt
+[gpu-telemetry] gpu_log=/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/runtimes/rag/multimodal/gemma4_tensor_on.csv
+[gpu-telemetry] gpu_index=0
+[gpu-telemetry] sample_interval_seconds=1
+Loading Gemma 4 from /mnt/data/hf/transformers/models--google--gemma-4-E4B-it/snapshots/83df0a889143b1dbfc61b591bbc639540fd9ce4c...
+  Cache dir: /mnt/data/hf/transformers
+  Device: cuda
+  Vision: True
+  Ordering mode: image_first
+  Context image tensors: True (budget=2)
+  GPU VRAM: 23.5GB
+  Quantization: 4-bit
+Loading weights:   0%|          | 0/2076 [00:00<?, ?it/s]Loading weights:  15%|█▍        | 305/2076 [00:00<00:00, 3028.41it/s]Loading weights:  35%|███▍      | 725/2076 [00:00<00:00, 3704.93it/s]Loading weights:  53%|█████▎    | 1096/2076 [00:01<00:01, 665.65it/s]Loading weights:  63%|██████▎   | 1313/2076 [00:01<00:01, 661.93it/s]Loading weights:  71%|███████   | 1470/2076 [00:01<00:00, 701.56it/s]Loading weights:  95%|█████████▌| 1973/2076 [00:01<00:00, 1238.28it/s]Loading weights: 100%|██████████| 2076/2076 [00:01<00:00, 1071.10it/s]

@@ -1,0 +1,56 @@
+[
+  {
+    "chunk_id": "cl-001",
+    "source_case_id": "case-cl-001",
+    "title": "Cutaneous leishmaniasis with ulcer and smear-confirmed amastigotes",
+    "diagnosis_label": "Cutaneous leishmaniasis",
+    "text": "A patient with an ulcerated plaque on the forearm after sandfly exposure had a lesion smear showing amastigotes. The presentation was consistent with localized cutaneous leishmaniasis.",
+    "tags": ["ulcer", "plaque", "forearm", "smear", "amastigotes", "sandfly", "lesion"],
+    "confirmatory": true
+  },
+  {
+    "chunk_id": "cl-002",
+    "source_case_id": "case-cl-002",
+    "title": "Papulonodular skin lesion in endemic travel history",
+    "diagnosis_label": "Cutaneous leishmaniasis",
+    "text": "A chronic papule progressing to a nodular ulcer after endemic travel supported cutaneous leishmaniasis. Biopsy and PCR were used for confirmation.",
+    "tags": ["papule", "nodule", "ulcer", "travel", "biopsy", "pcr", "skin"],
+    "confirmatory": true
+  },
+  {
+    "chunk_id": "vl-001",
+    "source_case_id": "case-vl-001",
+    "title": "Visceral leishmaniasis with prolonged fever and splenomegaly",
+    "diagnosis_label": "Visceral leishmaniasis",
+    "text": "Prolonged fever, weight loss, pancytopenia, and splenomegaly are classic features of visceral leishmaniasis. Bone marrow or tissue confirmation is typically required.",
+    "tags": ["prolonged fever", "splenomegaly", "pancytopenia", "bone marrow", "weight loss"],
+    "confirmatory": true
+  },
+  {
+    "chunk_id": "vl-002",
+    "source_case_id": "case-vl-002",
+    "title": "Kala-azar pattern with hepatosplenomegaly",
+    "diagnosis_label": "Visceral leishmaniasis",
+    "text": "Kala-azar often presents with hepatosplenomegaly, chronic fever, anemia, and systemic illness rather than an isolated skin ulcer.",
+    "tags": ["kala azar", "hepatosplenomegaly", "fever", "anemia", "systemic"],
+    "confirmatory": false
+  },
+  {
+    "chunk_id": "mcl-001",
+    "source_case_id": "case-mcl-001",
+    "title": "Mucocutaneous leishmaniasis with nasal and oral involvement",
+    "diagnosis_label": "Mucocutaneous leishmaniasis",
+    "text": "Nasal septal destruction, oral ulceration, and mucosal inflammation after prior cutaneous disease support mucocutaneous leishmaniasis.",
+    "tags": ["nasal", "oral ulcer", "mucosal", "septum", "destruction"],
+    "confirmatory": false
+  },
+  {
+    "chunk_id": "mcl-002",
+    "source_case_id": "case-mcl-002",
+    "title": "Palatal and nasal mucosal disease in leishmaniasis",
+    "diagnosis_label": "Mucocutaneous leishmaniasis",
+    "text": "Palatal or nasal mucosal lesions with compatible epidemiology should raise concern for mucocutaneous leishmaniasis and prompt tissue confirmation.",
+    "tags": ["palate", "nasal", "mucosal", "tissue confirmation"],
+    "confirmatory": true
+  }
+]
