@@ -1,0 +1,73 @@
+{
+  "cases": {
+    "PMC7516301_01": {
+      "expected": "MCL",
+      "norag": {
+        "diagnosis_type": "Non-Leishmaniasis",
+        "confidence": "High",
+        "rank1_full": "Non-Leishmaniasis",
+        "evidence_count": 0
+      },
+      "rag": {
+        "diagnosis_type": "MCL",
+        "confidence": "Medium",
+        "rank1_full": "Mucocutaneous Leishmaniasis (Mucosal form)",
+        "evidence_count": 3
+      },
+      "analysis": {
+        "category": "rag_rescue",
+        "impact": "RAG RESCUED: Without RAG completely failed (non-leish), WITH RAG correctly identified MCL",
+        "norag_result": "✗ WRONG (total failure)",
+        "rag_result": "✓ CORRECT"
+      }
+    },
+    "PMC7456484_01": {
+      "expected": "PKDL",
+      "norag": {
+        "diagnosis_type": "DCL",
+        "confidence": "High",
+        "rank1_full": "Cutaneous Leishmaniasis (DCL)",
+        "evidence_count": 0
+      },
+      "rag": {
+        "diagnosis_type": "MCL",
+        "confidence": "Medium",
+        "rank1_full": "Chronic Dermatological Manifestation of Leishmaniasis (or Mucocutaneous Leishmaniasis Sequelae)",
+        "evidence_count": 3
+      },
+      "analysis": {
+        "category": "both_struggle",
+        "impact": "BOTH PARTIAL: Subtype differentiation challenging regardless",
+        "norag_result": "~ Partial (DCL)",
+        "rag_result": "~ Partial (MCL)"
+      }
+    },
+    "PMC10026180_04": {
+      "expected": "Non-Leishmaniasis",
+      "norag": {
+        "diagnosis_type": "Non-Leishmaniasis",
+        "confidence": "High",
+        "rank1_full": "Non-Leishmaniasis",
+        "evidence_count": 0
+      },
+      "rag": {
+        "diagnosis_type": "Non-Leishmaniasis",
+        "confidence": "Medium",
+        "rank1_full": "Non-Leishmaniasis (Atypical/Secondary Infection or Dermatological Manifestation related to underlying condition)",
+        "evidence_count": 3
+      },
+      "analysis": {
+        "category": "both_correct",
+        "impact": "BOTH CORRECT: RAG maintained specificity, didn't hurt",
+        "norag_result": "✓ CORRECT",
+        "rag_result": "✓ CORRECT"
+      }
+    }
+  },
+  "stats": {
+    "norag_accuracy": "1/3 (33%)",
+    "rag_accuracy": "2/3 (67%)",
+    "improvement": "+34 percentage points",
+    "key_finding": "RAG DOUBLES accuracy from 33% to 67%"
+  }
+}

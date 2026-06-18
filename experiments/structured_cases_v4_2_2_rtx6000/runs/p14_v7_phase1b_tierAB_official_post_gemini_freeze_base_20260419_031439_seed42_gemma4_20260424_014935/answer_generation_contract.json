@@ -1,0 +1,175 @@
+{
+  "is_rag": true,
+  "generator_type": "gemma4",
+  "generator_model": "/mnt/data/hf/transformers/models--google--gemma-4-E4B-it/snapshots/83df0a889143b1dbfc61b591bbc639540fd9ce4c",
+  "generator_model_requested": "/mnt/data/hf/transformers/models--google--gemma-4-E4B-it/snapshots/83df0a889143b1dbfc61b591bbc639540fd9ce4c",
+  "generator_model_path_requested": "/mnt/data/hf/transformers/models--google--gemma-4-E4B-it/snapshots/83df0a889143b1dbfc61b591bbc639540fd9ce4c",
+  "generator_model_resolved": "/mnt/data/hf/transformers/models--google--gemma-4-E4B-it/snapshots/83df0a889143b1dbfc61b591bbc639540fd9ce4c",
+  "generator_model_local_path_exists": true,
+  "prompt_mode": "balanced",
+  "prompt_mode_requested": "balanced",
+  "prompt_contract_version": "mixed",
+  "prompt_contract_notes": "multiple_prompt_contracts",
+  "prompt_contract_summary": {
+    "prompt_contract_version": "mixed",
+    "prompt_contract_notes": "multiple_prompt_contracts",
+    "mixed_contracts": true,
+    "by_version": {
+      "rag_balanced_image_grounding_v1": {
+        "count": 31,
+        "notes": "explicit_patient_image_grounding_required_when_images_present",
+        "image_grounding_required_count": 31
+      },
+      "balanced_no_context_shared_prompt_v1": {
+        "count": 25,
+        "notes": "shared_balanced_no_context_prompt_contract",
+        "image_grounding_required_count": 12
+      }
+    }
+  },
+  "prompt_image_grounding_required_any": true,
+  "prompt_image_grounding_required_count": 43,
+  "context_k": 3,
+  "ordering_mode": "image_first",
+  "use_context_image_tensors": true,
+  "support_image_tensor_budget": 2,
+  "answer_file": "answers_latency.jsonl",
+  "record_count": 56,
+  "generation_mode_counts": {
+    "rag_prompt": 31,
+    "norag_prompt": 25
+  },
+  "final_route_counts": {
+    "adaptive_rag": 31,
+    "balanced_no_context_fallback": 25
+  },
+  "fallback_reason_counts": {
+    "unsupported_nonleish_topk_bias": 24,
+    "low_support_no_confirmatory_context": 1
+  },
+  "generation_query_source_counts": {
+    "formatted_query": 56
+  },
+  "retrieval_support_status_counts": {
+    "weak_support": 9,
+    "supported": 20,
+    "unsupported_nonleish_topk_bias": 24,
+    "low_support_no_confirmatory_context": 3
+  },
+  "prompt_context_count_avg": 1.2678571428571428,
+  "retrieval_top_k_inherited": 20,
+  "multimodal_usage_summary": {
+    "rows_with_query_images": 24,
+    "rows_with_context_images_available": 31,
+    "rows_with_query_image_tensors": 24,
+    "rows_with_support_image_tensors": 31,
+    "mean_query_image_tensor_count": 0.7857142857142857,
+    "mean_support_image_tensor_count": 1.0714285714285714,
+    "image_tensor_fallback_count": 0,
+    "true_multimodal_support_active": true
+  },
+  "generation_timing_summary": {
+    "n": 56,
+    "mean_seconds": 55.90178921967163,
+    "median_seconds": 55.02434738993179,
+    "p90_seconds": 72.99753635353409,
+    "min_seconds": 36.45801408798434,
+    "max_seconds": 83.50746565905865,
+    "warm_start_mean_seconds": 55.50745362559418
+  },
+  "runtime_environment": {
+    "cuda_visible_devices": "0",
+    "hf_home": "/mnt/data/hf",
+    "huggingface_hub_cache": "/mnt/data/hf/hub",
+    "transformers_cache": "/mnt/data/hf/transformers",
+    "sentence_transformers_home": "/mnt/data/hf/sentence-transformers"
+  },
+  "rollout_policy": {
+    "stage": "official_primary",
+    "thesis_story": "family-level current standard comparison",
+    "dataset_policy": {
+      "dataset_version": "p14_v7_phase1b_tierAB_official",
+      "dataset_pack": "mixed56",
+      "official_structured_dataset_version": "p14_v7_phase1b_tierAB_official",
+      "official_structured_base_dataset_version": "p14_v7",
+      "official_alias_set": {
+        "train": "nonleish_additions/generated/train_pseudolabel_v2_phase1b_tierAB.jsonl",
+        "test": "test_pseudolabel_v2_normalized_v7_process14.jsonl",
+        "query": "eval_queries_v163_pseudolabel_v2_v7_process14.jsonl",
+        "query_mixed56": "eval_queries_v163_mixed56_v7_process14.jsonl",
+        "qrels_verified": "qrels_pseudolabel_verified_v7_process14.json",
+        "qrels_pseudolabel": "qrels_pseudolabel_label_v7_process14.json"
+      },
+      "primary_reasoning_recall_dataset_pack": "mixed56",
+      "secondary_reasoning_recall_dataset_pack": "auto"
+    },
+    "model_policy": {
+      "primary_matrix_label": "family-level current standard comparison",
+      "bridge_matrix_label": "backward-looking continuity baselines",
+      "primary_family_matrix": [
+        "gemini-2.5-flash-lite",
+        "google/medgemma-1.5-4b-it",
+        "google/gemma-4-E4B-it"
+      ],
+      "bridge_family_matrix": [
+        "google/gemma-3-4b-it",
+        "google/medgemma-4b-it",
+        "gemini-2.5-pro"
+      ],
+      "generator_model": "/mnt/data/hf/transformers/models--google--gemma-4-E4B-it/snapshots/83df0a889143b1dbfc61b591bbc639540fd9ce4c",
+      "generator_family_tier": "other"
+    },
+    "judge_policy": {
+      "planned_judge_model": "gemini-2.5-flash-lite",
+      "actual_judge_model": "gemini-2.5-flash-lite",
+      "fallback_judge_model": "gemini-2.5-flash-lite",
+      "sensitivity_judge_model": "gemini-2.5-pro"
+    },
+    "reasoning_recall": {
+      "release_status": "official_thesis_facing",
+      "thesis_facing": true,
+      "primary_metric": "reasoning_recall_top1_primary",
+      "secondary_metric": "reasoning_recall_top3_differential",
+      "canonical_source_policy": "v7_shared56_first",
+      "primary_dataset_scope": "mixed56",
+      "secondary_reporting_scope": "136-query pseudolabel_v2_v7_process14 stratified by query_type"
+    },
+    "visual_hallucination": {
+      "release_status": "coverage_limited_non_headline",
+      "reporting_labels": [
+        "compatibility-only",
+        "coverage-limited"
+      ],
+      "thesis_facing": false,
+      "headline_mean_allowed": false,
+      "requires_image_subset_reporting": true
+    },
+    "reporting_policy": {
+      "reasoning_recall_release_status": "official_thesis_facing",
+      "visual_hallucination_release_status": "coverage_limited_non_headline",
+      "visual_hallucination_labels": [
+        "compatibility-only",
+        "coverage-limited"
+      ],
+      "primary_table_dataset": "mixed56",
+      "secondary_appendix_dataset": "eval_queries_v163_pseudolabel_v2_v7_process14.jsonl"
+    }
+  },
+  "gpu_telemetry_summary": {
+    "device_kind": "local_gpu",
+    "gpu_name": "NVIDIA TITAN RTX",
+    "cuda_visible_devices": "0",
+    "telemetry_window": "full_run_from_process_start",
+    "telemetry_source": "nvidia_smi_csv",
+    "sample_interval_seconds": 1.0,
+    "memory_total_mb": 24576,
+    "memory_peak_used_mb": 19289,
+    "gpu_util_mean_percent": 36.74713010204081,
+    "gpu_util_max_percent": 100.0,
+    "sample_count": 3136,
+    "quantization_mode": "4-bit",
+    "hf_device_placement": [
+      "cuda:0"
+    ]
+  }
+}

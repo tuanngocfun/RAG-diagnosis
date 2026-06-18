@@ -250,3 +250,50 @@ pnpm-debug.log*
 !Leishmania_v3/master_template/thesis-template-master/docs/*.pdf
 !Leishmania_v3/master_template/thesis-template-master/gfx/**/*.pdf
 !Leishmania_v3/master_template/thesis-template-master/gfx/**/*.eps
+
+############################################
+# 17. Curated RAG diagnosis package
+############################################
+
+# Agent and repo navigation docs
+!AGENTS.md
+!llms.txt
+!/docs/
+!/docs/**
+
+# Modern RAG code and tests
+!/rag/
+!/rag/**
+/rag/**/__pycache__/
+/rag/**/*.pyc
+
+# Local defense demo source. Keep generated app/build and tool caches out.
+!/demo/
+!/demo/**
+/demo/flutter/app/build/
+/demo/flutter/app/.dart_tool/
+/demo/flutter/app/.idea/
+/demo/flutter/backend/.pytest_cache/
+/demo/**/__pycache__/
+/demo/**/*.pyc
+/demo/flutter/live-demo/real-gpu-runs/
+
+# Final V12d presentation package. Keep historical backup archive out.
+!/presentation/
+!/presentation/v12d/
+!/presentation/v12d/**
+/presentation/v12d/archive/
+/presentation/v12d/**/__pycache__/
+/presentation/v12d/**/*.pyc
+
+# Selected experiment evidence only; raw broad run archives stay excluded.
+!/experiments/
+!/experiments/structured_cases_v4_2_2_rtx6000/
+!/experiments/structured_cases_v4_2_2_rtx6000/**
+
+# Lightweight dataset ledger. Do not commit raw zips/parquets.
+!/data/
+!/data/whole_multicare_dataset/
+!/data/whole_multicare_dataset/**
+/data/whole_multicare_dataset/*.zip
+/data/whole_multicare_dataset/*.parquet

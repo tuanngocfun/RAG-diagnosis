@@ -1,0 +1,533 @@
+{
+  "case_id": "PMC7516301_01",
+  "qid": "PMC7516301_01::Q1_Q3_multimodal_diagnosis",
+  "query_type": "Q1_Q3_multimodal_diagnosis",
+  "official_rag_trace": {
+    "retrieval_source": "/home/ngocnt/experiments/structured_cases_v4_2_2_rtx6000/runs/p14_v7_phase1b_tierAB_official_post_gemini_freeze_base_20260419_031439_seed42_gemma4_20260424_014935/retrieval.jsonl",
+    "answer_source": "/home/ngocnt/experiments/structured_cases_v4_2_2_rtx6000/runs/p14_v7_phase1b_tierAB_official_post_gemini_freeze_base_20260419_031439_seed42_gemma4_20260424_014935/answers_latency.jsonl",
+    "retrieval_row": {
+      "qid": "PMC7516301_01::Q1_Q3_multimodal_diagnosis",
+      "query_type": "Q1_Q3_multimodal_diagnosis",
+      "query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 19-year-old man from Syria (arrived in Denmark in 2015) presented in June 2016 with a 6-month history of throat irritation that progressed over several days to severe throat pain and fever. He had no history of severe illness or excess infections; examination noted a scar on his arm that was suggestive of previous cutaneous leishmaniasis. Laryngoscopy demonstrated massive edema of the mucosa of both the pharynx and larynx; the epiglottis and uvula were swollen and red with papilloma-like lesions. Endoscopic images show marked swelling and papillomatous-appearing mucosal lesions of the oropharynx and larynx.",
+      "clinical_context": "A 19-year-old man from Syria (arrived in Denmark in 2015) presented in June 2016 with a 6-month history of throat irritation that progressed over several days to severe throat pain and fever. He had n",
+      "raw_question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+      "resolved_question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+      "contexts": [
+        {
+          "doc_id": "PMC7528117_01",
+          "score": 0.03301807008521583,
+          "text": "A 52‑year‑old woman who works in sugarcane fields in a rural area was referred to Oral Medicine for evaluation of a granulomatous lesion on the palate and for hoarseness that she thought followed a flu 3 months earlier. According to the referring surgeon, she had an extensive oral lesion and had undergone laryngoscopy and biopsy; that biopsy produced a histopathological result of “pseudoepitheliomatous hyperplasia and an active chronic inflammatory process, suggesting a fungus investigation,” prompting the referral. She reported no chronic systemic disease or regular medications. She described a history of crusting and nasal bleeding that began about 4 years earlier. On examination she had nasal obstruction, a nasal (hyponasal) voice, and was a mouth breather. She had smoked for 6 months and used both upper and lower complete dental prostheses continuously. Extrabuccal exam showed a lowering of the right nasal wing and a nasal septum perforation. Intrabuccal exam revealed a granulomatous lesion involving the entire palate and uvula, extending bilaterally to the pharynx with an erythematous appearance and areas of scratchable white plaques.",
+          "meta": {
+            "has_images": true
+          },
+          "is_leishmaniasis": true,
+          "diagnosis_type": "MCL",
+          "label_source": "train_verified"
+        },
+        {
+          "doc_id": "PMC7527865_05",
+          "score": 0.01497737556561086,
+          "text": "A 30-year-old Caucasian man, unemployed, HIV-negative and with no other concomitant infections, presented in 2014 with a papule on the inferior eyelid of the right eye. His past history included, in 2008, an isolated nodulation in the right leg that resolved after treatment. Over time new lesions progressively appeared on the chest, abdomen, back, feet, and in the oral cavity. Ulcerated oral lesions were present on the hard palate and on the left and right jugal mucosa. Disease progression was associated with fever, headache, and weight loss.",
+          "meta": {
+            "has_images": true
+          },
+          "is_leishmaniasis": true,
+          "diagnosis_type": "MCL",
+          "label_source": "train_verified"
+        },
+        {
+          "doc_id": "PMC7585787_01",
+          "score": 0.014164989939637825,
+          "text": "A 38‑year‑old man from Yayu district, western Ethiopia, presented to the outpatient clinic with multiple skin lesions on his face and hands and mutilation of the nose; his upper lip was injured and swollen. Eight years earlier he had a small papule on the right cheek that progressed to an open ulcer, then to ulcers on the left cheek and forehead; those active lesions lasted about six months and healed spontaneously, leaving permanent hypopigmented scars. He had no fever, hepatosplenomegaly or lymphedema and reported no history of HIV, chronic disease, alcohol abuse, or immunomodulatory drug use. Parasitological testing of lesion smears at that time showed many macrophages filled with amastigote stages of Leishmania, graded as +6. A nonreactive rK39 rapid diagnostic test and absence of related systemic signs made visceral leishmaniasis unlikely. Based on the clinical manifestations and smear result he was diagnosed with mucocutaneous leishmaniasis and treated with intramuscular sodium stibogluconate (20 mg/kg/day for 30 days) with clinical cure. Two years later he returned with a different cutaneous eruption that had appeared over the previous three months and had been preceded by intense itching. On exam he had multiple, nonpitting, closed papules on his face, nose, hands and legs. A skin smear again showed intramacrophage amastigotes with a parasite load graded +6, and culture grew promastigotes.",
+          "meta": {
+            "has_images": true
+          },
+          "is_leishmaniasis": true,
+          "diagnosis_type": "MCL",
+          "label_source": "train_verified"
+        },
+        {
+          "doc_id": "PMC5490479_01",
+          "score": 0.014018515019837523,
+          "text": "A 9-year-old boy presented with multiple papular lesions on the left cheek that had been present for three months and had gradually enlarged. His medical history was notable for an episode of cutaneous leishmaniasis located on the nose two years earlier, which had completely regressed after treatment with intralesional meglumine antimonate. Dermatologic examination showed multiple, coalescing, rough, slightly elevated, yellowish-brown papular lesions 3–6 mm in diameter on the left cheek. He also had a large atrophic scar on the nose. Nothing of interest was noted in his family history or his laboratory tests.",
+          "meta": {
+            "has_images": true
+          },
+          "is_leishmaniasis": true,
+          "diagnosis_type": "LR",
+          "label_source": "train_verified"
+        },
+        {
+          "doc_id": "PMC10183450_01",
+          "score": 0.013762357045939136,
+          "text": "A 61-year-old man (weight 65 kg) was referred in January with a 2-month history of a 1 × 3 cm lesion on the left ear. He has diabetes and had not traveled outside Kashan during the previous year. He reported that the ear lesion felt uncomfortable and scabrous but was not painful and he had no systemic complaints. Direct microscopy of scales with 10% potassium hydroxide (KOH) preparation was negative for fungal elements. The lesion was cleaned and specimens were collected from the margin by scraping; two smears were fixed with methanol and stained with 10% Giemsa for 30 minutes. On microscopic examination of the stained smears, amastigote forms of Leishmania spp. were observed.",
+          "meta": {
+            "has_images": true
+          },
+          "is_leishmaniasis": true,
+          "diagnosis_type": "CL",
+          "label_source": "train_verified"
+        },
+        {
+          "doc_id": "PMC6850740_02",
+          "score": 0.01143090426617677,
+          "text": "A 74-year-old woman from Tunis presented with several weeks of fever (oral temperature 38–39°C), sweats, chills, fatigue, diarrhea, intermittent vague abdominal pain, and occasional dry cough. Her only medical history was well-controlled hypertension. Examination showed a palpable spleen just below the left costal margin. The rest of the exam was essentially normal. Renal, liver, and coagulation tests were normal. A Leishmania rk39 immunochromatography test was positive. Bone marrow aspiration parasitology revealed Leishmania amastigote forms, and serum immunofluorescence for Leishmania antibodies was positive (titer 1:400). Blood qPCR detected Leishmania DNA (400 parasites/mL). Direct microscopy of skin smears from the arm lesion showed no amastigotes, but Leishmania DNA amplification was obtained from dermal DNA extract by qPCR. ITS1 sequencing showed the Leishmania strains from the blood and the arm lesion corresponded to L. infantum and were 100% identical. Systemic response was rapid: fever resolved, general condition improved, splenomegaly regressed, blood counts normalized, and blood qPCR became negative after 28 days. However, \"the skin lesion did not improve although Leishmania qPCR on dermal sample became negative.\" A skin biopsy was initially refused. One year later the lesion remained essentially unchanged. A polarized dermoscopy examination showed \"ulcerations and short, fine arborizing vessels,\" described as evocative of a basal cell carcinoma.",
+          "meta": {
+            "has_images": true
+          },
+          "is_leishmaniasis": true,
+          "diagnosis_type": "VL",
+          "label_source": "train_verified"
+        },
+        {
+          "doc_id": "PMC4710411_01",
+          "score": 0.011287758346581876,
+          "text": "A 52-year-old male farm worker from Ceara state, northeast Brazil, presented with a 4-month history of skin lesions. Lesions appeared first on the face and legs, than spread across much of his body, including the genitalia, soles of feet, and scalp. He reported daily fevers for the first 2 weeks of illness. On examination the patient had 178 lesions of different sizes and aspects; ulcerated, crusted, papular, nodular, and pustular. Many had apparent bacterial superinfections. The remainder of the physical examination was normal. A complete blood count and liver and kidney function tests were within normal limits. Serological tests for syphilis and human immunodeficiency virus were negative.",
+          "meta": {
+            "has_images": true
+          },
+          "is_leishmaniasis": true,
+          "diagnosis_type": "DsCL",
+          "label_source": "train_verified"
+        },
+        {
+          "doc_id": "PMC9096836_01",
+          "score": 0.009836065573770491,
+          "text": "A 41-year-old Caucasian man was admitted during treatment with intravenous liposomal amphotericin B for laryngeal and facial mucocutaneous leishmaniasis because of marked elevation of creatine kinase (CK) (more than 10× upper limit of normal during admission; pretreatment CK up to ~2× ULN previously) and rising serum creatinine. Past medical history was notable for visceral leishmaniasis at age 13, recurrent otitis and an episode of bronchopneumonia in childhood, long-standing unexplained elevated CK attributed in the past to occupation and boxing, and chronic periorbital/facial swelling first noted in 2013. In January 2019 he developed hoarseness and dysphonia; laryngoscopy and biopsy were positive for Leishmania spp., and earlier periocular skin samples (2015) were retrospectively PCR-positive for Leishmania spp. He reported no travel outside Europe. There was a family history notable for a brother who died at age 20 from an unspecified lymphoproliferative disease and a sister with chronic myalgias. On examination he was in good general condition with bilateral orbital swelling. Peripheral blood count was unremarkable. B-cell immunophenotyping disclosed a defect in the memory compartment with markedly low switched-memory B cells. There was no history of liver or biliary tract disease or neutropenia. The patient met criteria for common-variable immunodeficiency, but because of the opportunistic, persistent Leishmania infection further genetic studies were pursued.",
+          "meta": {
+            "has_images": true
+          },
+          "is_leishmaniasis": true,
+          "diagnosis_type": "MCL",
+          "label_source": "train_verified"
+        },
+        {
+          "doc_id": "PMC7670763_01",
+          "score": 0.00967741935483871,
+          "text": "A 55-year-old man from the Manaus region with no comorbidities had been treated for cutaneous leishmaniasis. He had completed treatment with a pentavalent antimonial drug 40 days earlier and had received a second outpatient 30-day cycle; ten days after the end of that treatment his leishmaniasis lesion was healed. He then developed grouped microvesicles on an erythematous-infiltrated base that began in the neck and ascended toward the right scalp margin. The vesicles involved the right pinna, external auditory canal, and right ear lobe and were associated with severe torticollis-like pain along the nerve distribution. HIV serology was negative.",
+          "meta": {
+            "has_images": true
+          },
+          "is_leishmaniasis": true,
+          "diagnosis_type": "CL",
+          "label_source": "train_verified"
+        },
+        {
+          "doc_id": "PMC7527865_02",
+          "score": 0.009523809523809523,
+          "text": "A 53-year-old man from Mundo Novo, State of Bahia, Brazil, presented in July with pain, nasal obstruction, odynophagia, and dysphagia. On examination there was a painful, hyperemic, friable lesion in the right nasal cavity and an infiltrative lesion involving the hard palate, soft palate, and uvula. Additional findings included an ulcerated lesion on the left eyebrow and right eye with seropurulent secretion, a small ulcer on the lower eyelid, a lesion on the lobe of the right ear, and a lesion in the malar region. The patient was admitted for diagnosis and management of disseminated skin lesions. A biopsy of the palate lesions showed a non-specific erosive chronic inflammatory process. HIV testing was negative.",
+          "meta": {
+            "has_images": true
+          },
+          "is_leishmaniasis": true,
+          "diagnosis_type": "MCL",
+          "label_source": "train_verified"
+        }
+      ],
+      "query_images": [
+        "/data1t/lab/ngocnt/Leishmania_v3/data/leishmaniasis_multimodal/images/PMC7516301_01/PMC7516301_fimmu-11-567856-g001_A_1_3.webp",
+        "/data1t/lab/ngocnt/Leishmania_v3/data/leishmaniasis_multimodal/images/PMC7516301_01/PMC7516301_fimmu-11-567856-g001_B_2_3.webp",
+        "/data1t/lab/ngocnt/Leishmania_v3/data/leishmaniasis_multimodal/images/PMC7516301_01/PMC7516301_fimmu-11-567856-g001_C_3_3.webp"
+      ],
+      "context_images": [
+        "/data1t/lab/ngocnt/Leishmania_v3/data/leishmaniasis_multimodal/images/PMC7528117_01/CRIID2020-8876020.001.jpg",
+        "/data1t/lab/ngocnt/Leishmania_v3/data/leishmaniasis_multimodal/images/PMC7528117_01/CRIID2020-8876020.002.jpg",
+        "/data1t/lab/ngocnt/Leishmania_v3/data/leishmaniasis_multimodal/images/PMC7528117_01/CRIID2020-8876020.003.jpg",
+        "/data1t/lab/ngocnt/Leishmania_v3/data/leishmaniasis_multimodal/images/PMC7528117_01/CRIID2020-8876020.004.jpg",
+        "/data1t/lab/ngocnt/Leishmania_v3/data/leishmaniasis_multimodal/images/PMC7528117_01/CRIID2020-8876020.005.jpg"
+      ],
+      "ground_truth": {
+        "diagnosis": "Mucocutaneous Leishmaniasis",
+        "diagnosis_type": "MCL",
+        "species": "L. tropica"
+      },
+      "ground_truth_pseudolabel": {
+        "diagnosis": "Leishmaniasis",
+        "diagnosis_type": "Other",
+        "species": "L. tropica"
+      },
+      "stage": "hybrid+biomedclip_fusion",
+      "resource_trace": {
+        "dense_collection_used": "cases_text_e5_1024_p14_v7_phase1b_tierAB_official",
+        "bm25_index_path_used": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/bm25_index_p14_v7_phase1b_tierAB_official.json",
+        "caption_collection_used": null,
+        "image_collection_used": "images_biomedclip_512_p14_v7_phase1b_tierAB_official",
+        "rerank_applied": true,
+        "resource_events": []
+      },
+      "agentic_trace": {
+        "enabled": false,
+        "triggered": false,
+        "reason": "disabled",
+        "refined_query": ""
+      },
+      "ablation_scope": "",
+      "query_images_stripped": false,
+      "generation_query_source": "formatted_query",
+      "generation_query_char_count": 1008,
+      "generation_query_sha256": "686cc429324e376a3d6951c9b91688f2a529a0b521d4152d10ec3fe65e5de03b",
+      "retrieval_query_text": "A 19-year-old man from Syria (arrived in Denmark in 2015) presented in June 2016 with a 6-month history of throat irritation that progressed over several days to severe throat pain and fever. He had no history of severe illness or excess infections; examination noted a scar on his arm that was suggestive of previous cutaneous leishmaniasis. Laryngoscopy demonstrated massive edema of the mucosa of both the pharynx and larynx; the epiglottis and uvula were swollen and red with papilloma-like lesions. Endoscopic images show marked swelling and papillomatous-appearing mucosal lesions of the oropharynx and larynx.",
+      "retrieval_query_source": "clinical_context",
+      "retrieval_query_char_count": 616,
+      "retrieval_query_sha256": "f16116a8fe0e7ca2a9f2f7a4d6933540967133108fad886fea58c35e90e0eff5"
+    },
+    "answer_row": {
+      "qid": "PMC7516301_01::Q1_Q3_multimodal_diagnosis",
+      "query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 19-year-old man from Syria (arrived in Denmark in 2015) presented in June 2016 with a 6-month history of throat irritation that progressed over several days to severe throat pain and fever. He had no history of severe illness or excess infections; examination noted a scar on his arm that was suggestive of previous cutaneous leishmaniasis. Laryngoscopy demonstrated massive edema of the mucosa of both the pharynx and larynx; the epiglottis and uvula were swollen and red with papilloma-like lesions. Endoscopic images show marked swelling and papillomatous-appearing mucosal lesions of the oropharynx and larynx.",
+      "contexts": [
+        {
+          "doc_id": "PMC7528117_01",
+          "score": 0.03301807008521583,
+          "text": "A 52‑year‑old woman who works in sugarcane fields in a rural area was referred to Oral Medicine for evaluation of a granulomatous lesion on the palate and for hoarseness that she thought followed a flu 3 months earlier. According to the referring surgeon, she had an extensive oral lesion and had undergone laryngoscopy and biopsy; that biopsy produced a histopathological result of “pseudoepitheliomatous hyperplasia and an active chronic inflammatory process, suggesting a fungus investigation,” prompting the referral. She reported no chronic systemic disease or regular medications. She described a history of crusting and nasal bleeding that began about 4 years earlier. On examination she had nasal obstruction, a nasal (hyponasal) voice, and was a mouth breather. She had smoked for 6 months and used both upper and lower complete dental prostheses continuously. Extrabuccal exam showed a lowering of the right nasal wing and a nasal septum perforation. Intrabuccal exam revealed a granulomatous lesion involving the entire palate and uvula, extending bilaterally to the pharynx with an erythematous appearance and areas of scratchable white plaques.",
+          "meta": {
+            "has_images": true
+          },
+          "is_leishmaniasis": true,
+          "diagnosis_type": "MCL",
+          "label_source": "train_verified",
+          "image_paths": [
+            "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7528117_01/CRIID2020-8876020.001.jpg",
+            "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7528117_01/CRIID2020-8876020.002.jpg",
+            "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7528117_01/CRIID2020-8876020.003.jpg",
+            "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7528117_01/CRIID2020-8876020.004.jpg",
+            "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7528117_01/CRIID2020-8876020.005.jpg",
+            "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7528117_01/CRIID2020-8876020.006.jpg",
+            "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7528117_01/CRIID2020-8876020.007.jpg",
+            "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7528117_01/CRIID2020-8876020.008.jpg"
+          ]
+        },
+        {
+          "doc_id": "PMC7585787_01",
+          "score": 0.014164989939637825,
+          "text": "A 38‑year‑old man from Yayu district, western Ethiopia, presented to the outpatient clinic with multiple skin lesions on his face and hands and mutilation of the nose; his upper lip was injured and swollen. Eight years earlier he had a small papule on the right cheek that progressed to an open ulcer, then to ulcers on the left cheek and forehead; those active lesions lasted about six months and healed spontaneously, leaving permanent hypopigmented scars. He had no fever, hepatosplenomegaly or lymphedema and reported no history of HIV, chronic disease, alcohol abuse, or immunomodulatory drug use. Parasitological testing of lesion smears at that time showed many macrophages filled with amastigote stages of Leishmania, graded as +6. A nonreactive rK39 rapid diagnostic test and absence of related systemic signs made visceral leishmaniasis unlikely. Based on the clinical manifestations and smear result he was diagnosed with mucocutaneous leishmaniasis and treated with intramuscular sodium stibogluconate (20 mg/kg/day for 30 days) with clinical cure. Two years later he returned with a different cutaneous eruption that had appeared over the previous three months and had been preceded by intense itching. On exam he had multiple, nonpitting, closed papules on his face, nose, hands and legs. A skin smear again showed intramacrophage amastigotes with a parasite load graded +6, and culture grew promastigotes.",
+          "meta": {
+            "has_images": true
+          },
+          "is_leishmaniasis": true,
+          "diagnosis_type": "MCL",
+          "label_source": "train_verified",
+          "image_paths": [
+            "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7585787_01/PMC7585787_IMCRJ-13-551-g0001_undivided_1_1.webp",
+            "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7585787_01/PMC7585787_IMCRJ-13-551-g0002_undivided_1_1.webp",
+            "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7585787_01/PMC7585787_IMCRJ-13-551-g0003_undivided_1_1.webp",
+            "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7585787_01/IMCRJ-13-551-g0004.jpg"
+          ]
+        },
+        {
+          "doc_id": "PMC6850740_02",
+          "score": 0.01143090426617677,
+          "text": "A 74-year-old woman from Tunis presented with several weeks of fever (oral temperature 38–39°C), sweats, chills, fatigue, diarrhea, intermittent vague abdominal pain, and occasional dry cough. Her only medical history was well-controlled hypertension. Examination showed a palpable spleen just below the left costal margin. The rest of the exam was essentially normal. Renal, liver, and coagulation tests were normal. A Leishmania rk39 immunochromatography test was positive. Bone marrow aspiration parasitology revealed Leishmania amastigote forms, and serum immunofluorescence for Leishmania antibodies was positive (titer 1:400). Blood qPCR detected Leishmania DNA (400 parasites/mL). Direct microscopy of skin smears from the arm lesion showed no amastigotes, but Leishmania DNA amplification was obtained from dermal DNA extract by qPCR. ITS1 sequencing showed the Leishmania strains from the blood and the arm lesion corresponded to L. infantum and were 100% identical. Systemic response was rapid: fever resolved, general condition improved, splenomegaly regressed, blood counts normalized, and blood qPCR became negative after 28 days. However, \"the skin lesion did not improve although Leishmania qPCR on dermal sample became negative.\" A skin biopsy was initially refused. One year later the lesion remained essentially unchanged. A polarized dermoscopy examination showed \"ulcerations and short, fine arborizing vessels,\" described as evocative of a basal cell carcinoma.",
+          "meta": {
+            "has_images": true
+          },
+          "is_leishmaniasis": true,
+          "diagnosis_type": "VL",
+          "label_source": "train_verified",
+          "image_paths": [
+            "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC6850740_02/PMC6850740_PAMJ-34-8-g001_A_1_2.webp",
+            "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC6850740_02/PMC6850740_PAMJ-34-8-g001_B_2_2.webp",
+            "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC6850740_02/PMC6850740_PAMJ-34-8-g002_undivided_1_1.webp"
+          ]
+        }
+      ],
+      "answer": "## DIAGNOSIS PREDICTION\n**Rank 1 (Most Likely):** Mucosal Leishmaniasis (Mucocutaneous Leishmaniasis)\n**Rank 1 Diagnosis Type:** MCL\n**Rank 1 Species (if determinable):** Not determinable\n**Rank 1 Confidence:** High\n**Rank 2:** Infectious/Inflammatory Pseudotumor (Non-Leishmaniasis)\n**Rank 2 Diagnosis Type:** Non-Leishmaniasis\n**Rank 2 Species (if determinable):** Not determinable\n**Rank 2 Confidence:** Medium\n**Rank 3:** Squamous Cell Carcinoma (SCC)\n**Rank 3 Diagnosis Type:** Non-Leishmaniasis\n**Rank 3 Species (if determinable):** Not determinable\n**Rank 3 Confidence:** Medium\n**Chosen Final Diagnosis for Scoring:** Mucosal Leishmaniasis (Mucocutaneous Leishmaniasis)\n**Evidence Source:** Medical knowledge / Reference cases\n\n## SUPPORTING EVIDENCE\n*   **Patient Presentation:** The patient presents with a chronic (6-month) progression of severe throat pain and fever, culminating in massive edema and papilloma-like lesions of the pharynx and larynx, which is highly characteristic of Mucosal Leishmaniasis (MCL).\n*   **Physical Findings:** The endoscopic visualization of papillomatous-appearing mucosal lesions in the oropharynx and larynx strongly supports a diagnosis of Mucosal Leishmaniasis.\n*   **Prior History:** The presence of a scar suggestive of previous cutaneous leishmaniasis increases the likelihood of subsequent mucosal involvement.\n*   **Reference Case Support:** Context 2 describes a patient presenting with mucocutaneous leishmaniasis following prior cutaneous lesions, fitting the clinical trajectory.\n\n## DIFFERENTIAL CONSIDERATIONS\n*   **Infectious/Inflammatory Pseudotumor (Non-Leishmaniasis):** Chronic granulomatous infections (e.g., fungal infections, tuberculosis) can cause extensive mucosal thickening and papillomatous lesions in the oropharynx, mimicking MCL. Context 1 describes a granulomatous lesion on the palate consistent with fungal investigation.\n*   **Squamous Cell Carcinoma (SCC):** Chronic inflammation and mucosal lesions in the oropharynx can mimic parasitic infections. Context 3 notes that a persistent lesion resembling MCL could eventually be mistaken for a basal cell carcinoma, highlighting the need to differentiate malignancy from chronic infection.\n*   **Other Mucosal Infections:** Severe fungal infections or viral etiologies must be considered given the severe mucosal involvement.",
+      "model_name": "/mnt/data/hf/transformers/models--google--gemma-4-E4B-it/snapshots/83df0a889143b1dbfc61b591bbc639540fd9ce4c",
+      "citations": [],
+      "query_images": [
+        "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7516301_01/PMC7516301_fimmu-11-567856-g001_A_1_3.webp",
+        "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7516301_01/PMC7516301_fimmu-11-567856-g001_B_2_3.webp",
+        "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7516301_01/PMC7516301_fimmu-11-567856-g001_C_3_3.webp"
+      ],
+      "context_images": [
+        "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7528117_01/CRIID2020-8876020.001.jpg",
+        "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7528117_01/CRIID2020-8876020.002.jpg",
+        "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7528117_01/CRIID2020-8876020.003.jpg",
+        "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7528117_01/CRIID2020-8876020.004.jpg",
+        "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7528117_01/CRIID2020-8876020.005.jpg"
+      ],
+      "ground_truth": {
+        "diagnosis": "Mucocutaneous Leishmaniasis",
+        "diagnosis_type": "MCL",
+        "species": "L. tropica"
+      },
+      "ground_truth_pseudolabel": {
+        "diagnosis": "Leishmaniasis",
+        "diagnosis_type": "Other",
+        "species": "L. tropica"
+      },
+      "image_paths": [
+        "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7516301_01/PMC7516301_fimmu-11-567856-g001_A_1_3.webp",
+        "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7516301_01/PMC7516301_fimmu-11-567856-g001_B_2_3.webp",
+        "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7516301_01/PMC7516301_fimmu-11-567856-g001_C_3_3.webp"
+      ],
+      "decoding_params": {
+        "temperature": 0.3,
+        "max_new_tokens": 1024,
+        "do_sample": true,
+        "random_seed": 42
+      },
+      "gating_info": "[GATE ON] score=0.0330>=0.0250",
+      "query_type": "Q1_Q3_multimodal_diagnosis",
+      "top_score": 0.03301807008521583,
+      "threshold_used": 0.025,
+      "generation_mode": "rag_prompt",
+      "retrieval_support_status": "supported",
+      "prompt_context_doc_ids": [
+        "PMC7528117_01",
+        "PMC7585787_01",
+        "PMC6850740_02"
+      ],
+      "prompt_context_count": 3,
+      "format_retry_count": 0,
+      "answer_format_valid": true,
+      "answer_format_error": "",
+      "ablation_scope": "latency_generation_only_multimodal_rag_tensor_on_budget2",
+      "query_images_stripped": false,
+      "prompt_contract_version": "rag_balanced_image_grounding_v1",
+      "prompt_contract_notes": "explicit_patient_image_grounding_required_when_images_present",
+      "prompt_image_grounding_required": true,
+      "context_k": 3,
+      "ordering_mode": "image_first",
+      "use_context_image_tensors": true,
+      "support_image_tensor_budget": 2,
+      "query_image_tensor_attempt_count": 3,
+      "support_image_tensor_attempt_count": 2,
+      "query_image_tensor_count": 3,
+      "support_image_tensor_count": 2,
+      "image_tensor_fallback_used": false,
+      "image_tensor_fallback_reason": "",
+      "generation_query_source": "formatted_query",
+      "generation_query_char_count": 1008,
+      "generation_query_sha256": "686cc429324e376a3d6951c9b91688f2a529a0b521d4152d10ec3fe65e5de03b",
+      "retrieval_query_source": "clinical_context",
+      "retrieval_query_char_count": 616,
+      "retrieval_query_sha256": "f16116a8fe0e7ca2a9f2f7a4d6933540967133108fad886fea58c35e90e0eff5",
+      "final_route": "adaptive_rag",
+      "fallback_reason": "",
+      "retrieved_context_count_used": 3,
+      "support_image_tensor_count_used": 2,
+      "generation_latency_seconds": 61.534509037970565,
+      "generation_started_at_utc": "2026-04-23T19:04:09.458992Z",
+      "generation_finished_at_utc": "2026-04-23T19:05:10.993492Z",
+      "generation_timing_scope": "per_case_generator_call",
+      "generation_row_index": 14
+    },
+    "answer_fields": {
+      "rank1": "Mucosal Leishmaniasis (Mucocutaneous Leishmaniasis)",
+      "rank1_type": "MCL",
+      "rank1_confidence": "High"
+    },
+    "context_count": 10,
+    "top_contexts_for_slide": [
+      {
+        "rank": 1,
+        "doc_id": "PMC7528117_01",
+        "score": 0.03301807008521583,
+        "diagnosis_type": "MCL",
+        "label_source": "train_verified",
+        "text_prefix_260": "A 52‑year‑old woman who works in sugarcane fields in a rural area was referred to Oral Medicine for evaluation of a granulomatous lesion on the palate and for hoarseness that she thought followed a flu 3 months earlier. According to the referring surgeon, she",
+        "text_char_count": 1157
+      },
+      {
+        "rank": 2,
+        "doc_id": "PMC7527865_05",
+        "score": 0.01497737556561086,
+        "diagnosis_type": "MCL",
+        "label_source": "train_verified",
+        "text_prefix_260": "A 30-year-old Caucasian man, unemployed, HIV-negative and with no other concomitant infections, presented in 2014 with a papule on the inferior eyelid of the right eye. His past history included, in 2008, an isolated nodulation in the right leg that resolved a",
+        "text_char_count": 548
+      },
+      {
+        "rank": 3,
+        "doc_id": "PMC7585787_01",
+        "score": 0.014164989939637825,
+        "diagnosis_type": "MCL",
+        "label_source": "train_verified",
+        "text_prefix_260": "A 38‑year‑old man from Yayu district, western Ethiopia, presented to the outpatient clinic with multiple skin lesions on his face and hands and mutilation of the nose; his upper lip was injured and swollen. Eight years earlier he had a small papule on the righ",
+        "text_char_count": 1420
+      }
+    ]
+  },
+  "fresh_gpu_audit": {
+    "source_dir": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/demo/presentation/v12d/data/revalidation_real_model_v12d_20260615-1035",
+    "source_path": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/demo/presentation/v12d/data/revalidation_real_model_v12d_20260615-1035/PMC7516301_01_result.json",
+    "result": {
+      "case_id": "PMC7516301_01",
+      "silver_reference_label": "Mucocutaneous Leishmaniasis (MCL)",
+      "expected_diagnosis": "Mucocutaneous Leishmaniasis (MCL)",
+      "category": "success",
+      "notes": "Held-out MCL case; success-style functional example.",
+      "clinical_text": "A 19-year-old man from Syria (arrived in Denmark in 2015) presented in June 2016 with a 6-month history of throat irritation that progressed over several days to severe throat pain and fever. He had no history of severe illness or excess infections; examination noted a scar on his arm that was suggestive of previous cutaneous leishmaniasis. Laryngoscopy demonstrated massive edema of the mucosa of both the pharynx and larynx; the epiglottis and uvula were swollen and red with papilloma-like lesions. Endoscopic images show marked swelling and papillomatous-appearing mucosal lesions of the oropharynx and larynx.",
+      "image_path": "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7516301_01/PMC7516301_fimmu-11-567856-g001_A_1_3.webp",
+      "input_png_path": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/demo/presentation/v12d/data/revalidation_real_model_v12d_20260615-1035/PMC7516301_01_input.png",
+      "assistant_markdown": "> Safety boundary: research decision support only; not ground truth, not clinical validation, and not a diagnosis system.\n\n## Supportive Differential (Not a Diagnosis)\n**Rank 1 supportive consideration:** Mucocutaneous Leishmaniasis (Mucosal form)\n**Rank 1 Diagnosis Type:** MCL\n**Rank 1 Species (if determinable):** Not determinable\n**Rank 1 Confidence:** Medium\n**Rank 2:** Severe Infectious Mucositis/Esophagitis (Non-Leishmaniasis)\n**Rank 3:** Other Granulomatous Disease of the Upper Respiratory Tract\n**Most supported option in this research demo:** Mucocutaneous Leishmaniasis (Mucosal form)\n**Evidence source used by the model:** Both\n\n## SUPPORTING EVIDENCE\n*   Clinical presentation of severe, progressive mucosal edema and papilloma-like lesions of the pharynx and larynx following a protracted course of irritation.\n*   Presence of a scar on the arm suggestive of prior cutaneous leishmaniasis, consistent with mucocutaneous progression.\n*   The presentation aligns with concerns raised by [Context 1] regarding palatal/nasal mucosal lesions in compatible epidemiology.\n*   The findings are consistent with the mucosal inflammation described in [Context 4] following prior cutaneous disease.\n\n## DIFFERENTIAL CONSIDERATIONS\n*   **Non-Leishmaniasis:** Severe fungal infections (e.g., mucormycosis, candidiasis), squamous cell carcinoma, or autoimmune mucositis.\n*   **Leishmaniasis:** Visceral Leishmaniasis (VL) should be considered if systemic symptoms develop, though the current presentation is primarily mucosal.\n*   **Other:** Sarcoidosis or other granulomatous diseases.\n\n## UNCERTAINTY AND MISSING INFORMATION\nThe specific causative species of Leishmania cannot be determined without parasitological or molecular confirmation. The severity of the mucosal involvement requires tissue biopsy for definitive diagnosis and species identification.\n\n## SUGGESTED CONFIRMATORY TESTS OR CLINICIAN REVIEW\nTissue biopsy of the mucosal lesions should be obtained for microscopic examination (looking for amastigotes) and molecular testing (PCR) to confirm the presence of Leishmania parasites and guide species identification. Clinician review is needed to assess for systemic involvement (fever, weight loss, organomegaly) suggestive of VL.\n\n## EVIDENCE USED\nMedical knowledge and Reference cases.",
+      "safety_state": "generated_support",
+      "evidence": [
+        {
+          "chunk_id": "mcl-002",
+          "confirmatory": true,
+          "diagnosis_label": "Mucocutaneous leishmaniasis",
+          "excerpt": "Palatal or nasal mucosal lesions with compatible epidemiology should raise concern for mucocutaneous leishmaniasis and prompt tissue confirmation.",
+          "score": 0.3617,
+          "source_case_id": "case-mcl-002",
+          "title": "Palatal and nasal mucosal disease in leishmaniasis"
+        },
+        {
+          "chunk_id": "cl-001",
+          "confirmatory": true,
+          "diagnosis_label": "Cutaneous leishmaniasis",
+          "excerpt": "A patient with an ulcerated plaque on the forearm after sandfly exposure had a lesion smear showing amastigotes. The presentation was consistent with localized cutaneous leishmaniasis.",
+          "score": 0.3038,
+          "source_case_id": "case-cl-001",
+          "title": "Cutaneous leishmaniasis with ulcer and smear-confirmed amastigotes"
+        },
+        {
+          "chunk_id": "vl-001",
+          "confirmatory": true,
+          "diagnosis_label": "Visceral leishmaniasis",
+          "excerpt": "Prolonged fever, weight loss, pancytopenia, and splenomegaly are classic features of visceral leishmaniasis. Bone marrow or tissue confirmation is typically required.",
+          "score": 0.2457,
+          "source_case_id": "case-vl-001",
+          "title": "Visceral leishmaniasis with prolonged fever and splenomegaly"
+        }
+      ],
+      "metadata": {
+        "provider_mode": "real_gpu_gemma4",
+        "model_name": "google/gemma-4-E4B-it",
+        "elapsed_seconds": 56.32,
+        "request_id": "v12d_real_model_trace_PMC7516301_01",
+        "query_image_tensor_count": 1
+      },
+      "split_provenance": {
+        "held_out_source": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/details_analysis/rtx_titan/structured_cases_v4/leishmaniasis_verified_v2/test_p14_v7_normalized.jsonl",
+        "eval_query_source": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/details_analysis/rtx_titan/structured_cases_v4/leishmaniasis_verified_v2/eval_queries_p14_v7_mixed56.jsonl",
+        "clinical_retrieval_corpus_source": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/details_analysis/rtx_titan/structured_cases_v4/leishmaniasis_verified_v2/nonleish_additions/generated/train_phase1b_tierAB.jsonl",
+        "runtime_retrieval_kb_source": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/demo/flutter/kb/leishmaniasis_demo_pack.json",
+        "test_count": 1,
+        "eval_query_count": 1,
+        "train_count": 0,
+        "source_terms": {
+          "official_experimental_retrieval_corpus": "121-case phase1b Tier A+B train artifact; used for split-exclusion verification",
+          "saved_demo_runtime_kb": "small local defense demo KB used by the preserved backend output",
+          "held_out_evaluation_set": "56 non-indexed evaluation cases"
+        },
+        "label_status": "silver_reference_only"
+      },
+      "label_contract": {
+        "dataset_version": "p14_v7",
+        "ground_truth_status": "silver_reference_only",
+        "verified_track": "reference_label propagated from the structured multimodal pipeline, not clinician gold ground truth",
+        "pseudolabel_track": "Prompt-1 final_diagnosis extracted from the structured multimodal pipeline, not clinician gold ground truth",
+        "disclaimer": "Evaluation labels are silver labels derived from GPT-5-mini and Gemini 2.5 Pro pipeline outputs; they are not clinician ground truth."
+      },
+      "raw_response": {
+        "assistant_markdown": "> Safety boundary: research decision support only; not ground truth, not clinical validation, and not a diagnosis system.\n\n## Supportive Differential (Not a Diagnosis)\n**Rank 1 supportive consideration:** Mucocutaneous Leishmaniasis (Mucosal form)\n**Rank 1 Diagnosis Type:** MCL\n**Rank 1 Species (if determinable):** Not determinable\n**Rank 1 Confidence:** Medium\n**Rank 2:** Severe Infectious Mucositis/Esophagitis (Non-Leishmaniasis)\n**Rank 3:** Other Granulomatous Disease of the Upper Respiratory Tract\n**Most supported option in this research demo:** Mucocutaneous Leishmaniasis (Mucosal form)\n**Evidence source used by the model:** Both\n\n## SUPPORTING EVIDENCE\n*   Clinical presentation of severe, progressive mucosal edema and papilloma-like lesions of the pharynx and larynx following a protracted course of irritation.\n*   Presence of a scar on the arm suggestive of prior cutaneous leishmaniasis, consistent with mucocutaneous progression.\n*   The presentation aligns with concerns raised by [Context 1] regarding palatal/nasal mucosal lesions in compatible epidemiology.\n*   The findings are consistent with the mucosal inflammation described in [Context 4] following prior cutaneous disease.\n\n## DIFFERENTIAL CONSIDERATIONS\n*   **Non-Leishmaniasis:** Severe fungal infections (e.g., mucormycosis, candidiasis), squamous cell carcinoma, or autoimmune mucositis.\n*   **Leishmaniasis:** Visceral Leishmaniasis (VL) should be considered if systemic symptoms develop, though the current presentation is primarily mucosal.\n*   **Other:** Sarcoidosis or other granulomatous diseases.\n\n## UNCERTAINTY AND MISSING INFORMATION\nThe specific causative species of Leishmania cannot be determined without parasitological or molecular confirmation. The severity of the mucosal involvement requires tissue biopsy for definitive diagnosis and species identification.\n\n## SUGGESTED CONFIRMATORY TESTS OR CLINICIAN REVIEW\nTissue biopsy of the mucosal lesions should be obtained for microscopic examination (looking for amastigotes) and molecular testing (PCR) to confirm the presence of Leishmania parasites and guide species identification. Clinician review is needed to assess for systemic involvement (fever, weight loss, organomegaly) suggestive of VL.\n\n## EVIDENCE USED\nMedical knowledge and Reference cases.",
+        "disclaimer": "Decision support only. This demo uses local Gemma 4 GPU generation with a small local demo KB. It is not clinical deployment, has not been clinician-validated, and must not be used as a diagnosis system.",
+        "evidence": [
+          {
+            "chunk_id": "mcl-002",
+            "confirmatory": true,
+            "diagnosis_label": "Mucocutaneous leishmaniasis",
+            "excerpt": "Palatal or nasal mucosal lesions with compatible epidemiology should raise concern for mucocutaneous leishmaniasis and prompt tissue confirmation.",
+            "score": 0.3617,
+            "source_case_id": "case-mcl-002",
+            "title": "Palatal and nasal mucosal disease in leishmaniasis"
+          },
+          {
+            "chunk_id": "cl-001",
+            "confirmatory": true,
+            "diagnosis_label": "Cutaneous leishmaniasis",
+            "excerpt": "A patient with an ulcerated plaque on the forearm after sandfly exposure had a lesion smear showing amastigotes. The presentation was consistent with localized cutaneous leishmaniasis.",
+            "score": 0.3038,
+            "source_case_id": "case-cl-001",
+            "title": "Cutaneous leishmaniasis with ulcer and smear-confirmed amastigotes"
+          },
+          {
+            "chunk_id": "vl-001",
+            "confirmatory": true,
+            "diagnosis_label": "Visceral leishmaniasis",
+            "excerpt": "Prolonged fever, weight loss, pancytopenia, and splenomegaly are classic features of visceral leishmaniasis. Bone marrow or tissue confirmation is typically required.",
+            "score": 0.2457,
+            "source_case_id": "case-vl-001",
+            "title": "Visceral leishmaniasis with prolonged fever and splenomegaly"
+          }
+        ],
+        "model_name": "google/gemma-4-E4B-it",
+        "needed_next_inputs": [
+          "clinician review",
+          "confirmatory laboratory or histopathology testing"
+        ],
+        "provider_mode": "real_gpu_gemma4",
+        "request_id": "v12d_real_model_trace_PMC7516301_01",
+        "runtime_metadata": {
+          "device_kind": "local_gpu",
+          "generation_latency_seconds": 56.314825399953406,
+          "gpu_memory_allocated_mib": 8881.3,
+          "gpu_memory_reserved_mib": 10092.0,
+          "gpu_name": "NVIDIA TITAN RTX",
+          "gpu_peak_memory_allocated_mib": 9657.4,
+          "hf_device_placement": [
+            "cuda:0"
+          ],
+          "image_tensor_fallback_reason": "",
+          "image_tensor_fallback_used": false,
+          "memory_total_mb": 24020,
+          "model_load_seconds": 7.653274466007133,
+          "model_name": "google/gemma-4-E4B-it",
+          "prompt_context_count": 4,
+          "provider_mode": "real_gpu_gemma4",
+          "quantization_mode": "4-bit",
+          "query_image_tensor_count": 1
+        },
+        "safety_state": "generated_support",
+        "timing_ms": 56315
+      },
+      "success": true,
+      "error": null
+    },
+    "fields": {
+      "request_id": "v12d_real_model_trace_PMC7516301_01",
+      "model_name": "google/gemma-4-E4B-it",
+      "provider_mode": "real_gpu_gemma4",
+      "elapsed_seconds": 56.32,
+      "query_image_tensor_count": 1,
+      "safety_state": "generated_support",
+      "rank1": "Mucocutaneous Leishmaniasis (Mucosal form)",
+      "rank1_type": "MCL",
+      "rank1_confidence": "Medium"
+    },
+    "evidence_count": 3,
+    "evidence_for_slide": [
+      {
+        "rank": 1,
+        "chunk_id": "mcl-002",
+        "source_case_id": "case-mcl-002",
+        "score": 0.3617,
+        "title": "Palatal and nasal mucosal disease in leishmaniasis",
+        "diagnosis_label": "Mucocutaneous leishmaniasis",
+        "confirmatory": true,
+        "excerpt": "Palatal or nasal mucosal lesions with compatible epidemiology should raise concern for mucocutaneous leishmaniasis and prompt tissue confirmation."
+      },
+      {
+        "rank": 2,
+        "chunk_id": "cl-001",
+        "source_case_id": "case-cl-001",
+        "score": 0.3038,
+        "title": "Cutaneous leishmaniasis with ulcer and smear-confirmed amastigotes",
+        "diagnosis_label": "Cutaneous leishmaniasis",
+        "confirmatory": true,
+        "excerpt": "A patient with an ulcerated plaque on the forearm after sandfly exposure had a lesion smear showing amastigotes. The presentation was consistent with localized cutaneous leishmaniasis."
+      },
+      {
+        "rank": 3,
+        "chunk_id": "vl-001",
+        "source_case_id": "case-vl-001",
+        "score": 0.2457,
+        "title": "Visceral leishmaniasis with prolonged fever and splenomegaly",
+        "diagnosis_label": "Visceral leishmaniasis",
+        "confirmatory": true,
+        "excerpt": "Prolonged fever, weight loss, pancytopenia, and splenomegaly are classic features of visceral leishmaniasis. Bone marrow or tissue confirmation is typically required."
+      }
+    ]
+  }
+}

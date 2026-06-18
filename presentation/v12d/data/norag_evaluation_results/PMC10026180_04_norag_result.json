@@ -1,0 +1,108 @@
+{
+  "case_id": "PMC10026180_04",
+  "expected_diagnosis": "Non-Leishmaniasis",
+  "category": "specificity",
+  "clinical_text": "An 11-year-old Arab girl with a known diagnosis of ataxia telangiectasia (diagnosed at 1 year) presented with a spreading skin rash on her nose that extended to the nostrils and her left cheek. Family history included consanguineous parents and another sibling with AT. Her childhood course included ataxia, recurrent lung and ear infections, sclerosing cholangitis, hypothyroidism, and later diffuse large B‑cell lymphoma. She used a wheelchair and had multiple café‑au‑lait spots and telangiectasias. Immunologic testing showed a decreased immunoglobulin level (IgG 516 mg/L) with lymphocyte count and function reported as normal. Her baseline therapies included monthly IVIG, inhaled budesonide and fluticasone, and levothyroxine.\n\nInitially she received amoxicillin–clavulanic acid and topical chloramphenicol without clinical response. On examination, the tip of the nose had an erythematous plaque with a central erosion and a circinate‑elevated border with overlying scattered pustules; the nose bridge and nostrils had small erythematous erosions. An atypical infection was considered.",
+  "image_path": "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC10026180_04/PMC10026180_fped-11-1103726-g004_undivided_1_1.webp",
+  "assistant_markdown": "> Safety boundary: research decision support only; not ground truth, not clinical validation, and not a diagnosis system.\n\n## Supportive Differential (Not a Diagnosis)\n**Rank 1 supportive consideration:** Non-Leishmaniasis\n**Rank 1 Diagnosis Type:** Non-Leishmaniasis\n**Rank 1 Species (if determinable):** Not determinable\n**Rank 1 Confidence:** Medium\n**Rank 2:** Mucocutaneous Leishmaniasis (Cutaneous Leishmaniasis)\n**Rank 3:** Secondary Bacterial Infection (Superinfection)\n**Most supported option in this research demo:** Non-Leishmaniasis\n**Evidence source used by the model:** Both\n\n## SUPPORTING EVIDENCE\n- The clinical presentation of a spreading, erythematous plaque with central erosion and circinate-elevated border on the nose, extending to the nostrils, is highly suggestive of a mucocutaneous lesion, which is consistent with the morphology described in cutaneous leishmaniasis cases (Context 1).\n- The patient's underlying condition, Ataxia Telangiectasia (AT), predisposes her to severe and atypical infections, including mucocutaneous manifestations, and compromises immune response, making atypical infection a strong consideration.\n- The initial failure of standard antimicrobial therapy (amoxicillin-clavulanic acid and topical chloramphenicol) suggests either resistance or an underlying non-infectious etiology, necessitating a broad differential.\n- The presence of telangiectasias and chronic immune dysfunction in AT patients increases the risk for opportunistic or chronic infections that mimic parasitic diseases.\n\n## DIFFERENTIAL CONSIDERATIONS\n**Leishmaniasis:** Mucocutaneous Leishmaniasis (CL) remains a strong possibility given the lesion morphology, but the patient's profound immune deficiencies (secondary to AT) necessitate considering non-leishmanial causes for the ulceration.\n**Non-Leishmaniasis:**\n*   **Mycosis:** Mucosal candidiasis or other fungal infections can present as chronic erosive plaques, especially in immunocompromised hosts.\n*   **Squamous Cell Carcinoma/Actinic Keratosis:** Chronic inflammation and immunosuppression can predispose to malignant transformation or severe dysplasia on mucosal surfaces.\n*   **Bacterial Infection:** Chronic, non-healing ulcers on the nose bridge/nostrils must be guarded against secondary bacterial infection or atypical mycobacterial infection, especially given the history of recurrent infections.\n\n## UNCERTAINTY AND MISSING INFORMATION\nThe definitive causative agent cannot be determined from the clinical presentation alone. The specific species of *Leishmania* (if present) or the etiology of the non-healing ulcer remains unknown. The current clinical picture is highly complex due to the underlying, severe immunodeficiency (AT).\n\n## SUGGESTED CONFIRMATORY TESTS OR CLINICIAN REVIEW\nClinician review is needed to correlate the lesion morphology with the patient's current immune status. Confirmatory tests should include:\n1.  **Biopsy:** Deep tissue biopsy of the lesion for histopathology, cytology, and culture (bacterial/fungal/mycobacterial).\n2.  **PCR/Microscopy:** Direct visualization of tissue aspirate/scraping for amastigotes (Leishmaniasis) or fungal elements.\n3.  **Parasitological Screening:** If Leishmaniasis is suspected, serology or PCR targeting *Leishmania* species should be considered, though biopsy remains gold standard for morphology.\n\n## EVIDENCE USED\nMedical knowledge regarding dermatological presentations in immunocompromised hosts, and contextual information provided by Reference Cases (Context 1) regarding the morphology of cutaneous leishmaniasis lesions.",
+  "safety_state": "generated_support",
+  "evidence": [
+    {
+      "chunk_id": "cl-002",
+      "confirmatory": true,
+      "diagnosis_label": "Cutaneous leishmaniasis",
+      "excerpt": "A chronic papule progressing to a nodular ulcer after endemic travel supported cutaneous leishmaniasis. Biopsy and PCR were used for confirmation.",
+      "score": 0.3079,
+      "source_case_id": "case-cl-002",
+      "title": "Papulonodular skin lesion in endemic travel history"
+    },
+    {
+      "chunk_id": "cl-001",
+      "confirmatory": true,
+      "diagnosis_label": "Cutaneous leishmaniasis",
+      "excerpt": "A patient with an ulcerated plaque on the forearm after sandfly exposure had a lesion smear showing amastigotes. The presentation was consistent with localized cutaneous leishmaniasis.",
+      "score": 0.2318,
+      "source_case_id": "case-cl-001",
+      "title": "Cutaneous leishmaniasis with ulcer and smear-confirmed amastigotes"
+    },
+    {
+      "chunk_id": "vl-002",
+      "confirmatory": false,
+      "diagnosis_label": "Visceral leishmaniasis",
+      "excerpt": "Kala-azar often presents with hepatosplenomegaly, chronic fever, anemia, and systemic illness rather than an isolated skin ulcer.",
+      "score": 0.0262,
+      "source_case_id": "case-vl-002",
+      "title": "Kala-azar pattern with hepatosplenomegaly"
+    }
+  ],
+  "metadata": {
+    "provider_mode": "real_gpu_gemma4",
+    "model_name": "google/gemma-4-E4B-it",
+    "elapsed_seconds": 85.38,
+    "rag_disabled": true
+  },
+  "raw_response": {
+    "assistant_markdown": "> Safety boundary: research decision support only; not ground truth, not clinical validation, and not a diagnosis system.\n\n## Supportive Differential (Not a Diagnosis)\n**Rank 1 supportive consideration:** Non-Leishmaniasis\n**Rank 1 Diagnosis Type:** Non-Leishmaniasis\n**Rank 1 Species (if determinable):** Not determinable\n**Rank 1 Confidence:** Medium\n**Rank 2:** Mucocutaneous Leishmaniasis (Cutaneous Leishmaniasis)\n**Rank 3:** Secondary Bacterial Infection (Superinfection)\n**Most supported option in this research demo:** Non-Leishmaniasis\n**Evidence source used by the model:** Both\n\n## SUPPORTING EVIDENCE\n- The clinical presentation of a spreading, erythematous plaque with central erosion and circinate-elevated border on the nose, extending to the nostrils, is highly suggestive of a mucocutaneous lesion, which is consistent with the morphology described in cutaneous leishmaniasis cases (Context 1).\n- The patient's underlying condition, Ataxia Telangiectasia (AT), predisposes her to severe and atypical infections, including mucocutaneous manifestations, and compromises immune response, making atypical infection a strong consideration.\n- The initial failure of standard antimicrobial therapy (amoxicillin-clavulanic acid and topical chloramphenicol) suggests either resistance or an underlying non-infectious etiology, necessitating a broad differential.\n- The presence of telangiectasias and chronic immune dysfunction in AT patients increases the risk for opportunistic or chronic infections that mimic parasitic diseases.\n\n## DIFFERENTIAL CONSIDERATIONS\n**Leishmaniasis:** Mucocutaneous Leishmaniasis (CL) remains a strong possibility given the lesion morphology, but the patient's profound immune deficiencies (secondary to AT) necessitate considering non-leishmanial causes for the ulceration.\n**Non-Leishmaniasis:**\n*   **Mycosis:** Mucosal candidiasis or other fungal infections can present as chronic erosive plaques, especially in immunocompromised hosts.\n*   **Squamous Cell Carcinoma/Actinic Keratosis:** Chronic inflammation and immunosuppression can predispose to malignant transformation or severe dysplasia on mucosal surfaces.\n*   **Bacterial Infection:** Chronic, non-healing ulcers on the nose bridge/nostrils must be guarded against secondary bacterial infection or atypical mycobacterial infection, especially given the history of recurrent infections.\n\n## UNCERTAINTY AND MISSING INFORMATION\nThe definitive causative agent cannot be determined from the clinical presentation alone. The specific species of *Leishmania* (if present) or the etiology of the non-healing ulcer remains unknown. The current clinical picture is highly complex due to the underlying, severe immunodeficiency (AT).\n\n## SUGGESTED CONFIRMATORY TESTS OR CLINICIAN REVIEW\nClinician review is needed to correlate the lesion morphology with the patient's current immune status. Confirmatory tests should include:\n1.  **Biopsy:** Deep tissue biopsy of the lesion for histopathology, cytology, and culture (bacterial/fungal/mycobacterial).\n2.  **PCR/Microscopy:** Direct visualization of tissue aspirate/scraping for amastigotes (Leishmaniasis) or fungal elements.\n3.  **Parasitological Screening:** If Leishmaniasis is suspected, serology or PCR targeting *Leishmania* species should be considered, though biopsy remains gold standard for morphology.\n\n## EVIDENCE USED\nMedical knowledge regarding dermatological presentations in immunocompromised hosts, and contextual information provided by Reference Cases (Context 1) regarding the morphology of cutaneous leishmaniasis lesions.",
+    "disclaimer": "Decision support only. This demo uses local Gemma 4 GPU generation with a small local demo KB. It is not clinical deployment, has not been clinician-validated, and must not be used as a diagnosis system.",
+    "evidence": [
+      {
+        "chunk_id": "cl-002",
+        "confirmatory": true,
+        "diagnosis_label": "Cutaneous leishmaniasis",
+        "excerpt": "A chronic papule progressing to a nodular ulcer after endemic travel supported cutaneous leishmaniasis. Biopsy and PCR were used for confirmation.",
+        "score": 0.3079,
+        "source_case_id": "case-cl-002",
+        "title": "Papulonodular skin lesion in endemic travel history"
+      },
+      {
+        "chunk_id": "cl-001",
+        "confirmatory": true,
+        "diagnosis_label": "Cutaneous leishmaniasis",
+        "excerpt": "A patient with an ulcerated plaque on the forearm after sandfly exposure had a lesion smear showing amastigotes. The presentation was consistent with localized cutaneous leishmaniasis.",
+        "score": 0.2318,
+        "source_case_id": "case-cl-001",
+        "title": "Cutaneous leishmaniasis with ulcer and smear-confirmed amastigotes"
+      },
+      {
+        "chunk_id": "vl-002",
+        "confirmatory": false,
+        "diagnosis_label": "Visceral leishmaniasis",
+        "excerpt": "Kala-azar often presents with hepatosplenomegaly, chronic fever, anemia, and systemic illness rather than an isolated skin ulcer.",
+        "score": 0.0262,
+        "source_case_id": "case-vl-002",
+        "title": "Kala-azar pattern with hepatosplenomegaly"
+      }
+    ],
+    "model_name": "google/gemma-4-E4B-it",
+    "needed_next_inputs": [
+      "clinician review",
+      "confirmatory laboratory or histopathology testing"
+    ],
+    "provider_mode": "real_gpu_gemma4",
+    "request_id": "norag_eval_PMC10026180_04",
+    "runtime_metadata": {
+      "device_kind": "local_gpu",
+      "generation_latency_seconds": 85.37818330997834,
+      "gpu_memory_allocated_mib": 8881.3,
+      "gpu_memory_reserved_mib": 10092.0,
+      "gpu_name": "NVIDIA TITAN RTX",
+      "gpu_peak_memory_allocated_mib": 9658.6,
+      "hf_device_placement": [
+        "cuda:0"
+      ],
+      "image_tensor_fallback_reason": "",
+      "image_tensor_fallback_used": false,
+      "memory_total_mb": 24020,
+      "model_load_seconds": 7.653274466007133,
+      "model_name": "google/gemma-4-E4B-it",
+      "prompt_context_count": 3,
+      "provider_mode": "real_gpu_gemma4",
+      "quantization_mode": "4-bit",
+      "query_image_tensor_count": 1
+    },
+    "safety_state": "generated_support",
+    "timing_ms": 85379
+  },
+  "success": true,
+  "error": null
+}

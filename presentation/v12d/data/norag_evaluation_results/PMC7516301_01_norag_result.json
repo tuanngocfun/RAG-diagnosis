@@ -1,0 +1,108 @@
+{
+  "case_id": "PMC7516301_01",
+  "expected_diagnosis": "MCL (Mucocutaneous Leishmaniasis)",
+  "category": "success",
+  "clinical_text": "A 19-year-old man from Syria (arrived in Denmark in 2015) presented in June 2016 with a 6-month history of throat irritation that progressed over several days to severe throat pain and fever. He had no history of severe illness or excess infections; examination noted a scar on his arm that was suggestive of previous cutaneous leishmaniasis. Laryngoscopy demonstrated massive edema of the mucosa of both the pharynx and larynx; the epiglottis and uvula were swollen and red with papilloma-like lesions. Endoscopic images show marked swelling and papillomatous-appearing mucosal lesions of the oropharynx and larynx.",
+  "image_path": "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7516301_01/PMC7516301_fimmu-11-567856-g001_A_1_3.webp",
+  "assistant_markdown": "> Safety boundary: research decision support only; not ground truth, not clinical validation, and not a diagnosis system.\n\n## Supportive Differential (Not a Diagnosis)\n**Rank 1 supportive consideration:** Mucocutaneous Leishmaniasis (Mucosal form)\n**Rank 1 Diagnosis Type:** MCL\n**Rank 1 Species (if determinable):** Not determinable\n**Rank 1 Confidence:** Medium\n**Rank 2:** Infectious Dermatitis/Mucositis (Non-Leishmaniasis)\n**Rank 3:** Other Mucosal Infections (e.g., fungal/viral)\n**Most supported option in this research demo:** Mucocutaneous Leishmaniasis (Mucosal form)\n**Evidence source used by the model:** Both\n\n## SUPPORTING EVIDENCE\n- Clinical presentation of severe, progressive mucosal edema and papilloma-like lesions of the oropharynx and larynx following a prolonged course of throat irritation.\n- Presence of a scar on the arm suggestive of prior cutaneous leishmaniasis, supporting a mucocutaneous progression.\n- Endoscopic findings of marked swelling and papillomatous lesions align with descriptions of mucocutaneous leishmaniasis (Similar to Context 4).\n- The presentation raises concern for mucocutaneous leishmaniasis given the compatible epidemiology (Context 1).\n\n## DIFFERENTIAL CONSIDERATIONS\n**Mucocutaneous Leishmaniasis (MCL):** This is strongly suggested by the progression from cutaneous lesions (scar on arm) to severe mucosal involvement (pharynx/larynx).\n**Non-Leishmaniasis:** Severe mucosal inflammation and papillomatous lesions can be seen in various infectious processes (e.g., fungal infections, severe viral infections, or squamous cell carcinoma), necessitating exclusion.\n**Visceral Leishmaniasis (VL):** While the presentation is mucosal, VL should remain on the differential if systemic symptoms develop, though the primary presentation here is mucosal.\n\n## Uncertainty and missing information\nThe definitive diagnosis requires tissue biopsy confirmation (histopathology, PCR, or parasite identification) to differentiate MCL from other severe mucosal inflammatory conditions. The specific causative species cannot be determined from the clinical presentation alone.\n\n## Suggested confirmatory tests or clinician review\nTissue biopsy of the mucosal lesions should undergo microscopic examination for amastigotes or PCR testing for Leishmania species. A thorough review of the patient's systemic health status and travel history context is also necessary.\n\n## Evidence used\nMedical knowledge regarding Leishmaniasis staging and progression, and supporting evidence from Reference Cases [Context 1, Context 4].",
+  "safety_state": "generated_support",
+  "evidence": [
+    {
+      "chunk_id": "mcl-002",
+      "confirmatory": true,
+      "diagnosis_label": "Mucocutaneous leishmaniasis",
+      "excerpt": "Palatal or nasal mucosal lesions with compatible epidemiology should raise concern for mucocutaneous leishmaniasis and prompt tissue confirmation.",
+      "score": 0.3617,
+      "source_case_id": "case-mcl-002",
+      "title": "Palatal and nasal mucosal disease in leishmaniasis"
+    },
+    {
+      "chunk_id": "cl-001",
+      "confirmatory": true,
+      "diagnosis_label": "Cutaneous leishmaniasis",
+      "excerpt": "A patient with an ulcerated plaque on the forearm after sandfly exposure had a lesion smear showing amastigotes. The presentation was consistent with localized cutaneous leishmaniasis.",
+      "score": 0.3038,
+      "source_case_id": "case-cl-001",
+      "title": "Cutaneous leishmaniasis with ulcer and smear-confirmed amastigotes"
+    },
+    {
+      "chunk_id": "vl-001",
+      "confirmatory": true,
+      "diagnosis_label": "Visceral leishmaniasis",
+      "excerpt": "Prolonged fever, weight loss, pancytopenia, and splenomegaly are classic features of visceral leishmaniasis. Bone marrow or tissue confirmation is typically required.",
+      "score": 0.2457,
+      "source_case_id": "case-vl-001",
+      "title": "Visceral leishmaniasis with prolonged fever and splenomegaly"
+    }
+  ],
+  "metadata": {
+    "provider_mode": "real_gpu_gemma4",
+    "model_name": "google/gemma-4-E4B-it",
+    "elapsed_seconds": 60.13,
+    "rag_disabled": true
+  },
+  "raw_response": {
+    "assistant_markdown": "> Safety boundary: research decision support only; not ground truth, not clinical validation, and not a diagnosis system.\n\n## Supportive Differential (Not a Diagnosis)\n**Rank 1 supportive consideration:** Mucocutaneous Leishmaniasis (Mucosal form)\n**Rank 1 Diagnosis Type:** MCL\n**Rank 1 Species (if determinable):** Not determinable\n**Rank 1 Confidence:** Medium\n**Rank 2:** Infectious Dermatitis/Mucositis (Non-Leishmaniasis)\n**Rank 3:** Other Mucosal Infections (e.g., fungal/viral)\n**Most supported option in this research demo:** Mucocutaneous Leishmaniasis (Mucosal form)\n**Evidence source used by the model:** Both\n\n## SUPPORTING EVIDENCE\n- Clinical presentation of severe, progressive mucosal edema and papilloma-like lesions of the oropharynx and larynx following a prolonged course of throat irritation.\n- Presence of a scar on the arm suggestive of prior cutaneous leishmaniasis, supporting a mucocutaneous progression.\n- Endoscopic findings of marked swelling and papillomatous lesions align with descriptions of mucocutaneous leishmaniasis (Similar to Context 4).\n- The presentation raises concern for mucocutaneous leishmaniasis given the compatible epidemiology (Context 1).\n\n## DIFFERENTIAL CONSIDERATIONS\n**Mucocutaneous Leishmaniasis (MCL):** This is strongly suggested by the progression from cutaneous lesions (scar on arm) to severe mucosal involvement (pharynx/larynx).\n**Non-Leishmaniasis:** Severe mucosal inflammation and papillomatous lesions can be seen in various infectious processes (e.g., fungal infections, severe viral infections, or squamous cell carcinoma), necessitating exclusion.\n**Visceral Leishmaniasis (VL):** While the presentation is mucosal, VL should remain on the differential if systemic symptoms develop, though the primary presentation here is mucosal.\n\n## Uncertainty and missing information\nThe definitive diagnosis requires tissue biopsy confirmation (histopathology, PCR, or parasite identification) to differentiate MCL from other severe mucosal inflammatory conditions. The specific causative species cannot be determined from the clinical presentation alone.\n\n## Suggested confirmatory tests or clinician review\nTissue biopsy of the mucosal lesions should undergo microscopic examination for amastigotes or PCR testing for Leishmania species. A thorough review of the patient's systemic health status and travel history context is also necessary.\n\n## Evidence used\nMedical knowledge regarding Leishmaniasis staging and progression, and supporting evidence from Reference Cases [Context 1, Context 4].",
+    "disclaimer": "Decision support only. This demo uses local Gemma 4 GPU generation with a small local demo KB. It is not clinical deployment, has not been clinician-validated, and must not be used as a diagnosis system.",
+    "evidence": [
+      {
+        "chunk_id": "mcl-002",
+        "confirmatory": true,
+        "diagnosis_label": "Mucocutaneous leishmaniasis",
+        "excerpt": "Palatal or nasal mucosal lesions with compatible epidemiology should raise concern for mucocutaneous leishmaniasis and prompt tissue confirmation.",
+        "score": 0.3617,
+        "source_case_id": "case-mcl-002",
+        "title": "Palatal and nasal mucosal disease in leishmaniasis"
+      },
+      {
+        "chunk_id": "cl-001",
+        "confirmatory": true,
+        "diagnosis_label": "Cutaneous leishmaniasis",
+        "excerpt": "A patient with an ulcerated plaque on the forearm after sandfly exposure had a lesion smear showing amastigotes. The presentation was consistent with localized cutaneous leishmaniasis.",
+        "score": 0.3038,
+        "source_case_id": "case-cl-001",
+        "title": "Cutaneous leishmaniasis with ulcer and smear-confirmed amastigotes"
+      },
+      {
+        "chunk_id": "vl-001",
+        "confirmatory": true,
+        "diagnosis_label": "Visceral leishmaniasis",
+        "excerpt": "Prolonged fever, weight loss, pancytopenia, and splenomegaly are classic features of visceral leishmaniasis. Bone marrow or tissue confirmation is typically required.",
+        "score": 0.2457,
+        "source_case_id": "case-vl-001",
+        "title": "Visceral leishmaniasis with prolonged fever and splenomegaly"
+      }
+    ],
+    "model_name": "google/gemma-4-E4B-it",
+    "needed_next_inputs": [
+      "clinician review",
+      "confirmatory laboratory or histopathology testing"
+    ],
+    "provider_mode": "real_gpu_gemma4",
+    "request_id": "norag_eval_PMC7516301_01",
+    "runtime_metadata": {
+      "device_kind": "local_gpu",
+      "generation_latency_seconds": 60.12830373898032,
+      "gpu_memory_allocated_mib": 8881.3,
+      "gpu_memory_reserved_mib": 10092.0,
+      "gpu_name": "NVIDIA TITAN RTX",
+      "gpu_peak_memory_allocated_mib": 9657.4,
+      "hf_device_placement": [
+        "cuda:0"
+      ],
+      "image_tensor_fallback_reason": "",
+      "image_tensor_fallback_used": false,
+      "memory_total_mb": 24020,
+      "model_load_seconds": 7.653274466007133,
+      "model_name": "google/gemma-4-E4B-it",
+      "prompt_context_count": 4,
+      "provider_mode": "real_gpu_gemma4",
+      "quantization_mode": "4-bit",
+      "query_image_tensor_count": 1
+    },
+    "safety_state": "generated_support",
+    "timing_ms": 60129
+  },
+  "success": true,
+  "error": null
+}

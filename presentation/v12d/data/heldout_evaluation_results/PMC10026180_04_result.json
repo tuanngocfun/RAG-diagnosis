@@ -1,0 +1,134 @@
+{
+  "case_id": "PMC10026180_04",
+  "expected_diagnosis": "Non-Leishmaniasis",
+  "category": "specificity",
+  "notes": "Held-out non-leish case; specificity and safety-boundary example.",
+  "clinical_text": "An 11-year-old Arab girl with a known diagnosis of ataxia telangiectasia (diagnosed at 1 year) presented with a spreading skin rash on her nose that extended to the nostrils and her left cheek. Family history included consanguineous parents and another sibling with AT. Her childhood course included ataxia, recurrent lung and ear infections, sclerosing cholangitis, hypothyroidism, and later diffuse large B‑cell lymphoma. She used a wheelchair and had multiple café‑au‑lait spots and telangiectasias. Immunologic testing showed a decreased immunoglobulin level (IgG 516 mg/L) with lymphocyte count and function reported as normal. Her baseline therapies included monthly IVIG, inhaled budesonide and fluticasone, and levothyroxine.\n\nInitially she received amoxicillin–clavulanic acid and topical chloramphenicol without clinical response. On examination, the tip of the nose had an erythematous plaque with a central erosion and a circinate‑elevated border with overlying scattered pustules; the nose bridge and nostrils had small erythematous erosions. An atypical infection was considered.",
+  "image_path": "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC10026180_04/PMC10026180_fped-11-1103726-g004_undivided_1_1.webp",
+  "input_png_path": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/demo/presentation/v7/data/heldout_evaluation_results/PMC10026180_04_input.png",
+  "assistant_markdown": "> Safety boundary: research decision support only; not ground truth, not clinical validation, and not a diagnosis system.\n\n## Supportive Differential (Not a Diagnosis)\n**Rank 1 supportive consideration:** Non-Leishmaniasis (Atypical/Secondary Infection or Dermatological Manifestation related to underlying condition)\n**Rank 1 Diagnosis Type:** Non-Leishmaniasis\n**Rank 1 Species (if determinable):** Not determinable\n**Rank 1 Confidence:** Medium\n**Rank 2:** Cutaneous Leishmaniasis (Disputed)\n**Rank 3:** Other Infectious Dermatitis\n**Most supported option in this research demo:** Non-Leishmaniasis (Atypical/Secondary Infection or Dermatological Manifestation related to underlying condition)\n**Evidence source used by the model:** Both\n\n## SUPPORTING EVIDENCE\n- The patient presents with a mucocutaneous lesion on the nose characterized by an erythematous plaque, central erosion, and circinate-elevated border with pustules, which is concerning for an atypical infection given the failure of initial antibiotic treatment.\n- The patient's underlying condition, Ataxia Telangiectasia (AT), predisposes her to severe and recurrent infections, complicating the infectious etiology of the skin lesion.\n- The clinical presentation (ulcerated plaque on the nose) is consistent with the morphology described in cutaneous leishmaniasis cases (Context 1), but the context of immunosuppression and atypical presentation warrants caution.\n- The patient's history of recurrent infections and immune deficiencies increases the likelihood of opportunistic or secondary infections rather than primary leishmaniasis.\n\n## DIFFERENTIAL CONSIDERATIONS\n**Leishmaniasis:** Cutaneous Leishmaniasis (CL) remains on the differential due to the lesion morphology (circinate border, ulceration), but the atypical presentation and host immune status make it less probable than non-leishmaniasis causes.\n**Non-Leishmaniasis:**\n*   **Bacterial/Fungal Infections:** Given the failure of initial broad-spectrum antibiotics (amoxicillin-clavulanic acid) and the presence of pustules, secondary bacterial infection (e.g., staphylococcal infection) or fungal infection must be strongly considered.\n*   **Mucosal Ulceration:** Other dermatological conditions exacerbated by immune deficiency could present similarly.\n\n## DIAGNOSIS ASSESSMENT\nThe clinical picture presents a complex interplay between a severe underlying immunodeficiency (Ataxia Telangiectasia) and a mucocutaneous lesion. While the lesion morphology shares features with certain forms of Cutaneous Leishmaniasis (Context 1), the patient's profound immune compromise and the lack of definitive parasitic evidence necessitate prioritizing a broad infectious/dermatological workup over a presumptive leishmaniasis diagnosis. The lesion must be treated as an atypical infection until proven otherwise.",
+  "safety_state": "generated_support",
+  "evidence": [
+    {
+      "chunk_id": "cl-002",
+      "confirmatory": true,
+      "diagnosis_label": "Cutaneous leishmaniasis",
+      "excerpt": "A chronic papule progressing to a nodular ulcer after endemic travel supported cutaneous leishmaniasis. Biopsy and PCR were used for confirmation.",
+      "score": 0.3079,
+      "source_case_id": "case-cl-002",
+      "title": "Papulonodular skin lesion in endemic travel history"
+    },
+    {
+      "chunk_id": "cl-001",
+      "confirmatory": true,
+      "diagnosis_label": "Cutaneous leishmaniasis",
+      "excerpt": "A patient with an ulcerated plaque on the forearm after sandfly exposure had a lesion smear showing amastigotes. The presentation was consistent with localized cutaneous leishmaniasis.",
+      "score": 0.2318,
+      "source_case_id": "case-cl-001",
+      "title": "Cutaneous leishmaniasis with ulcer and smear-confirmed amastigotes"
+    },
+    {
+      "chunk_id": "vl-002",
+      "confirmatory": false,
+      "diagnosis_label": "Visceral leishmaniasis",
+      "excerpt": "Kala-azar often presents with hepatosplenomegaly, chronic fever, anemia, and systemic illness rather than an isolated skin ulcer.",
+      "score": 0.0262,
+      "source_case_id": "case-vl-002",
+      "title": "Kala-azar pattern with hepatosplenomegaly"
+    }
+  ],
+  "metadata": {
+    "provider_mode": "real_gpu_gemma4",
+    "model_name": "google/gemma-4-E4B-it",
+    "elapsed_seconds": 74.35,
+    "request_id": "v7_heldout_eval_PMC10026180_04",
+    "query_image_tensor_count": 1
+  },
+  "split_provenance": {
+    "held_out_source": "/media/sf_master-thesis/demo-4/multimodal/for_gemini25flash-lite/recent_patched_v9/structured_cases_v4_2/leishmaniasis_verified_v2/test_p14_v7_normalized.jsonl",
+    "eval_query_source": "/media/sf_master-thesis/demo-4/multimodal/for_gemini25flash-lite/recent_patched_v9/structured_cases_v4_2/leishmaniasis_verified_v2/eval_queries_p14_v7_mixed56.jsonl",
+    "clinical_retrieval_corpus_source": "/media/sf_master-thesis/demo-4/multimodal/for_gemini25flash-lite/recent_patched_v9/structured_cases_v4_2/leishmaniasis_verified_v2/nonleish_additions/generated/train_phase1b_tierAB.jsonl",
+    "runtime_retrieval_kb_source": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/demo/flutter/kb/leishmaniasis_demo_pack.json",
+    "test_count": 1,
+    "eval_query_count": 1,
+    "train_count": 0,
+    "source_terms": {
+      "official_experimental_retrieval_corpus": "121-case phase1b Tier A+B train artifact; used for split-exclusion verification",
+      "saved_demo_runtime_kb": "small local defense demo KB used by the preserved backend output",
+      "held_out_evaluation_set": "56 non-indexed evaluation cases"
+    },
+    "label_status": "silver_reference_only"
+  },
+  "label_contract": {
+    "dataset_version": "p14_v7",
+    "ground_truth_status": "silver_reference_only",
+    "verified_track": "reference_label propagated from the structured multimodal pipeline, not clinician gold ground truth",
+    "pseudolabel_track": "Prompt-1 final_diagnosis extracted from the structured multimodal pipeline, not clinician gold ground truth",
+    "disclaimer": "Evaluation labels are silver labels derived from GPT-5-mini and Gemini 2.5 Pro pipeline outputs; they are not clinician ground truth."
+  },
+  "raw_response": {
+    "assistant_markdown": "> Safety boundary: research decision support only; not ground truth, not clinical validation, and not a diagnosis system.\n\n## Supportive Differential (Not a Diagnosis)\n**Rank 1 supportive consideration:** Non-Leishmaniasis (Atypical/Secondary Infection or Dermatological Manifestation related to underlying condition)\n**Rank 1 Diagnosis Type:** Non-Leishmaniasis\n**Rank 1 Species (if determinable):** Not determinable\n**Rank 1 Confidence:** Medium\n**Rank 2:** Cutaneous Leishmaniasis (Disputed)\n**Rank 3:** Other Infectious Dermatitis\n**Most supported option in this research demo:** Non-Leishmaniasis (Atypical/Secondary Infection or Dermatological Manifestation related to underlying condition)\n**Evidence source used by the model:** Both\n\n## SUPPORTING EVIDENCE\n- The patient presents with a mucocutaneous lesion on the nose characterized by an erythematous plaque, central erosion, and circinate-elevated border with pustules, which is concerning for an atypical infection given the failure of initial antibiotic treatment.\n- The patient's underlying condition, Ataxia Telangiectasia (AT), predisposes her to severe and recurrent infections, complicating the infectious etiology of the skin lesion.\n- The clinical presentation (ulcerated plaque on the nose) is consistent with the morphology described in cutaneous leishmaniasis cases (Context 1), but the context of immunosuppression and atypical presentation warrants caution.\n- The patient's history of recurrent infections and immune deficiencies increases the likelihood of opportunistic or secondary infections rather than primary leishmaniasis.\n\n## DIFFERENTIAL CONSIDERATIONS\n**Leishmaniasis:** Cutaneous Leishmaniasis (CL) remains on the differential due to the lesion morphology (circinate border, ulceration), but the atypical presentation and host immune status make it less probable than non-leishmaniasis causes.\n**Non-Leishmaniasis:**\n*   **Bacterial/Fungal Infections:** Given the failure of initial broad-spectrum antibiotics (amoxicillin-clavulanic acid) and the presence of pustules, secondary bacterial infection (e.g., staphylococcal infection) or fungal infection must be strongly considered.\n*   **Mucosal Ulceration:** Other dermatological conditions exacerbated by immune deficiency could present similarly.\n\n## DIAGNOSIS ASSESSMENT\nThe clinical picture presents a complex interplay between a severe underlying immunodeficiency (Ataxia Telangiectasia) and a mucocutaneous lesion. While the lesion morphology shares features with certain forms of Cutaneous Leishmaniasis (Context 1), the patient's profound immune compromise and the lack of definitive parasitic evidence necessitate prioritizing a broad infectious/dermatological workup over a presumptive leishmaniasis diagnosis. The lesion must be treated as an atypical infection until proven otherwise.",
+    "disclaimer": "Decision support only. This demo uses local Gemma 4 GPU generation with a small local demo KB. It is not clinical deployment, has not been clinician-validated, and must not be used as a diagnosis system.",
+    "evidence": [
+      {
+        "chunk_id": "cl-002",
+        "confirmatory": true,
+        "diagnosis_label": "Cutaneous leishmaniasis",
+        "excerpt": "A chronic papule progressing to a nodular ulcer after endemic travel supported cutaneous leishmaniasis. Biopsy and PCR were used for confirmation.",
+        "score": 0.3079,
+        "source_case_id": "case-cl-002",
+        "title": "Papulonodular skin lesion in endemic travel history"
+      },
+      {
+        "chunk_id": "cl-001",
+        "confirmatory": true,
+        "diagnosis_label": "Cutaneous leishmaniasis",
+        "excerpt": "A patient with an ulcerated plaque on the forearm after sandfly exposure had a lesion smear showing amastigotes. The presentation was consistent with localized cutaneous leishmaniasis.",
+        "score": 0.2318,
+        "source_case_id": "case-cl-001",
+        "title": "Cutaneous leishmaniasis with ulcer and smear-confirmed amastigotes"
+      },
+      {
+        "chunk_id": "vl-002",
+        "confirmatory": false,
+        "diagnosis_label": "Visceral leishmaniasis",
+        "excerpt": "Kala-azar often presents with hepatosplenomegaly, chronic fever, anemia, and systemic illness rather than an isolated skin ulcer.",
+        "score": 0.0262,
+        "source_case_id": "case-vl-002",
+        "title": "Kala-azar pattern with hepatosplenomegaly"
+      }
+    ],
+    "model_name": "google/gemma-4-E4B-it",
+    "needed_next_inputs": [
+      "clinician review",
+      "confirmatory laboratory or histopathology testing"
+    ],
+    "provider_mode": "real_gpu_gemma4",
+    "request_id": "v7_heldout_eval_PMC10026180_04",
+    "runtime_metadata": {
+      "device_kind": "local_gpu",
+      "generation_latency_seconds": 74.34812649700325,
+      "gpu_memory_allocated_mib": 8881.3,
+      "gpu_memory_reserved_mib": 10092.0,
+      "gpu_name": "NVIDIA TITAN RTX",
+      "gpu_peak_memory_allocated_mib": 9658.6,
+      "hf_device_placement": [
+        "cuda:0"
+      ],
+      "image_tensor_fallback_reason": "",
+      "image_tensor_fallback_used": false,
+      "memory_total_mb": 24020,
+      "model_load_seconds": 7.653274466007133,
+      "model_name": "google/gemma-4-E4B-it",
+      "prompt_context_count": 3,
+      "provider_mode": "real_gpu_gemma4",
+      "quantization_mode": "4-bit",
+      "query_image_tensor_count": 1
+    },
+    "safety_state": "generated_support",
+    "timing_ms": 74349
+  },
+  "success": true,
+  "error": null,
+  "silver_reference_label": "Non-Leishmaniasis"
+}

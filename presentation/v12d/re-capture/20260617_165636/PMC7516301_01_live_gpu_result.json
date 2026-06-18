@@ -1,0 +1,182 @@
+{
+  "case_id": "PMC7516301_01",
+  "role": "concordant MCL live-demo case",
+  "timestamp": "20260617_165636",
+  "text_path": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/demo/presentation/v12d/cases/PMC7516301_01/input_texts.txt",
+  "image_path": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/demo/presentation/v12d/cases/PMC7516301_01/image.png",
+  "backend_url": "http://127.0.0.1:8010",
+  "elapsed_seconds": 78.336,
+  "rank_fields": {
+    "rank1": "Mucocutaneous Leishmaniasis (Mucosal involvement)",
+    "rank1_type": "MCL",
+    "rank1_confidence": "Medium",
+    "supported_option": "Mucocutaneous Leishmaniasis (Mucosal involvement)"
+  },
+  "raw_response": {
+    "assistant_markdown": "> Safety boundary: research decision support only; not ground truth, not clinical validation, and not a diagnosis system.\n\n## Supportive Differential (Not a Diagnosis)\n**Rank 1 supportive consideration:** Mucocutaneous Leishmaniasis (Mucosal involvement)\n**Rank 1 Diagnosis Type:** MCL\n**Rank 1 Species (if determinable):** Not determinable\n**Rank 1 Confidence:** Medium\n**Rank 2:** Severe Infectious Mucositis/Inflammatory Disease (Non-Leishmaniasis)\n**Rank 3:** Other Mucosal Infections (e.g., fungal/viral)\n**Most supported option in this research demo:** Mucocutaneous Leishmaniasis (Mucosal involvement)\n**Evidence source used by the model:** Both\n\n## SUPPORTING EVIDENCE\n*   Clinical presentation of prolonged throat irritation progressing to severe pain and fever over 6 months, accompanied by massive edema and papilloma-like lesions of the oropharynx and larynx.\n*   Presence of a scar on the arm suggestive of prior cutaneous leishmaniasis, supporting a mucocutaneous progression.\n*   Laryngoscopy findings (massive edema, papillomatous lesions) are consistent with mucocutaneous involvement described in literature (Context 1, Context 4).\n*   The patient's travel history (Syria) places him in an endemic region for Leishmaniasis.\n\n## DIFFERENTIAL CONSIDERATIONS\n*   **Severe Infectious Mucositis/Inflammatory Disease:** Conditions such as squamous cell carcinoma, severe reflux laryngitis, or other granulomatous infections could mimic mucosal lesions.\n*   **Other Mucosal Infections:** Certain fungal infections or viral etiologies can cause extensive mucosal inflammation and papillomatous changes.\n\n## UNCERTAINTY AND MISSING INFORMATION\nThe definitive causative agent cannot be determined from the clinical presentation alone. The nature of the \"papilloma-like lesions\" requires histological confirmation to differentiate between parasitic infection, neoplastic process, or severe inflammation.\n\n## SUGGESTED CONFIRMATORY TESTS OR CLINICIAN REVIEW\nTissue biopsy of the mucosal lesions should undergo histopathology, followed by specialized staining or PCR testing to confirm the presence of Leishmania parasites and rule out malignancy. Serological testing for Leishmaniasis should also be considered, though tissue confirmation is preferred for MCL.\n\n## EVIDENCE USED\nMedical knowledge and Reference cases (Context 1, Context 4).",
+    "disclaimer": "Decision support only. This demo uses local Gemma 4 GPU generation with a small local demo KB. It is not clinical deployment, has not been clinician-validated, and must not be used as a diagnosis system.",
+    "evidence": [
+      {
+        "chunk_id": "mcl-002",
+        "confirmatory": true,
+        "diagnosis_label": "Mucocutaneous leishmaniasis",
+        "excerpt": "Palatal or nasal mucosal lesions with compatible epidemiology should raise concern for mucocutaneous leishmaniasis and prompt tissue confirmation.",
+        "score": 0.3617,
+        "source_case_id": "case-mcl-002",
+        "title": "Palatal and nasal mucosal disease in leishmaniasis"
+      },
+      {
+        "chunk_id": "cl-001",
+        "confirmatory": true,
+        "diagnosis_label": "Cutaneous leishmaniasis",
+        "excerpt": "A patient with an ulcerated plaque on the forearm after sandfly exposure had a lesion smear showing amastigotes. The presentation was consistent with localized cutaneous leishmaniasis.",
+        "score": 0.3038,
+        "source_case_id": "case-cl-001",
+        "title": "Cutaneous leishmaniasis with ulcer and smear-confirmed amastigotes"
+      },
+      {
+        "chunk_id": "vl-001",
+        "confirmatory": true,
+        "diagnosis_label": "Visceral leishmaniasis",
+        "excerpt": "Prolonged fever, weight loss, pancytopenia, and splenomegaly are classic features of visceral leishmaniasis. Bone marrow or tissue confirmation is typically required.",
+        "score": 0.2457,
+        "source_case_id": "case-vl-001",
+        "title": "Visceral leishmaniasis with prolonged fever and splenomegaly"
+      }
+    ],
+    "fresh_generation_executed": true,
+    "model_name": "google/gemma-4-E4B-it",
+    "needed_next_inputs": [
+      "clinician review",
+      "confirmatory laboratory or histopathology testing"
+    ],
+    "provider_mode": "real_gpu_gemma4",
+    "request_id": "v12d_recapture_live_gpu_PMC7516301_01_20260617_165636",
+    "response_source_mode": "live_gpu",
+    "retrieval_audit": {
+      "candidate_count": 6,
+      "kb_path": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/demo/flutter/kb/leishmaniasis_demo_pack.json",
+      "live_rerank_executed": false,
+      "live_rerank_method": null,
+      "official_rerank_reference": {
+        "available": true,
+        "boundary": "Reference-only: this is the official rerank-enabled final context list, not a live reranker call from the demo backend.",
+        "case_id": "PMC7516301_01",
+        "context_count": 10,
+        "contexts": [
+          {
+            "diagnosis_type": "MCL",
+            "doc_id": "PMC7528117_01",
+            "label_source": "train_verified",
+            "rank": 1,
+            "score": 0.03301807008521583,
+            "text_char_count": 1157,
+            "text_prefix_260": "A 52‑year‑old woman who works in sugarcane fields in a rural area was referred to Oral Medicine for evaluation of a granulomatous lesion on the palate and for hoarseness that she thought followed a flu 3 months earlier. According to the referring surgeon, she"
+          },
+          {
+            "diagnosis_type": "MCL",
+            "doc_id": "PMC7527865_05",
+            "label_source": "train_verified",
+            "rank": 2,
+            "score": 0.01497737556561086,
+            "text_char_count": 548,
+            "text_prefix_260": "A 30-year-old Caucasian man, unemployed, HIV-negative and with no other concomitant infections, presented in 2014 with a papule on the inferior eyelid of the right eye. His past history included, in 2008, an isolated nodulation in the right leg that resolved a"
+          },
+          {
+            "diagnosis_type": "MCL",
+            "doc_id": "PMC7585787_01",
+            "label_source": "train_verified",
+            "rank": 3,
+            "score": 0.014164989939637825,
+            "text_char_count": 1420,
+            "text_prefix_260": "A 38‑year‑old man from Yayu district, western Ethiopia, presented to the outpatient clinic with multiple skin lesions on his face and hands and mutilation of the nose; his upper lip was injured and swollen. Eight years earlier he had a small papule on the righ"
+          }
+        ],
+        "qid": "PMC7516301_01::Q1_Q3_multimodal_diagnosis",
+        "rerank": true,
+        "retrieval_top_k": 20,
+        "retriever_method": "hybrid",
+        "source_label": "official Gemma 4 experiment-pipeline trace",
+        "source_path": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/demo/presentation/v12d/data/exact_rag_trace_appendix/trace_summary.json"
+      },
+      "query_token_count": 63,
+      "rerank_boundary": "Live backend exposes lexical retrieval scores but no separate re-ranker contract. Official rerank evidence, when shown, is reference evidence from the Gemma 4 experiment pipeline.",
+      "retrieval_backend": "local_demo_lexical",
+      "returned_contexts": [
+        {
+          "chunk_id": "mcl-002",
+          "confirmatory": true,
+          "diagnosis_label": "Mucocutaneous leishmaniasis",
+          "excerpt": "Palatal or nasal mucosal lesions with compatible epidemiology should raise concern for mucocutaneous leishmaniasis and prompt tissue confirmation.",
+          "rank": 1,
+          "score": 0.3617,
+          "source_case_id": "case-mcl-002",
+          "title": "Palatal and nasal mucosal disease in leishmaniasis"
+        },
+        {
+          "chunk_id": "cl-001",
+          "confirmatory": true,
+          "diagnosis_label": "Cutaneous leishmaniasis",
+          "excerpt": "A patient with an ulcerated plaque on the forearm after sandfly exposure had a lesion smear showing amastigotes. The presentation was consistent with localized cutaneous leishmaniasis.",
+          "rank": 2,
+          "score": 0.3038,
+          "source_case_id": "case-cl-001",
+          "title": "Cutaneous leishmaniasis with ulcer and smear-confirmed amastigotes"
+        },
+        {
+          "chunk_id": "vl-001",
+          "confirmatory": true,
+          "diagnosis_label": "Visceral leishmaniasis",
+          "excerpt": "Prolonged fever, weight loss, pancytopenia, and splenomegaly are classic features of visceral leishmaniasis. Bone marrow or tissue confirmation is typically required.",
+          "rank": 3,
+          "score": 0.2457,
+          "source_case_id": "case-vl-001",
+          "title": "Visceral leishmaniasis with prolonged fever and splenomegaly"
+        },
+        {
+          "chunk_id": "mcl-001",
+          "confirmatory": false,
+          "diagnosis_label": "Mucocutaneous leishmaniasis",
+          "excerpt": "Nasal septal destruction, oral ulceration, and mucosal inflammation after prior cutaneous disease support mucocutaneous leishmaniasis.",
+          "rank": 4,
+          "score": 0.2285,
+          "source_case_id": "case-mcl-001",
+          "title": "Mucocutaneous leishmaniasis with nasal and oral involvement"
+        }
+      ],
+      "returned_count": 4,
+      "scoring_method": "lexical token-overlap score with tag/title/confirmatory bonuses",
+      "top_k_requested": 4
+    },
+    "runtime_metadata": {
+      "device_kind": "local_gpu",
+      "do_sample": true,
+      "fresh_generation_executed": true,
+      "generation_latency_seconds": 55.18867813597899,
+      "gpu_memory_allocated_mib": 8881.3,
+      "gpu_memory_reserved_mib": 9808.0,
+      "gpu_name": "NVIDIA TITAN RTX",
+      "gpu_peak_memory_allocated_mib": 9656.4,
+      "hf_device_placement": [
+        "cuda:0"
+      ],
+      "image_tensor_fallback_reason": "",
+      "image_tensor_fallback_used": false,
+      "max_new_tokens": 1024,
+      "memory_total_mb": 24020,
+      "model_load_seconds": 23.127976958989166,
+      "model_name": "google/gemma-4-E4B-it",
+      "prompt_context_count": 4,
+      "provider_mode": "real_gpu_gemma4",
+      "quantization_mode": "4-bit",
+      "query_image_tensor_count": 1,
+      "random_seed": 42,
+      "response_source_mode": "live_gpu",
+      "temperature": 0.3
+    },
+    "safety_state": "generated_support",
+    "source_label": "fresh local Gemma 4 GPU generation",
+    "source_path": "",
+    "timing_ms": 78333
+  }
+}

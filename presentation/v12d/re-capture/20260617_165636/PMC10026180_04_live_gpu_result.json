@@ -1,0 +1,172 @@
+{
+  "case_id": "PMC10026180_04",
+  "role": "AT/nose-rash full-text stress test",
+  "timestamp": "20260617_165636",
+  "text_path": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/demo/presentation/v12d/cases/PMC10026180_04/full_texts/input_texts.txt",
+  "image_path": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/demo/presentation/v12d/cases/PMC10026180_04/full_texts/image.png",
+  "backend_url": "http://127.0.0.1:8010",
+  "elapsed_seconds": 61.477,
+  "rank_fields": {
+    "rank1": "Mucocutaneous Leishmaniasis (or other atypical infection)",
+    "rank1_type": "CL",
+    "rank1_confidence": "Medium",
+    "supported_option": "Mucocutaneous Leishmaniasis (or other atypical infection)"
+  },
+  "raw_response": {
+    "assistant_markdown": "> Safety boundary: research decision support only; not ground truth, not clinical validation, and not a diagnosis system.\n\n## Supportive Differential (Not a Diagnosis)\n**Rank 1 supportive consideration:** Mucocutaneous Leishmaniasis (or other atypical infection)\n**Rank 1 Diagnosis Type:** CL\n**Rank 1 Species (if determinable):** Not determinable\n**Rank 1 Confidence:** Medium\n**Rank 2:** Secondary Bacterial Infection/Abscess\n**Rank 3:** Cutaneous Squamous Cell Carcinoma (SCC)\n**Most supported option in this research demo:** Mucocutaneous Leishmaniasis (or other atypical infection)\n**Evidence source used by the model:** Both\n\n## SUPPORTING EVIDENCE\n- The patient presents with an erythematous plaque on the nose tip with a central erosion and circinate-elevated border, consistent with a mucocutaneous lesion.\n- The lesion on the nose bridge and nostrils shows small erythematous erosions, fitting the mucocutaneous presentation.\n- The patient's underlying condition (Ataxia Telangiectasia) predisposes her to severe infections and atypical presentations, making infectious etiologies more likely.\n- Reference Case [Context 1] supports the diagnosis of cutaneous leishmaniasis presenting as a chronic papule progressing to an ulcerated lesion following endemic travel.\n- The initial failure of standard antibiotics (amoxicillin-clavulanic acid and topical chloramphenicol) suggests a non-standard or atypical infectious process.\n\n## DIFFERENTIAL CONSIDERATIONS\n**Non-Leishmaniasis:**\n*   **Bacterial/Fungal Infections:** Given the immunosuppression risk associated with AT and the atypical presentation, chronic ulcers could represent mucocutaneous candidiasis, actinomycosis, or atypical mycobacterial infection.\n*   **Malignancy:** Cutaneous squamous cell carcinoma (SCC) can present as chronic, non-healing ulcers, especially in immunocompromised individuals.\n*   **Vasculitis/Autoimmune:** Certain autoimmune conditions can cause erosive nasal lesions, though the circinate border is less typical.\n\n## DIAGNOSIS ASSESSMENT\nThe clinical presentation of a chronic, ulcerative, erythematous plaque on the nose with an elevated border is highly suggestive of mucocutaneous leishmaniasis, which aligns with the morphology described and is supported by literature describing CL progression. However, the patient's complex medical history (Ataxia Telangiectasia) and the failure of initial antibiotic therapy necessitate a broad differential diagnosis. The presence of an atypical infection must be strongly considered alongside parasitic etiologies. Further investigation is required to differentiate between parasitic, fungal, or neoplastic processes.",
+    "disclaimer": "Decision support only. This demo uses local Gemma 4 GPU generation with a small local demo KB. It is not clinical deployment, has not been clinician-validated, and must not be used as a diagnosis system.",
+    "evidence": [
+      {
+        "chunk_id": "cl-002",
+        "confirmatory": true,
+        "diagnosis_label": "Cutaneous leishmaniasis",
+        "excerpt": "A chronic papule progressing to a nodular ulcer after endemic travel supported cutaneous leishmaniasis. Biopsy and PCR were used for confirmation.",
+        "score": 0.3079,
+        "source_case_id": "case-cl-002",
+        "title": "Papulonodular skin lesion in endemic travel history"
+      },
+      {
+        "chunk_id": "cl-001",
+        "confirmatory": true,
+        "diagnosis_label": "Cutaneous leishmaniasis",
+        "excerpt": "A patient with an ulcerated plaque on the forearm after sandfly exposure had a lesion smear showing amastigotes. The presentation was consistent with localized cutaneous leishmaniasis.",
+        "score": 0.2318,
+        "source_case_id": "case-cl-001",
+        "title": "Cutaneous leishmaniasis with ulcer and smear-confirmed amastigotes"
+      },
+      {
+        "chunk_id": "vl-002",
+        "confirmatory": false,
+        "diagnosis_label": "Visceral leishmaniasis",
+        "excerpt": "Kala-azar often presents with hepatosplenomegaly, chronic fever, anemia, and systemic illness rather than an isolated skin ulcer.",
+        "score": 0.0262,
+        "source_case_id": "case-vl-002",
+        "title": "Kala-azar pattern with hepatosplenomegaly"
+      }
+    ],
+    "fresh_generation_executed": true,
+    "model_name": "google/gemma-4-E4B-it",
+    "needed_next_inputs": [
+      "clinician review",
+      "confirmatory laboratory or histopathology testing"
+    ],
+    "provider_mode": "real_gpu_gemma4",
+    "request_id": "v12d_recapture_live_gpu_PMC10026180_04_20260617_165636",
+    "response_source_mode": "live_gpu",
+    "retrieval_audit": {
+      "candidate_count": 3,
+      "kb_path": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/demo/flutter/kb/leishmaniasis_demo_pack.json",
+      "live_rerank_executed": false,
+      "live_rerank_method": null,
+      "official_rerank_reference": {
+        "available": true,
+        "boundary": "Reference-only: this is the official rerank-enabled final context list, not a live reranker call from the demo backend.",
+        "case_id": "PMC10026180_04",
+        "context_count": 10,
+        "contexts": [
+          {
+            "diagnosis_type": "LR",
+            "doc_id": "PMC5490479_01",
+            "label_source": "train_verified",
+            "rank": 1,
+            "score": 0.021050130672368734,
+            "text_char_count": 616,
+            "text_prefix_260": "A 9-year-old boy presented with multiple papular lesions on the left cheek that had been present for three months and had gradually enlarged. His medical history was notable for an episode of cutaneous leishmaniasis located on the nose two years earlier, which"
+          },
+          {
+            "diagnosis_type": "CL",
+            "doc_id": "PMC3523429_01",
+            "label_source": "train_verified",
+            "rank": 2,
+            "score": 0.015682382133995035,
+            "text_char_count": 1066,
+            "text_prefix_260": "A 52-year-old woman presented with a single lesion on the tip of her nose that had existed for 14 months. It began as a papule and was slowly increasing in size, enlarging to a plaque. A smear of the lesion performed about 1 year earlier was positive, \"showing"
+          },
+          {
+            "diagnosis_type": "MCL",
+            "doc_id": "PMC7585787_01",
+            "label_source": "train_verified",
+            "rank": 3,
+            "score": 0.014718614718614718,
+            "text_char_count": 1420,
+            "text_prefix_260": "A 38‑year‑old man from Yayu district, western Ethiopia, presented to the outpatient clinic with multiple skin lesions on his face and hands and mutilation of the nose; his upper lip was injured and swollen. Eight years earlier he had a small papule on the righ"
+          }
+        ],
+        "qid": "PMC10026180_04::Q1_Q3_multimodal_diagnosis",
+        "rerank": true,
+        "retrieval_top_k": 20,
+        "retriever_method": "hybrid",
+        "source_label": "official Gemma 4 experiment-pipeline trace",
+        "source_path": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/demo/presentation/v12d/data/exact_rag_trace_appendix/trace_summary.json"
+      },
+      "query_token_count": 110,
+      "rerank_boundary": "Live backend exposes lexical retrieval scores but no separate re-ranker contract. Official rerank evidence, when shown, is reference evidence from the Gemma 4 experiment pipeline.",
+      "retrieval_backend": "local_demo_lexical",
+      "returned_contexts": [
+        {
+          "chunk_id": "cl-002",
+          "confirmatory": true,
+          "diagnosis_label": "Cutaneous leishmaniasis",
+          "excerpt": "A chronic papule progressing to a nodular ulcer after endemic travel supported cutaneous leishmaniasis. Biopsy and PCR were used for confirmation.",
+          "rank": 1,
+          "score": 0.3079,
+          "source_case_id": "case-cl-002",
+          "title": "Papulonodular skin lesion in endemic travel history"
+        },
+        {
+          "chunk_id": "cl-001",
+          "confirmatory": true,
+          "diagnosis_label": "Cutaneous leishmaniasis",
+          "excerpt": "A patient with an ulcerated plaque on the forearm after sandfly exposure had a lesion smear showing amastigotes. The presentation was consistent with localized cutaneous leishmaniasis.",
+          "rank": 2,
+          "score": 0.2318,
+          "source_case_id": "case-cl-001",
+          "title": "Cutaneous leishmaniasis with ulcer and smear-confirmed amastigotes"
+        },
+        {
+          "chunk_id": "vl-002",
+          "confirmatory": false,
+          "diagnosis_label": "Visceral leishmaniasis",
+          "excerpt": "Kala-azar often presents with hepatosplenomegaly, chronic fever, anemia, and systemic illness rather than an isolated skin ulcer.",
+          "rank": 3,
+          "score": 0.0262,
+          "source_case_id": "case-vl-002",
+          "title": "Kala-azar pattern with hepatosplenomegaly"
+        }
+      ],
+      "returned_count": 3,
+      "scoring_method": "lexical token-overlap score with tag/title/confirmatory bonuses",
+      "top_k_requested": 4
+    },
+    "runtime_metadata": {
+      "device_kind": "local_gpu",
+      "do_sample": true,
+      "fresh_generation_executed": true,
+      "generation_latency_seconds": 61.47341462498298,
+      "gpu_memory_allocated_mib": 8881.3,
+      "gpu_memory_reserved_mib": 9808.0,
+      "gpu_name": "NVIDIA TITAN RTX",
+      "gpu_peak_memory_allocated_mib": 9658.1,
+      "hf_device_placement": [
+        "cuda:0"
+      ],
+      "image_tensor_fallback_reason": "",
+      "image_tensor_fallback_used": false,
+      "max_new_tokens": 1024,
+      "memory_total_mb": 24020,
+      "model_load_seconds": 23.127976958989166,
+      "model_name": "google/gemma-4-E4B-it",
+      "prompt_context_count": 3,
+      "provider_mode": "real_gpu_gemma4",
+      "quantization_mode": "4-bit",
+      "query_image_tensor_count": 1,
+      "random_seed": 42,
+      "response_source_mode": "live_gpu",
+      "temperature": 0.3
+    },
+    "safety_state": "generated_support",
+    "source_label": "fresh local Gemma 4 GPU generation",
+    "source_path": "",
+    "timing_ms": 61475
+  }
+}

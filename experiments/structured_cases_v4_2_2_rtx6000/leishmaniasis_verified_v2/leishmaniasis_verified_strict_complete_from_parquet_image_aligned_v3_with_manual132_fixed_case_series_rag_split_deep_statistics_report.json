@@ -1,0 +1,222 @@
+{
+  "source_jsonl": "/media/ngoc/mydisk/master-program/program-modules/master-thesis/data/public_data/whole_multicare_dataset/leishmaniasis_verified_strict_complete_from_parquet_image_aligned_v3_with_manual132_fixed_case_series_rag_split.jsonl",
+  "generated_dir": "/tmp/leish_stats_deep_latest",
+  "n_rows": 163,
+  "n_unique_case_id": 163,
+  "n_duplicate_case_id": 0,
+  "jsonl_invalid_lines": 0,
+  "type_counts_raw": {
+    "Non-Leishmaniasis": 33,
+    "VL": 61,
+    "MCL": 19,
+    "CL": 25,
+    "Veterinary_Leishmaniasis": 5,
+    "Ocular leishmaniasis": 2,
+    "DsCL": 4,
+    "PKDL": 5,
+    "DCL": 6,
+    "Ocular Leishmaniasis": 1,
+    "LR": 1,
+    "LCL": 1
+  },
+  "type_counts_normalized": {
+    "Non-Leishmaniasis": 33,
+    "VL": 61,
+    "MCL": 19,
+    "CL": 25,
+    "Veterinary_Leishmaniasis": 5,
+    "Ocular leishmaniasis": 3,
+    "DsCL": 4,
+    "PKDL": 5,
+    "DCL": 6,
+    "LR": 1,
+    "LCL": 1
+  },
+  "overall": {
+    "gender_counts": {
+      "Female": 44,
+      "Unknown": 7,
+      "Male": 112
+    },
+    "age_non_null": 160,
+    "age_missing": 3,
+    "age_mean": 37.06,
+    "age_median": 38.0,
+    "age_min": 0.0,
+    "age_max": 84.0,
+    "age_p25": 19.75,
+    "age_p75": 54.25,
+    "cases_with_images": 139,
+    "cases_without_images": 24,
+    "total_images": 319,
+    "n_images_distribution": {
+      "0": 24,
+      "1": 47,
+      "2": 42,
+      "3": 31,
+      "4": 10,
+      "5": 3,
+      "6": 4,
+      "8": 2
+    }
+  },
+  "signals": {
+    "case_has_signal_counts": {
+      "True": 156,
+      "False": 7
+    },
+    "article_has_signal_counts": {
+      "False": 26,
+      "True": 137
+    },
+    "is_primary_counts": {
+      "True": 160,
+      "False": 3
+    },
+    "matrix": [
+      {
+        "case_has_signal": "True",
+        "article_has_signal": "True",
+        "is_primary": "True",
+        "count": 128
+      },
+      {
+        "case_has_signal": "True",
+        "article_has_signal": "False",
+        "is_primary": "True",
+        "count": 25
+      },
+      {
+        "case_has_signal": "False",
+        "article_has_signal": "True",
+        "is_primary": "True",
+        "count": 7
+      },
+      {
+        "case_has_signal": "True",
+        "article_has_signal": "True",
+        "is_primary": "False",
+        "count": 2
+      },
+      {
+        "case_has_signal": "True",
+        "article_has_signal": "False",
+        "is_primary": "False",
+        "count": 1
+      }
+    ]
+  },
+  "validation_reason_counts": {
+    "case_text,abstract,leish_ruled_out,alt_etiology_supported": 1,
+    "case_text,title,abstract,species": 2,
+    "case_text,title,abstract,treatment,confirmation,negation_mixed": 17,
+    "case_text,title,abstract,species,treatment,confirmation": 40,
+    "case_text,title,abstract,species,confirmation,negation_mixed": 5,
+    "case_text,title,abstract,treatment": 5,
+    "no_leish_mention": 1,
+    "case_text,title,abstract,confirmation": 13,
+    "case_text,title,abstract": 5,
+    "case_text,title,abstract,species,confirmation": 7,
+    "title,abstract,treatment,confirmation": 4,
+    "case_text,abstract,alt_diagnosis_confirmed,leish_ruled_out": 1,
+    "title,abstract,treatment": 1,
+    "case_text,alt_diagnosis_confirmed,leish_ruled_out": 1,
+    "case_text,confirmation": 10,
+    "case_text,confirmation,negation_mixed": 4,
+    "case_text,title,abstract,treatment,confirmation": 22,
+    "case_text,confirmation_non_leish": 1,
+    "case_text,title,treatment,confirmation": 1,
+    "case_text,abstract,confirmation,treatment": 1,
+    "case_text,abstract,confirmation": 2,
+    "case_text,title,treatment": 1,
+    "case_text,title,confirmation": 1,
+    "case_text,title,abstract,confirmation,negation_mixed": 3,
+    "case_text,negation_mixed": 1,
+    "case_text,abstract,non_leish_override": 1,
+    "non_leish_override": 6,
+    "case_text,non_leish_override": 1,
+    "case_text,abstract,species,treatment,confirmation,negation_mixed": 1,
+    "case_text,title,abstract,species,treatment": 1,
+    "text_only_discussion_of_case_01": 1,
+    "noise_orthopedic_trauma": 1,
+    "title,abstract,confirmation": 1
+  },
+  "case_series": {
+    "is_case_series_article_true": 59,
+    "is_multi_case_composite_true": 0,
+    "has_cross_case_signal_true": 0,
+    "case_scope_status_counts": {
+      "unknown": 143,
+      "target_only": 11,
+      "mixed_including_target": 9
+    }
+  },
+  "ocular": {
+    "combined_count_case_insensitive": 3,
+    "exact_label_counts": {
+      "Ocular leishmaniasis": 2,
+      "Ocular Leishmaniasis": 1
+    },
+    "case_ids": [
+      "PMC10220448_01",
+      "PMC4759897_01",
+      "PMC4782654_01"
+    ]
+  },
+  "veterinary": {
+    "count": 5,
+    "case_ids": [
+      "PMC10202461_01",
+      "PMC5362848_01",
+      "PMC7995465_01",
+      "PMC9745029_01",
+      "PMC9848784_01"
+    ],
+    "age_non_null": 5,
+    "age_missing": 0,
+    "age_mean": 5.6,
+    "age_median": 6.0,
+    "age_min": 2.0,
+    "age_max": 10.0,
+    "gender_counts": {
+      "Male": 5
+    },
+    "cases_with_images": 5,
+    "cases_without_images": 0,
+    "total_images": 23,
+    "mean_images_per_case": 4.6,
+    "validation_reason_counts": {
+      "case_text,title,abstract,species,confirmation,negation_mixed": 2,
+      "case_text,title,abstract,species,treatment,confirmation": 2,
+      "case_text,title,abstract,species,confirmation": 1
+    },
+    "matched_pattern_counts": {
+      "case_text:visceral leishmaniasis": 1,
+      "feline|cat|leishmaniosis|leishmaniasis": 1,
+      "feline leishmaniosis|cat|domestic shorthair|veterinary|Lutzomyia": 1,
+      "cat|feline|veterinary|oral manifestation": 1,
+      "cat|feline|veterinary|domestic short-haired": 1
+    },
+    "year_counts": {
+      "2023": 2,
+      "2016": 1,
+      "2021": 1,
+      "2022": 1
+    }
+  },
+  "output_files": {
+    "summary_json": "/tmp/leish_stats_deep_latest/leishmaniasis_verified_strict_complete_from_parquet_image_aligned_v3_with_manual132_fixed_case_series_rag_split_deep_statistics_report.json",
+    "type_counts_raw_csv": "/tmp/leish_stats_deep_latest/leishmaniasis_verified_strict_complete_from_parquet_image_aligned_v3_with_manual132_fixed_case_series_rag_split_deep_type_counts_raw.csv",
+    "type_counts_normalized_csv": "/tmp/leish_stats_deep_latest/leishmaniasis_verified_strict_complete_from_parquet_image_aligned_v3_with_manual132_fixed_case_series_rag_split_deep_type_counts_normalized.csv",
+    "age_by_type_csv": "/tmp/leish_stats_deep_latest/leishmaniasis_verified_strict_complete_from_parquet_image_aligned_v3_with_manual132_fixed_case_series_rag_split_deep_age_by_type.csv",
+    "images_by_type_csv": "/tmp/leish_stats_deep_latest/leishmaniasis_verified_strict_complete_from_parquet_image_aligned_v3_with_manual132_fixed_case_series_rag_split_deep_images_by_type.csv",
+    "gender_by_type_csv": "/tmp/leish_stats_deep_latest/leishmaniasis_verified_strict_complete_from_parquet_image_aligned_v3_with_manual132_fixed_case_series_rag_split_deep_gender_by_type.csv",
+    "scope_by_type_csv": "/tmp/leish_stats_deep_latest/leishmaniasis_verified_strict_complete_from_parquet_image_aligned_v3_with_manual132_fixed_case_series_rag_split_deep_scope_by_type.csv",
+    "year_by_type_csv": "/tmp/leish_stats_deep_latest/leishmaniasis_verified_strict_complete_from_parquet_image_aligned_v3_with_manual132_fixed_case_series_rag_split_deep_year_by_type.csv",
+    "validation_reason_counts_csv": "/tmp/leish_stats_deep_latest/leishmaniasis_verified_strict_complete_from_parquet_image_aligned_v3_with_manual132_fixed_case_series_rag_split_deep_validation_reason_counts.csv",
+    "signal_matrix_csv": "/tmp/leish_stats_deep_latest/leishmaniasis_verified_strict_complete_from_parquet_image_aligned_v3_with_manual132_fixed_case_series_rag_split_deep_signal_matrix.csv",
+    "no_image_cases_csv": "/tmp/leish_stats_deep_latest/leishmaniasis_verified_strict_complete_from_parquet_image_aligned_v3_with_manual132_fixed_case_series_rag_split_deep_no_image_cases.csv",
+    "ocular_cases_csv": "/tmp/leish_stats_deep_latest/leishmaniasis_verified_strict_complete_from_parquet_image_aligned_v3_with_manual132_fixed_case_series_rag_split_deep_ocular_cases.csv",
+    "veterinary_cases_csv": "/tmp/leish_stats_deep_latest/leishmaniasis_verified_strict_complete_from_parquet_image_aligned_v3_with_manual132_fixed_case_series_rag_split_deep_veterinary_cases.csv"
+  }
+}

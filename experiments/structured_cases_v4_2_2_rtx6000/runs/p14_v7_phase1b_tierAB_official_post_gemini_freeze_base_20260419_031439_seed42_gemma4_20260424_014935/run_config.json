@@ -1,0 +1,309 @@
+{
+  "run_id": "p14_v7_phase1b_tierAB_official_post_gemini_freeze_base_20260419_031439",
+  "qrels_file": "qrels_pseudolabel_verified_v7_process14.json",
+  "query_types": [
+    "Q1_diagnosis",
+    "Q3_image_diagnosis",
+    "Q1_Q3_multimodal_diagnosis"
+  ],
+  "retriever_method": "hybrid",
+  "rerank": true,
+  "k_values": [
+    5,
+    10
+  ],
+  "created_at": "2026-04-19T03:15:50.598302",
+  "image_search_mode": "images",
+  "agentic_lite": false,
+  "queries_file": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/eval_queries_v163_mixed56_v7_process14.jsonl",
+  "dataset_pack": "mixed56",
+  "context_k": 3,
+  "retrieval_top_k": 20,
+  "ordering_mode": "image_first",
+  "experiment_controls": {
+    "context_k": 3,
+    "retrieval_top_k": 20,
+    "ordering_mode": "image_first"
+  },
+  "runtime_metadata": {
+    "project_root": "/data1t/lab/experiments/structured_cases_v4_2",
+    "legacy_project_root": "/data1t/lab/ngocnt/Leishmania_v3",
+    "env_file": "/data1t/lab/ngocnt/Leishmania_v3/.env",
+    "env_file_exists": true,
+    "split_dir": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2",
+    "split_dir_exists": true,
+    "data_root": "/data1t/lab/ngocnt/Leishmania_v3/data/leishmaniasis_multimodal",
+    "data_root_exists": true,
+    "images_dir": "/data1t/lab/ngocnt/Leishmania_v3/data/leishmaniasis_multimodal/images",
+    "images_dir_exists": true,
+    "runs_dir": "/data1t/lab/experiments/structured_cases_v4_2/runs",
+    "runs_dir_exists": true,
+    "dataset_version": "p14_v7_phase1b_tierAB_official",
+    "dataset_artifacts": {
+      "train": "nonleish_additions/generated/train_pseudolabel_v2_phase1b_tierAB.jsonl",
+      "test": "test_pseudolabel_v2_normalized_v7_process14.jsonl",
+      "query": "eval_queries_v163_pseudolabel_v2_v7_process14.jsonl",
+      "query_mixed56": "eval_queries_v163_mixed56_v7_process14.jsonl",
+      "qrels_verified": "qrels_pseudolabel_verified_v7_process14.json",
+      "qrels_pseudolabel": "qrels_pseudolabel_label_v7_process14.json"
+    },
+    "train_jsonl": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/nonleish_additions/generated/train_pseudolabel_v2_phase1b_tierAB.jsonl",
+    "train_jsonl_exists": true,
+    "train_jsonl_rows": 121,
+    "train_jsonl_hash": "61359d6b2fbc",
+    "train_jsonl_mtime": "2026-04-13T11:34:38+09:00",
+    "test_jsonl": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/test_pseudolabel_v2_normalized_v7_process14.jsonl",
+    "test_jsonl_exists": true,
+    "test_jsonl_rows": 56,
+    "test_jsonl_hash": "b011fef3aa95",
+    "test_jsonl_mtime": "2026-04-13T11:34:30+09:00",
+    "cuda_visible_devices": "1",
+    "transformers_cache": "/data4T/ngoc/hf-cache/transformers",
+    "hf_home": "/data4T/ngoc/hf-cache",
+    "silver_label_disclaimer": "Evaluation labels are silver labels derived from GPT-5-mini and Gemini 2.5 Pro pipeline outputs; they are not clinician ground truth."
+  },
+  "corpus_support": {
+    "train_diagnosis_type_counts": {
+      "CL": 20,
+      "DCL": 5,
+      "DsCL": 3,
+      "LCL": 1,
+      "LR": 1,
+      "MCL": 15,
+      "Non-Leishmaniasis": 15,
+      "Ocular": 2,
+      "PKDL": 4,
+      "VL": 51,
+      "Veterinary": 4
+    },
+    "test_diagnosis_type_counts": {
+      "CL": 5,
+      "DCL": 1,
+      "DsCL": 1,
+      "MCL": 4,
+      "Non-Leishmaniasis": 33,
+      "Ocular": 1,
+      "PKDL": 1,
+      "VL": 9,
+      "Veterinary": 1
+    },
+    "warnings": []
+  },
+  "evaluation_contract": {
+    "dataset_pack": "mixed56",
+    "qrels_file": "qrels_pseudolabel_verified_v7_process14.json",
+    "queries_file": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/eval_queries_v163_mixed56_v7_process14.jsonl",
+    "queries_file_name": "eval_queries_v163_mixed56_v7_process14.jsonl",
+    "image_search_mode": "images",
+    "baseline_equivalent": false,
+    "warnings": [
+      "queries_file=eval_queries_v163_mixed56_v7_process14.jsonl is not the baseline-equivalent 56-query pseudolabel pack.",
+      "dataset_pack=mixed56 is a multimodal-only subset and should not be compared directly to the full dataset pack."
+    ]
+  },
+  "retrieval_contract": {
+    "dataset_version": "p14_v7_phase1b_tierAB_official",
+    "strict_mode": true,
+    "canonical_full_pilot": false,
+    "method": "hybrid",
+    "rerank": true,
+    "image_search_mode": "images",
+    "query_types": [
+      "Q1_diagnosis",
+      "Q3_image_diagnosis",
+      "Q1_Q3_multimodal_diagnosis"
+    ],
+    "required_resources": {
+      "dense_collection": {
+        "name": "cases_text_e5_1024_p14_v7_phase1b_tierAB_official",
+        "required_at_bootstrap": true,
+        "required_for_runtime_use": true,
+        "expected_vector_size": 1024
+      },
+      "caption_collection": {
+        "name": "captions_biomedclip_512_p14_v7_phase1b_tierAB_official",
+        "required_at_bootstrap": true,
+        "required_for_runtime_use": false,
+        "expected_vector_size": 512
+      },
+      "image_collection": {
+        "name": "images_biomedclip_512_p14_v7_phase1b_tierAB_official",
+        "required_at_bootstrap": true,
+        "required_for_runtime_use": true,
+        "expected_vector_size": 512
+      },
+      "bm25_index": {
+        "name": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/bm25_index_p14_v7_phase1b_tierAB_official.json",
+        "required_at_bootstrap": true,
+        "required_for_runtime_use": true
+      },
+      "expected_runtime_use": {
+        "dense_lane": true,
+        "bm25_lane": true,
+        "caption_lane": false,
+        "image_lane": true,
+        "rerank": true
+      },
+      "caption_coverage": {
+        "total_image_entries": 250,
+        "caption_entries": 28,
+        "caption_coverage_ratio": 0.112
+      },
+      "canonical_full_pilot": false,
+      "strict_mode": true
+    },
+    "artifacts": {
+      "train_jsonl": {
+        "path": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/nonleish_additions/generated/train_pseudolabel_v2_phase1b_tierAB.jsonl",
+        "exists": true,
+        "hash": "61359d6b2fbc",
+        "rows": 121,
+        "mtime": "2026-04-13T11:34:38+09:00"
+      },
+      "test_jsonl": {
+        "path": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/test_pseudolabel_v2_normalized_v7_process14.jsonl",
+        "exists": true,
+        "hash": "b011fef3aa95",
+        "rows": 56,
+        "mtime": "2026-04-13T11:34:30+09:00"
+      },
+      "queries_jsonl": {
+        "path": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/eval_queries_v163_mixed56_v7_process14.jsonl",
+        "exists": true,
+        "hash": "54d91d182500",
+        "rows": 56,
+        "mtime": "2026-04-13T11:34:30+09:00"
+      },
+      "qrels_json": {
+        "path": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/qrels_pseudolabel_verified_v7_process14.json",
+        "exists": true,
+        "hash": "0fd5642f1d12",
+        "rows": null,
+        "mtime": "2026-04-13T11:34:30+09:00"
+      }
+    },
+    "resolved_resources": {
+      "dense_collection": "cases_text_e5_1024_p14_v7_phase1b_tierAB_official",
+      "caption_collection": "captions_biomedclip_512_p14_v7_phase1b_tierAB_official",
+      "image_collection": "images_biomedclip_512_p14_v7_phase1b_tierAB_official",
+      "bm25_index": {
+        "strict_mode": true,
+        "dataset_version": "p14_v7_phase1b_tierAB_official",
+        "expected_path": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/bm25_index_p14_v7_phase1b_tierAB_official.json",
+        "resolved_path": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/bm25_index_p14_v7_phase1b_tierAB_official.json",
+        "exists": true,
+        "fallback_used": false,
+        "fallback_reason": "",
+        "candidate_paths": [
+          "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/bm25_index_p14_v7_phase1b_tierAB_official.json",
+          "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/bm25_index.json",
+          "/data1t/lab/ngocnt/Leishmania_v3/data/leishmaniasis_multimodal/bm25_index_p14_v7_phase1b_tierAB_official.json",
+          "/data1t/lab/ngocnt/Leishmania_v3/data/leishmaniasis_multimodal/bm25_index.json"
+        ],
+        "fingerprint": {
+          "path": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/bm25_index_p14_v7_phase1b_tierAB_official.json",
+          "exists": true,
+          "hash": "253a354c11bc",
+          "rows": null,
+          "mtime": "2026-04-16T11:48:38+09:00"
+        }
+      }
+    },
+    "collections_at_start": {
+      "dense_collection": {
+        "name": "cases_text_e5_1024_p14_v7_phase1b_tierAB_official",
+        "exists": true,
+        "points_count": 123,
+        "vector_size": 1024,
+        "error": null
+      },
+      "caption_collection": {
+        "name": "captions_biomedclip_512_p14_v7_phase1b_tierAB_official",
+        "exists": true,
+        "points_count": 28,
+        "vector_size": 512,
+        "error": null
+      },
+      "image_collection": {
+        "name": "images_biomedclip_512_p14_v7_phase1b_tierAB_official",
+        "exists": true,
+        "points_count": 222,
+        "vector_size": 512,
+        "error": null
+      }
+    },
+    "caption_support": {
+      "coverage": {
+        "total_image_entries": 250,
+        "caption_entries": 28,
+        "caption_coverage_ratio": 0.112
+      },
+      "collection_name": "captions_biomedclip_512_p14_v7_phase1b_tierAB_official",
+      "collection_exists": true,
+      "lane_expected": false,
+      "lane_exercised": false,
+      "required_at_bootstrap": true,
+      "absence_reason": null
+    },
+    "resource_events": [],
+    "usage": {
+      "dense_lane_query_count": 56,
+      "bm25_lane_query_count": 56,
+      "hybrid_lane_query_count": 56,
+      "caption_query_count": 0,
+      "image_query_count": 24,
+      "rerank_query_count": 56,
+      "rerank_pass_count": 56,
+      "fallback_event_count": 0,
+      "fallback_events": [],
+      "collection_queries": {
+        "cases_text_e5_1024_p14_v7_phase1b_tierAB_official": 56,
+        "images_biomedclip_512_p14_v7_phase1b_tierAB_official": 24
+      },
+      "resources_exercised": {
+        "dense_lane": true,
+        "bm25_lane": true,
+        "caption_lane": false,
+        "image_lane": true,
+        "rerank": true
+      }
+    },
+    "usage_expectations": {
+      "dense_lane": true,
+      "bm25_lane": true,
+      "caption_lane": false,
+      "image_lane": true,
+      "rerank": true
+    },
+    "strip_query_images": false,
+    "ablation_scope": ""
+  },
+  "ablation_scope": "",
+  "strip_query_images": false,
+  "pseudolabel_artifacts": {
+    "dataset_version": "p14_v7_phase1b_tierAB_official",
+    "train_source": "/data1t/lab/experiments/structured_cases_v4_2/rag/testing/multimodal/v7/out/p14_train_structure_only_main_v7_batch_single_repair/results.jsonl",
+    "test_source": "/data1t/lab/experiments/structured_cases_v4_2/rag/testing/multimodal/v7/out/p14_test_held_out_structure_only_v7_local_reaudit/results.jsonl",
+    "suffix": "",
+    "output_dir": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2",
+    "train_path": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/nonleish_additions/generated/train_pseudolabel_v2_phase1b_tierAB.jsonl",
+    "test_path": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/test_pseudolabel_v2_normalized_v7_process14.jsonl",
+    "query_path": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/eval_queries_v163_pseudolabel_v2_v7_process14.jsonl",
+    "query_mixed56_path": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/eval_queries_v163_mixed56_v7_process14.jsonl",
+    "qrels_verified_path": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/qrels_pseudolabel_verified_v7_process14.json",
+    "qrels_pseudolabel_path": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/qrels_pseudolabel_label_v7_process14.json"
+  },
+  "caption_support": {
+    "coverage": {
+      "total_image_entries": 250,
+      "caption_entries": 28,
+      "caption_coverage_ratio": 0.112
+    },
+    "collection_name": "captions_biomedclip_512_p14_v7_phase1b_tierAB_official",
+    "collection_exists": true,
+    "lane_expected": false,
+    "lane_exercised": false,
+    "required_at_bootstrap": true,
+    "absence_reason": null
+  }
+}
