@@ -1,0 +1,50 @@
+{
+  "version": "v3_leish_multimodal",
+  "seed": 42,
+  "test_ratio_target": 0.2,
+  "source_total": 163,
+  "leish_total": 130,
+  "multimodal_candidates": 111,
+  "train_count": 106,
+  "test_count": 23,
+  "eval_queries_count": 23,
+  "query_types": {
+    "Q1_Q3_multimodal_diagnosis": 23
+  },
+  "non_leish_in_train": 0,
+  "non_leish_in_test": 0,
+  "article_overlap_count": 0,
+  "moved_back_for_label_coverage": 0,
+  "dropped_non_multimodal_from_test_articles": 1,
+  "species_patched_from_backup": 48,
+  "train_label_distribution": {
+    "VL": 51,
+    "MCL": 15,
+    "CL": 20,
+    "Veterinary_Leishmaniasis": 4,
+    "Ocular Leishmaniasis": 2,
+    "PKDL": 4,
+    "DCL": 5,
+    "DsCL": 3,
+    "LR": 1,
+    "LCL": 1
+  },
+  "test_label_distribution": {
+    "VL": 9,
+    "DsCL": 1,
+    "CL": 5,
+    "Ocular Leishmaniasis": 1,
+    "MCL": 4,
+    "DCL": 1,
+    "PKDL": 1,
+    "Veterinary_Leishmaniasis": 1
+  },
+  "backups": {
+    "train.jsonl": "train.jsonl.bak_20260226_114411",
+    "test.jsonl": "test.jsonl.bak_20260226_114411",
+    "eval_queries_v163.jsonl": "eval_queries_v163.jsonl.bak_20260226_114411",
+    "qrels_clinical_strict.json": "qrels_clinical_strict.json.bak_20260226_114411",
+    "qrels_strict_exact.json": "qrels_strict_exact.json.bak_20260226_114411",
+    "split_audit_report.json": "split_audit_report.json.bak_20260226_114411"
+  }
+}

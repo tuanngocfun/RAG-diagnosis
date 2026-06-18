@@ -1,0 +1,21 @@
+[gpu-telemetry] started_at=2026-04-23T17:41:41Z
+[gpu-telemetry] runtime_log=/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/runtimes/no-rag/multimodal/gemma4.txt
+[gpu-telemetry] gpu_log=/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/runtimes/no-rag/multimodal/gemma4.csv
+[gpu-telemetry] gpu_index=0
+[gpu-telemetry] sample_interval_seconds=1
+============================================================
+Prepared pseudolabel artifacts: train=121, test=56, queries=136, mixed56_queries=56
+NO-RAG BASELINE GENERATION: p14_v7_phase1b_tierAB_official_latency_generation_only_multimodal_norag_gemma4_20260423_183411
+============================================================
+Loading queries from: /home/ngocnt/experiments/structured_cases_v4_2_2/leishmaniasis_verified_v2/eval_queries_v163_mixed56_v7_process14.jsonl
+Query types: ['Q1_diagnosis', 'Q3_image_diagnosis', 'Q1_Q3_multimodal_diagnosis']
+Total queries: 56
+Loading Gemma 4 from /mnt/data/hf/transformers/models--google--gemma-4-E4B-it/snapshots/83df0a889143b1dbfc61b591bbc639540fd9ce4c...
+  Cache dir: /mnt/data/hf/transformers
+  Device: cuda
+  Vision: True
+  Ordering mode: image_first
+  Context image tensors: False (budget=0)
+  GPU VRAM: 23.5GB
+  Quantization: 4-bit
+Loading weights:   0%|          | 0/2076 [00:00<?, ?it/s]Loading weights:  15%|█▍        | 308/2076 [00:00<00:00, 3064.86it/s]Loading weights:  36%|███▌      | 742/2076 [00:00<00:00, 3808.07it/s]Loading weights:  54%|█████▍    | 1123/2076 [00:01<00:01, 668.14it/s]Loading weights:  65%|██████▍   | 1346/2076 [00:01<00:01, 666.80it/s]Loading weights:  73%|███████▎  | 1507/2076 [00:01<00:00, 740.28it/s]Loading weights:  97%|█████████▋| 2013/2076 [00:01<00:00, 1289.05it/s]Loading weights: 100%|██████████| 2076/2076 [00:01<00:00, 1082.73it/s]

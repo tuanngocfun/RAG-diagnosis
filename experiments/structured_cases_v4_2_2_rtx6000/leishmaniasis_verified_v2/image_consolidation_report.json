@@ -1,0 +1,10 @@
+{
+  "total_cases": 163,
+  "cases_with_images_meta": 139,
+  "cases_text_only": 24,
+  "images_already_present": 115,
+  "images_copied_from_multicare": 0,
+  "images_downloaded_from_pmc": 204,
+  "images_download_failed": 0,
+  "failed_downloads": []
+}
