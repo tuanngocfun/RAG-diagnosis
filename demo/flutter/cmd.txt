@@ -1,0 +1,15 @@
+terminal 1:
+# Stop the old backend first with Ctrl-C, then:
+cd /home/ngocnt/flutter/backend
+
+MEDICAL_DEMO_PROVIDER_MODE=real_gpu_gemma4 \
+HF_HUB_OFFLINE=1 \
+TRANSFORMERS_OFFLINE=1 \
+GEMMA4_FORCE_4BIT=1 \
+GEMMA4_IMAGE_SIZE=768 \
+GEMMA4_MAX_QUERY_IMAGES=1 \
+/home/ngocnt/Leishmaniasis_v3/data/venv/bin/python -m medical_demo_backend.api
+
+terminal 2:
+cd /home/ngocnt/flutter/app
+python3 -m http.server 8020 --directory build/web
