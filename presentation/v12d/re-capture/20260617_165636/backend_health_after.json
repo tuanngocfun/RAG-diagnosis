@@ -1,0 +1,16 @@
+{
+  "bitsandbytes_available": true,
+  "chat_available": true,
+  "cuda_available": true,
+  "gpu_free_memory_ready": true,
+  "gpu_memory_free_mib": 13947,
+  "gpu_memory_total_mib": 24019,
+  "gpu_min_free_mib": 12000,
+  "gpu_name": "NVIDIA TITAN RTX",
+  "kb_path": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/demo/flutter/kb/leishmaniasis_demo_pack.json",
+  "kb_ready": true,
+  "model_loaded": true,
+  "model_name": "google/gemma-4-E4B-it",
+  "provider_mode": "real_gpu_gemma4",
+  "status": "ok"
+}
