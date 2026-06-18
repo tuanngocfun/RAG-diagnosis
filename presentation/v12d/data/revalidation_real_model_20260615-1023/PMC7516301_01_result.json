@@ -1,0 +1,134 @@
+{
+  "case_id": "PMC7516301_01",
+  "silver_reference_label": "Mucocutaneous Leishmaniasis (MCL)",
+  "expected_diagnosis": "Mucocutaneous Leishmaniasis (MCL)",
+  "category": "success",
+  "notes": "Held-out MCL case; success-style functional example.",
+  "clinical_text": "A 19-year-old man from Syria (arrived in Denmark in 2015) presented in June 2016 with a 6-month history of throat irritation that progressed over several days to severe throat pain and fever. He had no history of severe illness or excess infections; examination noted a scar on his arm that was suggestive of previous cutaneous leishmaniasis. Laryngoscopy demonstrated massive edema of the mucosa of both the pharynx and larynx; the epiglottis and uvula were swollen and red with papilloma-like lesions. Endoscopic images show marked swelling and papillomatous-appearing mucosal lesions of the oropharynx and larynx.",
+  "image_path": "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7516301_01/PMC7516301_fimmu-11-567856-g001_A_1_3.webp",
+  "input_png_path": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/demo/presentation/v12c/data/revalidation_real_model_20260615-1023/PMC7516301_01_input.png",
+  "assistant_markdown": "> Safety boundary: research decision support only; not ground truth, not clinical validation, and not a diagnosis system.\n\n## Supportive Differential (Not a Diagnosis)\n**Rank 1 supportive consideration:** Mucocutaneous Leishmaniasis (Mucosal form)\n**Rank 1 Diagnosis Type:** MCL\n**Rank 1 Species (if determinable):** Not determinable\n**Rank 1 Confidence:** Medium\n**Rank 2:** Infectious Dermatitis/Mucositis (Non-Leishmaniasis)\n**Rank 3:** Other Granulomatous Disease (Non-Leishmaniasis)\n**Most supported option in this research demo:** Mucocutaneous Leishmaniasis (Mucosal form)\n**Evidence source used by the model:** Both\n\n## SUPPORTING EVIDENCE\n*   Clinical presentation includes prolonged fever and severe throat irritation progressing to massive edema and papilloma-like lesions of the oropharynx and larynx, consistent with mucocutaneous involvement.\n*   The patient has a history suggestive of prior cutaneous leishmaniasis, which is a known precursor/associated finding in MCL.\n*   Laryngoscopy findings (massive edema, papillomatous lesions) align with descriptions of mucocutaneous involvement seen in literature (Context 1, Context 4).\n*   The patient's travel history (Syria) places him in an endemic region for Leishmaniasis.\n\n## DIFFERENTIAL CONSIDERATIONS\n*   **Non-Leishmaniasis:** Severe infectious pharyngitis/laryngitis (e.g., fungal infection, viral infection, malignancy) given the mucosal involvement.\n*   **Non-Leishmaniasis:** Granulomatous diseases affecting the mucosa.\n*   **Leishmaniasis:** Visceral Leishmaniasis (VL) should be considered due to systemic symptoms (fever), though the primary presentation here is mucosal.\n\n## UNCERTAINTY AND MISSING INFORMATION\nThe definitive causative agent cannot be determined from the clinical presentation alone. The image provided shows mucosal lesions, but microscopic or microbiological confirmation is absent. The distinction between mucosal leishmaniasis and other granulomatous mucositis requires tissue biopsy confirmation.\n\n## SUGGESTED CONFIRMATORY TESTS OR CLINICIAN REVIEW\nTissue biopsy of the mucosal lesions should be obtained for microscopic examination (looking for amastigotes) and molecular confirmation (PCR). Serological testing for Leishmaniasis should also be considered, though tissue confirmation is preferred for MCL.\n\n## EVIDENCE USED\nMedical knowledge, Context 1, Context 4.",
+  "safety_state": "generated_support",
+  "evidence": [
+    {
+      "chunk_id": "mcl-002",
+      "confirmatory": true,
+      "diagnosis_label": "Mucocutaneous leishmaniasis",
+      "excerpt": "Palatal or nasal mucosal lesions with compatible epidemiology should raise concern for mucocutaneous leishmaniasis and prompt tissue confirmation.",
+      "score": 0.3617,
+      "source_case_id": "case-mcl-002",
+      "title": "Palatal and nasal mucosal disease in leishmaniasis"
+    },
+    {
+      "chunk_id": "cl-001",
+      "confirmatory": true,
+      "diagnosis_label": "Cutaneous leishmaniasis",
+      "excerpt": "A patient with an ulcerated plaque on the forearm after sandfly exposure had a lesion smear showing amastigotes. The presentation was consistent with localized cutaneous leishmaniasis.",
+      "score": 0.3038,
+      "source_case_id": "case-cl-001",
+      "title": "Cutaneous leishmaniasis with ulcer and smear-confirmed amastigotes"
+    },
+    {
+      "chunk_id": "vl-001",
+      "confirmatory": true,
+      "diagnosis_label": "Visceral leishmaniasis",
+      "excerpt": "Prolonged fever, weight loss, pancytopenia, and splenomegaly are classic features of visceral leishmaniasis. Bone marrow or tissue confirmation is typically required.",
+      "score": 0.2457,
+      "source_case_id": "case-vl-001",
+      "title": "Visceral leishmaniasis with prolonged fever and splenomegaly"
+    }
+  ],
+  "metadata": {
+    "provider_mode": "real_gpu_gemma4",
+    "model_name": "google/gemma-4-E4B-it",
+    "elapsed_seconds": 57.94,
+    "request_id": "v12c_revalidation_real_model_PMC7516301_01",
+    "query_image_tensor_count": 1
+  },
+  "split_provenance": {
+    "held_out_source": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/details_analysis/rtx_titan/structured_cases_v4/leishmaniasis_verified_v2/test_p14_v7_normalized.jsonl",
+    "eval_query_source": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/details_analysis/rtx_titan/structured_cases_v4/leishmaniasis_verified_v2/eval_queries_p14_v7_mixed56.jsonl",
+    "clinical_retrieval_corpus_source": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/details_analysis/rtx_titan/structured_cases_v4/leishmaniasis_verified_v2/nonleish_additions/generated/train_phase1b_tierAB.jsonl",
+    "runtime_retrieval_kb_source": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/demo/flutter/kb/leishmaniasis_demo_pack.json",
+    "test_count": 1,
+    "eval_query_count": 1,
+    "train_count": 0,
+    "source_terms": {
+      "official_experimental_retrieval_corpus": "121-case phase1b Tier A+B train artifact; used for split-exclusion verification",
+      "saved_demo_runtime_kb": "small local defense demo KB used by the preserved backend output",
+      "held_out_evaluation_set": "56 non-indexed evaluation cases"
+    },
+    "label_status": "silver_reference_only"
+  },
+  "label_contract": {
+    "dataset_version": "p14_v7",
+    "ground_truth_status": "silver_reference_only",
+    "verified_track": "reference_label propagated from the structured multimodal pipeline, not clinician gold ground truth",
+    "pseudolabel_track": "Prompt-1 final_diagnosis extracted from the structured multimodal pipeline, not clinician gold ground truth",
+    "disclaimer": "Evaluation labels are silver labels derived from GPT-5-mini and Gemini 2.5 Pro pipeline outputs; they are not clinician ground truth."
+  },
+  "raw_response": {
+    "assistant_markdown": "> Safety boundary: research decision support only; not ground truth, not clinical validation, and not a diagnosis system.\n\n## Supportive Differential (Not a Diagnosis)\n**Rank 1 supportive consideration:** Mucocutaneous Leishmaniasis (Mucosal form)\n**Rank 1 Diagnosis Type:** MCL\n**Rank 1 Species (if determinable):** Not determinable\n**Rank 1 Confidence:** Medium\n**Rank 2:** Infectious Dermatitis/Mucositis (Non-Leishmaniasis)\n**Rank 3:** Other Granulomatous Disease (Non-Leishmaniasis)\n**Most supported option in this research demo:** Mucocutaneous Leishmaniasis (Mucosal form)\n**Evidence source used by the model:** Both\n\n## SUPPORTING EVIDENCE\n*   Clinical presentation includes prolonged fever and severe throat irritation progressing to massive edema and papilloma-like lesions of the oropharynx and larynx, consistent with mucocutaneous involvement.\n*   The patient has a history suggestive of prior cutaneous leishmaniasis, which is a known precursor/associated finding in MCL.\n*   Laryngoscopy findings (massive edema, papillomatous lesions) align with descriptions of mucocutaneous involvement seen in literature (Context 1, Context 4).\n*   The patient's travel history (Syria) places him in an endemic region for Leishmaniasis.\n\n## DIFFERENTIAL CONSIDERATIONS\n*   **Non-Leishmaniasis:** Severe infectious pharyngitis/laryngitis (e.g., fungal infection, viral infection, malignancy) given the mucosal involvement.\n*   **Non-Leishmaniasis:** Granulomatous diseases affecting the mucosa.\n*   **Leishmaniasis:** Visceral Leishmaniasis (VL) should be considered due to systemic symptoms (fever), though the primary presentation here is mucosal.\n\n## UNCERTAINTY AND MISSING INFORMATION\nThe definitive causative agent cannot be determined from the clinical presentation alone. The image provided shows mucosal lesions, but microscopic or microbiological confirmation is absent. The distinction between mucosal leishmaniasis and other granulomatous mucositis requires tissue biopsy confirmation.\n\n## SUGGESTED CONFIRMATORY TESTS OR CLINICIAN REVIEW\nTissue biopsy of the mucosal lesions should be obtained for microscopic examination (looking for amastigotes) and molecular confirmation (PCR). Serological testing for Leishmaniasis should also be considered, though tissue confirmation is preferred for MCL.\n\n## EVIDENCE USED\nMedical knowledge, Context 1, Context 4.",
+    "disclaimer": "Decision support only. This demo uses local Gemma 4 GPU generation with a small local demo KB. It is not clinical deployment, has not been clinician-validated, and must not be used as a diagnosis system.",
+    "evidence": [
+      {
+        "chunk_id": "mcl-002",
+        "confirmatory": true,
+        "diagnosis_label": "Mucocutaneous leishmaniasis",
+        "excerpt": "Palatal or nasal mucosal lesions with compatible epidemiology should raise concern for mucocutaneous leishmaniasis and prompt tissue confirmation.",
+        "score": 0.3617,
+        "source_case_id": "case-mcl-002",
+        "title": "Palatal and nasal mucosal disease in leishmaniasis"
+      },
+      {
+        "chunk_id": "cl-001",
+        "confirmatory": true,
+        "diagnosis_label": "Cutaneous leishmaniasis",
+        "excerpt": "A patient with an ulcerated plaque on the forearm after sandfly exposure had a lesion smear showing amastigotes. The presentation was consistent with localized cutaneous leishmaniasis.",
+        "score": 0.3038,
+        "source_case_id": "case-cl-001",
+        "title": "Cutaneous leishmaniasis with ulcer and smear-confirmed amastigotes"
+      },
+      {
+        "chunk_id": "vl-001",
+        "confirmatory": true,
+        "diagnosis_label": "Visceral leishmaniasis",
+        "excerpt": "Prolonged fever, weight loss, pancytopenia, and splenomegaly are classic features of visceral leishmaniasis. Bone marrow or tissue confirmation is typically required.",
+        "score": 0.2457,
+        "source_case_id": "case-vl-001",
+        "title": "Visceral leishmaniasis with prolonged fever and splenomegaly"
+      }
+    ],
+    "model_name": "google/gemma-4-E4B-it",
+    "needed_next_inputs": [
+      "clinician review",
+      "confirmatory laboratory or histopathology testing"
+    ],
+    "provider_mode": "real_gpu_gemma4",
+    "request_id": "v12c_revalidation_real_model_PMC7516301_01",
+    "runtime_metadata": {
+      "device_kind": "local_gpu",
+      "generation_latency_seconds": 57.93847371102311,
+      "gpu_memory_allocated_mib": 8881.3,
+      "gpu_memory_reserved_mib": 10092.0,
+      "gpu_name": "NVIDIA TITAN RTX",
+      "gpu_peak_memory_allocated_mib": 9657.4,
+      "hf_device_placement": [
+        "cuda:0"
+      ],
+      "image_tensor_fallback_reason": "",
+      "image_tensor_fallback_used": false,
+      "memory_total_mb": 24020,
+      "model_load_seconds": 7.653274466007133,
+      "model_name": "google/gemma-4-E4B-it",
+      "prompt_context_count": 4,
+      "provider_mode": "real_gpu_gemma4",
+      "quantization_mode": "4-bit",
+      "query_image_tensor_count": 1
+    },
+    "safety_state": "generated_support",
+    "timing_ms": 57939
+  },
+  "success": true,
+  "error": null
+}

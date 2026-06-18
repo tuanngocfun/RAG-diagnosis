@@ -1,0 +1,462 @@
+{
+  "case_id": "PMC10026180_04",
+  "qid": "PMC10026180_04::Q1_Q3_multimodal_diagnosis",
+  "query_type": "Q1_Q3_multimodal_diagnosis",
+  "official_rag_trace": {
+    "retrieval_source": "/home/ngocnt/experiments/structured_cases_v4_2_2_rtx6000/runs/p14_v7_phase1b_tierAB_official_post_gemini_freeze_base_20260419_031439_seed42_gemma4_20260424_014935/retrieval.jsonl",
+    "answer_source": "/home/ngocnt/experiments/structured_cases_v4_2_2_rtx6000/runs/p14_v7_phase1b_tierAB_official_post_gemini_freeze_base_20260419_031439_seed42_gemma4_20260424_014935/answers_latency.jsonl",
+    "retrieval_row": {
+      "qid": "PMC10026180_04::Q1_Q3_multimodal_diagnosis",
+      "query_type": "Q1_Q3_multimodal_diagnosis",
+      "query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: An 11-year-old Arab girl with a known diagnosis of ataxia telangiectasia (diagnosed at 1 year) presented with a spreading skin rash on her nose that extended to the nostrils and her left cheek. Family history included consanguineous parents and another sibling with AT. Her childhood course included ataxia, recurrent lung and ear infections, sclerosing cholangitis, hypothyroidism, and later diffuse large B‑cell lymphoma. She used a wheelchair and had multiple café‑au‑lait spots and telangiectasias. Immunologic testing showed a decreased immunoglobulin level (IgG 516 mg/L) with lymphocyte count and function reported as normal. Her baseline therapies included monthly IVIG, inhaled budesonide and fluticasone, and levothyroxine.\n\nInitially she received amoxicillin–clavulanic acid and topical chloramphenicol without clinical response. On examination, the tip of the nose had an erythematous plaque with a central erosion and a circinate‑elevated border with overlying scattered pustules; the nose bridge and nostrils had small erythematous erosions. An atypical infection was considered.",
+      "clinical_context": "An 11-year-old Arab girl with a known diagnosis of ataxia telangiectasia (diagnosed at 1 year) presented with a spreading skin rash on her nose that extended to the nostrils and her left cheek. Family",
+      "raw_question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+      "resolved_question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+      "contexts": [
+        {
+          "doc_id": "PMC5490479_01",
+          "score": 0.021050130672368734,
+          "text": "A 9-year-old boy presented with multiple papular lesions on the left cheek that had been present for three months and had gradually enlarged. His medical history was notable for an episode of cutaneous leishmaniasis located on the nose two years earlier, which had completely regressed after treatment with intralesional meglumine antimonate. Dermatologic examination showed multiple, coalescing, rough, slightly elevated, yellowish-brown papular lesions 3–6 mm in diameter on the left cheek. He also had a large atrophic scar on the nose. Nothing of interest was noted in his family history or his laboratory tests.",
+          "meta": {
+            "has_images": true
+          },
+          "is_leishmaniasis": true,
+          "diagnosis_type": "LR",
+          "label_source": "train_verified"
+        },
+        {
+          "doc_id": "PMC3523429_01",
+          "score": 0.015682382133995035,
+          "text": "A 52-year-old woman presented with a single lesion on the tip of her nose that had existed for 14 months. It began as a papule and was slowly increasing in size, enlarging to a plaque. A smear of the lesion performed about 1 year earlier was positive, \"showing leishmania bodies.\" All five members of her family had a history of proven leishmaniasis. Her past medical history was notable for renal failure diagnosed 11 years earlier; she \"received a renal transplant 4 years after the diagnosis of renal failure.\" She also had hypertension and hyperlipidemia and was taking oral mycophenolate mofetil (2 g daily) and cyclosporine (100 mg daily). Skin examination showed skin type IV, \"No actinic keratosis was present,\" and a 3x3 cm indurated ulcer with elevated borders was present on the tip of her nose. The therapeutic plan was intralesional glucantime injections (approximately 1 ml of 1.5 g vial per week). \"After completing a therapeutic course of 20 sessions receiving intralesional glucantime injections, she was considered as glucantime therapy resistant.\"",
+          "meta": {
+            "has_images": true
+          },
+          "is_leishmaniasis": true,
+          "diagnosis_type": "CL",
+          "label_source": "train_verified"
+        },
+        {
+          "doc_id": "PMC7585787_01",
+          "score": 0.014718614718614718,
+          "text": "A 38‑year‑old man from Yayu district, western Ethiopia, presented to the outpatient clinic with multiple skin lesions on his face and hands and mutilation of the nose; his upper lip was injured and swollen. Eight years earlier he had a small papule on the right cheek that progressed to an open ulcer, then to ulcers on the left cheek and forehead; those active lesions lasted about six months and healed spontaneously, leaving permanent hypopigmented scars. He had no fever, hepatosplenomegaly or lymphedema and reported no history of HIV, chronic disease, alcohol abuse, or immunomodulatory drug use. Parasitological testing of lesion smears at that time showed many macrophages filled with amastigote stages of Leishmania, graded as +6. A nonreactive rK39 rapid diagnostic test and absence of related systemic signs made visceral leishmaniasis unlikely. Based on the clinical manifestations and smear result he was diagnosed with mucocutaneous leishmaniasis and treated with intramuscular sodium stibogluconate (20 mg/kg/day for 30 days) with clinical cure. Two years later he returned with a different cutaneous eruption that had appeared over the previous three months and had been preceded by intense itching. On exam he had multiple, nonpitting, closed papules on his face, nose, hands and legs. A skin smear again showed intramacrophage amastigotes with a parasite load graded +6, and culture grew promastigotes.",
+          "meta": {
+            "has_images": true
+          },
+          "is_leishmaniasis": true,
+          "diagnosis_type": "MCL",
+          "label_source": "train_verified"
+        },
+        {
+          "doc_id": "PMC10162717_01",
+          "score": 0.013951734539969833,
+          "text": "An 84‑year‑old woman presented with a large nodular lesion on the forehead of 2.5 months' duration. She had been seen at another hospital where a pre‑diagnosis of lymphoma was recorded; the prior punch biopsy report listed basal cell carcinoma, sarcoidosis, lupus vulgaris and pseudolymphoma among the clinical pre‑diagnoses and the material was sent for pathology consultation. Microscopic examination of the punch biopsy showed a dense nodular and diffuse lymphohistiocytic cell infiltration within the dermis. In the cytoplasm of histiocytes, small, round structures resembling organisms were noted. Immunohistochemical staining showed reactive T lymphocytes labelled with CD3 and CD5, reactive B lymphocytes labelled with CD20, and large clusters of histiocytes labelled with CD68; there was no staining with CD30. The pathology report recommended investigation of the aetiology of granulomatous dermatitis, especially cutaneous leishmaniasis.",
+          "meta": {
+            "has_images": true
+          },
+          "is_leishmaniasis": true,
+          "diagnosis_type": "CL",
+          "label_source": "train_verified"
+        },
+        {
+          "doc_id": "PMC7527865_06",
+          "score": 0.01365554276946682,
+          "text": "A 59-year-old Caucasian woman with a medical history of diabetes, hypertension, congestive heart failure, chronic renal disease, and paraparesis secondary to HTLV-1 infection presented in June 2012 with a skin lesion on her face. She initially noted a papule in the left malar region that later ulcerated and increased in size. Fifteen days after the facial lesion appeared, she developed another lesion on the right knee.",
+          "meta": {
+            "has_images": true
+          },
+          "is_leishmaniasis": true,
+          "diagnosis_type": "MCL",
+          "label_source": "train_verified"
+        },
+        {
+          "doc_id": "PMC6850740_02",
+          "score": 0.013271659847002314,
+          "text": "Her only medical history was well-controlled hypertension. Examination showed a palpable spleen just below the left costal margin. On the right arm near the axilla there was \"a single well-defined, ulcer surrounded by erythematous edging, with serous oozing\" about 3 × 3 cm; the patient reported the lesion was painless, nonhealing, and present for 2–3 years. The rest of the exam was essentially normal. A Leishmania rk39 immunochromatography test was positive. Bone marrow aspiration parasitology revealed Leishmania amastigote forms, and serum immunofluorescence for Leishmania antibodies was positive (titer 1:400). Blood qPCR detected Leishmania DNA (400 parasites/mL). Direct microscopy of skin smears from the arm lesion showed no amastigotes, but Leishmania DNA amplification was obtained from dermal DNA extract by qPCR. ITS1 sequencing showed the Leishmania strains from the blood and the arm lesion corresponded to L. infantum and were 100% identical. Systemic response was rapid: fever resolved, general condition improved, splenomegaly regressed, blood counts normalized, and blood qPCR became negative after 28 days. However, \"the skin lesion did not improve although Leishmania qPCR on dermal sample became negative.\" A skin biopsy was initially refused. One year later the lesion remained essentially unchanged. A polarized dermoscopy examination showed \"ulcerations and short, fine arborizing vessels,\" described as evocative of a basal cell carcinoma.",
+          "meta": {
+            "has_images": true
+          },
+          "is_leishmaniasis": true,
+          "diagnosis_type": "VL",
+          "label_source": "train_verified"
+        },
+        {
+          "doc_id": "PMC6019596_01",
+          "score": 0.01223155929038282,
+          "text": "A 78-year-old man from a rural area in western Iran was referred for multiple ulcerative, exudative lesions involving the mid-face (upper lip and anterior nasal fossa), above the eyebrows, dorsal aspects of both hands, and posterior aspects of both heels. Lesions began three years earlier as papules on the dorsal hands and progressively enlarged to involve the face and heels and became ulcerative; involvement of the right hand progressed to destruction of tendons and soft tissue of the fifth finger, resulting in amputation of that finger. He had no history of comorbid conditions, no regular medications reported, and denied systemic symptoms — there was no weight loss, fever, lymphadenopathy, hepatosplenomegaly or other signs of systemic involvement on examination or routine laboratory survey. Multiple prior empirical treatments for different presumed diagnoses, including pyoderma gangrenosum, sarcoidosis, and leishmaniasis, had been tried without improvement. An initial skin biopsy showed a necrotizing and palisading granulomatous tissue pattern that suggested an infectious etiology, but initial smears of lesion material for fungal elements, mycobacteria and Leishmania were negative. A tuberculin skin test produced a 27 mm induration, and anti-tuberculosis therapy (isoniazid, rifampin, ethambutol, and pyrazinamide) was started.",
+          "meta": {
+            "has_images": true
+          },
+          "is_leishmaniasis": true,
+          "diagnosis_type": "MCL",
+          "label_source": "train_verified"
+        },
+        {
+          "doc_id": "PMC4710411_01",
+          "score": 0.011709401709401709,
+          "text": "A 52-year-old male farm worker from Ceara state, northeast Brazil, presented with a 4-month history of skin lesions. Lesions appeared first on the face and legs, than spread across much of his body, including the genitalia, soles of feet, and scalp. He reported daily fevers for the first 2 weeks of illness. On examination the patient had 178 lesions of different sizes and aspects; ulcerated, crusted, papular, nodular, and pustular. Many had apparent bacterial superinfections. The remainder of the physical examination was normal. A complete blood count and liver and kidney function tests were within normal limits. Serological tests for syphilis and human immunodeficiency virus were negative.",
+          "meta": {
+            "has_images": true
+          },
+          "is_leishmaniasis": true,
+          "diagnosis_type": "DsCL",
+          "label_source": "train_verified"
+        },
+        {
+          "doc_id": "PMC7670763_01",
+          "score": 0.010405405405405407,
+          "text": "A 55-year-old man from the Manaus region with no comorbidities had been treated for cutaneous leishmaniasis. He had completed treatment with a pentavalent antimonial drug 40 days earlier and had received a second outpatient 30-day cycle; ten days after the end of that treatment his leishmaniasis lesion was healed. He then developed grouped microvesicles on an erythematous-infiltrated base that began in the neck and ascended toward the right scalp margin. The vesicles involved the right pinna, external auditory canal, and right ear lobe and were associated with severe torticollis-like pain along the nerve distribution. HIV serology was negative.",
+          "meta": {
+            "has_images": true
+          },
+          "is_leishmaniasis": true,
+          "diagnosis_type": "CL",
+          "label_source": "train_verified"
+        },
+        {
+          "doc_id": "PMC4944368_01",
+          "score": 0.009836065573770491,
+          "text": "A 22‑month‑old girl presented with 8 days of fever to 40°C and mild cough. Past history: failure to thrive; normal neurologic development. She was the first child of a non‑consanguineous couple; no family history of albinism; normal hair and skin. On exam she was stunted, pale, had non‑tender hepatomegaly 5–6 cm and splenomegaly palpable 4 cm below the left costal margin. Petechial rash developed on the chest and legs as she worsened. Initial laboratory results: WBC 5100/mm3 (ANC 1200/mm3), Hb 9.1 g/dl, platelets 47,000/mm3; mild transaminase elevation; hypoalbuminemia. Ferritin 1,134 ng/ml; soluble IL‑2 receptor (sCD25) 3,183 U/ml. Blood cultures were negative. Serum immunoglobulins and lymphocyte subsets were reported as normal. Infectious testing: EBV serology positive for IgM and IgG anti‑VCA with negative IgG anti‑EBNA; EBV viral load 637 copies/ml. Leishmania testing was discordant: immunochromatography and indirect immunofluorescence were negative, serum ELISA was slightly positive, and leishmanial antigen in urine was negative. Bone‑marrow aspiration revealed hemophagocytosis. Over the next day she clinically worsened with progressive splenomegaly and cytopenias (WBC 4,800/mm3 with ANC 800/mm3, Hb 6.8 g/dl, platelets 27,000/mm3), triglycerides 686 mg/dl, ferritin 3,849 ng/ml, and sCD25 3,596 U/ml. Clotting tests were normal and perforin expression by flow cytometry was reported as normal.",
+          "meta": {
+            "has_images": false
+          },
+          "is_leishmaniasis": true,
+          "diagnosis_type": "VL",
+          "label_source": "train_verified"
+        }
+      ],
+      "query_images": [
+        "/data1t/lab/ngocnt/Leishmania_v3/data/leishmaniasis_multimodal/images/PMC10026180_04/PMC10026180_fped-11-1103726-g004_undivided_1_1.webp"
+      ],
+      "context_images": [
+        "/data1t/lab/ngocnt/Leishmania_v3/data/leishmaniasis_multimodal/images/PMC5490479_01/PMC5490479_f1000research-6-12521-g0000_undivided_1_1.webp",
+        "/data1t/lab/ngocnt/Leishmania_v3/data/leishmaniasis_multimodal/images/PMC5490479_01/f1000research-6-12521-g0001.jpg",
+        "/data1t/lab/ngocnt/Leishmania_v3/data/leishmaniasis_multimodal/images/PMC5490479_01/PMC5490479_f1000research-6-12521-g0002_undivided_1_1.webp",
+        "/data1t/lab/ngocnt/Leishmania_v3/data/leishmaniasis_multimodal/images/PMC3523429_01/PMC3523429_JRMS-17-108-g001_undivided_1_1.webp",
+        "/data1t/lab/ngocnt/Leishmania_v3/data/leishmaniasis_multimodal/images/PMC7585787_01/PMC7585787_IMCRJ-13-551-g0001_undivided_1_1.webp"
+      ],
+      "ground_truth": {
+        "diagnosis": "Non-Leishmaniasis",
+        "diagnosis_type": "Non-Leishmaniasis",
+        "species": ""
+      },
+      "ground_truth_pseudolabel": {
+        "diagnosis": "Cutaneous candidiasis",
+        "diagnosis_type": "CL",
+        "species": ""
+      },
+      "stage": "hybrid+biomedclip_fusion",
+      "resource_trace": {
+        "dense_collection_used": "cases_text_e5_1024_p14_v7_phase1b_tierAB_official",
+        "bm25_index_path_used": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/bm25_index_p14_v7_phase1b_tierAB_official.json",
+        "caption_collection_used": null,
+        "image_collection_used": "images_biomedclip_512_p14_v7_phase1b_tierAB_official",
+        "rerank_applied": true,
+        "resource_events": []
+      },
+      "agentic_trace": {
+        "enabled": false,
+        "triggered": false,
+        "reason": "disabled",
+        "refined_query": ""
+      },
+      "ablation_scope": "",
+      "query_images_stripped": false,
+      "generation_query_source": "formatted_query",
+      "generation_query_char_count": 1485,
+      "generation_query_sha256": "6a05ef2e0b4d48fdea2b7d913c682c6c0947f9e3796e3f0853293ee0e35c61f0",
+      "retrieval_query_text": "An 11-year-old Arab girl with a known diagnosis of ataxia telangiectasia (diagnosed at 1 year) presented with a spreading skin rash on her nose that extended to the nostrils and her left cheek. Family history included consanguineous parents and another sibling with AT. Her childhood course included ataxia, recurrent lung and ear infections, sclerosing cholangitis, hypothyroidism, and later diffuse large B‑cell lymphoma. She used a wheelchair and had multiple café‑au‑lait spots and telangiectasias. Immunologic testing showed a decreased immunoglobulin level (IgG 516 mg/L) with lymphocyte count and function reported as normal. Her baseline therapies included monthly IVIG, inhaled budesonide and fluticasone, and levothyroxine.\n\nInitially she received amoxicillin–clavulanic acid and topical chloramphenicol without clinical response. On examination, the tip of the nose had an erythematous plaque with a central erosion and a circinate‑elevated border with overlying scattered pustules; the nose bridge and nostrils had small erythematous erosions. An atypical infection was considered.",
+      "retrieval_query_source": "clinical_context",
+      "retrieval_query_char_count": 1093,
+      "retrieval_query_sha256": "418d08805c672b6c39adc2510ae6ed4e8c5580face4f80c635ec0f8180d4c015"
+    },
+    "answer_row": {
+      "qid": "PMC10026180_04::Q1_Q3_multimodal_diagnosis",
+      "query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: An 11-year-old Arab girl with a known diagnosis of ataxia telangiectasia (diagnosed at 1 year) presented with a spreading skin rash on her nose that extended to the nostrils and her left cheek. Family history included consanguineous parents and another sibling with AT. Her childhood course included ataxia, recurrent lung and ear infections, sclerosing cholangitis, hypothyroidism, and later diffuse large B‑cell lymphoma. She used a wheelchair and had multiple café‑au‑lait spots and telangiectasias. Immunologic testing showed a decreased immunoglobulin level (IgG 516 mg/L) with lymphocyte count and function reported as normal. Her baseline therapies included monthly IVIG, inhaled budesonide and fluticasone, and levothyroxine.\n\nInitially she received amoxicillin–clavulanic acid and topical chloramphenicol without clinical response. On examination, the tip of the nose had an erythematous plaque with a central erosion and a circinate‑elevated border with overlying scattered pustules; the nose bridge and nostrils had small erythematous erosions. An atypical infection was considered.",
+      "contexts": [],
+      "answer": "## DIAGNOSIS PREDICTION\n**Rank 1 (Most Likely):** Mucocutaneous infection/Inflammatory dermatosis secondary to underlying immunodeficiency\n**Rank 1 Diagnosis Type:** Non-Leishmaniasis\n**Rank 1 Species (if determinable):** Not determinable\n**Rank 1 Confidence:** High\n**Rank 2:** Chronic fungal infection\n**Rank 3:** Bacterial infection (e.g., atypical mycobacteria)\n**Chosen Final Diagnosis for Scoring:** Mucocutaneous infection/Inflammatory dermatosis secondary to underlying immunodeficiency\n**Evidence Source:** Clinical presentation of a chronic, non-healing, erosive lesion on the nose in a patient with severe underlying immunodeficiency (Ataxia Telangiectasia) refractory to initial antibiotic therapy.\n\n## SUPPORTING EVIDENCE\n- The patient has a known, severe underlying condition (Ataxia Telangiectasia) leading to profound immune dysregulation and recurrent infections.\n- The lesion description (erythematous plaque with central erosion and circinate-elevated border with overlying scattered pustules) is consistent with chronic inflammatory/infectious processes common in immunocompromised hosts.\n- Initial treatment failure with amoxicillin-clavulanic acid and topical chloramphenicol suggests a non-standard or persistent infectious etiology, or a primary dermatological process exacerbated by immune deficiency.\n- The presence of multiple café-au-lait spots and telangiectasias confirms the underlying genetic syndrome.\n\n## DIFFERENTIAL CONSIDERATIONS\n- **Leishmaniasis:** While mucocutaneous lesions are possible, the strong pre-existing immunodeficiency (AT) and the failure of standard antibiotic treatment make a primary leishmanial etiology less likely than a secondary infection/inflammation.\n- **Mucocutaneous Candidiasis/Fungal Infection:** Common in immunosuppressed states, presenting as chronic mucosal lesions.\n- **Atypical Mycobacterial Infection:** Can cause chronic, non-healing ulcerative lesions, especially in immunocompromised individuals.\n- **Squamous Cell Carcinoma/Actinic Keratosis:** Less likely given the acute/subacute presentation described, but possible in chronic sun-damaged skin.",
+      "model_name": "/mnt/data/hf/transformers/models--google--gemma-4-E4B-it/snapshots/83df0a889143b1dbfc61b591bbc639540fd9ce4c",
+      "citations": [],
+      "query_images": [
+        "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC10026180_04/PMC10026180_fped-11-1103726-g004_undivided_1_1.webp"
+      ],
+      "context_images": [],
+      "ground_truth": {
+        "diagnosis": "Non-Leishmaniasis",
+        "diagnosis_type": "Non-Leishmaniasis",
+        "species": ""
+      },
+      "ground_truth_pseudolabel": {
+        "diagnosis": "Cutaneous candidiasis",
+        "diagnosis_type": "CL",
+        "species": ""
+      },
+      "image_paths": [
+        "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC10026180_04/PMC10026180_fped-11-1103726-g004_undivided_1_1.webp"
+      ],
+      "decoding_params": {
+        "temperature": 0.3,
+        "max_new_tokens": 1024,
+        "do_sample": true,
+        "random_seed": 42
+      },
+      "gating_info": "[GATE OFF] unsupported_nonleish_topk_bias",
+      "query_type": "Q1_Q3_multimodal_diagnosis",
+      "top_score": 0.021050130672368734,
+      "threshold_used": 0.025,
+      "generation_mode": "norag_prompt",
+      "retrieval_support_status": "unsupported_nonleish_topk_bias",
+      "prompt_context_doc_ids": [],
+      "prompt_context_count": 0,
+      "format_retry_count": 0,
+      "answer_format_valid": true,
+      "answer_format_error": "",
+      "ablation_scope": "latency_generation_only_multimodal_rag_tensor_on_budget2",
+      "query_images_stripped": false,
+      "prompt_contract_version": "balanced_no_context_shared_prompt_v1",
+      "prompt_contract_notes": "shared_balanced_no_context_prompt_contract",
+      "prompt_image_grounding_required": true,
+      "context_k": 3,
+      "ordering_mode": "image_first",
+      "use_context_image_tensors": true,
+      "support_image_tensor_budget": 2,
+      "query_image_tensor_attempt_count": 1,
+      "support_image_tensor_attempt_count": 0,
+      "query_image_tensor_count": 1,
+      "support_image_tensor_count": 0,
+      "image_tensor_fallback_used": false,
+      "image_tensor_fallback_reason": "",
+      "generation_query_source": "formatted_query",
+      "generation_query_char_count": 1485,
+      "generation_query_sha256": "6a05ef2e0b4d48fdea2b7d913c682c6c0947f9e3796e3f0853293ee0e35c61f0",
+      "retrieval_query_source": "clinical_context",
+      "retrieval_query_char_count": 1093,
+      "retrieval_query_sha256": "418d08805c672b6c39adc2510ae6ed4e8c5580face4f80c635ec0f8180d4c015",
+      "final_route": "balanced_no_context_fallback",
+      "fallback_reason": "unsupported_nonleish_topk_bias",
+      "retrieved_context_count_used": 0,
+      "support_image_tensor_count_used": 0,
+      "generation_latency_seconds": 51.460497667081654,
+      "generation_started_at_utc": "2026-04-23T19:12:30.075892Z",
+      "generation_finished_at_utc": "2026-04-23T19:13:21.536381Z",
+      "generation_timing_scope": "per_case_generator_call",
+      "generation_row_index": 23
+    },
+    "answer_fields": {
+      "rank1": "Mucocutaneous infection/Inflammatory dermatosis secondary to underlying immunodeficiency",
+      "rank1_type": "Non-Leishmaniasis",
+      "rank1_confidence": "High"
+    },
+    "context_count": 10,
+    "top_contexts_for_slide": [
+      {
+        "rank": 1,
+        "doc_id": "PMC5490479_01",
+        "score": 0.021050130672368734,
+        "diagnosis_type": "LR",
+        "label_source": "train_verified",
+        "text_prefix_260": "A 9-year-old boy presented with multiple papular lesions on the left cheek that had been present for three months and had gradually enlarged. His medical history was notable for an episode of cutaneous leishmaniasis located on the nose two years earlier, which",
+        "text_char_count": 616
+      },
+      {
+        "rank": 2,
+        "doc_id": "PMC3523429_01",
+        "score": 0.015682382133995035,
+        "diagnosis_type": "CL",
+        "label_source": "train_verified",
+        "text_prefix_260": "A 52-year-old woman presented with a single lesion on the tip of her nose that had existed for 14 months. It began as a papule and was slowly increasing in size, enlarging to a plaque. A smear of the lesion performed about 1 year earlier was positive, \"showing",
+        "text_char_count": 1066
+      },
+      {
+        "rank": 3,
+        "doc_id": "PMC7585787_01",
+        "score": 0.014718614718614718,
+        "diagnosis_type": "MCL",
+        "label_source": "train_verified",
+        "text_prefix_260": "A 38‑year‑old man from Yayu district, western Ethiopia, presented to the outpatient clinic with multiple skin lesions on his face and hands and mutilation of the nose; his upper lip was injured and swollen. Eight years earlier he had a small papule on the righ",
+        "text_char_count": 1420
+      }
+    ]
+  },
+  "fresh_gpu_audit": {
+    "source_dir": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/demo/presentation/v12d/data/revalidation_real_model_v12d_20260615-1035",
+    "source_path": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/demo/presentation/v12d/data/revalidation_real_model_v12d_20260615-1035/PMC10026180_04_result.json",
+    "result": {
+      "case_id": "PMC10026180_04",
+      "silver_reference_label": "Non-Leishmaniasis",
+      "expected_diagnosis": "Non-Leishmaniasis",
+      "category": "specificity",
+      "notes": "Held-out non-leish case; specificity and safety-boundary example.",
+      "clinical_text": "An 11-year-old Arab girl with a known diagnosis of ataxia telangiectasia (diagnosed at 1 year) presented with a spreading skin rash on her nose that extended to the nostrils and her left cheek. Family history included consanguineous parents and another sibling with AT. Her childhood course included ataxia, recurrent lung and ear infections, sclerosing cholangitis, hypothyroidism, and later diffuse large B‑cell lymphoma. She used a wheelchair and had multiple café‑au‑lait spots and telangiectasias. Immunologic testing showed a decreased immunoglobulin level (IgG 516 mg/L) with lymphocyte count and function reported as normal. Her baseline therapies included monthly IVIG, inhaled budesonide and fluticasone, and levothyroxine.\n\nInitially she received amoxicillin–clavulanic acid and topical chloramphenicol without clinical response. On examination, the tip of the nose had an erythematous plaque with a central erosion and a circinate‑elevated border with overlying scattered pustules; the nose bridge and nostrils had small erythematous erosions. An atypical infection was considered.",
+      "image_path": "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC10026180_04/PMC10026180_fped-11-1103726-g004_undivided_1_1.webp",
+      "input_png_path": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/demo/presentation/v12d/data/revalidation_real_model_v12d_20260615-1035/PMC10026180_04_input.png",
+      "assistant_markdown": "> Safety boundary: research decision support only; not ground truth, not clinical validation, and not a diagnosis system.\n\n## Supportive Differential (Not a Diagnosis)\n**Rank 1 supportive consideration:** Cutaneous Leishmaniasis (or atypical mycobacterial/fungal infection)\n**Rank 1 Diagnosis Type:** CL\n**Rank 1 Species (if determinable):** Not determinable\n**Rank 1 Confidence:** Medium\n**Rank 2:** Secondary bacterial infection/fungal infection\n**Rank 3:** Mucocutaneous infection secondary to underlying immune deficiency\n**Most supported option in this research demo:** Cutaneous Leishmaniasis\n**Evidence source used by the model:** Both\n\n## SUPPORTING EVIDENCE\n- The patient presents with a spreading skin rash on the nose extending to the nostrils and cheek, characterized by an erythematous plaque with central erosion and circinate-elevated border, consistent with mucocutaneous involvement.\n- The clinical presentation is concerning for a parasitic infection, aligning with the presentation described in Reference Case [Context 1] (chronic papule progressing to nodular ulcer).\n- The patient's underlying condition (Ataxia Telangiectasia) predisposes her to severe, atypical, and chronic infections, making diagnosis difficult.\n- The initial failure of standard antibiotics (amoxicillin–clavulanic acid and topical chloramphenicol) suggests a non-bacterial etiology, prompting consideration of atypical infections like Leishmaniasis.\n\n## DIFFERENTIAL CONSIDERATIONS\n*   **Non-Leishmaniasis:** Mucocutaneous fungal infections (e.g., mucormycosis), atypical mycobacterial infections (given immune compromise), or chronic inflammatory dermatoses.\n*   **Leishmaniasis:** Visceral Leishmaniasis (VL) should be considered if systemic symptoms develop, though the current presentation is primarily cutaneous.\n*   **Secondary Infection:** Given the erosions, secondary bacterial or fungal infection superimposed on an underlying dermatosis is highly probable.\n\n## UNCERTAINTY AND MISSING INFORMATION\nThe definitive diagnosis hinges on microscopic or molecular confirmation, which is currently absent. The patient's immune status (decreased IgG) increases susceptibility to opportunistic infections, complicating the differential.\n\n## SUGGESTED CONFIRMATORY TESTS OR CLINICIAN REVIEW\nSkin biopsy of the lesion should be obtained for histopathology, followed by PCR or direct visualization for Leishmania amastigotes. Culture/stain for fungi and mycobacteria should also be performed. Clinician review of the lesion morphology against local endemic patterns is crucial.\n\n## EVIDENCE USED\nMedical knowledge regarding dermatological presentations of Leishmaniasis and the complexities of infection in immunocompromised hosts (AT). Reference cases provided context for mucocutaneous presentations.",
+      "safety_state": "generated_support",
+      "evidence": [
+        {
+          "chunk_id": "cl-002",
+          "confirmatory": true,
+          "diagnosis_label": "Cutaneous leishmaniasis",
+          "excerpt": "A chronic papule progressing to a nodular ulcer after endemic travel supported cutaneous leishmaniasis. Biopsy and PCR were used for confirmation.",
+          "score": 0.3079,
+          "source_case_id": "case-cl-002",
+          "title": "Papulonodular skin lesion in endemic travel history"
+        },
+        {
+          "chunk_id": "cl-001",
+          "confirmatory": true,
+          "diagnosis_label": "Cutaneous leishmaniasis",
+          "excerpt": "A patient with an ulcerated plaque on the forearm after sandfly exposure had a lesion smear showing amastigotes. The presentation was consistent with localized cutaneous leishmaniasis.",
+          "score": 0.2318,
+          "source_case_id": "case-cl-001",
+          "title": "Cutaneous leishmaniasis with ulcer and smear-confirmed amastigotes"
+        },
+        {
+          "chunk_id": "vl-002",
+          "confirmatory": false,
+          "diagnosis_label": "Visceral leishmaniasis",
+          "excerpt": "Kala-azar often presents with hepatosplenomegaly, chronic fever, anemia, and systemic illness rather than an isolated skin ulcer.",
+          "score": 0.0262,
+          "source_case_id": "case-vl-002",
+          "title": "Kala-azar pattern with hepatosplenomegaly"
+        }
+      ],
+      "metadata": {
+        "provider_mode": "real_gpu_gemma4",
+        "model_name": "google/gemma-4-E4B-it",
+        "elapsed_seconds": 64.37,
+        "request_id": "v12d_real_model_trace_PMC10026180_04",
+        "query_image_tensor_count": 1
+      },
+      "split_provenance": {
+        "held_out_source": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/details_analysis/rtx_titan/structured_cases_v4/leishmaniasis_verified_v2/test_p14_v7_normalized.jsonl",
+        "eval_query_source": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/details_analysis/rtx_titan/structured_cases_v4/leishmaniasis_verified_v2/eval_queries_p14_v7_mixed56.jsonl",
+        "clinical_retrieval_corpus_source": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/details_analysis/rtx_titan/structured_cases_v4/leishmaniasis_verified_v2/nonleish_additions/generated/train_phase1b_tierAB.jsonl",
+        "runtime_retrieval_kb_source": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/demo/flutter/kb/leishmaniasis_demo_pack.json",
+        "test_count": 1,
+        "eval_query_count": 1,
+        "train_count": 0,
+        "source_terms": {
+          "official_experimental_retrieval_corpus": "121-case phase1b Tier A+B train artifact; used for split-exclusion verification",
+          "saved_demo_runtime_kb": "small local defense demo KB used by the preserved backend output",
+          "held_out_evaluation_set": "56 non-indexed evaluation cases"
+        },
+        "label_status": "silver_reference_only"
+      },
+      "label_contract": {
+        "dataset_version": "p14_v7",
+        "ground_truth_status": "silver_reference_only",
+        "verified_track": "reference_label propagated from the structured multimodal pipeline, not clinician gold ground truth",
+        "pseudolabel_track": "Prompt-1 final_diagnosis extracted from the structured multimodal pipeline, not clinician gold ground truth",
+        "disclaimer": "Evaluation labels are silver labels derived from GPT-5-mini and Gemini 2.5 Pro pipeline outputs; they are not clinician ground truth."
+      },
+      "raw_response": {
+        "assistant_markdown": "> Safety boundary: research decision support only; not ground truth, not clinical validation, and not a diagnosis system.\n\n## Supportive Differential (Not a Diagnosis)\n**Rank 1 supportive consideration:** Cutaneous Leishmaniasis (or atypical mycobacterial/fungal infection)\n**Rank 1 Diagnosis Type:** CL\n**Rank 1 Species (if determinable):** Not determinable\n**Rank 1 Confidence:** Medium\n**Rank 2:** Secondary bacterial infection/fungal infection\n**Rank 3:** Mucocutaneous infection secondary to underlying immune deficiency\n**Most supported option in this research demo:** Cutaneous Leishmaniasis\n**Evidence source used by the model:** Both\n\n## SUPPORTING EVIDENCE\n- The patient presents with a spreading skin rash on the nose extending to the nostrils and cheek, characterized by an erythematous plaque with central erosion and circinate-elevated border, consistent with mucocutaneous involvement.\n- The clinical presentation is concerning for a parasitic infection, aligning with the presentation described in Reference Case [Context 1] (chronic papule progressing to nodular ulcer).\n- The patient's underlying condition (Ataxia Telangiectasia) predisposes her to severe, atypical, and chronic infections, making diagnosis difficult.\n- The initial failure of standard antibiotics (amoxicillin–clavulanic acid and topical chloramphenicol) suggests a non-bacterial etiology, prompting consideration of atypical infections like Leishmaniasis.\n\n## DIFFERENTIAL CONSIDERATIONS\n*   **Non-Leishmaniasis:** Mucocutaneous fungal infections (e.g., mucormycosis), atypical mycobacterial infections (given immune compromise), or chronic inflammatory dermatoses.\n*   **Leishmaniasis:** Visceral Leishmaniasis (VL) should be considered if systemic symptoms develop, though the current presentation is primarily cutaneous.\n*   **Secondary Infection:** Given the erosions, secondary bacterial or fungal infection superimposed on an underlying dermatosis is highly probable.\n\n## UNCERTAINTY AND MISSING INFORMATION\nThe definitive diagnosis hinges on microscopic or molecular confirmation, which is currently absent. The patient's immune status (decreased IgG) increases susceptibility to opportunistic infections, complicating the differential.\n\n## SUGGESTED CONFIRMATORY TESTS OR CLINICIAN REVIEW\nSkin biopsy of the lesion should be obtained for histopathology, followed by PCR or direct visualization for Leishmania amastigotes. Culture/stain for fungi and mycobacteria should also be performed. Clinician review of the lesion morphology against local endemic patterns is crucial.\n\n## EVIDENCE USED\nMedical knowledge regarding dermatological presentations of Leishmaniasis and the complexities of infection in immunocompromised hosts (AT). Reference cases provided context for mucocutaneous presentations.",
+        "disclaimer": "Decision support only. This demo uses local Gemma 4 GPU generation with a small local demo KB. It is not clinical deployment, has not been clinician-validated, and must not be used as a diagnosis system.",
+        "evidence": [
+          {
+            "chunk_id": "cl-002",
+            "confirmatory": true,
+            "diagnosis_label": "Cutaneous leishmaniasis",
+            "excerpt": "A chronic papule progressing to a nodular ulcer after endemic travel supported cutaneous leishmaniasis. Biopsy and PCR were used for confirmation.",
+            "score": 0.3079,
+            "source_case_id": "case-cl-002",
+            "title": "Papulonodular skin lesion in endemic travel history"
+          },
+          {
+            "chunk_id": "cl-001",
+            "confirmatory": true,
+            "diagnosis_label": "Cutaneous leishmaniasis",
+            "excerpt": "A patient with an ulcerated plaque on the forearm after sandfly exposure had a lesion smear showing amastigotes. The presentation was consistent with localized cutaneous leishmaniasis.",
+            "score": 0.2318,
+            "source_case_id": "case-cl-001",
+            "title": "Cutaneous leishmaniasis with ulcer and smear-confirmed amastigotes"
+          },
+          {
+            "chunk_id": "vl-002",
+            "confirmatory": false,
+            "diagnosis_label": "Visceral leishmaniasis",
+            "excerpt": "Kala-azar often presents with hepatosplenomegaly, chronic fever, anemia, and systemic illness rather than an isolated skin ulcer.",
+            "score": 0.0262,
+            "source_case_id": "case-vl-002",
+            "title": "Kala-azar pattern with hepatosplenomegaly"
+          }
+        ],
+        "model_name": "google/gemma-4-E4B-it",
+        "needed_next_inputs": [
+          "clinician review",
+          "confirmatory laboratory or histopathology testing"
+        ],
+        "provider_mode": "real_gpu_gemma4",
+        "request_id": "v12d_real_model_trace_PMC10026180_04",
+        "runtime_metadata": {
+          "device_kind": "local_gpu",
+          "generation_latency_seconds": 64.36539288802305,
+          "gpu_memory_allocated_mib": 8881.3,
+          "gpu_memory_reserved_mib": 10092.0,
+          "gpu_name": "NVIDIA TITAN RTX",
+          "gpu_peak_memory_allocated_mib": 9658.6,
+          "hf_device_placement": [
+            "cuda:0"
+          ],
+          "image_tensor_fallback_reason": "",
+          "image_tensor_fallback_used": false,
+          "memory_total_mb": 24020,
+          "model_load_seconds": 7.653274466007133,
+          "model_name": "google/gemma-4-E4B-it",
+          "prompt_context_count": 3,
+          "provider_mode": "real_gpu_gemma4",
+          "quantization_mode": "4-bit",
+          "query_image_tensor_count": 1
+        },
+        "safety_state": "generated_support",
+        "timing_ms": 64367
+      },
+      "success": true,
+      "error": null
+    },
+    "fields": {
+      "request_id": "v12d_real_model_trace_PMC10026180_04",
+      "model_name": "google/gemma-4-E4B-it",
+      "provider_mode": "real_gpu_gemma4",
+      "elapsed_seconds": 64.37,
+      "query_image_tensor_count": 1,
+      "safety_state": "generated_support",
+      "rank1": "Cutaneous Leishmaniasis (or atypical mycobacterial/fungal infection)",
+      "rank1_type": "CL",
+      "rank1_confidence": "Medium"
+    },
+    "evidence_count": 3,
+    "evidence_for_slide": [
+      {
+        "rank": 1,
+        "chunk_id": "cl-002",
+        "source_case_id": "case-cl-002",
+        "score": 0.3079,
+        "title": "Papulonodular skin lesion in endemic travel history",
+        "diagnosis_label": "Cutaneous leishmaniasis",
+        "confirmatory": true,
+        "excerpt": "A chronic papule progressing to a nodular ulcer after endemic travel supported cutaneous leishmaniasis. Biopsy and PCR were used for confirmation."
+      },
+      {
+        "rank": 2,
+        "chunk_id": "cl-001",
+        "source_case_id": "case-cl-001",
+        "score": 0.2318,
+        "title": "Cutaneous leishmaniasis with ulcer and smear-confirmed amastigotes",
+        "diagnosis_label": "Cutaneous leishmaniasis",
+        "confirmatory": true,
+        "excerpt": "A patient with an ulcerated plaque on the forearm after sandfly exposure had a lesion smear showing amastigotes. The presentation was consistent with localized cutaneous leishmaniasis."
+      },
+      {
+        "rank": 3,
+        "chunk_id": "vl-002",
+        "source_case_id": "case-vl-002",
+        "score": 0.0262,
+        "title": "Kala-azar pattern with hepatosplenomegaly",
+        "diagnosis_label": "Visceral leishmaniasis",
+        "confirmatory": false,
+        "excerpt": "Kala-azar often presents with hepatosplenomegaly, chronic fever, anemia, and systemic illness rather than an isolated skin ulcer."
+      }
+    ]
+  }
+}
