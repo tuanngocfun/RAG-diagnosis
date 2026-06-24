@@ -1,0 +1,436 @@
+{
+  "test_time": "2026-06-15 10:28:54",
+  "case_source": "56-case held-out evaluation set",
+  "official_experimental_retrieval_corpus": {
+    "description": "121-case phase1b Tier A+B train artifact",
+    "path": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/details_analysis/rtx_titan/structured_cases_v4/leishmaniasis_verified_v2/nonleish_additions/generated/train_phase1b_tierAB.jsonl",
+    "use": "split-exclusion verification"
+  },
+  "runtime_retrieval_kb": {
+    "description": "small local defense demo KB",
+    "path": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/demo/flutter/kb/leishmaniasis_demo_pack.json",
+    "use": "retrieval support for the saved backend outputs"
+  },
+  "total_cases": 3,
+  "successful_cases": 3,
+  "backend_health": {
+    "bitsandbytes_available": true,
+    "chat_available": true,
+    "cuda_available": true,
+    "gpu_free_memory_ready": true,
+    "gpu_memory_free_mib": 13663,
+    "gpu_memory_total_mib": 24019,
+    "gpu_min_free_mib": 12000,
+    "gpu_name": "NVIDIA TITAN RTX",
+    "kb_path": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/demo/flutter/kb/leishmaniasis_demo_pack.json",
+    "kb_ready": true,
+    "model_loaded": true,
+    "model_name": "google/gemma-4-E4B-it",
+    "provider_mode": "real_gpu_gemma4",
+    "status": "ok"
+  },
+  "results": [
+    {
+      "case_id": "PMC7516301_01",
+      "silver_reference_label": "Mucocutaneous Leishmaniasis (MCL)",
+      "expected_diagnosis": "Mucocutaneous Leishmaniasis (MCL)",
+      "category": "success",
+      "notes": "Held-out MCL case; success-style functional example.",
+      "clinical_text": "A 19-year-old man from Syria (arrived in Denmark in 2015) presented in June 2016 with a 6-month history of throat irritation that progressed over several days to severe throat pain and fever. He had no history of severe illness or excess infections; examination noted a scar on his arm that was suggestive of previous cutaneous leishmaniasis. Laryngoscopy demonstrated massive edema of the mucosa of both the pharynx and larynx; the epiglottis and uvula were swollen and red with papilloma-like lesions. Endoscopic images show marked swelling and papillomatous-appearing mucosal lesions of the oropharynx and larynx.",
+      "image_path": "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7516301_01/PMC7516301_fimmu-11-567856-g001_A_1_3.webp",
+      "input_png_path": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/demo/presentation/v12c/data/revalidation_real_model_20260615-1023/PMC7516301_01_input.png",
+      "assistant_markdown": "> Safety boundary: research decision support only; not ground truth, not clinical validation, and not a diagnosis system.\n\n## Supportive Differential (Not a Diagnosis)\n**Rank 1 supportive consideration:** Mucocutaneous Leishmaniasis (Mucosal form)\n**Rank 1 Diagnosis Type:** MCL\n**Rank 1 Species (if determinable):** Not determinable\n**Rank 1 Confidence:** Medium\n**Rank 2:** Infectious Dermatitis/Mucositis (Non-Leishmaniasis)\n**Rank 3:** Other Granulomatous Disease (Non-Leishmaniasis)\n**Most supported option in this research demo:** Mucocutaneous Leishmaniasis (Mucosal form)\n**Evidence source used by the model:** Both\n\n## SUPPORTING EVIDENCE\n*   Clinical presentation includes prolonged fever and severe throat irritation progressing to massive edema and papilloma-like lesions of the oropharynx and larynx, consistent with mucocutaneous involvement.\n*   The patient has a history suggestive of prior cutaneous leishmaniasis, which is a known precursor/associated finding in MCL.\n*   Laryngoscopy findings (massive edema, papillomatous lesions) align with descriptions of mucocutaneous involvement seen in literature (Context 1, Context 4).\n*   The patient's travel history (Syria) places him in an endemic region for Leishmaniasis.\n\n## DIFFERENTIAL CONSIDERATIONS\n*   **Non-Leishmaniasis:** Severe infectious pharyngitis/laryngitis (e.g., fungal infection, viral infection, malignancy) given the mucosal involvement.\n*   **Non-Leishmaniasis:** Granulomatous diseases affecting the mucosa.\n*   **Leishmaniasis:** Visceral Leishmaniasis (VL) should be considered due to systemic symptoms (fever), though the primary presentation here is mucosal.\n\n## UNCERTAINTY AND MISSING INFORMATION\nThe definitive causative agent cannot be determined from the clinical presentation alone. The image provided shows mucosal lesions, but microscopic or microbiological confirmation is absent. The distinction between mucosal leishmaniasis and other granulomatous mucositis requires tissue biopsy confirmation.\n\n## SUGGESTED CONFIRMATORY TESTS OR CLINICIAN REVIEW\nTissue biopsy of the mucosal lesions should be obtained for microscopic examination (looking for amastigotes) and molecular confirmation (PCR). Serological testing for Leishmaniasis should also be considered, though tissue confirmation is preferred for MCL.\n\n## EVIDENCE USED\nMedical knowledge, Context 1, Context 4.",
+      "safety_state": "generated_support",
+      "evidence": [
+        {
+          "chunk_id": "mcl-002",
+          "confirmatory": true,
+          "diagnosis_label": "Mucocutaneous leishmaniasis",
+          "excerpt": "Palatal or nasal mucosal lesions with compatible epidemiology should raise concern for mucocutaneous leishmaniasis and prompt tissue confirmation.",
+          "score": 0.3617,
+          "source_case_id": "case-mcl-002",
+          "title": "Palatal and nasal mucosal disease in leishmaniasis"
+        },
+        {
+          "chunk_id": "cl-001",
+          "confirmatory": true,
+          "diagnosis_label": "Cutaneous leishmaniasis",
+          "excerpt": "A patient with an ulcerated plaque on the forearm after sandfly exposure had a lesion smear showing amastigotes. The presentation was consistent with localized cutaneous leishmaniasis.",
+          "score": 0.3038,
+          "source_case_id": "case-cl-001",
+          "title": "Cutaneous leishmaniasis with ulcer and smear-confirmed amastigotes"
+        },
+        {
+          "chunk_id": "vl-001",
+          "confirmatory": true,
+          "diagnosis_label": "Visceral leishmaniasis",
+          "excerpt": "Prolonged fever, weight loss, pancytopenia, and splenomegaly are classic features of visceral leishmaniasis. Bone marrow or tissue confirmation is typically required.",
+          "score": 0.2457,
+          "source_case_id": "case-vl-001",
+          "title": "Visceral leishmaniasis with prolonged fever and splenomegaly"
+        }
+      ],
+      "metadata": {
+        "provider_mode": "real_gpu_gemma4",
+        "model_name": "google/gemma-4-E4B-it",
+        "elapsed_seconds": 57.94,
+        "request_id": "v12c_revalidation_real_model_PMC7516301_01",
+        "query_image_tensor_count": 1
+      },
+      "split_provenance": {
+        "held_out_source": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/details_analysis/rtx_titan/structured_cases_v4/leishmaniasis_verified_v2/test_p14_v7_normalized.jsonl",
+        "eval_query_source": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/details_analysis/rtx_titan/structured_cases_v4/leishmaniasis_verified_v2/eval_queries_p14_v7_mixed56.jsonl",
+        "clinical_retrieval_corpus_source": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/details_analysis/rtx_titan/structured_cases_v4/leishmaniasis_verified_v2/nonleish_additions/generated/train_phase1b_tierAB.jsonl",
+        "runtime_retrieval_kb_source": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/demo/flutter/kb/leishmaniasis_demo_pack.json",
+        "test_count": 1,
+        "eval_query_count": 1,
+        "train_count": 0,
+        "source_terms": {
+          "official_experimental_retrieval_corpus": "121-case phase1b Tier A+B train artifact; used for split-exclusion verification",
+          "saved_demo_runtime_kb": "small local defense demo KB used by the preserved backend output",
+          "held_out_evaluation_set": "56 non-indexed evaluation cases"
+        },
+        "label_status": "silver_reference_only"
+      },
+      "label_contract": {
+        "dataset_version": "p14_v7",
+        "ground_truth_status": "silver_reference_only",
+        "verified_track": "reference_label propagated from the structured multimodal pipeline, not clinician gold ground truth",
+        "pseudolabel_track": "Prompt-1 final_diagnosis extracted from the structured multimodal pipeline, not clinician gold ground truth",
+        "disclaimer": "Evaluation labels are silver labels derived from GPT-5-mini and Gemini 2.5 Pro pipeline outputs; they are not clinician ground truth."
+      },
+      "raw_response": {
+        "assistant_markdown": "> Safety boundary: research decision support only; not ground truth, not clinical validation, and not a diagnosis system.\n\n## Supportive Differential (Not a Diagnosis)\n**Rank 1 supportive consideration:** Mucocutaneous Leishmaniasis (Mucosal form)\n**Rank 1 Diagnosis Type:** MCL\n**Rank 1 Species (if determinable):** Not determinable\n**Rank 1 Confidence:** Medium\n**Rank 2:** Infectious Dermatitis/Mucositis (Non-Leishmaniasis)\n**Rank 3:** Other Granulomatous Disease (Non-Leishmaniasis)\n**Most supported option in this research demo:** Mucocutaneous Leishmaniasis (Mucosal form)\n**Evidence source used by the model:** Both\n\n## SUPPORTING EVIDENCE\n*   Clinical presentation includes prolonged fever and severe throat irritation progressing to massive edema and papilloma-like lesions of the oropharynx and larynx, consistent with mucocutaneous involvement.\n*   The patient has a history suggestive of prior cutaneous leishmaniasis, which is a known precursor/associated finding in MCL.\n*   Laryngoscopy findings (massive edema, papillomatous lesions) align with descriptions of mucocutaneous involvement seen in literature (Context 1, Context 4).\n*   The patient's travel history (Syria) places him in an endemic region for Leishmaniasis.\n\n## DIFFERENTIAL CONSIDERATIONS\n*   **Non-Leishmaniasis:** Severe infectious pharyngitis/laryngitis (e.g., fungal infection, viral infection, malignancy) given the mucosal involvement.\n*   **Non-Leishmaniasis:** Granulomatous diseases affecting the mucosa.\n*   **Leishmaniasis:** Visceral Leishmaniasis (VL) should be considered due to systemic symptoms (fever), though the primary presentation here is mucosal.\n\n## UNCERTAINTY AND MISSING INFORMATION\nThe definitive causative agent cannot be determined from the clinical presentation alone. The image provided shows mucosal lesions, but microscopic or microbiological confirmation is absent. The distinction between mucosal leishmaniasis and other granulomatous mucositis requires tissue biopsy confirmation.\n\n## SUGGESTED CONFIRMATORY TESTS OR CLINICIAN REVIEW\nTissue biopsy of the mucosal lesions should be obtained for microscopic examination (looking for amastigotes) and molecular confirmation (PCR). Serological testing for Leishmaniasis should also be considered, though tissue confirmation is preferred for MCL.\n\n## EVIDENCE USED\nMedical knowledge, Context 1, Context 4.",
+        "disclaimer": "Decision support only. This demo uses local Gemma 4 GPU generation with a small local demo KB. It is not clinical deployment, has not been clinician-validated, and must not be used as a diagnosis system.",
+        "evidence": [
+          {
+            "chunk_id": "mcl-002",
+            "confirmatory": true,
+            "diagnosis_label": "Mucocutaneous leishmaniasis",
+            "excerpt": "Palatal or nasal mucosal lesions with compatible epidemiology should raise concern for mucocutaneous leishmaniasis and prompt tissue confirmation.",
+            "score": 0.3617,
+            "source_case_id": "case-mcl-002",
+            "title": "Palatal and nasal mucosal disease in leishmaniasis"
+          },
+          {
+            "chunk_id": "cl-001",
+            "confirmatory": true,
+            "diagnosis_label": "Cutaneous leishmaniasis",
+            "excerpt": "A patient with an ulcerated plaque on the forearm after sandfly exposure had a lesion smear showing amastigotes. The presentation was consistent with localized cutaneous leishmaniasis.",
+            "score": 0.3038,
+            "source_case_id": "case-cl-001",
+            "title": "Cutaneous leishmaniasis with ulcer and smear-confirmed amastigotes"
+          },
+          {
+            "chunk_id": "vl-001",
+            "confirmatory": true,
+            "diagnosis_label": "Visceral leishmaniasis",
+            "excerpt": "Prolonged fever, weight loss, pancytopenia, and splenomegaly are classic features of visceral leishmaniasis. Bone marrow or tissue confirmation is typically required.",
+            "score": 0.2457,
+            "source_case_id": "case-vl-001",
+            "title": "Visceral leishmaniasis with prolonged fever and splenomegaly"
+          }
+        ],
+        "model_name": "google/gemma-4-E4B-it",
+        "needed_next_inputs": [
+          "clinician review",
+          "confirmatory laboratory or histopathology testing"
+        ],
+        "provider_mode": "real_gpu_gemma4",
+        "request_id": "v12c_revalidation_real_model_PMC7516301_01",
+        "runtime_metadata": {
+          "device_kind": "local_gpu",
+          "generation_latency_seconds": 57.93847371102311,
+          "gpu_memory_allocated_mib": 8881.3,
+          "gpu_memory_reserved_mib": 10092.0,
+          "gpu_name": "NVIDIA TITAN RTX",
+          "gpu_peak_memory_allocated_mib": 9657.4,
+          "hf_device_placement": [
+            "cuda:0"
+          ],
+          "image_tensor_fallback_reason": "",
+          "image_tensor_fallback_used": false,
+          "memory_total_mb": 24020,
+          "model_load_seconds": 7.653274466007133,
+          "model_name": "google/gemma-4-E4B-it",
+          "prompt_context_count": 4,
+          "provider_mode": "real_gpu_gemma4",
+          "quantization_mode": "4-bit",
+          "query_image_tensor_count": 1
+        },
+        "safety_state": "generated_support",
+        "timing_ms": 57939
+      },
+      "success": true,
+      "error": null
+    },
+    {
+      "case_id": "PMC7456484_01",
+      "silver_reference_label": "Post-Kala-Azar Dermal Leishmaniasis (PKDL)",
+      "expected_diagnosis": "Post-Kala-Azar Dermal Leishmaniasis (PKDL)",
+      "category": "limitation",
+      "notes": "Held-out PKDL case; subtype-differentiation limitation.",
+      "clinical_text": "A 37‑year‑old woman from eastern Bhutan presented in 2014 with extensive erythematous plaques on the forehead, central face, perioral area, and cheeks extending to both ears. The left eye was damaged and there was marked swelling of the right eyelid with lid scarring and lagophthalmos. Plaques extended to the nasal mucosa without intraoral involvement. Other skin and systemic examinations were reportedly normal.\n\nLaboratory testing showed hemoglobin 11.7 g/dl, total leukocyte count 6,390/mm3 (neutrophils 62%, lymphocytes 28%), platelets 191,000/mm3, ESR 39 mm in the 1st hour, SGOT 35 U/L, SGPT 68 U/L, bilirubin 1 mg/dl, urea 21 mg/dl, creatinine 0.8 mg/dl, fasting glucose 80 mg/dl. Tests for HIV, hepatitis B and C, and syphilis were negative. Chest radiograph, ECG, and abdominal ultrasound were normal.\n\nRelevant past history: in February 1999, during pregnancy she had fever, weight loss, anemia, and hepatomegaly and “was diagnosed as VL and treated with SSG injections 850 mg/day for 20 days.” Seven months after that illness she developed erythematous lesions on her forehead that spread over the face. In 2002 a dermatologist recorded papules and plaques over the cheeks, periorbital, and perioral areas that “were suspected as chronic dermatitis or cutaneous lupus erythematosus,” and she received topical, intralesional, and oral corticosteroids. In 2007 a WHO consultant for kala azar “suspected PKDL.” Skin biopsies performed in 2006, 2010, and 2013 “failed to confirm leishmaniasis,” and no firm diagnosis had been recorded.",
+      "image_path": "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7456484_01/CRIDM2020-8899586.001.jpg",
+      "input_png_path": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/demo/presentation/v12c/data/revalidation_real_model_20260615-1023/PMC7456484_01_input.png",
+      "assistant_markdown": "> Safety boundary: research decision support only; not ground truth, not clinical validation, and not a diagnosis system.\n\n## Supportive Differential (Not a Diagnosis)\n**Rank 1 supportive consideration:** Chronic Cutaneous Leishmaniasis (or Mucocutaneous Leishmaniasis sequelae)\n**Rank 1 Diagnosis Type:** CL\n**Rank 1 Species (if determinable):** Not determinable\n**Rank 1 Confidence:** Medium\n**Rank 2:** Chronic Dermatitis/Autoimmune Dermatosis (e.g., Lupus Erythematosus)\n**Rank 3:** Sequelae of Visceral Leishmaniasis (VL)\n**Most supported option in this research demo:** Chronic Cutaneous Leishmaniasis (or Mucocutaneous Leishmaniasis sequelae)\n**Evidence source used by the model:** Both\n\n## SUPPORTING EVIDENCE\n- Extensive erythematous plaques on the face, consistent with chronic cutaneous involvement, noted in the clinical presentation.\n- The history includes prior systemic illness suggestive of VL followed by cutaneous lesions, fitting a potential progression towards mucocutaneous involvement (similar to Context 2).\n- The presence of eyelid involvement (lid scarring and lagophthalmos) suggests a mucocutaneous or ocular manifestation, raising concern for MCL.\n- Biopsy findings were inconclusive for leishmaniasis across multiple years, which is common in chronic or atypical presentations, necessitating continued consideration.\n- The presentation aligns with the chronic nature described in Context 3 (papule progressing to nodular lesion).\n\n## DIFFERENTIAL CONSIDERATIONS\n**Non-Leishmaniasis:**\n*   **Chronic Dermatitis/Autoimmune Disease:** The initial presentation and subsequent management attempts (corticosteroids) suggest a strong possibility of a chronic inflammatory dermatosis or lupus erythematosus, as noted in the 2002 assessment.\n*   **Sequelae of VL:** The initial VL episode followed by skin manifestations requires ongoing consideration of sequelae, though the current presentation is primarily cutaneous.\n\n## DIAGNOSIS ASSESSMENT\nThe clinical picture presents a complex, long-standing dermatological process with strong epidemiological context for leishmaniasis exposure in Eastern Bhutan. The progression from systemic symptoms (suggesting VL) to chronic, mucocutaneous skin lesions (including ocular involvement) is highly suggestive of Mucocutaneous Leishmaniasis (MCL) or a late-stage Cutaneous Leishmaniasis (CL) infection. However, the lack of definitive parasitological confirmation across multiple biopsies means that dermatological mimics (such as chronic dermatitis or lupus) remain a significant differential consideration. The visual evidence from the attached image should be critically reviewed to confirm the presence and morphology of the described plaques and eyelid changes, but based on the text alone, the clinical suspicion for leishmaniasis remains high given the history.",
+      "safety_state": "generated_support",
+      "evidence": [
+        {
+          "chunk_id": "vl-002",
+          "confirmatory": false,
+          "diagnosis_label": "Visceral leishmaniasis",
+          "excerpt": "Kala-azar often presents with hepatosplenomegaly, chronic fever, anemia, and systemic illness rather than an isolated skin ulcer.",
+          "score": 0.5146,
+          "source_case_id": "case-vl-002",
+          "title": "Kala-azar pattern with hepatosplenomegaly"
+        },
+        {
+          "chunk_id": "mcl-001",
+          "confirmatory": false,
+          "diagnosis_label": "Mucocutaneous leishmaniasis",
+          "excerpt": "Nasal septal destruction, oral ulceration, and mucosal inflammation after prior cutaneous disease support mucocutaneous leishmaniasis.",
+          "score": 0.3856,
+          "source_case_id": "case-mcl-001",
+          "title": "Mucocutaneous leishmaniasis with nasal and oral involvement"
+        },
+        {
+          "chunk_id": "cl-002",
+          "confirmatory": true,
+          "diagnosis_label": "Cutaneous leishmaniasis",
+          "excerpt": "A chronic papule progressing to a nodular ulcer after endemic travel supported cutaneous leishmaniasis. Biopsy and PCR were used for confirmation.",
+          "score": 0.3795,
+          "source_case_id": "case-cl-002",
+          "title": "Papulonodular skin lesion in endemic travel history"
+        }
+      ],
+      "metadata": {
+        "provider_mode": "real_gpu_gemma4",
+        "model_name": "google/gemma-4-E4B-it",
+        "elapsed_seconds": 64.86,
+        "request_id": "v12c_revalidation_real_model_PMC7456484_01",
+        "query_image_tensor_count": 1
+      },
+      "split_provenance": {
+        "held_out_source": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/details_analysis/rtx_titan/structured_cases_v4/leishmaniasis_verified_v2/test_p14_v7_normalized.jsonl",
+        "eval_query_source": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/details_analysis/rtx_titan/structured_cases_v4/leishmaniasis_verified_v2/eval_queries_p14_v7_mixed56.jsonl",
+        "clinical_retrieval_corpus_source": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/details_analysis/rtx_titan/structured_cases_v4/leishmaniasis_verified_v2/nonleish_additions/generated/train_phase1b_tierAB.jsonl",
+        "runtime_retrieval_kb_source": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/demo/flutter/kb/leishmaniasis_demo_pack.json",
+        "test_count": 1,
+        "eval_query_count": 1,
+        "train_count": 0,
+        "source_terms": {
+          "official_experimental_retrieval_corpus": "121-case phase1b Tier A+B train artifact; used for split-exclusion verification",
+          "saved_demo_runtime_kb": "small local defense demo KB used by the preserved backend output",
+          "held_out_evaluation_set": "56 non-indexed evaluation cases"
+        },
+        "label_status": "silver_reference_only"
+      },
+      "label_contract": {
+        "dataset_version": "p14_v7",
+        "ground_truth_status": "silver_reference_only",
+        "verified_track": "reference_label propagated from the structured multimodal pipeline, not clinician gold ground truth",
+        "pseudolabel_track": "Prompt-1 final_diagnosis extracted from the structured multimodal pipeline, not clinician gold ground truth",
+        "disclaimer": "Evaluation labels are silver labels derived from GPT-5-mini and Gemini 2.5 Pro pipeline outputs; they are not clinician ground truth."
+      },
+      "raw_response": {
+        "assistant_markdown": "> Safety boundary: research decision support only; not ground truth, not clinical validation, and not a diagnosis system.\n\n## Supportive Differential (Not a Diagnosis)\n**Rank 1 supportive consideration:** Chronic Cutaneous Leishmaniasis (or Mucocutaneous Leishmaniasis sequelae)\n**Rank 1 Diagnosis Type:** CL\n**Rank 1 Species (if determinable):** Not determinable\n**Rank 1 Confidence:** Medium\n**Rank 2:** Chronic Dermatitis/Autoimmune Dermatosis (e.g., Lupus Erythematosus)\n**Rank 3:** Sequelae of Visceral Leishmaniasis (VL)\n**Most supported option in this research demo:** Chronic Cutaneous Leishmaniasis (or Mucocutaneous Leishmaniasis sequelae)\n**Evidence source used by the model:** Both\n\n## SUPPORTING EVIDENCE\n- Extensive erythematous plaques on the face, consistent with chronic cutaneous involvement, noted in the clinical presentation.\n- The history includes prior systemic illness suggestive of VL followed by cutaneous lesions, fitting a potential progression towards mucocutaneous involvement (similar to Context 2).\n- The presence of eyelid involvement (lid scarring and lagophthalmos) suggests a mucocutaneous or ocular manifestation, raising concern for MCL.\n- Biopsy findings were inconclusive for leishmaniasis across multiple years, which is common in chronic or atypical presentations, necessitating continued consideration.\n- The presentation aligns with the chronic nature described in Context 3 (papule progressing to nodular lesion).\n\n## DIFFERENTIAL CONSIDERATIONS\n**Non-Leishmaniasis:**\n*   **Chronic Dermatitis/Autoimmune Disease:** The initial presentation and subsequent management attempts (corticosteroids) suggest a strong possibility of a chronic inflammatory dermatosis or lupus erythematosus, as noted in the 2002 assessment.\n*   **Sequelae of VL:** The initial VL episode followed by skin manifestations requires ongoing consideration of sequelae, though the current presentation is primarily cutaneous.\n\n## DIAGNOSIS ASSESSMENT\nThe clinical picture presents a complex, long-standing dermatological process with strong epidemiological context for leishmaniasis exposure in Eastern Bhutan. The progression from systemic symptoms (suggesting VL) to chronic, mucocutaneous skin lesions (including ocular involvement) is highly suggestive of Mucocutaneous Leishmaniasis (MCL) or a late-stage Cutaneous Leishmaniasis (CL) infection. However, the lack of definitive parasitological confirmation across multiple biopsies means that dermatological mimics (such as chronic dermatitis or lupus) remain a significant differential consideration. The visual evidence from the attached image should be critically reviewed to confirm the presence and morphology of the described plaques and eyelid changes, but based on the text alone, the clinical suspicion for leishmaniasis remains high given the history.",
+        "disclaimer": "Decision support only. This demo uses local Gemma 4 GPU generation with a small local demo KB. It is not clinical deployment, has not been clinician-validated, and must not be used as a diagnosis system.",
+        "evidence": [
+          {
+            "chunk_id": "vl-002",
+            "confirmatory": false,
+            "diagnosis_label": "Visceral leishmaniasis",
+            "excerpt": "Kala-azar often presents with hepatosplenomegaly, chronic fever, anemia, and systemic illness rather than an isolated skin ulcer.",
+            "score": 0.5146,
+            "source_case_id": "case-vl-002",
+            "title": "Kala-azar pattern with hepatosplenomegaly"
+          },
+          {
+            "chunk_id": "mcl-001",
+            "confirmatory": false,
+            "diagnosis_label": "Mucocutaneous leishmaniasis",
+            "excerpt": "Nasal septal destruction, oral ulceration, and mucosal inflammation after prior cutaneous disease support mucocutaneous leishmaniasis.",
+            "score": 0.3856,
+            "source_case_id": "case-mcl-001",
+            "title": "Mucocutaneous leishmaniasis with nasal and oral involvement"
+          },
+          {
+            "chunk_id": "cl-002",
+            "confirmatory": true,
+            "diagnosis_label": "Cutaneous leishmaniasis",
+            "excerpt": "A chronic papule progressing to a nodular ulcer after endemic travel supported cutaneous leishmaniasis. Biopsy and PCR were used for confirmation.",
+            "score": 0.3795,
+            "source_case_id": "case-cl-002",
+            "title": "Papulonodular skin lesion in endemic travel history"
+          }
+        ],
+        "model_name": "google/gemma-4-E4B-it",
+        "needed_next_inputs": [
+          "clinician review",
+          "confirmatory laboratory or histopathology testing"
+        ],
+        "provider_mode": "real_gpu_gemma4",
+        "request_id": "v12c_revalidation_real_model_PMC7456484_01",
+        "runtime_metadata": {
+          "device_kind": "local_gpu",
+          "generation_latency_seconds": 64.85874906298704,
+          "gpu_memory_allocated_mib": 8881.3,
+          "gpu_memory_reserved_mib": 10092.0,
+          "gpu_name": "NVIDIA TITAN RTX",
+          "gpu_peak_memory_allocated_mib": 9664.5,
+          "hf_device_placement": [
+            "cuda:0"
+          ],
+          "image_tensor_fallback_reason": "",
+          "image_tensor_fallback_used": false,
+          "memory_total_mb": 24020,
+          "model_load_seconds": 7.653274466007133,
+          "model_name": "google/gemma-4-E4B-it",
+          "prompt_context_count": 4,
+          "provider_mode": "real_gpu_gemma4",
+          "quantization_mode": "4-bit",
+          "query_image_tensor_count": 1
+        },
+        "safety_state": "generated_support",
+        "timing_ms": 64859
+      },
+      "success": true,
+      "error": null
+    },
+    {
+      "case_id": "PMC10026180_04",
+      "silver_reference_label": "Non-Leishmaniasis",
+      "expected_diagnosis": "Non-Leishmaniasis",
+      "category": "specificity",
+      "notes": "Held-out non-leish case; specificity and safety-boundary example.",
+      "clinical_text": "An 11-year-old Arab girl with a known diagnosis of ataxia telangiectasia (diagnosed at 1 year) presented with a spreading skin rash on her nose that extended to the nostrils and her left cheek. Family history included consanguineous parents and another sibling with AT. Her childhood course included ataxia, recurrent lung and ear infections, sclerosing cholangitis, hypothyroidism, and later diffuse large B‑cell lymphoma. She used a wheelchair and had multiple café‑au‑lait spots and telangiectasias. Immunologic testing showed a decreased immunoglobulin level (IgG 516 mg/L) with lymphocyte count and function reported as normal. Her baseline therapies included monthly IVIG, inhaled budesonide and fluticasone, and levothyroxine.\n\nInitially she received amoxicillin–clavulanic acid and topical chloramphenicol without clinical response. On examination, the tip of the nose had an erythematous plaque with a central erosion and a circinate‑elevated border with overlying scattered pustules; the nose bridge and nostrils had small erythematous erosions. An atypical infection was considered.",
+      "image_path": "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC10026180_04/PMC10026180_fped-11-1103726-g004_undivided_1_1.webp",
+      "input_png_path": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/demo/presentation/v12c/data/revalidation_real_model_20260615-1023/PMC10026180_04_input.png",
+      "assistant_markdown": "> Safety boundary: research decision support only; not ground truth, not clinical validation, and not a diagnosis system.\n\n## Supportive Differential (Not a Diagnosis)\n**Rank 1 supportive consideration:** Non-Leishmaniasis (Secondary Infection/Inflammatory Dermatitis)\n**Rank 1 Diagnosis Type:** Non-Leishmaniasis\n**Rank 1 Species (if determinable):** Not determinable\n**Rank 1 Confidence:** Medium\n**Rank 2:** Cutaneous Leishmaniasis (Mucocutaneous form)\n**Rank 3:** Other Infectious Dermatitis (e.g., fungal, bacterial)\n**Most supported option in this research demo:** Non-Leishmaniasis (Secondary Infection/Inflammatory Dermatitis)\n**Evidence source used by the model:** Both\n\n## SUPPORTING EVIDENCE\n- The lesion morphology (erythematous plaque with central erosion and circinate-elevated border with pustules) is consistent with a chronic ulcerative process, which could mimic leishmaniasis.\n- The patient's underlying condition, Ataxia Telangiectasia (AT), predisposes her to severe and recurrent infections, making secondary or opportunistic infection a high probability.\n- The initial failure of standard antibiotic treatment (amoxicillin-clavulanic acid and chloramphenicol) suggests resistance or an atypical etiology, but does not confirm leishmaniasis.\n- Reference Case [Context 1] describes a chronic papule progressing to a nodular ulcer, which shares morphological similarities with the presentation described.\n\n## DIFFERENTIAL CONSIDERATIONS\n**Leishmaniasis:** Cutaneous Leishmaniasis (CL) remains a possibility given the lesion presentation, but the patient's profound immunodeficiency (AT) makes infection susceptibility much broader.\n**Non-Leishmaniasis:** Given the history of recurrent infections, the presence of multiple skin findings (café-au-lait spots, telangiectasias), and the failure of initial antimicrobial therapy, a secondary bacterial or fungal infection superimposed on chronic inflammation related to AT is highly probable.\n**Other Infectious Dermatitis:** Mycobacterial or fungal infections should be strongly considered due to the chronic, ulcerative nature of the lesion in an immunocompromised host.\n\n## UNCERTAINTY AND MISSING INFORMATION\nThe definitive causative agent of the skin lesion is unknown. The image quality allows visualization of the lesion morphology but does not provide microscopic or microbiological confirmation of the causative pathogen. The specific geographical exposure history for leishmaniasis is not provided, although the patient is Arab.\n\n## SUGGESTED CONFIRMATORY TESTS OR CLINICIAN REVIEW\nSkin biopsy of the lesion should be obtained for histopathology, followed by culture and PCR testing for atypical mycobacteria, fungi, and parasites (including Leishmania if suspicion remains high). Serological testing for endemic leishmaniasis should be pursued if the clinical picture remains ambiguous after infection control measures are initiated. Clinician review is needed to correlate the lesion findings with the current infectious status and treatment response.\n\n## EVIDENCE USED\nMedical knowledge regarding immunodeficiency complications and dermatological infectious disease processes, reconciled against the morphological descriptions provided in the case query and the context provided by Reference Cases [Context 1] and [Context 2].",
+      "safety_state": "generated_support",
+      "evidence": [
+        {
+          "chunk_id": "cl-002",
+          "confirmatory": true,
+          "diagnosis_label": "Cutaneous leishmaniasis",
+          "excerpt": "A chronic papule progressing to a nodular ulcer after endemic travel supported cutaneous leishmaniasis. Biopsy and PCR were used for confirmation.",
+          "score": 0.3079,
+          "source_case_id": "case-cl-002",
+          "title": "Papulonodular skin lesion in endemic travel history"
+        },
+        {
+          "chunk_id": "cl-001",
+          "confirmatory": true,
+          "diagnosis_label": "Cutaneous leishmaniasis",
+          "excerpt": "A patient with an ulcerated plaque on the forearm after sandfly exposure had a lesion smear showing amastigotes. The presentation was consistent with localized cutaneous leishmaniasis.",
+          "score": 0.2318,
+          "source_case_id": "case-cl-001",
+          "title": "Cutaneous leishmaniasis with ulcer and smear-confirmed amastigotes"
+        },
+        {
+          "chunk_id": "vl-002",
+          "confirmatory": false,
+          "diagnosis_label": "Visceral leishmaniasis",
+          "excerpt": "Kala-azar often presents with hepatosplenomegaly, chronic fever, anemia, and systemic illness rather than an isolated skin ulcer.",
+          "score": 0.0262,
+          "source_case_id": "case-vl-002",
+          "title": "Kala-azar pattern with hepatosplenomegaly"
+        }
+      ],
+      "metadata": {
+        "provider_mode": "real_gpu_gemma4",
+        "model_name": "google/gemma-4-E4B-it",
+        "elapsed_seconds": 75.0,
+        "request_id": "v12c_revalidation_real_model_PMC10026180_04",
+        "query_image_tensor_count": 1
+      },
+      "split_provenance": {
+        "held_out_source": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/details_analysis/rtx_titan/structured_cases_v4/leishmaniasis_verified_v2/test_p14_v7_normalized.jsonl",
+        "eval_query_source": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/details_analysis/rtx_titan/structured_cases_v4/leishmaniasis_verified_v2/eval_queries_p14_v7_mixed56.jsonl",
+        "clinical_retrieval_corpus_source": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/details_analysis/rtx_titan/structured_cases_v4/leishmaniasis_verified_v2/nonleish_additions/generated/train_phase1b_tierAB.jsonl",
+        "runtime_retrieval_kb_source": "/home/ngocnt/Leishmaniasis_v3/rag/instructions/process/14/demo/flutter/kb/leishmaniasis_demo_pack.json",
+        "test_count": 1,
+        "eval_query_count": 1,
+        "train_count": 0,
+        "source_terms": {
+          "official_experimental_retrieval_corpus": "121-case phase1b Tier A+B train artifact; used for split-exclusion verification",
+          "saved_demo_runtime_kb": "small local defense demo KB used by the preserved backend output",
+          "held_out_evaluation_set": "56 non-indexed evaluation cases"
+        },
+        "label_status": "silver_reference_only"
+      },
+      "label_contract": {
+        "dataset_version": "p14_v7",
+        "ground_truth_status": "silver_reference_only",
+        "verified_track": "reference_label propagated from the structured multimodal pipeline, not clinician gold ground truth",
+        "pseudolabel_track": "Prompt-1 final_diagnosis extracted from the structured multimodal pipeline, not clinician gold ground truth",
+        "disclaimer": "Evaluation labels are silver labels derived from GPT-5-mini and Gemini 2.5 Pro pipeline outputs; they are not clinician ground truth."
+      },
+      "raw_response": {
+        "assistant_markdown": "> Safety boundary: research decision support only; not ground truth, not clinical validation, and not a diagnosis system.\n\n## Supportive Differential (Not a Diagnosis)\n**Rank 1 supportive consideration:** Non-Leishmaniasis (Secondary Infection/Inflammatory Dermatitis)\n**Rank 1 Diagnosis Type:** Non-Leishmaniasis\n**Rank 1 Species (if determinable):** Not determinable\n**Rank 1 Confidence:** Medium\n**Rank 2:** Cutaneous Leishmaniasis (Mucocutaneous form)\n**Rank 3:** Other Infectious Dermatitis (e.g., fungal, bacterial)\n**Most supported option in this research demo:** Non-Leishmaniasis (Secondary Infection/Inflammatory Dermatitis)\n**Evidence source used by the model:** Both\n\n## SUPPORTING EVIDENCE\n- The lesion morphology (erythematous plaque with central erosion and circinate-elevated border with pustules) is consistent with a chronic ulcerative process, which could mimic leishmaniasis.\n- The patient's underlying condition, Ataxia Telangiectasia (AT), predisposes her to severe and recurrent infections, making secondary or opportunistic infection a high probability.\n- The initial failure of standard antibiotic treatment (amoxicillin-clavulanic acid and chloramphenicol) suggests resistance or an atypical etiology, but does not confirm leishmaniasis.\n- Reference Case [Context 1] describes a chronic papule progressing to a nodular ulcer, which shares morphological similarities with the presentation described.\n\n## DIFFERENTIAL CONSIDERATIONS\n**Leishmaniasis:** Cutaneous Leishmaniasis (CL) remains a possibility given the lesion presentation, but the patient's profound immunodeficiency (AT) makes infection susceptibility much broader.\n**Non-Leishmaniasis:** Given the history of recurrent infections, the presence of multiple skin findings (café-au-lait spots, telangiectasias), and the failure of initial antimicrobial therapy, a secondary bacterial or fungal infection superimposed on chronic inflammation related to AT is highly probable.\n**Other Infectious Dermatitis:** Mycobacterial or fungal infections should be strongly considered due to the chronic, ulcerative nature of the lesion in an immunocompromised host.\n\n## UNCERTAINTY AND MISSING INFORMATION\nThe definitive causative agent of the skin lesion is unknown. The image quality allows visualization of the lesion morphology but does not provide microscopic or microbiological confirmation of the causative pathogen. The specific geographical exposure history for leishmaniasis is not provided, although the patient is Arab.\n\n## SUGGESTED CONFIRMATORY TESTS OR CLINICIAN REVIEW\nSkin biopsy of the lesion should be obtained for histopathology, followed by culture and PCR testing for atypical mycobacteria, fungi, and parasites (including Leishmania if suspicion remains high). Serological testing for endemic leishmaniasis should be pursued if the clinical picture remains ambiguous after infection control measures are initiated. Clinician review is needed to correlate the lesion findings with the current infectious status and treatment response.\n\n## EVIDENCE USED\nMedical knowledge regarding immunodeficiency complications and dermatological infectious disease processes, reconciled against the morphological descriptions provided in the case query and the context provided by Reference Cases [Context 1] and [Context 2].",
+        "disclaimer": "Decision support only. This demo uses local Gemma 4 GPU generation with a small local demo KB. It is not clinical deployment, has not been clinician-validated, and must not be used as a diagnosis system.",
+        "evidence": [
+          {
+            "chunk_id": "cl-002",
+            "confirmatory": true,
+            "diagnosis_label": "Cutaneous leishmaniasis",
+            "excerpt": "A chronic papule progressing to a nodular ulcer after endemic travel supported cutaneous leishmaniasis. Biopsy and PCR were used for confirmation.",
+            "score": 0.3079,
+            "source_case_id": "case-cl-002",
+            "title": "Papulonodular skin lesion in endemic travel history"
+          },
+          {
+            "chunk_id": "cl-001",
+            "confirmatory": true,
+            "diagnosis_label": "Cutaneous leishmaniasis",
+            "excerpt": "A patient with an ulcerated plaque on the forearm after sandfly exposure had a lesion smear showing amastigotes. The presentation was consistent with localized cutaneous leishmaniasis.",
+            "score": 0.2318,
+            "source_case_id": "case-cl-001",
+            "title": "Cutaneous leishmaniasis with ulcer and smear-confirmed amastigotes"
+          },
+          {
+            "chunk_id": "vl-002",
+            "confirmatory": false,
+            "diagnosis_label": "Visceral leishmaniasis",
+            "excerpt": "Kala-azar often presents with hepatosplenomegaly, chronic fever, anemia, and systemic illness rather than an isolated skin ulcer.",
+            "score": 0.0262,
+            "source_case_id": "case-vl-002",
+            "title": "Kala-azar pattern with hepatosplenomegaly"
+          }
+        ],
+        "model_name": "google/gemma-4-E4B-it",
+        "needed_next_inputs": [
+          "clinician review",
+          "confirmatory laboratory or histopathology testing"
+        ],
+        "provider_mode": "real_gpu_gemma4",
+        "request_id": "v12c_revalidation_real_model_PMC10026180_04",
+        "runtime_metadata": {
+          "device_kind": "local_gpu",
+          "generation_latency_seconds": 75.00217765604611,
+          "gpu_memory_allocated_mib": 8881.3,
+          "gpu_memory_reserved_mib": 10092.0,
+          "gpu_name": "NVIDIA TITAN RTX",
+          "gpu_peak_memory_allocated_mib": 9658.6,
+          "hf_device_placement": [
+            "cuda:0"
+          ],
+          "image_tensor_fallback_reason": "",
+          "image_tensor_fallback_used": false,
+          "memory_total_mb": 24020,
+          "model_load_seconds": 7.653274466007133,
+          "model_name": "google/gemma-4-E4B-it",
+          "prompt_context_count": 3,
+          "provider_mode": "real_gpu_gemma4",
+          "quantization_mode": "4-bit",
+          "query_image_tensor_count": 1
+        },
+        "safety_state": "generated_support",
+        "timing_ms": 75003
+      },
+      "success": true,
+      "error": null
+    }
+  ]
+}

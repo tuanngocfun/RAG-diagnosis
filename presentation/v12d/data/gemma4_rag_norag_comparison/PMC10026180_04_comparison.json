@@ -1,0 +1,21 @@
+{
+  "case_id": "PMC10026180_04",
+  "silver_reference_type": "verified Non-Leish / pseudolabel CL",
+  "role": "label-conflict stress test",
+  "interpretation": "The official comparison returns Non-Leishmaniasis in both conditions, but the full-text live demo and LLM council reviews make this a label-conflict/evidence-attribution stress test, not specificity proof.",
+  "rag": {
+    "rank1": "Mucocutaneous infection/Inflammatory dermatosis secondary to underlying immunodeficiency",
+    "diagnosis_type": "Non-Leishmaniasis",
+    "confidence": "High",
+    "retrieved_context_count": "0",
+    "answer_source": "/home/ngocnt/experiments/structured_cases_v4_2_2_rtx6000/runs/p14_v7_phase1b_tierAB_official_post_gemini_freeze_base_20260419_031439_seed42_gemma4_20260424_014935/answers_latency.jsonl"
+  },
+  "no_rag": {
+    "rank1": "Mucocutaneous infection/Inflammatory dermatosis secondary to underlying immunodeficiency",
+    "diagnosis_type": "Non-Leishmaniasis",
+    "confidence": "High",
+    "retrieved_context_count": "0",
+    "answer_source": "/home/ngocnt/experiments/structured_cases_v4_2_2_rtx6000/runs/p14_v7_phase1b_tierAB_official_latency_generation_only_multimodal_norag_gemma4_20260423_183411/answers_norag.jsonl"
+  },
+  "boundary": "Selected Q&A backup example only; aggregate thesis metrics remain the benchmark."
+}

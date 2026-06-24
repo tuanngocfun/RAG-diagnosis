@@ -1,5 +1,22 @@
 # Medical RAG Diagnosis Platform (rag branch)
 
+## Current Curated Package
+
+This branch adds a curated V12d RAG diagnosis defense and harness package:
+
+- `rag/` contains the current pipeline, configs, CLI, and tests.
+- `demo/flutter/` contains the local GPU assistant demo backend/UI source.
+- `presentation/v12d/` contains the validated 31-slide defense deck package.
+- `experiments/structured_cases_v4_2_2_rtx6000/` contains selected official
+  Gemma 4 evidence used by V12d, not the full experiment archive.
+- `data/whole_multicare_dataset/` is a lightweight dataset ledger, not raw
+  corpus storage.
+- `AGENTS.md` and `docs/harness-engineering/` define agent workflow,
+  validation gates, and clinical-safety boundaries.
+
+This repository is for research evaluation and thesis demonstration. It is not
+a clinical deployment package and does not support diagnosis from image alone.
+
 A multimodal Retrieval-Augmented Generation (RAG) system for medical case analysis (e.g. Leishmania) combining modern vision-language models with structured retrieval.  
 Core pipeline (current architecture):  
 Retriever (ColQwen2 / ColPali or similar) → Vector Store (FAISS / Qdrant) → (Optional) Cross-Encoder Re-Ranker (MedCPT) → Generator (MedGemma-4B-IT) → Answer + Supporting Images.

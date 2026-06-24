@@ -1,40 +1,299 @@
-data
-kaggle
-storage
-.github
-data.zip
-.venv
-.env
-.env.docker
-logs
-ragas
-instruction
-output
-cache
-colpali
-rag/qa
-textbook-extract
-gpt5
+############################################
+# 1. Python virtual environments
+############################################
+.venv/
+venv/
+ENV/
+env/
+.env/
+.python-version
 
-# -----------------
-# Python / tooling
-# -----------------
+############################################
+# 2. Python cache / build artifacts
+############################################
 __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
 *.so
 *.egg-info/
-*.cache/
+.eggs/
+dist/
+build/
+pip-wheel-metadata/
+
+############################################
+# 3. Jupyter / IPython
+############################################
+.ipynb_checkpoints/
+*.ipynb
+.profile_default/
+.ipython/
+
+############################################
+# 4. Data files (raw, processed, derived)
+############################################
+/data/*
+datasets/
+dataset/
+raw_data/
+processed_data/
+interim/
+external/
+cache/
+tmp/
+temp/
+
+############################################
+# 5. Common data formats
+############################################
+*.csv
+*.tsv
+*.psv
+*.json
+*.jsonl
+*.parquet
+*.avro
+*.feather
+*.h5
+*.hdf5
+*.npz
+*.npy
+*.pkl
+*.pickle
+*.joblib
+
+############################################
+# 6. Images, audio, video (medical & multimodal)
+############################################
+*.jpg
+*.jpeg
+*.png
+*.webp
+*.tiff
+*.bmp
+*.svg
+*.gif
+
+*.wav
+*.mp3
+*.flac
+*.ogg
+*.mp4
+*.avi
+*.mov
+*.mkv
+
+############################################
+# 7. PDFs & documents
+############################################
+*.pdf
+*.doc
+*.docx
+*.ppt
+*.pptx
+*.xls
+*.xlsx
+
+############################################
+# 8. Model checkpoints & ML artifacts
+############################################
+models/
+checkpoints/
+weights/
+runs/
+logs/
+outputs/
+artifacts/
+
+*.ckpt
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.onnx
+*.tflite
+
+############################################
+# 9. Experiment tracking
+############################################
+wandb/
+mlruns/
+lightning_logs/
+tensorboard/
+tb_logs/
+
+############################################
+# 10. Markdown & notes (explicitly excluded)
+############################################
+*.md
+*.markdown
+
+############################################
+# 11. OS / Editor junk
+############################################
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.bak
+*.tmp
 *.log
 
-package-env
+.vscode/
+.idea/
+*.code-workspace
 
-cases
-sft/samples
+############################################
+# 12. Environment / secrets
+############################################
+.env
+.env.*
+*.key
+*.pem
+*.crt
+secrets/
+credentials/
 
-app/web/node_modules
-app/web/.next
+############################################
+# 13. Archives
+############################################
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+*.7z
 
-sample
-lookup
+############################################
+# 14. Local config overrides
+############################################
+config.local.*
+settings.local.*
+
+# Text + run artifacts
+*.txt
+*.text
+*.log
+*.out
+*.err
+*.trace
+
+############################################
+# 15. Node.js / React / Frontend
+############################################
+
+# Dependencies
+node_modules/
+jspm_packages/
+bower_components/
+
+# Build outputs
+dist/
+build/
+out/
+.next/
+.nuxt/
+.svelte-kit/
+coverage/
+
+# Cache / tooling
+.cache/
+.parcel-cache/
+.vite/
+.turbo/
+.eslintcache
+.npm/
+.yarn/
+.pnpm-store/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment files (frontend)
+.env
+.env.*
+
+############################################
+# 16. Exceptions: track code/scripts only in /data
+############################################
+
+# --- guideline_textbook: keep only scripts/config ---
+!/data/guideline_textbook/
+ /data/guideline_textbook/**
+!/data/guideline_textbook/**/*.py
+!/data/guideline_textbook/**/*.sh
+!/data/guideline_textbook/**/*.bash
+!/data/guideline_textbook/**/*.zsh
+!/data/guideline_textbook/**/*.yaml
+!/data/guideline_textbook/**/*.yml
+!/data/guideline_textbook/**/*.toml
+!/data/guideline_textbook/**/*.ini
+!/data/guideline_textbook/**/*.cfg
+!/data/guideline_textbook/**/*.txt
+
+# --- articles: keep only metadata + code (NOT pdf/images) ---
+!/data/articles/
+ /data/articles/**
+!/data/articles/**/*.py
+!/data/articles/**/*.json
+!/data/articles/**/*.jsonl
+!/data/articles/**/*.yaml
+!/data/articles/**/*.yml
+!/data/articles/**/*.txt
+
+# Allow thesis template docs/assets
+!Leishmania_v3/master_template/thesis-template-master/README.md
+!Leishmania_v3/master_template/thesis-template-master/docs/*.pdf
+!Leishmania_v3/master_template/thesis-template-master/gfx/**/*.pdf
+!Leishmania_v3/master_template/thesis-template-master/gfx/**/*.eps
+
+############################################
+# 17. Curated RAG diagnosis package
+############################################
+
+# Agent and repo navigation docs
+!AGENTS.md
+!llms.txt
+!/docs/
+!/docs/**
+
+# Modern RAG code and tests
+!/rag/
+!/rag/**
+/rag/**/__pycache__/
+/rag/**/*.pyc
+
+# Local defense demo source. Keep generated app/build and tool caches out.
+!/demo/
+!/demo/**
+/demo/flutter/app/build/
+/demo/flutter/app/.dart_tool/
+/demo/flutter/app/.idea/
+/demo/flutter/backend/.pytest_cache/
+/demo/**/__pycache__/
+/demo/**/*.pyc
+/demo/flutter/live-demo/real-gpu-runs/
+
+# Final V12d presentation package. Keep historical backup archive out.
+!/presentation/
+!/presentation/v12d/
+!/presentation/v12d/**
+/presentation/v12d/archive/
+/presentation/v12d/**/__pycache__/
+/presentation/v12d/**/*.pyc
+
+# Selected experiment evidence only; raw broad run archives stay excluded.
+!/experiments/
+!/experiments/structured_cases_v4_2_2_rtx6000/
+!/experiments/structured_cases_v4_2_2_rtx6000/**
+
+# Lightweight dataset ledger. Do not commit raw zips/parquets.
+!/data/
+!/data/whole_multicare_dataset/
+!/data/whole_multicare_dataset/**
+/data/whole_multicare_dataset/*.zip
+/data/whole_multicare_dataset/*.parquet

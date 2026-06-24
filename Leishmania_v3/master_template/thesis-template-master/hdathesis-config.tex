@@ -1,0 +1,56 @@
+% ****************************************************************************************************
+% hdathesis-config.tex 
+% Use it at the beginning of your thesis.tex, or as a LaTeX Preamble 
+% in your thesis.{tex,lyx} with \input{hdathesis-config}
+% ****************************************************************************************************
+
+% ****************************************************************************************************
+% 1. Personal data and user ad-hoc commands
+% ****************************************************************************************************
+\newcommand{\myTitle}{Multimodal Retrieval-Augmented Generation for Leishmaniasis Diagnosis\xspace}
+\newcommand{\mySubtitle}{A Two-Lane Architecture with Medical Domain Encoders\xspace}
+%\newcommand{\myDegree}{Bachelor of Science (B.\,Sc.)\xspace} 
+%\newcommand{\myDegree}{Bachelor of Arts (B.\,A.)\xspace}
+\newcommand{\myDegree}{Master of Science (M.\,Sc.)\xspace}
+%\newcommand{\myDegree}{Master of Arts (M.\,A.)\xspace}
+\newcommand{\myName}{Nguyen Tuan Ngoc\xspace}
+\newcommand{\myId}{21024003\xspace}
+\newcommand{\myProf}{Prof. Dr. Andreas M\"{u}ller\xspace}
+\newcommand{\myOtherProf}{Dr. Tran Duc Khanh\xspace}
+\newcommand{\myFaculty}{Fachbereich Informatik\xspace}
+\newcommand{\myUni}{Hochschule Darmstadt\xspace}
+\newcommand{\myLocation}{Darmstadt\xspace}
+\newcommand{\myTime}{\today\xspace}
+\newcommand{\myVersion}{version 4.4\xspace}
+
+% ****************************************************************************************************
+% 2. Is it a master thesis?
+% ****************************************************************************************************
+%\PassOptionsToPackage{master}{hdathesis} % uncomment if this is a master thesis 
+
+% ****************************************************************************************************
+% 3. Does the thesis have a lock flag?
+% ****************************************************************************************************
+%\PassOptionsToPackage{lockflag}{hdathesis} % uncomment if this thesis has a lock flag 
+
+% ****************************************************************************************************
+% 4. Loading some handy packages
+% ****************************************************************************************************
+% ****************************************************************************************************
+% Packages with options that might require adjustments
+% ****************************************************************************************************
+
+%\PassOptionsToPackage{ngerman,american}{babel}   % change this to your language(s)
+% Spanish languages need extra options in order to work with this template
+%\PassOptionsToPackage{spanish,es-lcroman}{babel}
+\usepackage{babel}
+
+% Work around recursive caption names with some babel/KOMA combos
+\addto\captionsngerman{%
+  \def\contentsname{Inhaltsverzeichnis}%
+  \def\listfigurename{Abbildungsverzeichnis}%
+  \def\ngermanlistfigurename{Abbildungsverzeichnis}%
+  \def\listtablename{Tabellenverzeichnis}%
+  \def\ngermanlisttablename{Tabellenverzeichnis}%
+  \def\today{\number\day.\space\number\month.\space\number\year}%
+}

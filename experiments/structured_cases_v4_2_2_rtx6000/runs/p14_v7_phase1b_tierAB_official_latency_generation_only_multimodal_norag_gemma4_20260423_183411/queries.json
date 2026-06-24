@@ -1,0 +1,1190 @@
+[
+  {
+    "case_id": "PMC10243522_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 25-year-old woman was referred to a rheumatologic clinic with 8 months of fever (initially daily, later irregular, predominating in the afternoon), associated with arthralgia of small and large joints, malaise, pallor, abdominal enlargement, and involuntary weight loss of 20 kg. She lived in the metropolitan area of S\u00e3o Paulo. Laboratory testing showed pancytopenia with elevated erythrocyte sedimentation rate and C-reactive protein, a polyclonal gammopathy, and a weakly positive rheumatoid factor. Abdominal computed tomography demonstrated marked splenomegaly (greater diameter > 26 cm) and hepatomegaly.",
+    "query_images": [
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC10243522_01/PMC10243522_1678-9946-rimtsp-65-S1678-9946202365036-gf01_A_1_2.webp",
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC10243522_01/PMC10243522_1678-9946-rimtsp-65-S1678-9946202365036-gf01_B_2_2.webp"
+    ],
+    "image_path": "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC10243522_01/PMC10243522_1678-9946-rimtsp-65-S1678-9946202365036-gf01_A_1_2.webp",
+    "ground_truth": {
+      "diagnosis": "Visceral Leishmaniasis",
+      "diagnosis_type": "VL",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Visceral leishmaniasis",
+      "diagnosis_type": "VL",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 25-year-old woman was referred to a rheumatologic clinic with 8 months of fever (initially daily, later irregular, predominating in the afternoon), associated with arthralgia of small and large joints, malaise, pallor, abdominal enlargement, and involuntary weight loss of 20 kg. She lived in the metropolitan area of S\u00e3o Paulo. Laboratory testing showed pancytopenia with elevated erythrocyte sedimentation rate and C-reactive protein, a polyclonal gammopathy, and a weakly positive rheumatoid factor. Abdominal computed tomography demonstrated marked splenomegaly (greater diameter > 26 cm) and hepatomegaly.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC10505077_02",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A child from Thiaroye district (periurban, with stagnant water, swampy areas, domestic animals; a biotope favorable for Phlebotomus circulation) who had not traveled outside the residence area was admitted on November 25, 2019, for worsening epistaxis and gingivorrhagia that had been occurring sporadically for 3 months without follow-up.\n\nAt admission the patient had fever (39.5 C), heart rate 153 beats/min, respiratory rate 48/min, capillary blood glucose 1.3 g/L, blood pressure 93/62 mmHg, and arterial oxygen saturation 97%. Weight was 12 kg and height 97 cm (weight/height \u22122 SD); brachial perimeter 13 cm.\n\nClinical examination showed a haemorrhagic syndrome with abundant bilateral epistaxis with clotting, a severe poorly tolerated anaemic syndrome, moderate respiratory distress, and systemic inflammatory response with fever. Findings also included a tumour syndrome with hepatomegaly (11 cm), splenomegaly (12 cm, Hackett type IV), noninflammatory bulky cervical and axillary lymphadenopathy, and multiple mouth ulcers. Examination of other organs was unremarkable.\n\nChest X-ray revealed bilateral pneumonia. Abdominal ultrasound confirmed hepatosplenomegaly and was otherwise normal.\n\nInitial blood testing showed hypochromic microcytic anaemia with a haemoglobin level of 5.1 g/dL and severe thrombocytopenia (3,000/mm3); the blood count report included values written as \"(3.44%/79500)\". The peripheral smear was noted to be \"not in concordance with level of 7% blasts and 3% erythroblasts.\"\n\nFaced with this syndrome, clinicians evaluated for and sought to exclude malaria, retrovirosis, hepatitis, severe sepsis, sickle cell disease, and vitamin B9 or B12 deficiency. Because other probable conditions were formally ruled out, further diagnostic sampling (including marrow sampling) was pursued.",
+    "query_images": [],
+    "image_path": null,
+    "ground_truth": {
+      "diagnosis": "Visceral Leishmaniasis",
+      "diagnosis_type": "VL",
+      "species": "L. infantum"
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Visceral leishmaniasis",
+      "diagnosis_type": "VL",
+      "species": "L. infantum"
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A child from Thiaroye district (periurban, with stagnant water, swampy areas, domestic animals; a biotope favorable for Phlebotomus circulation) who had not traveled outside the residence area was admitted on November 25, 2019, for worsening epistaxis and gingivorrhagia that had been occurring sporadically for 3 months without follow-up.\n\nAt admission the patient had fever (39.5 C), heart rate 153 beats/min, respiratory rate 48/min, capillary blood glucose 1.3 g/L, blood pressure 93/62 mmHg, and arterial oxygen saturation 97%. Weight was 12 kg and height 97 cm (weight/height \u22122 SD); brachial perimeter 13 cm.\n\nClinical examination showed a haemorrhagic syndrome with abundant bilateral epistaxis with clotting, a severe poorly tolerated anaemic syndrome, moderate respiratory distress, and systemic inflammatory response with fever. Findings also included a tumour syndrome with hepatomegaly (11 cm), splenomegaly (12 cm, Hackett type IV), noninflammatory bulky cervical and axillary lymphadenopathy, and multiple mouth ulcers. Examination of other organs was unremarkable.\n\nChest X-ray revealed bilateral pneumonia. Abdominal ultrasound confirmed hepatosplenomegaly and was otherwise normal.\n",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC10953639_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 5-year-old girl with Down syndrome from the province of Quillabamba (Cusco region, Amazon jungle, an area endemic for leishmaniasis) is brought by her father for chronic skin lesions. According to the father, lesions first appeared at age 1 as papules on the face and slowly increased in size. Approximately one year after their initial appearance, the lesions ulcerated near the right malar and mandibular regions of the face.",
+    "query_images": [],
+    "image_path": null,
+    "ground_truth": {
+      "diagnosis": "Disseminated Cutaneous Leishmaniasis",
+      "diagnosis_type": "DsCL",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Cutaneous leishmaniasis",
+      "diagnosis_type": "CL",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 5-year-old girl with Down syndrome from the province of Quillabamba (Cusco region, Amazon jungle, an area endemic for leishmaniasis) is brought by her father for chronic skin lesions. According to the father, lesions first appeared at age 1 as papules on the face and slowly increased in size. Approximately one year after their initial appearance, the lesions ulcerated near the right malar and mandibular regions of the face.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC11812455_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 43\u2011year\u2011old woman from Venezuela presented in February 2024 with a large ulcerated wound on the lower left shin spanning the width of her ankle. She reported being bitten by an unknown organism while traveling by foot through Panama from Venezuela to the US, and noted the wound had worsened during the two months since her arrival. She had been seen prior to presentation and treated with oral amoxicillin followed by doxycycline without improvement. In the ED she reported burning, intolerable pain that impeded walking. On exam the wound had well\u2011demarcated ulcerated tissue beneath raised, crusted tissue; areas of the lesion were thought possibly to represent fungal infection. Labs obtained included CBC with differential, CMP, CRP, lactate, and blood cultures; notable results were an elevated erythrocyte sedimentation rate of 49 with a normal CRP and normal lactate. A left lower\u2011extremity x\u2011ray showed soft\u2011tissue edema and no bony erosion or periosteal reaction to suggest osteomyelitis or retained foreign body. After infectious\u2011disease consultation the patient was admitted for further workup and management and was started on cefepime.",
+    "query_images": [
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC11812455_01/PMC11812455_OAEM-17-85-g0001_undivided_1_1.webp",
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC11812455_01/PMC11812455_OAEM-17-85-g0002_undivided_1_1.webp"
+    ],
+    "image_path": "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC11812455_01/PMC11812455_OAEM-17-85-g0001_undivided_1_1.webp",
+    "ground_truth": {
+      "diagnosis": "Cutaneous Leishmaniasis",
+      "diagnosis_type": "CL",
+      "species": "L. panamensis"
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Cutaneous leishmaniasis",
+      "diagnosis_type": "CL",
+      "species": "L. panamensis"
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 43\u2011year\u2011old woman from Venezuela presented in February 2024 with a large ulcerated wound on the lower left shin spanning the width of her ankle. She reported being bitten by an unknown organism while traveling by foot through Panama from Venezuela to the US, and noted the wound had worsened during the two months since her arrival. She had been seen prior to presentation and treated with oral amoxicillin followed by doxycycline without improvement. In the ED she reported burning, intolerable pain that impeded walking. On exam the wound had well\u2011demarcated ulcerated tissue beneath raised, crusted tissue; areas of the lesion were thought possibly to represent fungal infection. Labs obtained included CBC with differential, CMP, CRP, lactate, and blood cultures; notable results were an elevated erythrocyte sedimentation rate of 49 with a normal CRP and normal lactate. A left lower\u2011extremity x\u2011ray showed soft\u2011tissue edema and no bony erosion or periosteal reaction to suggest osteomyelitis or retained foreign body. After infectious\u2011disease consultation the patient was admitted for further workup and management and was started on cefepime.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC2631533_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A two-month-old Saudi Arabian male infant was admitted for management of multiple ulcers on his face. The ulcers were first observed by the parents at age one month and progressively increased in size; there was no history of fever. He was the third child of healthy unrelated Bedouin Saudi Arabian parents (mother 35 years, father 40 years). There was no history of perinatal or postnatal complication. The child was delivered in a tent in the desert where his parents live.\n\nOn physical examination there was severe disfigurement of the face with three crusty ulcers surrounded by a notable erythematous reaction: the largest on the right cheek measured 2 \u00d7 2 cm; a second on the right lower eyelid measured 1 \u00d7 1.5 cm; a third on the forehead measured 0.5 \u00d7 0.5 cm. Examination revealed no lymphadenopathy or hepatosplenomegaly. The ulcers were surrounded by extensive edema that often kept the eyes closed, obscuring some facial features. Noted findings that suggested an underlying chromosomal syndrome included hypotonia, flat occiput, short neck, low-set ears, short broad hands, clinodactyly of the fifth finger, bilateral simian creases of the hands, and a gap between the first and second toes, which prompted a request for karyotyping.",
+    "query_images": [],
+    "image_path": null,
+    "ground_truth": {
+      "diagnosis": "Cutaneous Leishmaniasis",
+      "diagnosis_type": "CL",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Cutaneous leishmaniasis",
+      "diagnosis_type": "CL",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A two-month-old Saudi Arabian male infant was admitted for management of multiple ulcers on his face. The ulcers were first observed by the parents at age one month and progressively increased in size; there was no history of fever. He was the third child of healthy unrelated Bedouin Saudi Arabian parents (mother 35 years, father 40 years). There was no history of perinatal or postnatal complication. The child was delivered in a tent in the desert where his parents live.\n\nOn physical examination there was severe disfigurement of the face with three crusty ulcers surrounded by a notable erythematous reaction: the largest on the right cheek measured 2 \u00d7 2 cm; a second on the right lower eyelid measured 1 \u00d7 1.5 cm; a third on the forehead measured 0.5 \u00d7 0.5 cm. Examination revealed no lymphadenopathy or hepatosplenomegaly. The ulcers were surrounded by extensive edema that often kept the eyes closed, obscuring some facial features. Noted findings that suggested an underlying chromosomal syndrome included hypotonia, flat occiput, short neck, low-set ears, short broad hands, clinodactyly of the fifth finger, bilateral simian creases of the hands, and a gap between the first and second t",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC3655258_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 15-year-old male resident of Bihar presented with longstanding fever, abdominal distention, weight loss, and generalized weakness for 10 months. He had previously undergone rK39 rapid diagnostic testing at a district hospital, which was positive, and received three injections of amphotericin deoxycholate but developed fever and hypotension during that treatment; no further therapy was given there. Two months later he presented to our outpatient department. On examination he was febrile, undernourished, and had massive splenomegaly and hepatomegaly. Hematological testing showed moderate pancytopenia with hemoglobin 8.3 g/dL, total leukocyte count 2000/mm3, and platelet count 75,000/mm3. A repeat rK39 rapid diagnostic test was negative. ELISA tests for HIV, HBsAg, and HCV were negative; Mantoux test was negative. Liver and renal function tests were within normal limits. Bone marrow aspiration demonstrated reactive plasmacytosis (10%) and no Leishmania donovani bodies were seen. Napier's aldehyde test was strongly positive.",
+    "query_images": [],
+    "image_path": null,
+    "ground_truth": {
+      "diagnosis": "Visceral Leishmaniasis",
+      "diagnosis_type": "VL",
+      "species": "L. donovani"
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Visceral leishmaniasis",
+      "diagnosis_type": "VL",
+      "species": "L. donovani"
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 15-year-old male resident of Bihar presented with longstanding fever, abdominal distention, weight loss, and generalized weakness for 10 months. He had previously undergone rK39 rapid diagnostic testing at a district hospital, which was positive, and received three injections of amphotericin deoxycholate but developed fever and hypotension during that treatment; no further therapy was given there. Two months later he presented to our outpatient department. On examination he was febrile, undernourished, and had massive splenomegaly and hepatomegaly. Hematological testing showed moderate pancytopenia with hemoglobin 8.3 g/dL, total leukocyte count 2000/mm3, and platelet count 75,000/mm3. A repeat rK39 rapid diagnostic test was negative. ELISA tests for HIV, HBsAg, and HCV were negative; Mantoux test was negative. Liver and renal function tests were within normal limits. Bone marrow aspiration demonstrated reactive plasmacytosis (10%) and no Leishmania donovani bodies were seen. Napier's aldehyde test was strongly positive.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC4276680_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 50-year-old Caucasian man with no significant past medical history underwent allogeneic stem-cell transplantation for high\u2011risk B\u2011cell acute lymphoblastic leukemia in first complete remission. The graft was peripheral\u2011blood stem cells from an unrelated Portuguese donor matched at 9/10 (HLA\u2011A disparity). Myeloablative conditioning included busulfan, cyclophosphamide, and antilymphocytic serum. Graft\u2011versus\u2011host disease prophylaxis consisted of tacrolimus and methotrexate. There were no major complications during the neutropenic period. Two months after transplant he received corticosteroid therapy for upper\u2011digestive graft\u2011versus\u2011host disease. In the following months he developed mild, fluctuating cytopenias, most prominent as thrombocytopenia (platelet counts between 60 and 80 \u00d7 10^9/L). The only significant complaint was intermittent tiredness.",
+    "query_images": [],
+    "image_path": null,
+    "ground_truth": {
+      "diagnosis": "Visceral Leishmaniasis",
+      "diagnosis_type": "VL",
+      "species": "L. infantum"
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Visceral leishmaniasis",
+      "diagnosis_type": "VL",
+      "species": "L. infantum"
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 50-year-old Caucasian man with no significant past medical history underwent allogeneic stem-cell transplantation for high\u2011risk B\u2011cell acute lymphoblastic leukemia in first complete remission. The graft was peripheral\u2011blood stem cells from an unrelated Portuguese donor matched at 9/10 (HLA\u2011A disparity). Myeloablative conditioning included busulfan, cyclophosphamide, and antilymphocytic serum. Graft\u2011versus\u2011host disease prophylaxis consisted of tacrolimus and methotrexate. There were no major complications during the neutropenic period. Two months after transplant he received corticosteroid therapy for upper\u2011digestive graft\u2011versus\u2011host disease. In the following months he developed mild, fluctuating cytopenias, most prominent as thrombocytopenia (platelet counts between 60 and 80 \u00d7 10^9/L). The only significant complaint was intermittent tiredness.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC4782654_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 57-year-old man presented with a 2-year history of multiple nodules and tumors of cystic consistence on the back of the right foot and right leg. The lesions exhibited a sporotrichosis-like distribution pattern but there was no history of local trauma. Four years earlier he had received a kidney transplant for hypertensive nephropathy and his immunosuppressive regimen included azathioprine, tacrolimus, and prednisone. The initial diagnostic hypotheses were sporotrichosis, paracoccidioidomycosis, leishmaniasis, and phaeohyphomycosis.",
+    "query_images": [
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC4782654_01/abd-91-01-0089-g01.jpg"
+    ],
+    "image_path": "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC4782654_01/abd-91-01-0089-g01.jpg",
+    "ground_truth": {
+      "diagnosis": "Ocular Leishmaniasis",
+      "diagnosis_type": "Ocular",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Phaeohyphomycosis",
+      "diagnosis_type": "Other",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 57-year-old man presented with a 2-year history of multiple nodules and tumors of cystic consistence on the back of the right foot and right leg. The lesions exhibited a sporotrichosis-like distribution pattern but there was no history of local trauma. Four years earlier he had received a kidney transplant for hypertensive nephropathy and his immunosuppressive regimen included azathioprine, tacrolimus, and prednisone. The initial diagnostic hypotheses were sporotrichosis, paracoccidioidomycosis, leishmaniasis, and phaeohyphomycosis.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC5813666_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 25-year-old man from Paicandu, Parana, presented with an ulcer on the lower lip that had been treated as herpes labialis without wound healing or improvement. Thirty days after the ulcer appeared he was referred to a clinical laboratory. Examination of the lower lip showed an ulcerated lesion that was erythematous with raised edges and had granulomatous, purulent, and crusty contents. He reported frequent fishing in the Ivai river, an endemic region for Leishmania (Viannia) sp., and said several acquaintances had acquired leishmaniasis there. Laboratory testing performed included the Montenegro skin test, direct parasite search from lesion scraping, and indirect immunofluorescence for anti\u2011Leishmania IgG on blood. The Montenegro skin test was reactive with an induration of 6 mm in diameter, indirect immunofluorescence was positive with a titer of 1:80, and the direct parasite search was also positive.",
+    "query_images": [],
+    "image_path": null,
+    "ground_truth": {
+      "diagnosis": "Mucocutaneous Leishmaniasis",
+      "diagnosis_type": "MCL",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Mucosal leishmaniasis",
+      "diagnosis_type": "Other",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 25-year-old man from Paicandu, Parana, presented with an ulcer on the lower lip that had been treated as herpes labialis without wound healing or improvement. Thirty days after the ulcer appeared he was referred to a clinical laboratory. Examination of the lower lip showed an ulcerated lesion that was erythematous with raised edges and had granulomatous, purulent, and crusty contents. He reported frequent fishing in the Ivai river, an endemic region for Leishmania (Viannia) sp., and said several acquaintances had acquired leishmaniasis there. Laboratory testing performed included the Montenegro skin test, direct parasite search from lesion scraping, and indirect immunofluorescence for anti\u2011Leishmania IgG on blood. The Montenegro skin test was reactive with an induration of 6 mm in diameter, indirect immunofluorescence was positive with a titer of 1:80, and the direct parasite search was also positive.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC5813668_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 78-year-old man was referred for evaluation of disseminated skin lesions over the left arm and hemithorax. He had a one-month history of multiple skin lesions that began as a small furuncle on the left forelimb and progressed to other parts of the arm and hemithorax. He lived in Esfarayen city in Northeastern Iran, described as one of the new endemic regions of cutaneous leishmaniasis. He reported edema and lymphedema of the arm and hemithorax prior to the lesion dissemination. Physical examination was notable for mild peripheral edema and lymphedema but no systemic symptoms such as fever or hepatosplenomegaly; radiological and routine laboratory tests showed no abnormalities. His medical history included a 10-year history of opium smoking and chronic obstructive pulmonary disease treated with salbutamol and fluticasone/salmeterol inhalers. He was hospitalized with an initial suspicion of diffuse bacterial infection because of the lymphedema, opium smoking, and respiratory disease. On examination he had multiple, disseminated, wet-looking skin lesions that were papular, crusted, and severely ulcerated over the left arm and hemithorax; lesions had spread to the palm and left fingernails. Three days before presentation he had bandaged the lesions with plastic covers, and \u201call covered parts turned into creamy, wet-looking and severely inflammatory lesions which looked like second-degree burn wounds.\u201d",
+    "query_images": [
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC5813668_01/PMC5813668_1678-9946-rimtsp-S1678-9946201860005-gf01_undivided_1_1.webp",
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC5813668_01/1678-9946-rimtsp-S1678-9946201860005-gf03.jpg"
+    ],
+    "image_path": "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC5813668_01/PMC5813668_1678-9946-rimtsp-S1678-9946201860005-gf01_undivided_1_1.webp",
+    "ground_truth": {
+      "diagnosis": "Diffuse Cutaneous Leishmaniasis",
+      "diagnosis_type": "DCL",
+      "species": "L. major"
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Diffuse cutaneous leishmaniasis",
+      "diagnosis_type": "CL",
+      "species": "L. major"
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 78-year-old man was referred for evaluation of disseminated skin lesions over the left arm and hemithorax. He had a one-month history of multiple skin lesions that began as a small furuncle on the left forelimb and progressed to other parts of the arm and hemithorax. He lived in Esfarayen city in Northeastern Iran, described as one of the new endemic regions of cutaneous leishmaniasis. He reported edema and lymphedema of the arm and hemithorax prior to the lesion dissemination. Physical examination was notable for mild peripheral edema and lymphedema but no systemic symptoms such as fever or hepatosplenomegaly; radiological and routine laboratory tests showed no abnormalities. His medical history included a 10-year history of opium smoking and chronic obstructive pulmonary disease treated with salbutamol and fluticasone/salmeterol inhalers. He was hospitalized with an initial suspicion of diffuse bacterial infection because of the lymphedema, opium smoking, and respiratory disease. On examination he had multiple, disseminated, wet-looking skin lesions that were papular, crusted, and severely ulcerated over the left arm and hemithorax; lesions had spread to the palm and left finge",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC6532396_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 32-year-old man presented in August 2014 to the Rondonia Reference Hospital for Tropical Medicine with cutaneous lesions on his left arm that had been present for approximately 1 year and 8 months. He lives and works in agriculture in a rural area of the municipality of Machadinho D'Oeste, state of Rondonia, Brazil, and reported that the infection was acquired there. The regional center had evaluated more than 500 patients with suspected cutaneous leishmaniasis during 2013\u20132017.",
+    "query_images": [],
+    "image_path": null,
+    "ground_truth": {
+      "diagnosis": "Cutaneous Leishmaniasis",
+      "diagnosis_type": "CL",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Cutaneous leishmaniasis",
+      "diagnosis_type": "CL",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 32-year-old man presented in August 2014 to the Rondonia Reference Hospital for Tropical Medicine with cutaneous lesions on his left arm that had been present for approximately 1 year and 8 months. He lives and works in agriculture in a rural area of the municipality of Machadinho D'Oeste, state of Rondonia, Brazil, and reported that the infection was acquired there. The regional center had evaluated more than 500 patients with suspected cutaneous leishmaniasis during 2013\u20132017.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC6532396_02",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "In December 2015 a 50-year-old woman presented with a cutaneous lesion on the left hand. She reported that the infection may be related to labor activities and that it was acquired on \"Estrada do Indio\" (Federal Road 319), a federal highway that connects Porto Velho and Humaita in the Brazilian states of Rondonia and Amazonas. This highway is surrounded by Amazon forest and is described as \"an area with frequent reports of TL.\" She did not report any chronic disease, and investigation for HIV coinfection was negative. Clinical data and biological samples were collected as part of a research project; samples for molecular detection and identification were obtained using sterile cervical brushes placed in direct contact with the edge of the lesion.",
+    "query_images": [
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC6532396_02/parasite-26-30-fig2_small.jpg"
+    ],
+    "image_path": "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC6532396_02/parasite-26-30-fig2_small.jpg",
+    "ground_truth": {
+      "diagnosis": "Cutaneous Leishmaniasis",
+      "diagnosis_type": "CL",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Cutaneous leishmaniasis",
+      "diagnosis_type": "CL",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: In December 2015 a 50-year-old woman presented with a cutaneous lesion on the left hand. She reported that the infection may be related to labor activities and that it was acquired on \"Estrada do Indio\" (Federal Road 319), a federal highway that connects Porto Velho and Humaita in the Brazilian states of Rondonia and Amazonas. This highway is surrounded by Amazon forest and is described as \"an area with frequent reports of TL.\" She did not report any chronic disease, and investigation for HIV coinfection was negative. Clinical data and biological samples were collected as part of a research project; samples for molecular detection and identification were obtained using sterile cervical brushes placed in direct contact with the edge of the lesion.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC6745118_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 45-year-old man from Saile Sikhar Municipality (Darchula District) was admitted to a tropical and infectious disease hospital on 24 January 2019. He had presented initially to a local hospital on 25 January 2018 with a 3-month history of abdominal pain, anorexia, and fever with chills and sweating. Clinically he was pale and had hepatosplenomegaly. Prior to presentation to the referral center, he had received prior antileishmanial therapy: liposomal amphotericin B (LAMB) 5 mg/kg daily for 3 days for the first episode and later LAMB 5 mg/kg stat plus paromomycin 15 mg/kg IM for 10 days for a second episode.",
+    "query_images": [],
+    "image_path": null,
+    "ground_truth": {
+      "diagnosis": "Visceral Leishmaniasis",
+      "diagnosis_type": "VL",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Visceral leishmaniasis",
+      "diagnosis_type": "VL",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 45-year-old man from Saile Sikhar Municipality (Darchula District) was admitted to a tropical and infectious disease hospital on 24 January 2019. He had presented initially to a local hospital on 25 January 2018 with a 3-month history of abdominal pain, anorexia, and fever with chills and sweating. Clinically he was pale and had hepatosplenomegaly. Prior to presentation to the referral center, he had received prior antileishmanial therapy: liposomal amphotericin B (LAMB) 5 mg/kg daily for 3 days for the first episode and later LAMB 5 mg/kg stat plus paromomycin 15 mg/kg IM for 10 days for a second episode.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC7456484_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 37\u2011year\u2011old woman from eastern Bhutan presented in 2014 with extensive erythematous plaques on the forehead, central face, perioral area, and cheeks extending to both ears. The left eye was damaged and there was marked swelling of the right eyelid with lid scarring and lagophthalmos. Plaques extended to the nasal mucosa without intraoral involvement. Other skin and systemic examinations were reportedly normal.\n\nLaboratory testing showed hemoglobin 11.7 g/dl, total leukocyte count 6,390/mm3 (neutrophils 62%, lymphocytes 28%), platelets 191,000/mm3, ESR 39 mm in the 1st hour, SGOT 35 U/L, SGPT 68 U/L, bilirubin 1 mg/dl, urea 21 mg/dl, creatinine 0.8 mg/dl, fasting glucose 80 mg/dl. Tests for HIV, hepatitis B and C, and syphilis were negative. Chest radiograph, ECG, and abdominal ultrasound were normal.\n\nRelevant past history: in February 1999, during pregnancy she had fever, weight loss, anemia, and hepatomegaly and \u201cwas diagnosed as VL and treated with SSG injections 850 mg/day for 20 days.\u201d Seven months after that illness she developed erythematous lesions on her forehead that spread over the face. In 2002 a dermatologist recorded papules and plaques over the cheeks, periorbital, and perioral areas that \u201cwere suspected as chronic dermatitis or cutaneous lupus erythematosus,\u201d and she received topical, intralesional, and oral corticosteroids. In 2007 a WHO consultant for kala azar \u201csuspected PKDL.\u201d Skin biopsies performed in 2006, 2010, and 2013 \u201cfailed to confirm leishmaniasis,\u201d and no firm diagnosis had been recorded.",
+    "query_images": [
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7456484_01/CRIDM2020-8899586.001.jpg"
+    ],
+    "image_path": "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7456484_01/CRIDM2020-8899586.001.jpg",
+    "ground_truth": {
+      "diagnosis": "Post-Kala-Azar Dermal Leishmaniasis",
+      "diagnosis_type": "PKDL",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Post-kala-azar dermal leishmaniasis",
+      "diagnosis_type": "PKDL",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 37\u2011year\u2011old woman from eastern Bhutan presented in 2014 with extensive erythematous plaques on the forehead, central face, perioral area, and cheeks extending to both ears. The left eye was damaged and there was marked swelling of the right eyelid with lid scarring and lagophthalmos. Plaques extended to the nasal mucosa without intraoral involvement. Other skin and systemic examinations were reportedly normal.\n\nLaboratory testing showed hemoglobin 11.7 g/dl, total leukocyte count 6,390/mm3 (neutrophils 62%, lymphocytes 28%), platelets 191,000/mm3, ESR 39 mm in the 1st hour, SGOT 35 U/L, SGPT 68 U/L, bilirubin 1 mg/dl, urea 21 mg/dl, creatinine 0.8 mg/dl, fasting glucose 80 mg/dl. Tests for HIV, hepatitis B and C, and syphilis were negative. Chest radiograph, ECG, and abdominal ultrasound were normal.\n\nRelevant past history: in February 1999, during pregnancy she had fever, weight loss, anemia, and hepatomegaly and \u201cwas diagnosed as VL and treated with SSG injections 850 mg/day for 20 days.\u201d Seven months after that illness she developed erythematous lesions on her forehead that spread over the face. In 2002 a dermatologist recorded papules and plaques over the cheeks, periorbital,",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC7516301_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 19-year-old man from Syria (arrived in Denmark in 2015) presented in June 2016 with a 6-month history of throat irritation that progressed over several days to severe throat pain and fever. He had no history of severe illness or excess infections; examination noted a scar on his arm that was suggestive of previous cutaneous leishmaniasis. Laryngoscopy demonstrated massive edema of the mucosa of both the pharynx and larynx; the epiglottis and uvula were swollen and red with papilloma-like lesions. Endoscopic images show marked swelling and papillomatous-appearing mucosal lesions of the oropharynx and larynx.",
+    "query_images": [
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7516301_01/PMC7516301_fimmu-11-567856-g001_A_1_3.webp",
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7516301_01/PMC7516301_fimmu-11-567856-g001_B_2_3.webp",
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7516301_01/PMC7516301_fimmu-11-567856-g001_C_3_3.webp"
+    ],
+    "image_path": "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7516301_01/PMC7516301_fimmu-11-567856-g001_A_1_3.webp",
+    "ground_truth": {
+      "diagnosis": "Mucocutaneous Leishmaniasis",
+      "diagnosis_type": "MCL",
+      "species": "L. tropica"
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Leishmaniasis",
+      "diagnosis_type": "Other",
+      "species": "L. tropica"
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 19-year-old man from Syria (arrived in Denmark in 2015) presented in June 2016 with a 6-month history of throat irritation that progressed over several days to severe throat pain and fever. He had no history of severe illness or excess infections; examination noted a scar on his arm that was suggestive of previous cutaneous leishmaniasis. Laryngoscopy demonstrated massive edema of the mucosa of both the pharynx and larynx; the epiglottis and uvula were swollen and red with papilloma-like lesions. Endoscopic images show marked swelling and papillomatous-appearing mucosal lesions of the oropharynx and larynx.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC7572673_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 66-year-old German woman presented to a university hospital with nasal obstruction. On clinical examination she had a nodular and ulcerative lesion of the nasal septum.",
+    "query_images": [],
+    "image_path": null,
+    "ground_truth": {
+      "diagnosis": "Mucocutaneous Leishmaniasis",
+      "diagnosis_type": "MCL",
+      "species": "L. infantum"
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Mucocutaneous leishmaniasis",
+      "diagnosis_type": "MCL",
+      "species": "L. infantum"
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 66-year-old German woman presented to a university hospital with nasal obstruction. On clinical examination she had a nodular and ulcerative lesion of the nasal septum.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC7995465_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 6-year-old neutered male domestic shorthair cat was presented to the primary veterinarian for evaluation of pruritic, non\u2011healing wounds on the right pinna and the right tarsus. The lesions were noticed several weeks prior to examination. The cat was initially found as a stray in Bryan, Texas, at approximately 3 months of age. Since being obtained by the owner, the cat had remained primarily indoors with only infrequent exposure to the outdoor patio (approximately once a year). There was no known travel history outside of Texas prior to presentation. Clinical signs appeared to respond partially to prescribed therapies such as cephalexin, amoxicillin\u2013potassium clavulanate, prednisolone and topical nitrofurazone.\n\nPhotographs obtained at presentation show an irregular, ulcerated/crusted lesion involving the lateral margin of the right pinna and an exophytic, ulcerated nodular lesion on the caudal aspect of the right tarsus.",
+    "query_images": [
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7995465_01/10.1177_2055116921999595-fig1.jpg",
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7995465_01/10.1177_2055116921999595-fig5.jpg"
+    ],
+    "image_path": "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7995465_01/10.1177_2055116921999595-fig1.jpg",
+    "ground_truth": {
+      "diagnosis": "Veterinary Leishmaniasis",
+      "diagnosis_type": "Veterinary",
+      "species": "L. mexicana"
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Leishmania mexicana",
+      "diagnosis_type": "Other",
+      "species": "L. mexicana"
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 6-year-old neutered male domestic shorthair cat was presented to the primary veterinarian for evaluation of pruritic, non\u2011healing wounds on the right pinna and the right tarsus. The lesions were noticed several weeks prior to examination. The cat was initially found as a stray in Bryan, Texas, at approximately 3 months of age. Since being obtained by the owner, the cat had remained primarily indoors with only infrequent exposure to the outdoor patio (approximately once a year). There was no known travel history outside of Texas prior to presentation. Clinical signs appeared to respond partially to prescribed therapies such as cephalexin, amoxicillin\u2013potassium clavulanate, prednisolone and topical nitrofurazone.\n\nPhotographs obtained at presentation show an irregular, ulcerated/crusted lesion involving the lateral margin of the right pinna and an exophytic, ulcerated nodular lesion on the caudal aspect of the right tarsus.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC8635719_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 60-year-old man presented with a 6-month history of intermittent fever. He is a farmer who previously worked in coalmines and has hypertension treated with oral therapy; otherwise there was no significant past medical, surgical, pharmacological, or family history. Five months earlier he had been hospitalized for a similar illness and received sodium antimony gluconate (SAG) 0.6 g/day for 6 days with initial clinical improvement but then had recrudescent fevers and was readmitted.\n\nOn examination his body weight was 70 kg. Physical examination revealed splenomegaly without superficial lymphadenopathy and no edema of the lower limbs. Computed tomography of the abdomen confirmed splenomegaly.\n\nLaboratory testing showed pancytopenia, a C-reactive protein level of 82.8 mg/L, and a procalcitonin level of 0.88 ng/mL. Liver function and coagulation tests were abnormal. Blood cultures and tests for bacteria, fungi, tuberculosis, parasites, and brucellosis agglutination were all negative.",
+    "query_images": [],
+    "image_path": null,
+    "ground_truth": {
+      "diagnosis": "Visceral Leishmaniasis",
+      "diagnosis_type": "VL",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Visceral leishmaniasis",
+      "diagnosis_type": "VL",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 60-year-old man presented with a 6-month history of intermittent fever. He is a farmer who previously worked in coalmines and has hypertension treated with oral therapy; otherwise there was no significant past medical, surgical, pharmacological, or family history. Five months earlier he had been hospitalized for a similar illness and received sodium antimony gluconate (SAG) 0.6 g/day for 6 days with initial clinical improvement but then had recrudescent fevers and was readmitted.\n\nOn examination his body weight was 70 kg. Physical examination revealed splenomegaly without superficial lymphadenopathy and no edema of the lower limbs. Computed tomography of the abdomen confirmed splenomegaly.\n\nLaboratory testing showed pancytopenia, a C-reactive protein level of 82.8 mg/L, and a procalcitonin level of 0.88 ng/mL. Liver function and coagulation tests were abnormal. Blood cultures and tests for bacteria, fungi, tuberculosis, parasites, and brucellosis agglutination were all negative.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC8635719_02",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 53-year-old woman was admitted with a 1-month history of intermittent fever. She reported prior mosquito bites and recalled picking Zanthoxylum seeds in Hancheng, China 8 years earlier. She had undergone surgical treatment for esophageal cancer 1.5 years earlier with no recurrence. Her weight was 55 kg. On examination she had splenomegaly and axillary and inguinal lymphadenopathy. Laboratory testing showed an elevated CRP level (97.3 mg/L; reference <10.0 mg/L), elevated liver enzymes, abnormal coagulation testing, and pancytopenia; procalcitonin was 1.24 ng/mL. Antibodies against Leishmania were detected in her blood.",
+    "query_images": [],
+    "image_path": null,
+    "ground_truth": {
+      "diagnosis": "Visceral Leishmaniasis",
+      "diagnosis_type": "VL",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Visceral leishmaniasis",
+      "diagnosis_type": "VL",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 53-year-old woman was admitted with a 1-month history of intermittent fever. She reported prior mosquito bites and recalled picking Zanthoxylum seeds in Hancheng, China 8 years earlier. She had undergone surgical treatment for esophageal cancer 1.5 years earlier with no recurrence. Her weight was 55 kg. On examination she had splenomegaly and axillary and inguinal lymphadenopathy. Laboratory testing showed an elevated CRP level (97.3 mg/L; reference <10.0 mg/L), elevated liver enzymes, abnormal coagulation testing, and pancytopenia; procalcitonin was 1.24 ng/mL. Antibodies against Leishmania were detected in her blood.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC8635719_03",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 56-year-old woman presented with fever that did not improve after 1 week of anti-infective treatment at a local hospital. She reported that 1 year earlier she had picked Zanthoxylum seeds in Hancheng and she had a history of mosquito bites. She was previously healthy and weighed 50 kg.\n\nOn examination she had splenomegaly, mild lower-extremity edema, and multiple skin petechiae. Laboratory testing showed pancytopenia and elevated liver enzymes (AST 121 U/L; ALT 36 U/L). Procalcitonin was 5.67 ng/mL, CRP 89.7 mg/L, and serum creatinine 641 \u03bcmol/L. Blood cultures and tests for bacteria, fungi, tuberculosis, parasites, and brucellosis agglutination were all negative. Computed tomography of the abdomen revealed homogeneous splenomegaly. A bone-marrow smear was negative for Leishmania.",
+    "query_images": [],
+    "image_path": null,
+    "ground_truth": {
+      "diagnosis": "Visceral Leishmaniasis",
+      "diagnosis_type": "VL",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Visceral leishmaniasis",
+      "diagnosis_type": "VL",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 56-year-old woman presented with fever that did not improve after 1 week of anti-infective treatment at a local hospital. She reported that 1 year earlier she had picked Zanthoxylum seeds in Hancheng and she had a history of mosquito bites. She was previously healthy and weighed 50 kg.\n\nOn examination she had splenomegaly, mild lower-extremity edema, and multiple skin petechiae. Laboratory testing showed pancytopenia and elevated liver enzymes (AST 121 U/L; ALT 36 U/L). Procalcitonin was 5.67 ng/mL, CRP 89.7 mg/L, and serum creatinine 641 \u03bcmol/L. Blood cultures and tests for bacteria, fungi, tuberculosis, parasites, and brucellosis agglutination were all negative. Computed tomography of the abdomen revealed homogeneous splenomegaly. A bone-marrow smear was negative for Leishmania.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC8635719_04",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 46-year-old man presented with a 3-week history of fever and pancytopenia. He had worked in coalmines in Hebei Province, Henan Province, and Shanxi Province for more than 10 years. There was negative past medical and past surgical history. His body weight was 70 kg. Physical examination suggested sporadic hemorrhagic spots on his skin of chest and back, palpable right sided cervical lymphadenopathy, and splenomegaly. Blood cultures as well as tests for bacteria, fungi, tuberculosis, parasites, and brucellosis agglutination were all negative. The laboratory examination revealed pancytopenia, coagulation abnormalities, and elevated liver enzyme levels. The patient's PCT and CRP levels were 0.99 ng/mL and 73.4 mg/L, respectively.",
+    "query_images": [],
+    "image_path": null,
+    "ground_truth": {
+      "diagnosis": "Visceral Leishmaniasis",
+      "diagnosis_type": "VL",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Visceral leishmaniasis",
+      "diagnosis_type": "VL",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 46-year-old man presented with a 3-week history of fever and pancytopenia. He had worked in coalmines in Hebei Province, Henan Province, and Shanxi Province for more than 10 years. There was negative past medical and past surgical history. His body weight was 70 kg. Physical examination suggested sporadic hemorrhagic spots on his skin of chest and back, palpable right sided cervical lymphadenopathy, and splenomegaly. Blood cultures as well as tests for bacteria, fungi, tuberculosis, parasites, and brucellosis agglutination were all negative. The laboratory examination revealed pancytopenia, coagulation abnormalities, and elevated liver enzyme levels. The patient's PCT and CRP levels were 0.99 ng/mL and 73.4 mg/L, respectively.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC8723866_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 20-year-old man with no past medical history, from the province of Taounate who works in agriculture in the rural sector of Ghafsai, presented with a nasal skin lesion. The lesion began in May 2018 as a small localized lesion on the nose. Four months later the lesion had spread over the entire lobe of the nose and appeared erythematous. He received antibiotic treatment without improvement. Several diagnoses were suggested, namely sarcoidosis and leishmaniasis, and the observational clinical examination had suspected cutaneous mucosal leishmaniasis. Pathological-anatomy results from a private center showed \"an inflammatory reaction composed of mononuclear cells, sometimes epithelioid with a vaguely granulomatous arrangement without caseous necrosis,\" and \"the absence of a formal argument for sarcoidosis as well as the absence of an obvious Leishmania body.\" As for X-ray, \"no lysis of the specific bones of the nose was detected and no damage to the underlying mucosa was observed.\" One month later he was referred to the national leishmaniasis reference laboratory, where clinical examination revealed \"an ulcerative, infiltrated, and poorly limited erythematous placard.\"",
+    "query_images": [
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC8723866_01/CRIDM2021-3801949.001.jpg",
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC8723866_01/CRIDM2021-3801949.002.jpg",
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC8723866_01/CRIDM2021-3801949.004.jpg",
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC8723866_01/CRIDM2021-3801949.006.jpg",
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC8723866_01/CRIDM2021-3801949.007.jpg"
+    ],
+    "image_path": "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC8723866_01/CRIDM2021-3801949.001.jpg",
+    "ground_truth": {
+      "diagnosis": "Mucocutaneous Leishmaniasis",
+      "diagnosis_type": "MCL",
+      "species": "L. tropica"
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Cutaneous leishmaniasis",
+      "diagnosis_type": "CL",
+      "species": "L. tropica"
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 20-year-old man with no past medical history, from the province of Taounate who works in agriculture in the rural sector of Ghafsai, presented with a nasal skin lesion. The lesion began in May 2018 as a small localized lesion on the nose. Four months later the lesion had spread over the entire lobe of the nose and appeared erythematous. He received antibiotic treatment without improvement. Several diagnoses were suggested, namely sarcoidosis and leishmaniasis, and the observational clinical examination had suspected cutaneous mucosal leishmaniasis. Pathological-anatomy results from a private center showed \"an inflammatory reaction composed of mononuclear cells, sometimes epithelioid with a vaguely granulomatous arrangement without caseous necrosis,\" and \"the absence of a formal argument for sarcoidosis as well as the absence of an obvious Leishmania body.\" As for X-ray, \"no lysis of the specific bones of the nose was detected and no damage to the underlying mucosa was observed.\" One month later he was referred to the national leishmaniasis reference laboratory, where clinical examination revealed \"an ulcerative, infiltrated, and poorly limited erythematous placard.\"",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC9794504_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 71-year-old man living in the countryside presented with 5 months of swelling and redness of the right forehead. He had received various topical antibiotic treatments without response and the lesions spread to the periorbital region. He was referred with a preliminary diagnosis of preseptal cellulitis. On inspection there was right-sided eyelid edema and hyperemia (predominantly upper eyelid) and crusted lesions mainly located on the lateral aspect of the right eyebrow that spread to the forehead. There was no heat or tenderness on the eyelids. Visual acuity was 20/20 bilaterally; anterior segment and fundus examinations were normal; eye movements were normal. Medical history was notable for no trauma, chronic systemic disease, or known immunodeficiency. Orbital computed tomography was reported to be consistent with preseptal cellulitis. The dermatology service was consulted to rule out herpetic infection and impetigo. Intravenous ampicillin\u2013sulbactam was started. On day 5 there was no response to treatment. Infectious diseases and dermatology were reconsulted; infectious diseases started intravenous amphotericin\u2011B for possible fungal infection and continued intravenous piperacillin\u2013tazobactam. There was no additional recommendation from dermatology. No regression was observed in clinical findings by day 12 of treatment.",
+    "query_images": [
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC9794504_01/BEJ-7-320-g001.jpg"
+    ],
+    "image_path": "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC9794504_01/BEJ-7-320-g001.jpg",
+    "ground_truth": {
+      "diagnosis": "Cutaneous Leishmaniasis",
+      "diagnosis_type": "CL",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Cutaneous leishmaniasis",
+      "diagnosis_type": "CL",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 71-year-old man living in the countryside presented with 5 months of swelling and redness of the right forehead. He had received various topical antibiotic treatments without response and the lesions spread to the periorbital region. He was referred with a preliminary diagnosis of preseptal cellulitis. On inspection there was right-sided eyelid edema and hyperemia (predominantly upper eyelid) and crusted lesions mainly located on the lateral aspect of the right eyebrow that spread to the forehead. There was no heat or tenderness on the eyelids. Visual acuity was 20/20 bilaterally; anterior segment and fundus examinations were normal; eye movements were normal. Medical history was notable for no trauma, chronic systemic disease, or known immunodeficiency. Orbital computed tomography was reported to be consistent with preseptal cellulitis. The dermatology service was consulted to rule out herpetic infection and impetigo. Intravenous ampicillin\u2013sulbactam was started. On day 5 there was no response to treatment. Infectious diseases and dermatology were reconsulted; infectious diseases started intravenous amphotericin\u2011B for possible fungal infection and continued intravenous piperacil",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC10026180_04",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "An 11-year-old Arab girl with a known diagnosis of ataxia telangiectasia (diagnosed at 1 year) presented with a spreading skin rash on her nose that extended to the nostrils and her left cheek. Family history included consanguineous parents and another sibling with AT. Her childhood course included ataxia, recurrent lung and ear infections, sclerosing cholangitis, hypothyroidism, and later diffuse large B\u2011cell lymphoma. She used a wheelchair and had multiple caf\u00e9\u2011au\u2011lait spots and telangiectasias. Immunologic testing showed a decreased immunoglobulin level (IgG 516 mg/L) with lymphocyte count and function reported as normal. Her baseline therapies included monthly IVIG, inhaled budesonide and fluticasone, and levothyroxine.\n\nInitially she received amoxicillin\u2013clavulanic acid and topical chloramphenicol without clinical response. On examination, the tip of the nose had an erythematous plaque with a central erosion and a circinate\u2011elevated border with overlying scattered pustules; the nose bridge and nostrils had small erythematous erosions. An atypical infection was considered.",
+    "query_images": [
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC10026180_04/PMC10026180_fped-11-1103726-g004_undivided_1_1.webp"
+    ],
+    "image_path": "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC10026180_04/PMC10026180_fped-11-1103726-g004_undivided_1_1.webp",
+    "ground_truth": {
+      "diagnosis": "Non-Leishmaniasis",
+      "diagnosis_type": "Non-Leishmaniasis",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Cutaneous candidiasis",
+      "diagnosis_type": "CL",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: An 11-year-old Arab girl with a known diagnosis of ataxia telangiectasia (diagnosed at 1 year) presented with a spreading skin rash on her nose that extended to the nostrils and her left cheek. Family history included consanguineous parents and another sibling with AT. Her childhood course included ataxia, recurrent lung and ear infections, sclerosing cholangitis, hypothyroidism, and later diffuse large B\u2011cell lymphoma. She used a wheelchair and had multiple caf\u00e9\u2011au\u2011lait spots and telangiectasias. Immunologic testing showed a decreased immunoglobulin level (IgG 516 mg/L) with lymphocyte count and function reported as normal. Her baseline therapies included monthly IVIG, inhaled budesonide and fluticasone, and levothyroxine.\n\nInitially she received amoxicillin\u2013clavulanic acid and topical chloramphenicol without clinical response. On examination, the tip of the nose had an erythematous plaque with a central erosion and a circinate\u2011elevated border with overlying scattered pustules; the nose bridge and nostrils had small erythematous erosions. An atypical infection was considered.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC10259134_02",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 59-year-old man presented with pleuritic chest pain and dyspnea on exertion after recently returning to the area following a 5-hour flight. His past medical history included epilepsy and multiple deep vein thromboses. On physical exam, his respirations were mildly labored, and he was hemodynamically stable on room air. Computed tomography angiography revealed extensive non-occlusive thrombi in all major pulmonary arteries. Transthoracic echocardiography showed a hypokinetic right ventricular apex with hyperkinesis of the RV free wall (reverse McConnell's sign). He was started on heparin drip and transitioned to lovenox bridge with warfarin. His respiratory symptoms resolved, and he was discharged with warfarin and instructions to follow up with anticoagulation clinic for INR monitoring.",
+    "query_images": [],
+    "image_path": null,
+    "ground_truth": {
+      "diagnosis": "Non-Leishmaniasis",
+      "diagnosis_type": "Non-Leishmaniasis",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Pulmonary embolism",
+      "diagnosis_type": "Other",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 59-year-old man presented with pleuritic chest pain and dyspnea on exertion after recently returning to the area following a 5-hour flight. His past medical history included epilepsy and multiple deep vein thromboses. On physical exam, his respirations were mildly labored, and he was hemodynamically stable on room air. Computed tomography angiography revealed extensive non-occlusive thrombi in all major pulmonary arteries. Transthoracic echocardiography showed a hypokinetic right ventricular apex with hyperkinesis of the RV free wall (reverse McConnell's sign). He was started on heparin drip and transitioned to lovenox bridge with warfarin. His respiratory symptoms resolved, and he was discharged with warfarin and instructions to follow up with anticoagulation clinic for INR monitoring.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC10699217_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 52-year-old woman with no significant past medical history presented with a 6\u2011month history of an ulcerative cutaneous nodule on the posterior aspect of the right forearm. The lesion began as a single painless, non\u2011itchy papule and gradually progressed to a large, crusted ulcerative nodule with an erythematous border. She had been treated with systemic antibiotics and local wound care for several months without improvement. Physical examination was otherwise unremarkable; she reported no systemic symptoms such as fatigue, weakness, fever, night sweats, or weight loss. Because cutaneous leishmaniasis is endemic in the country, the skin lesion was initially suspected to be cutaneous leishmaniasis.",
+    "query_images": [
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC10699217_01/PMC10699217_ABR-12-222-g001_a_1_2.webp",
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC10699217_01/PMC10699217_ABR-12-222-g001_b_2_2.webp",
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC10699217_01/PMC10699217_ABR-12-222-g002_a_1_2.webp",
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC10699217_01/PMC10699217_ABR-12-222-g002_b_2_2.webp"
+    ],
+    "image_path": "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC10699217_01/PMC10699217_ABR-12-222-g001_a_1_2.webp",
+    "ground_truth": {
+      "diagnosis": "Non-Leishmaniasis",
+      "diagnosis_type": "Non-Leishmaniasis",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Leukemia cutis",
+      "diagnosis_type": "Other",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 52-year-old woman with no significant past medical history presented with a 6\u2011month history of an ulcerative cutaneous nodule on the posterior aspect of the right forearm. The lesion began as a single painless, non\u2011itchy papule and gradually progressed to a large, crusted ulcerative nodule with an erythematous border. She had been treated with systemic antibiotics and local wound care for several months without improvement. Physical examination was otherwise unremarkable; she reported no systemic symptoms such as fatigue, weakness, fever, night sweats, or weight loss. Because cutaneous leishmaniasis is endemic in the country, the skin lesion was initially suspected to be cutaneous leishmaniasis.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC11382317_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 38-year-old man presented with a 1\u2011month history of a rash involving the face, trunk, and upper limbs. He also reported arthralgias, myalgias, asthenia, new-onset constipation, and mild anorectal pain. He stated his last sexual intercourse was about 18 months earlier and that he had had self-healing genital and palmoplantar lesions more than 1 year ago; he denied any sexual relationships during the last 18 months, including oral sex, and denied illicit drug use.\n\nOn examination there were two ulcerative lesions on the lips, painless bilateral cervical lymph nodes, and hyperkeratotic papules on the face, behind the left ear, on the neck, the palms, the soles, and the scrotum. A macular rash involved the trunk, and erosive lesions were present on the glans.\n\nClinical photographs show an ulcerative lesion of the oral mucosa, a crusted/scaly papule behind the left ear, and two papular/scaly lesions on the posterior neck.",
+    "query_images": [
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC11382317_01/gr1.jpg"
+    ],
+    "image_path": "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC11382317_01/gr1.jpg",
+    "ground_truth": {
+      "diagnosis": "Non-Leishmaniasis",
+      "diagnosis_type": "Non-Leishmaniasis",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Syphilis",
+      "diagnosis_type": "Other",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 38-year-old man presented with a 1\u2011month history of a rash involving the face, trunk, and upper limbs. He also reported arthralgias, myalgias, asthenia, new-onset constipation, and mild anorectal pain. He stated his last sexual intercourse was about 18 months earlier and that he had had self-healing genital and palmoplantar lesions more than 1 year ago; he denied any sexual relationships during the last 18 months, including oral sex, and denied illicit drug use.\n\nOn examination there were two ulcerative lesions on the lips, painless bilateral cervical lymph nodes, and hyperkeratotic papules on the face, behind the left ear, on the neck, the palms, the soles, and the scrotum. A macular rash involved the trunk, and erosive lesions were present on the glans.\n\nClinical photographs show an ulcerative lesion of the oral mucosa, a crusted/scaly papule behind the left ear, and two papular/scaly lesions on the posterior neck.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC11827754_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 52-year-old man, 7 months after a deceased-donor orthotopic liver transplant, presented with a 2-week history of persistent fever that did not respond to antipyretics and two outpatient courses of antibiotics (levofloxacin and amoxicillin-clavulanate). Outpatient labs showed anemia (hemoglobin 11.2 g/dL), thrombocytopenia (platelets 48,000/mm3), and mild transaminase elevation (AST 51, ALT 109 U/L). His transplant was performed for viral-related cirrhosis complicated by hepatocellular carcinoma; he completed HCV therapy with sustained virologic response and remains on long-term entecavir for HBV. He received induction immunosuppression with basiliximab and is maintained on everolimus (target trough 7\u20139 ng/mL).",
+    "query_images": [],
+    "image_path": null,
+    "ground_truth": {
+      "diagnosis": "Non-Leishmaniasis",
+      "diagnosis_type": "Non-Leishmaniasis",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Visceral leishmaniasis",
+      "diagnosis_type": "VL",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 52-year-old man, 7 months after a deceased-donor orthotopic liver transplant, presented with a 2-week history of persistent fever that did not respond to antipyretics and two outpatient courses of antibiotics (levofloxacin and amoxicillin-clavulanate). Outpatient labs showed anemia (hemoglobin 11.2 g/dL), thrombocytopenia (platelets 48,000/mm3), and mild transaminase elevation (AST 51, ALT 109 U/L). His transplant was performed for viral-related cirrhosis complicated by hepatocellular carcinoma; he completed HCV therapy with sustained virologic response and remains on long-term entecavir for HBV. He received induction immunosuppression with basiliximab and is maintained on everolimus (target trough 7\u20139 ng/mL).",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC11831705_03",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 70-year-old man with chronic obstructive pulmonary disease and no prior allergic reactions presented with a two-month history of asthenia, fever, and bilateral limb edema affecting both upper and lower extremities. He reported no recent initiation of new medications or vaccinations. On examination, there was skin thickening most notable over the forearms, thighs, abdomen, and back, with the forearms most affected. Initial laboratory testing revealed leukocytosis with marked eosinophilia (maximum 6920 cells/\u00b5L), thrombocytosis (531,000 cells/\u00b5L), and an elevated C-reactive protein (2.28 mg/dL); erythrocyte sedimentation rate was not measured. An etiologic workup showed negative parasite serologies (Strongyloides, Echinococcus, Fasciola, Toxocara, Leishmania) and negative stool parasitology. Immune testing returned negative for antinuclear antibodies and anti-neutrophil cytoplasmic antibodies; immunoglobulin levels were within normal limits and there was no complement depletion. Peripheral blood and myelogram immunophenotyping did not reveal signs of malignancy. Age-adjusted neoplasia screening including endoscopic studies, prostate-specific antigen testing, and a thoracoabdominal-pelvic CT scan did not reveal malignancy. Electromyography demonstrated sensorimotor polyneuropathy without myopathic involvement.",
+    "query_images": [],
+    "image_path": null,
+    "ground_truth": {
+      "diagnosis": "Non-Leishmaniasis",
+      "diagnosis_type": "Non-Leishmaniasis",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Eosinophilic fasciitis",
+      "diagnosis_type": "Other",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 70-year-old man with chronic obstructive pulmonary disease and no prior allergic reactions presented with a two-month history of asthenia, fever, and bilateral limb edema affecting both upper and lower extremities. He reported no recent initiation of new medications or vaccinations. On examination, there was skin thickening most notable over the forearms, thighs, abdomen, and back, with the forearms most affected. Initial laboratory testing revealed leukocytosis with marked eosinophilia (maximum 6920 cells/\u00b5L), thrombocytosis (531,000 cells/\u00b5L), and an elevated C-reactive protein (2.28 mg/dL); erythrocyte sedimentation rate was not measured. An etiologic workup showed negative parasite serologies (Strongyloides, Echinococcus, Fasciola, Toxocara, Leishmania) and negative stool parasitology. Immune testing returned negative for antinuclear antibodies and anti-neutrophil cytoplasmic antibodies; immunoglobulin levels were within normal limits and there was no complement depletion. Peripheral blood and myelogram immunophenotyping did not reveal signs of malignancy. Age-adjusted neoplasia screening including endoscopic studies, prostate-specific antigen testing, and a thoracoabdominal-",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC3350071_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 10-year-old previously healthy girl presented with fever after a one-week trip to Costa Rica. During the trip she stayed in a rain-forest hotel, took hikes, swam in the ocean and in chlorinated pools, saw many animals including rodents, and was splashed with fresh water. Five days after returning she developed a one-week history of fever up to 39.5\u00b0C, abdominal pain, nausea, and sore throat. Family members remained well. One week into her illness a rapid throat streptococcal antigen test was negative. Two days later she developed bilateral eye pain and redness. Laboratory evaluation at that time showed alanine aminotransferase 102 U/L, aspartate aminotransferase 73 U/L, albumin 3.1 g/dL, total bilirubin 0.5 mg/dL, prothrombin time 12.9 s, partial thromboplastin time 38.1 s, and alkaline phosphatase 314 U/L. She was referred to infectious diseases; at her first clinic visit approximately 2 1/2 weeks after return she was afebrile and had complete symptomatic improvement. Serum creatinine and blood urea nitrogen remained within the normal range during this period.",
+    "query_images": [],
+    "image_path": null,
+    "ground_truth": {
+      "diagnosis": "Non-Leishmaniasis",
+      "diagnosis_type": "Non-Leishmaniasis",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Leptospirosis",
+      "diagnosis_type": "Other",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 10-year-old previously healthy girl presented with fever after a one-week trip to Costa Rica. During the trip she stayed in a rain-forest hotel, took hikes, swam in the ocean and in chlorinated pools, saw many animals including rodents, and was splashed with fresh water. Five days after returning she developed a one-week history of fever up to 39.5\u00b0C, abdominal pain, nausea, and sore throat. Family members remained well. One week into her illness a rapid throat streptococcal antigen test was negative. Two days later she developed bilateral eye pain and redness. Laboratory evaluation at that time showed alanine aminotransferase 102 U/L, aspartate aminotransferase 73 U/L, albumin 3.1 g/dL, total bilirubin 0.5 mg/dL, prothrombin time 12.9 s, partial thromboplastin time 38.1 s, and alkaline phosphatase 314 U/L. She was referred to infectious diseases; at her first clinic visit approximately 2 1/2 weeks after return she was afebrile and had complete symptomatic improvement. Serum creatinine and blood urea nitrogen remained within the normal range during this period.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC3362615_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "You are evaluating the diagnostic approach to suspected visceral leishmaniasis (VL) in HIV-infected adults. A systematic review identified 33 studies recruiting 1489 patients that evaluated diagnostic tests in this population. The evaluated index tests included direct agglutination test (DAT), indirect fluorescent antibody test (IFAT), enzyme-linked immunosorbent assay (ELISA), immunoblotting (Blot), rapid K39-based immunochromatographic test, and haemagglutination (HA), and several studies evaluated PCR on peripheral blood or bone marrow. The reference standard used across studies was a positive result on direct microscopic examination or culture of blood or bone marrow aspirate (in a few studies other tissue samples were used). Study designs were heterogeneous (prospective, retrospective, cross-sectional), most studies were small, and many did not report consecutive inclusion or blinding.\n\nPooled estimates from random-effects models (reported in the review) included approximate sensitivities and specificities: IFAT estimated sensitivity 51% (95% CI 43\u201358%); Blot sensitivity 84% (75\u201391%); DAT sensitivity 81% (61\u201395%); ELISA sensitivity 66% (40\u201388%); PCR in whole blood sensitivity 92% (83\u201398%); PCR in bone marrow sensitivity 98% (93\u2013100%). Overall pooled specificities were generally high across tests. The review emphasized wide heterogeneity across studies and variable study quality.",
+    "query_images": [],
+    "image_path": null,
+    "ground_truth": {
+      "diagnosis": "Non-Leishmaniasis",
+      "diagnosis_type": "Non-Leishmaniasis",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Visceral leishmaniasis",
+      "diagnosis_type": "VL",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: You are evaluating the diagnostic approach to suspected visceral leishmaniasis (VL) in HIV-infected adults. A systematic review identified 33 studies recruiting 1489 patients that evaluated diagnostic tests in this population. The evaluated index tests included direct agglutination test (DAT), indirect fluorescent antibody test (IFAT), enzyme-linked immunosorbent assay (ELISA), immunoblotting (Blot), rapid K39-based immunochromatographic test, and haemagglutination (HA), and several studies evaluated PCR on peripheral blood or bone marrow. The reference standard used across studies was a positive result on direct microscopic examination or culture of blood or bone marrow aspirate (in a few studies other tissue samples were used). Study designs were heterogeneous (prospective, retrospective, cross-sectional), most studies were small, and many did not report consecutive inclusion or blinding.\n\nPooled estimates from random-effects models (reported in the review) included approximate sensitivities and specificities: IFAT estimated sensitivity 51% (95% CI 43\u201358%); Blot sensitivity 84% (75\u201391%); DAT sensitivity 81% (61\u201395%); ELISA sensitivity 66% (40\u201388%); PCR in whole blood sensitivity ",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC3898666_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 32\u2011year\u2011old man presented with a small dermal nodule on the dorsal aspect of the middle finger that had been present for three years. There was no associated pain, joint swelling, redness, or restriction of joint mobility, and the patient did not recall any specific history of trauma. Later the lesion became ulcerated, prompting medical attention. The patient worked as a laborer and lived in a rural area.",
+    "query_images": [
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC3898666_01/1755-7682-7-4-1.jpg"
+    ],
+    "image_path": "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC3898666_01/1755-7682-7-4-1.jpg",
+    "ground_truth": {
+      "diagnosis": "Non-Leishmaniasis",
+      "diagnosis_type": "Non-Leishmaniasis",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Fibro\u2011osseous pseudotumor of the digit",
+      "diagnosis_type": "Other",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 32\u2011year\u2011old man presented with a small dermal nodule on the dorsal aspect of the middle finger that had been present for three years. There was no associated pain, joint swelling, redness, or restriction of joint mobility, and the patient did not recall any specific history of trauma. Later the lesion became ulcerated, prompting medical attention. The patient worked as a laborer and lived in a rural area.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC4617023_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 33-year-old woman with a personal history of neurofibromatosis type 1 (multiple caf\u00e9-au-lait macules and multiple cutaneous neurofibromas) presented with progressive enlargement of a neck mass. She reported that during the second trimester of pregnancy she noted gradual, progressive growth of a lesion located in the anterolateral left neck at the angle formed by the thyroid gland and the common carotid artery. By the end of the pregnancy the mass measured approximately 10 cm \u00d7 15 cm and caused dysphagia, dysphonia, and local (nonneuropathic) pain. On inspection and palpation the lesion had smooth peripheral contours, was firm in the center, was mobile, and there were no overlying skin changes. She delivered at term via cesarean section without obstetric complications. After neuroimaging evaluation, surgical excision was planned three months postpartum under general anesthesia with microsurgical dissection. At operation a tumor mass with a superficial wall was identified that was free from major vascular or cervical nerve structures; the lesion contained clear serous fluid which, after decompression, immediately altered the tumor morphology and allowed identification of the layers of a cystic lesion. The visceral portion of the capsule was attached to the external plane of the thyroid gland and to the carotid artery adventitia, which was preserved. Postoperative recovery was uncomplicated with preserved phonation and swallowing and no residual palpable neck mass.",
+    "query_images": [],
+    "image_path": null,
+    "ground_truth": {
+      "diagnosis": "Non-Leishmaniasis",
+      "diagnosis_type": "Non-Leishmaniasis",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Cystic neurofibroma",
+      "diagnosis_type": "Other",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 33-year-old woman with a personal history of neurofibromatosis type 1 (multiple caf\u00e9-au-lait macules and multiple cutaneous neurofibromas) presented with progressive enlargement of a neck mass. She reported that during the second trimester of pregnancy she noted gradual, progressive growth of a lesion located in the anterolateral left neck at the angle formed by the thyroid gland and the common carotid artery. By the end of the pregnancy the mass measured approximately 10 cm \u00d7 15 cm and caused dysphagia, dysphonia, and local (nonneuropathic) pain. On inspection and palpation the lesion had smooth peripheral contours, was firm in the center, was mobile, and there were no overlying skin changes. She delivered at term via cesarean section without obstetric complications. After neuroimaging evaluation, surgical excision was planned three months postpartum under general anesthesia with microsurgical dissection. At operation a tumor mass with a superficial wall was identified that was free from major vascular or cervical nerve structures; the lesion contained clear serous fluid which, after decompression, immediately altered the tumor morphology and allowed identification of the layers",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC4909855_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "An intact male Maremma hound, 5 years old, used for hunting with access to rural and forest environments, was referred for polyuria and polydipsia. On evaluation he was diagnosed with chronic kidney disease at stage III (International Renal Interest Society, 2013) and with nephrotic syndrome. A urine sediment examination showed a slight pyuria.",
+    "query_images": [],
+    "image_path": null,
+    "ground_truth": {
+      "diagnosis": "Non-Leishmaniasis",
+      "diagnosis_type": "Non-Leishmaniasis",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Glomerular amyloidosis",
+      "diagnosis_type": "Other",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: An intact male Maremma hound, 5 years old, used for hunting with access to rural and forest environments, was referred for polyuria and polydipsia. On evaluation he was diagnosed with chronic kidney disease at stage III (International Renal Interest Society, 2013) and with nephrotic syndrome. A urine sediment examination showed a slight pyuria.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC4996062_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 30-year-old woman with prior bilateral cosmetic breast augmentation (2007) presented for removal of PIP implants and replacement with authorized devices. She was healthy, BMI 20 kg/m2, and a non-smoker. Preoperative assessment demonstrated subglandular implants with no signs of capsular contracture; inframammary scars were inconspicuous. Under general anesthesia both implants were removed via the prior inframammary incisions. The right implant pocket showed no paraprosthetic fluid, the implant was intact, and the capsule appeared normal. During removal of the left implant approximately 50 ml of milky seroma fluid was encountered. Inspection of the left device showed no macroscopic rupture, but there were visible air bubbles within the implant and small \"fatty\" smears on the gloves, suggesting possible subtle shell rupture. Manual compression of the explanted devices resulted in rupture of the left implant while the right remained intact. Further revision of the left implant pocket revealed a yellowish well\u2011delimited mass 4 x 5 cm in the central lower part of the breast over the fascia of the pectoralis major muscle.",
+    "query_images": [],
+    "image_path": null,
+    "ground_truth": {
+      "diagnosis": "Non-Leishmaniasis",
+      "diagnosis_type": "Non-Leishmaniasis",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Xanthoma",
+      "diagnosis_type": "Other",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 30-year-old woman with prior bilateral cosmetic breast augmentation (2007) presented for removal of PIP implants and replacement with authorized devices. She was healthy, BMI 20 kg/m2, and a non-smoker. Preoperative assessment demonstrated subglandular implants with no signs of capsular contracture; inframammary scars were inconspicuous. Under general anesthesia both implants were removed via the prior inframammary incisions. The right implant pocket showed no paraprosthetic fluid, the implant was intact, and the capsule appeared normal. During removal of the left implant approximately 50 ml of milky seroma fluid was encountered. Inspection of the left device showed no macroscopic rupture, but there were visible air bubbles within the implant and small \"fatty\" smears on the gloves, suggesting possible subtle shell rupture. Manual compression of the explanted devices resulted in rupture of the left implant while the right remained intact. Further revision of the left implant pocket revealed a yellowish well\u2011delimited mass 4 x 5 cm in the central lower part of the breast over the fascia of the pectoralis major muscle.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC5278205_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "Two siblings, a 13-year-old girl and a 10-year-old boy of normal intelligence presented to a dental clinic with a complaint of decayed teeth. Their physical appearances were similar and were described as having short stature, short neck, protuberant chest, scoliosis, and a waddling gait. Their facial features included frontal bossing and a flat nasal bridge. History revealed pain in the hip region on walking that subsides at rest. The parents were not of different ethnicity, had a nonconsanguineous marriage, and there was no family history of any skeletal disorder.\n\nOn oral examination, exposed teeth with sharp cusps and rough enamel texture were noted. The orthopantomograph showed thin hypoplastic enamel of normal radiodensity. A multispecialty medical examination revealed no dysfunctional changes in major systems. Orthopedic and radiographic evaluation showed gross skeletal deformity: hand-wrist radiograph with proximally narrow metacarpals; anteroposterior spinal view with curvature of the thoracolumbar segment; lateral spinal view with anterior beaking of the vertebral body; and pelvic radiograph with an irregularly outlined square-shaped head of the femur and a coxa valga defect.",
+    "query_images": [],
+    "image_path": null,
+    "ground_truth": {
+      "diagnosis": "Non-Leishmaniasis",
+      "diagnosis_type": "Non-Leishmaniasis",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Mucopolysaccharidosis type IVA",
+      "diagnosis_type": "Other",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: Two siblings, a 13-year-old girl and a 10-year-old boy of normal intelligence presented to a dental clinic with a complaint of decayed teeth. Their physical appearances were similar and were described as having short stature, short neck, protuberant chest, scoliosis, and a waddling gait. Their facial features included frontal bossing and a flat nasal bridge. History revealed pain in the hip region on walking that subsides at rest. The parents were not of different ethnicity, had a nonconsanguineous marriage, and there was no family history of any skeletal disorder.\n\nOn oral examination, exposed teeth with sharp cusps and rough enamel texture were noted. The orthopantomograph showed thin hypoplastic enamel of normal radiodensity. A multispecialty medical examination revealed no dysfunctional changes in major systems. Orthopedic and radiographic evaluation showed gross skeletal deformity: hand-wrist radiograph with proximally narrow metacarpals; anteroposterior spinal view with curvature of the thoracolumbar segment; lateral spinal view with anterior beaking of the vertebral body; and pelvic radiograph with an irregularly outlined square-shaped head of the femur and a coxa valga defe",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC5312191_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 25\u2011year\u2011old woman presented with recurrent ulcers on the lower limbs for 4 years. She reported that lesions began as pustules which progressed to ulceration at the left medial malleolus and later similar ulcers appeared on both lower limbs, associated with disabling local pain. Her past medical history is notable for type 1 autoimmune hepatitis; current medications were prednisone 20 mg daily, azathioprine 100 mg daily, and clobetasol 0.05% cream.\n\nOn examination there were seven ulcers on the lower extremities. One deep ulcer on the lateral right lower limb measured about 5 cm in diameter, reached the subcutaneous tissue, had violaceous, regular, undermined edges, and a base with purulent exudate and granulation tissue. Two other ulcerated lesions on the lateral right lower limb and one on the medial right lower limb had similar features. Similar ulcers were present on the anterior and medial aspects of the left lower limb; the medial left lesion was particularly deep with macerated edges and a smaller adjacent ulcer.",
+    "query_images": [
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC5312191_01/abd-92-01-0114-gf01.jpg",
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC5312191_01/abd-92-01-0114-gf02.jpg",
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC5312191_01/abd-92-01-0114-gf05.jpg",
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC5312191_01/PMC5312191_abd-92-01-0114-gf06_undivided_1_1.webp"
+    ],
+    "image_path": "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC5312191_01/abd-92-01-0114-gf01.jpg",
+    "ground_truth": {
+      "diagnosis": "Non-Leishmaniasis",
+      "diagnosis_type": "Non-Leishmaniasis",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Pyoderma gangrenosum",
+      "diagnosis_type": "Other",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 25\u2011year\u2011old woman presented with recurrent ulcers on the lower limbs for 4 years. She reported that lesions began as pustules which progressed to ulceration at the left medial malleolus and later similar ulcers appeared on both lower limbs, associated with disabling local pain. Her past medical history is notable for type 1 autoimmune hepatitis; current medications were prednisone 20 mg daily, azathioprine 100 mg daily, and clobetasol 0.05% cream.\n\nOn examination there were seven ulcers on the lower extremities. One deep ulcer on the lateral right lower limb measured about 5 cm in diameter, reached the subcutaneous tissue, had violaceous, regular, undermined edges, and a base with purulent exudate and granulation tissue. Two other ulcerated lesions on the lateral right lower limb and one on the medial right lower limb had similar features. Similar ulcers were present on the anterior and medial aspects of the left lower limb; the medial left lesion was particularly deep with macerated edges and a smaller adjacent ulcer.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC5314673_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 20-year-old man, status post kidney transplantation 6 months earlier for medical renal disease, presented with generalized weakness, weight loss, fever, and loose motions. Laboratory testing on presentation showed K+ 2.8 mEq/L (reference 3.3\u20134.8), Na+ 124 mEq/L (reference 135\u2013147), Cl\u2013 114 mEq/L (reference 101\u2013111), serum creatinine 3.4 mg/dL (reference 0.7\u20131.31), hemoglobin 9.8 g/dL (reference 13\u201318), and RBC count 3.16 million/\u03bcL (reference 4.5\u20136.5). Ultrasonography demonstrated increased echogenicity of the transplanted kidney. Because of frequent episodes of loose motions, he developed hypokalemia and received a potassium chloride (KCl) infusion (10 cc KCl in 0.9% NS at 100 ml/h), which was continued until the time of 18F-FDG injection. Medications at the time included the KCl infusion and steroids (deflazacort). \n\nAn initial whole-body 18F-FDG PET-CT demonstrated altered physiologic distribution of FDG with markedly increased uptake in almost all major muscle groups (neck, thorax, abdomen, pelvis, and extremities) and reduced uptake in organs that normally show higher uptake such as the liver; there were no obvious morphologic changes in these muscles on CT, rendering the study uninterpretable. There was no history of incomplete fasting, hyperglycemia, insulin administration, or excess muscle activity before imaging.\n\nThe whole-body 18F-FDG PET-CT was repeated after stopping the KCl infusion 12 hours before FDG injection. The repeat scan showed normalization of FDG biodistribution with minimal muscle uptake and abnormal increased diffuse heterogeneous FDG uptake in an enlarged pancreas with adjacent stranding, raising the possibility of pancreatitis.",
+    "query_images": [],
+    "image_path": null,
+    "ground_truth": {
+      "diagnosis": "Non-Leishmaniasis",
+      "diagnosis_type": "Non-Leishmaniasis",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Acute pancreatitis",
+      "diagnosis_type": "Other",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 20-year-old man, status post kidney transplantation 6 months earlier for medical renal disease, presented with generalized weakness, weight loss, fever, and loose motions. Laboratory testing on presentation showed K+ 2.8 mEq/L (reference 3.3\u20134.8), Na+ 124 mEq/L (reference 135\u2013147), Cl\u2013 114 mEq/L (reference 101\u2013111), serum creatinine 3.4 mg/dL (reference 0.7\u20131.31), hemoglobin 9.8 g/dL (reference 13\u201318), and RBC count 3.16 million/\u03bcL (reference 4.5\u20136.5). Ultrasonography demonstrated increased echogenicity of the transplanted kidney. Because of frequent episodes of loose motions, he developed hypokalemia and received a potassium chloride (KCl) infusion (10 cc KCl in 0.9% NS at 100 ml/h), which was continued until the time of 18F-FDG injection. Medications at the time included the KCl infusion and steroids (deflazacort). \n\nAn initial whole-body 18F-FDG PET-CT demonstrated altered physiologic distribution of FDG with markedly increased uptake in almost all major muscle groups (neck, thorax, abdomen, pelvis, and extremities) and reduced uptake in organs that normally show higher uptake such as the liver; there were no obvious morphologic changes in these muscles on CT, rendering the st",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC5585634_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 22-year-old man from the midwestern part of Nepal presented with three weeks of intermittent fever, left lower chest pain radiating to the left shoulder, occasional nausea and vomiting, anorexia, and weight loss. Symptoms had not improved after two weeks of broad\u2011spectrum oral and then parenteral antibiotics. Fever was associated with chills and rigors. He had no cough, shortness of breath, jaundice, diarrhea, headache, joint pain, or skin nodules, and no history of diabetes, drug abuse, or high\u2011risk sexual behavior.\n\nOn exam his temperature was 102\u00b0F, pulse 100/min, respiratory rate 16/min. Chest exam showed tenderness in the left infra\u2011axillary region with normal bilateral vesicular breath sounds. Cardiovascular exam was unremarkable. Abdominal exam revealed a soft abdomen with tenderness in the left upper quadrant and Traube's space dullness, but liver and spleen were not palpable.\n\nLaboratory and early diagnostic studies: complete blood count and liver and renal function tests were normal. Erythrocyte sedimentation rate was elevated at 58 mm/hour. Purified protein derivative (PPD) was 12 mm. Three consecutive sputum samples were negative for acid\u2011fast bacilli. HIV, hepatitis B and C serologies were nonreactive. Three consecutive bacterial blood cultures and a urine culture showed no growth. Serologic tests for malaria, leptospirosis, brucellosis, and leishmaniasis were negative.\n\nImaging of the abdomen showed splenic collections: ultrasound revealed hypoechoic lesions at the lower and superior poles of the spleen communicating with perisplenic collections; contrast\u2011enhanced CT demonstrated two perisplenic hypodense collections at the inferior and superior poles with connections to splenic parenchymal collections, suggestive of multiple splenic abscesses with perisplenic extensions.",
+    "query_images": [
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC5585634_01/CRIGM2017-9864543.002.jpg"
+    ],
+    "image_path": "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC5585634_01/CRIGM2017-9864543.002.jpg",
+    "ground_truth": {
+      "diagnosis": "Non-Leishmaniasis",
+      "diagnosis_type": "Non-Leishmaniasis",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Primary splenic tuberculosis",
+      "diagnosis_type": "Other",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 22-year-old man from the midwestern part of Nepal presented with three weeks of intermittent fever, left lower chest pain radiating to the left shoulder, occasional nausea and vomiting, anorexia, and weight loss. Symptoms had not improved after two weeks of broad\u2011spectrum oral and then parenteral antibiotics. Fever was associated with chills and rigors. He had no cough, shortness of breath, jaundice, diarrhea, headache, joint pain, or skin nodules, and no history of diabetes, drug abuse, or high\u2011risk sexual behavior.\n\nOn exam his temperature was 102\u00b0F, pulse 100/min, respiratory rate 16/min. Chest exam showed tenderness in the left infra\u2011axillary region with normal bilateral vesicular breath sounds. Cardiovascular exam was unremarkable. Abdominal exam revealed a soft abdomen with tenderness in the left upper quadrant and Traube's space dullness, but liver and spleen were not palpable.\n\nLaboratory and early diagnostic studies: complete blood count and liver and renal function tests were normal. Erythrocyte sedimentation rate was elevated at 58 mm/hour. Purified protein derivative (PPD) was 12 mm. Three consecutive sputum samples were negative for acid\u2011fast bacilli. HIV, hepatitis ",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC5632474_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 34\u2011year\u2011old Caucasian woman presented with a 2\u2011year history of recurrent oral ulceration. Her medical history was notable only for hypothyroidism treated with levothyroxine 125 mcg daily. Blood chemistry showed elevations of PCR (about 4\u20135 times the threshold parameter) and abnormalities of serum proteins. On clinical examination the oral cavity revealed several large, symptomatic ulcers. One aphthous lesion on the buccal mucosa had been present for more than 40 days despite topical cortisone applications and was associated with significant pain and interference with nutrition. The patient reported prior treatment without benefit with topical locorten gel and with systemic deltacortene 25 mg/day. Intraoral photographs show large ulcers with a yellow\u2013white fibrinous membrane and surrounding erythematous halos on the buccal mucosa and inner lip.",
+    "query_images": [
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC5632474_01/CRID2017-8517470.001.jpg",
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC5632474_01/CRID2017-8517470.002.jpg",
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC5632474_01/CRID2017-8517470.003.jpg"
+    ],
+    "image_path": "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC5632474_01/CRID2017-8517470.001.jpg",
+    "ground_truth": {
+      "diagnosis": "Non-Leishmaniasis",
+      "diagnosis_type": "Non-Leishmaniasis",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Recurrent aphthous ulceration",
+      "diagnosis_type": "Other",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 34\u2011year\u2011old Caucasian woman presented with a 2\u2011year history of recurrent oral ulceration. Her medical history was notable only for hypothyroidism treated with levothyroxine 125 mcg daily. Blood chemistry showed elevations of PCR (about 4\u20135 times the threshold parameter) and abnormalities of serum proteins. On clinical examination the oral cavity revealed several large, symptomatic ulcers. One aphthous lesion on the buccal mucosa had been present for more than 40 days despite topical cortisone applications and was associated with significant pain and interference with nutrition. The patient reported prior treatment without benefit with topical locorten gel and with systemic deltacortene 25 mg/day. Intraoral photographs show large ulcers with a yellow\u2013white fibrinous membrane and surrounding erythematous halos on the buccal mucosa and inner lip.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC5671698_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 12-year-old girl was referred from her opticians after an incidental finding of aberrant vasculature in the right fundus. She denied trauma or prior ocular surgery and had no family history of ophthalmic disease. Vision was 20/66 unaided in the right eye, improving to 20/20 with glasses; left eye vision was 20/16 with glasses. Near vision was N5 bilaterally. Refraction showed moderate myopia bilaterally (-3.50 diopters). Anterior segment examinations and intraocular pressures were normal (11 mmHg right, 16 mmHg left). Examination of the right fundus revealed a healthy optic disc and an aberrant retinal macrovessel arising from the inferotemporal major vascular arcade and extending towards the fovea. There were no exudates, haemorrhages, or epiretinal membrane; the remaining vessels and peripheral fundus appeared unremarkable. The left fundus was normal. Swept\u2011source optical coherence tomography angiography of the right fundus demonstrated the aberrant vessel encroaching into the foveal avascular zone (FAZ) but not passing through the center of the fovea; the anatomy of the neurosensory retina appeared preserved despite elevation of the foveal depression. No evidence of retinal layer loss, cysts, leakage, or exudation was noted. Outer retinal and choriocapillaris OCT\u2011A did not show abnormal findings.",
+    "query_images": [],
+    "image_path": null,
+    "ground_truth": {
+      "diagnosis": "Non-Leishmaniasis",
+      "diagnosis_type": "Non-Leishmaniasis",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Aberrant retinal macrovessel",
+      "diagnosis_type": "Other",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 12-year-old girl was referred from her opticians after an incidental finding of aberrant vasculature in the right fundus. She denied trauma or prior ocular surgery and had no family history of ophthalmic disease. Vision was 20/66 unaided in the right eye, improving to 20/20 with glasses; left eye vision was 20/16 with glasses. Near vision was N5 bilaterally. Refraction showed moderate myopia bilaterally (-3.50 diopters). Anterior segment examinations and intraocular pressures were normal (11 mmHg right, 16 mmHg left). Examination of the right fundus revealed a healthy optic disc and an aberrant retinal macrovessel arising from the inferotemporal major vascular arcade and extending towards the fovea. There were no exudates, haemorrhages, or epiretinal membrane; the remaining vessels and peripheral fundus appeared unremarkable. The left fundus was normal. Swept\u2011source optical coherence tomography angiography of the right fundus demonstrated the aberrant vessel encroaching into the foveal avascular zone (FAZ) but not passing through the center of the fovea; the anatomy of the neurosensory retina appeared preserved despite elevation of the foveal depression. No evidence of retinal la",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC5932500_02",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A patient began having attacks of severe unilateral periorbital pain that initially lasted about one hour and recurred daily at varying times for about one week; these episodes were always associated with agitation and ipsilateral autonomic signs including lacrimation, nasal congestion, ptosis, lid edema, and redness of the eye. The episodes recurred after a symptom-free interval: at age 18 attacks returned at a frequency of two to three per day for 15 days, and thereafter typically recurred approximately every year to year-and-a-half as two attacks per day over a two-week period. Multiple prophylactic therapies (verapamil, lithium carbonate, topiramate, valproic acid, gabapentin, and baclofen) produced no benefit, and acute treatments including oxygen, octreotide, local anesthetics, dihydroergotamine, and indomethacin were ineffective. From age 20, subcutaneous sumatriptan 6 mg was the only therapy that could abort an individual attack, typically stopping pain within 10 to 20 minutes. Over time the attack frequency increased, with three to four daily attacks by age 32. Rarely, pain occurred on the left. Following a dental extraction in 2013 the attacks remitted for three years but then reappeared in January 2016 as daily clusters (4\u20135 attacks) without headache-free periods through December 2016. During September\u2013December 2016 the patient also took oral prednisone 75 mg daily without benefit. The patient consumes no alcohol.",
+    "query_images": [],
+    "image_path": null,
+    "ground_truth": {
+      "diagnosis": "Non-Leishmaniasis",
+      "diagnosis_type": "Non-Leishmaniasis",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Cluster headache",
+      "diagnosis_type": "Other",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A patient began having attacks of severe unilateral periorbital pain that initially lasted about one hour and recurred daily at varying times for about one week; these episodes were always associated with agitation and ipsilateral autonomic signs including lacrimation, nasal congestion, ptosis, lid edema, and redness of the eye. The episodes recurred after a symptom-free interval: at age 18 attacks returned at a frequency of two to three per day for 15 days, and thereafter typically recurred approximately every year to year-and-a-half as two attacks per day over a two-week period. Multiple prophylactic therapies (verapamil, lithium carbonate, topiramate, valproic acid, gabapentin, and baclofen) produced no benefit, and acute treatments including oxygen, octreotide, local anesthetics, dihydroergotamine, and indomethacin were ineffective. From age 20, subcutaneous sumatriptan 6 mg was the only therapy that could abort an individual attack, typically stopping pain within 10 to 20 minutes. Over time the attack frequency increased, with three to four daily attacks by age 32. Rarely, pain occurred on the left. Following a dental extraction in 2013 the attacks remitted for three years but",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC6077891_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 72-year-old woman presented with abdominal pain. Her past medical history was notable for ovarian cancer diagnosed 11 years earlier treated with neoadjuvant chemotherapy followed by bilateral salpingo-oophorectomy and hysterectomy; 2 years after surgery she had a surgically removed para\u2011aortic lymph node and an intraoperative finding of peritoneal metastasis and subsequently received multiple lines of chemotherapy over the following years. She was followed with periodic blood tests and imaging.\n\nLaboratory tests at presentation showed a cholestatic pattern consistent with biliary obstruction: AST 638 IU/L, ALT 569 IU/L, ALP 1236 IU/L, GGTP 1632 IU/L, and total bilirubin 1.4 mg/dL. Abdominal ultrasound revealed dilated intra\u2011 and extrahepatic bile ducts. Contrast-enhanced CT demonstrated a small mass in the distal bile duct and a peritoneal nodule in the left abdominal cavity. Endoscopic ultrasound identified a 13\u2011mm mass at the duodenal major papilla, and endoscopic retrograde cholangiography showed a filling defect in the distal bile duct.",
+    "query_images": [
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC6077891_01/10.1177_1179547618791571-fig1.jpg"
+    ],
+    "image_path": "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC6077891_01/10.1177_1179547618791571-fig1.jpg",
+    "ground_truth": {
+      "diagnosis": "Non-Leishmaniasis",
+      "diagnosis_type": "Non-Leishmaniasis",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Metastatic ovarian carcinoma",
+      "diagnosis_type": "Other",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 72-year-old woman presented with abdominal pain. Her past medical history was notable for ovarian cancer diagnosed 11 years earlier treated with neoadjuvant chemotherapy followed by bilateral salpingo-oophorectomy and hysterectomy; 2 years after surgery she had a surgically removed para\u2011aortic lymph node and an intraoperative finding of peritoneal metastasis and subsequently received multiple lines of chemotherapy over the following years. She was followed with periodic blood tests and imaging.\n\nLaboratory tests at presentation showed a cholestatic pattern consistent with biliary obstruction: AST 638 IU/L, ALT 569 IU/L, ALP 1236 IU/L, GGTP 1632 IU/L, and total bilirubin 1.4 mg/dL. Abdominal ultrasound revealed dilated intra\u2011 and extrahepatic bile ducts. Contrast-enhanced CT demonstrated a small mass in the distal bile duct and a peritoneal nodule in the left abdominal cavity. Endoscopic ultrasound identified a 13\u2011mm mass at the duodenal major papilla, and endoscopic retrograde cholangiography showed a filling defect in the distal bile duct.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC6261242_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "An 80\u2011year\u2011old Caucasian man, diagnosed elsewhere with late\u2011onset plaque psoriasis, was referred for second\u2011opinion and consideration of systemic therapy. All lesions had been present for at least 2 years. He had been treated with topical calcipotriol/betamethasone once daily for 3 months and then clobetasol once daily for ~4 months without any response. Family history was negative for psoriasis or other chronic skin disease. He had no prior dermatologic history and took medications for hypertension, gastroesophageal reflux disease, and hyperlipidemia.\n\nOn examination there were well\u2011demarcated erythematosquamous plaques with irregular shapes on the upper and lower extremities. Dermatoscopic examination showed yellow\u2011orange clods and focused, fine horizontal telangiectasias.\n\nThe clinical differential diagnosis at presentation included psoriasis, lupus erythematosus, tinea incognita, mycosis fungoides, leprae, leishmaniasis, sarcoidosis, and tuberculosis.",
+    "query_images": [
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC6261242_01/CRIDM2018-1036162.001.jpg"
+    ],
+    "image_path": "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC6261242_01/CRIDM2018-1036162.001.jpg",
+    "ground_truth": {
+      "diagnosis": "Non-Leishmaniasis",
+      "diagnosis_type": "Non-Leishmaniasis",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Lupus vulgaris",
+      "diagnosis_type": "Other",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: An 80\u2011year\u2011old Caucasian man, diagnosed elsewhere with late\u2011onset plaque psoriasis, was referred for second\u2011opinion and consideration of systemic therapy. All lesions had been present for at least 2 years. He had been treated with topical calcipotriol/betamethasone once daily for 3 months and then clobetasol once daily for ~4 months without any response. Family history was negative for psoriasis or other chronic skin disease. He had no prior dermatologic history and took medications for hypertension, gastroesophageal reflux disease, and hyperlipidemia.\n\nOn examination there were well\u2011demarcated erythematosquamous plaques with irregular shapes on the upper and lower extremities. Dermatoscopic examination showed yellow\u2011orange clods and focused, fine horizontal telangiectasias.\n\nThe clinical differential diagnosis at presentation included psoriasis, lupus erythematosus, tinea incognita, mycosis fungoides, leprae, leishmaniasis, sarcoidosis, and tuberculosis.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC6305016_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 55-year-old woman with osteoporosis and hyperlipidemia was admitted for a 2-month history of high\u2011grade fever up to 39\u00b0C, occurring mainly in the evening and responsive to acetaminophen. She denied night sweats, anorexia, fatigue, weight loss, chest pain, dyspnea, other joint pain, abdominal pain, recent travel, or family autoimmune disease; she reported a traumatic dental procedure 6 months before admission.\n\nOn presentation: temperature 36.7\u00b0C, heart rate 74 bpm, blood pressure 100/70 mmHg. Examination was unremarkable except for a systolic heart murmur heard best over the aortic, pulmonic, and mitral areas with radiation into the neck.\n\nLaboratory studies: platelets 123,000/\u03bcL, WBC 4.3 \u00d7 10^9/L with neutrophil predominance, hematocrit 34.7%, hemoglobin 11.7 g/dL. CRP 1.43 mg/dL (reference <0.5), ESR 32 mm/h, and CPK 335 U/L (reference <180).\n\nFrom three blood cultures obtained on the 1st, 2nd, and 3rd day of hospitalization, when she was febrile, Streptococcus thoraltensis was identified, while infection caused by Brucella, Mycobacterium tuberculosis, Coxiella, and Leishmania was excluded.",
+    "query_images": [],
+    "image_path": null,
+    "ground_truth": {
+      "diagnosis": "Non-Leishmaniasis",
+      "diagnosis_type": "Non-Leishmaniasis",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Streptococcus thoraltensis bacteremia",
+      "diagnosis_type": "Other",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 55-year-old woman with osteoporosis and hyperlipidemia was admitted for a 2-month history of high\u2011grade fever up to 39\u00b0C, occurring mainly in the evening and responsive to acetaminophen. She denied night sweats, anorexia, fatigue, weight loss, chest pain, dyspnea, other joint pain, abdominal pain, recent travel, or family autoimmune disease; she reported a traumatic dental procedure 6 months before admission.\n\nOn presentation: temperature 36.7\u00b0C, heart rate 74 bpm, blood pressure 100/70 mmHg. Examination was unremarkable except for a systolic heart murmur heard best over the aortic, pulmonic, and mitral areas with radiation into the neck.\n\nLaboratory studies: platelets 123,000/\u03bcL, WBC 4.3 \u00d7 10^9/L with neutrophil predominance, hematocrit 34.7%, hemoglobin 11.7 g/dL. CRP 1.43 mg/dL (reference <0.5), ESR 32 mm/h, and CPK 335 U/L (reference <180).\n\nFrom three blood cultures obtained on the 1st, 2nd, and 3rd day of hospitalization, when she was febrile, Streptococcus thoraltensis was identified, while infection caused by Brucella, Mycobacterium tuberculosis, Coxiella, and Leishmania was excluded.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC6378761_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 34-year-old man with stage IV cirrhosis secondary to autoimmune hepatitis (AH) and concomitant alcoholism presented to a regional emergency department with fever, vomiting, and altered mentation in the setting of presumed alcohol withdrawal. His prior diagnosis of AH was made two years earlier by transhepatic biopsy; treatment had been started with azathioprine and prednisone but the patient was nonadherent. He immigrated from Pakistan in 2009.\n\nAt initial assessment he was hyperthermic to 41.5 C, tachycardic to 132 beats per minute, and tachypneic at 24 breaths per minute with normal oxygen saturation. Bedside examination showed livedo reticularis of the lower extremities and palmar erythema with spider nevi. His abdomen was slightly firm with tenderness in the right upper quadrant; no organomegaly or peritoneal signs were identified.\n\nBecause of suspected sepsis and severe alcohol withdrawal, he was transferred to the intensive care unit for intubation and agitation management. Broad\u2011spectrum antimicrobial therapy was started to cover spontaneous bacterial peritonitis and presumed community\u2011acquired meningitis, with meropenem, vancomycin, and acyclovir.",
+    "query_images": [],
+    "image_path": null,
+    "ground_truth": {
+      "diagnosis": "Non-Leishmaniasis",
+      "diagnosis_type": "Non-Leishmaniasis",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Hemophagocytic lymphohistiocytosis",
+      "diagnosis_type": "Other",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 34-year-old man with stage IV cirrhosis secondary to autoimmune hepatitis (AH) and concomitant alcoholism presented to a regional emergency department with fever, vomiting, and altered mentation in the setting of presumed alcohol withdrawal. His prior diagnosis of AH was made two years earlier by transhepatic biopsy; treatment had been started with azathioprine and prednisone but the patient was nonadherent. He immigrated from Pakistan in 2009.\n\nAt initial assessment he was hyperthermic to 41.5 C, tachycardic to 132 beats per minute, and tachypneic at 24 breaths per minute with normal oxygen saturation. Bedside examination showed livedo reticularis of the lower extremities and palmar erythema with spider nevi. His abdomen was slightly firm with tenderness in the right upper quadrant; no organomegaly or peritoneal signs were identified.\n\nBecause of suspected sepsis and severe alcohol withdrawal, he was transferred to the intensive care unit for intubation and agitation management. Broad\u2011spectrum antimicrobial therapy was started to cover spontaneous bacterial peritonitis and presumed community\u2011acquired meningitis, with meropenem, vancomycin, and acyclovir.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC6600853_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 50\u2011year\u2011old woman from Lalitpur, Nepal, presented with two days of abdominal pain and multiple episodes of vomiting. Her medical history included hypertension treated with amlodipine and atenolol, and a total abdominal hysterectomy 5 years earlier. She is a farmer living in a suburban area and raises cows and poultry.\n\nOn presentation her blood pressure was 170/100 mmHg, pulse 88/min, and temperature 98.0\u00b0F. Abdominal examination showed tenderness in the right upper quadrant.\n\nLaboratory results: WBC 8.4 \u00d710^9/L (4\u201310); neutrophils 60%; lymphocytes 37%; RBC 4.8 \u00d710^12/L; hemoglobin 12.5 g/dL; platelets 145 \u00d710^9/L. Chemistry: random blood sugar 124 mg/dL; urea 28 mg/dL; creatinine 0.7 mg/dL; Na 135 mmol/L; K 3.8 mmol/L; Ca 8.5 mg/dL; albumin 3.4 g/dL; Mg 1.8 mg/dL. Pancreatic enzymes: amylase 45 U/L; lipase 56 U/L. Hepatic panel: total bilirubin 2.0 mg/dL; direct bilirubin 0.5 mg/dL; ALT 53 U/L; AST 47 U/L; alkaline phosphatase 76 IU/L.\n\nUltrasound of the abdomen revealed a gallstone with a thickened gallbladder wall.\n\nShe was admitted to the surgical ward with a provisional diagnosis of biliary colic and managed conservatively with intravenous fluids, anti\u2011emetics, and analgesics.",
+    "query_images": [],
+    "image_path": null,
+    "ground_truth": {
+      "diagnosis": "Non-Leishmaniasis",
+      "diagnosis_type": "Non-Leishmaniasis",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Acute calculous cholecystitis",
+      "diagnosis_type": "Other",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 50\u2011year\u2011old woman from Lalitpur, Nepal, presented with two days of abdominal pain and multiple episodes of vomiting. Her medical history included hypertension treated with amlodipine and atenolol, and a total abdominal hysterectomy 5 years earlier. She is a farmer living in a suburban area and raises cows and poultry.\n\nOn presentation her blood pressure was 170/100 mmHg, pulse 88/min, and temperature 98.0\u00b0F. Abdominal examination showed tenderness in the right upper quadrant.\n\nLaboratory results: WBC 8.4 \u00d710^9/L (4\u201310); neutrophils 60%; lymphocytes 37%; RBC 4.8 \u00d710^12/L; hemoglobin 12.5 g/dL; platelets 145 \u00d710^9/L. Chemistry: random blood sugar 124 mg/dL; urea 28 mg/dL; creatinine 0.7 mg/dL; Na 135 mmol/L; K 3.8 mmol/L; Ca 8.5 mg/dL; albumin 3.4 g/dL; Mg 1.8 mg/dL. Pancreatic enzymes: amylase 45 U/L; lipase 56 U/L. Hepatic panel: total bilirubin 2.0 mg/dL; direct bilirubin 0.5 mg/dL; ALT 53 U/L; AST 47 U/L; alkaline phosphatase 76 IU/L.\n\nUltrasound of the abdomen revealed a gallstone with a thickened gallbladder wall.\n\nShe was admitted to the surgical ward with a provisional diagnosis of biliary colic and managed conservatively with intravenous fluids, anti\u2011emetics, and analgesic",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC6875186_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 46-year-old man presented to the dental clinic with symptomatic oral lesions present for two months. Intraoral examination showed diffuse, friable, vegetative areas on the right upper alveolar ridge, hard palate, and left inferior alveolar ridge. His medical history was notable for a diagnosis of tuberculosis about one month earlier; the expectorated sputum smears at that time were positive for bacteria and acid-fast bacilli. He had experienced significant weight loss and asthenia at the time of the tuberculosis diagnosis. The patient was receiving oral antitubercular therapy with isoniazid 225 mg/day, rifampicin 450 mg/day, pyrazinamide 1,200 mg/day, and ethambutol 825 mg/day. Testing for human immunodeficiency virus (HIV) infection was negative. He reported smoking and chronic alcoholism. He worked as a night flow controller on the side of a highway and lived very close to the countryside. After knowing the patient's medical history, the main hypothesis for oral lesions was tuberculosis.",
+    "query_images": [
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC6875186_01/CRID2019-6895481.001.jpg",
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC6875186_01/CRID2019-6895481.003.jpg"
+    ],
+    "image_path": "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC6875186_01/CRID2019-6895481.001.jpg",
+    "ground_truth": {
+      "diagnosis": "Non-Leishmaniasis",
+      "diagnosis_type": "Non-Leishmaniasis",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Histoplasmosis",
+      "diagnosis_type": "Other",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 46-year-old man presented to the dental clinic with symptomatic oral lesions present for two months. Intraoral examination showed diffuse, friable, vegetative areas on the right upper alveolar ridge, hard palate, and left inferior alveolar ridge. His medical history was notable for a diagnosis of tuberculosis about one month earlier; the expectorated sputum smears at that time were positive for bacteria and acid-fast bacilli. He had experienced significant weight loss and asthenia at the time of the tuberculosis diagnosis. The patient was receiving oral antitubercular therapy with isoniazid 225 mg/day, rifampicin 450 mg/day, pyrazinamide 1,200 mg/day, and ethambutol 825 mg/day. Testing for human immunodeficiency virus (HIV) infection was negative. He reported smoking and chronic alcoholism. He worked as a night flow controller on the side of a highway and lived very close to the countryside. After knowing the patient's medical history, the main hypothesis for oral lesions was tuberculosis.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC7488865_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 13-year-old otherwise healthy boy presented with one week of visual decline in his right eye. Past medical history was unremarkable; there was no history of ocular trauma or ocular surgery. Best-corrected visual acuity was 20/100 in the right eye and 20/20 in the left eye. The anterior segment examination of both eyes was unremarkable.\n\nFundus examination of the right eye showed a normal optic disc and an aberrant retinal venous macrovessel crossing the horizontal raphe and draining into the inferotemporal major vascular arcade vein; there was a suspicious anomalous arteriovenous communication with a retinal artery. A foveal yellow\u2011whitish spot was observed, thought to represent the site of arteriovenous communication and possible leakage. The left fundus was normal.\n\nOptical coherence tomography angiography (OCTA) of the right eye superficial vascular plexus demonstrated an aberrant vessel, an anomalous arteriovenous communication of the aberrant vessel with the retinal artery, and a distorted foveal avascular zone. The deep vascular plexus slab revealed shadowing and projection artefacts due to the aberrant vessel and cystoid macular edema. B-scan OCT showed cystoid macular edema and serous macular detachment, with a few hyperreflective dots in the ganglion nerve fiber layer with backshadowing along the course of the aberrant vessel around the fovea.\n\nFluorescein angiography showed early filling and delayed emptying of the venous macrovessel with anomalous arteriovenous communications; the macrovessel had numerous branches spreading in the macula. A watershed zone of the choroid around the optic disc was noted in the early phase. Capillary bed abnormalities and late dye leakage and pooling from the anastomotic vessel were also observed.\n\nA magnetic resonance imaging (MRI) scan of the brain was obtained to rule out any associated intracranial venous malformation and did not reveal any abnormalities. The patient was advised to follow up and no treatment was initiated.",
+    "query_images": [
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7488865_01/OC-10-40-g-002.jpg"
+    ],
+    "image_path": "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC7488865_01/OC-10-40-g-002.jpg",
+    "ground_truth": {
+      "diagnosis": "Non-Leishmaniasis",
+      "diagnosis_type": "Non-Leishmaniasis",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Aberrant retinal venous macrovessel",
+      "diagnosis_type": "Other",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 13-year-old otherwise healthy boy presented with one week of visual decline in his right eye. Past medical history was unremarkable; there was no history of ocular trauma or ocular surgery. Best-corrected visual acuity was 20/100 in the right eye and 20/20 in the left eye. The anterior segment examination of both eyes was unremarkable.\n\nFundus examination of the right eye showed a normal optic disc and an aberrant retinal venous macrovessel crossing the horizontal raphe and draining into the inferotemporal major vascular arcade vein; there was a suspicious anomalous arteriovenous communication with a retinal artery. A foveal yellow\u2011whitish spot was observed, thought to represent the site of arteriovenous communication and possible leakage. The left fundus was normal.\n\nOptical coherence tomography angiography (OCTA) of the right eye superficial vascular plexus demonstrated an aberrant vessel, an anomalous arteriovenous communication of the aberrant vessel with the retinal artery, and a distorted foveal avascular zone. The deep vascular plexus slab revealed shadowing and projection artefacts due to the aberrant vessel and cystoid macular edema. B-scan OCT showed cystoid macular ede",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC7747827_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 42-year-old man from Chhapra, Bihar, presented on December 10, 2018 with non-itching nodular eruptions on his face, hands, and abdomen. He had a history of visceral leishmaniasis 8 months earlier. On examination he was afebrile and non\u2011anemic, with no hepatosplenomegaly. The skin lesions had intact sensitivity.",
+    "query_images": [],
+    "image_path": null,
+    "ground_truth": {
+      "diagnosis": "Non-Leishmaniasis",
+      "diagnosis_type": "Non-Leishmaniasis",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Post-kala-azar dermal leishmaniasis",
+      "diagnosis_type": "PKDL",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 42-year-old man from Chhapra, Bihar, presented on December 10, 2018 with non-itching nodular eruptions on his face, hands, and abdomen. He had a history of visceral leishmaniasis 8 months earlier. On examination he was afebrile and non\u2011anemic, with no hepatosplenomegaly. The skin lesions had intact sensitivity.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC7793702_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 61\u2011year\u2011old woman first presented to a psychiatric memory clinic in August 2014. She had 9 years of schooling and had worked as an untrained shop assistant. She reported recurrent depressive episodes since 2011, and additional cognitive decline began in 2012. Comprehensive neuropsychological testing revealed severe, global deficits affecting memory, visuoconstructional and executive functions, language, attention, and psychomotor slowing; together with impaired activities of daily living, ICD\u201110 criteria for dementia were fulfilled. On repeated follow\u2011up testing over 5 years the deficits remained largely stable, with substantial further decline only at a visit in 2020. Since 2015 she developed increasing acoustic, optic, and tactile hallucinations; delusional parasitosis led to self\u2011wounding scratching behavior.\n\nIBZM\u2011SPECT (123I\u2011iodobenzamide, 2015), amyloid\u2011PET (18F\u2011florbetaben, 2016), DaT scan (123I\u2011FP\u2011CIT, 2015), and 18F\u2011FDG\u2011PET (2019) were performed and yielded normal results. She initially had mildly slurred speech and reduced prosody and then developed progressive dysarthria, apraxia of speech, and increasing swallowing difficulties; she unintentionally lost 15 kg. She also complained of progressive limb weakness. MRI of the cerebrum showed no abnormalities. MRI of the spine showed mild cervical spine degeneration and lateral thoracic spinal canal stenosis with initial myelon deformation but no myelon compression or edema. She underwent thoracic laminectomy in 2016. Limb weakness continued to worsen over the next years and walking became increasingly restricted.\n\nNeurologic examination showed pseudobulbar palsy; distal muscle weakness without fasciculations but with slightly increased tone; and clearly increased tendon reflexes including bilateral positive Babinski signs, more pronounced in the lower than upper limbs. Electromyography of muscles of all four limbs did not show any indication of active denervation (no fibrillations or positive sharp waves), but showed signs of mild chronic denervation with increased motor unit potential amplitudes and reduced recruitment. Neurographies revealed a pure axonal motor neuropathy of the right peroneal and tibial nerve and a small reduction of amplitudes of the right sural nerve; no signs of demyelination were found. Transcranial magnetic stimulation showed a prolonged central conduction time to the left leg. Sonography of the tongue did not show fasciculations.\n\nExtensive cerebrospinal fluid (CSF) analysis did not show indication of inflammatory or paraneoplastic disorder, and neuronal destruction markers including beta\u2011amyloid, tau, and phosphotau were within normal range. Neurofilament heavy chain in CSF was significantly elevated (NfH 1137 pg/mL), supporting a diagnosis of motoneuron disease. There were no sensory symptoms. No neurologic disease was reported in the patient's family, although information was incomplete.",
+    "query_images": [],
+    "image_path": null,
+    "ground_truth": {
+      "diagnosis": "Non-Leishmaniasis",
+      "diagnosis_type": "Non-Leishmaniasis",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Primary lateral sclerosis",
+      "diagnosis_type": "Other",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 61\u2011year\u2011old woman first presented to a psychiatric memory clinic in August 2014. She had 9 years of schooling and had worked as an untrained shop assistant. She reported recurrent depressive episodes since 2011, and additional cognitive decline began in 2012. Comprehensive neuropsychological testing revealed severe, global deficits affecting memory, visuoconstructional and executive functions, language, attention, and psychomotor slowing; together with impaired activities of daily living, ICD\u201110 criteria for dementia were fulfilled. On repeated follow\u2011up testing over 5 years the deficits remained largely stable, with substantial further decline only at a visit in 2020. Since 2015 she developed increasing acoustic, optic, and tactile hallucinations; delusional parasitosis led to self\u2011wounding scratching behavior.\n\nIBZM\u2011SPECT (123I\u2011iodobenzamide, 2015), amyloid\u2011PET (18F\u2011florbetaben, 2016), DaT scan (123I\u2011FP\u2011CIT, 2015), and 18F\u2011FDG\u2011PET (2019) were performed and yielded normal results. She initially had mildly slurred speech and reduced prosody and then developed progressive dysarthria, apraxia of speech, and increasing swallowing difficulties; she unintentionally lost 15 kg. She als",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC8363077_05",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 54\u2011year\u2011old woman felt unwell and reported numbness of her left\u2011sided limbs 6 days after receiving a vaccine. The next day her symptoms progressed and she woke with headache, nausea, and left\u2011sided weakness. On admission she was somnolent with a Glasgow Coma Scale score of 14; several skin bruises were noted. Neurologic exam demonstrated left\u2011sided hemiparalysis and facial nerve palsy. Initial cerebral CT revealed a right hemispheric parenchymal hemorrhage. Repeat cerebral imaging showed progression of venous infarction with parenchymal and subarachnoid hemorrhage and massive cerebral venous sinus thrombosis involving nearly all major venous sinuses.",
+    "query_images": [
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC8363077_05/fneur-12-721146-g0001.jpg"
+    ],
+    "image_path": "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC8363077_05/fneur-12-721146-g0001.jpg",
+    "ground_truth": {
+      "diagnosis": "Non-Leishmaniasis",
+      "diagnosis_type": "Non-Leishmaniasis",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Cerebral venous sinus thrombosis",
+      "diagnosis_type": "Other",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 54\u2011year\u2011old woman felt unwell and reported numbness of her left\u2011sided limbs 6 days after receiving a vaccine. The next day her symptoms progressed and she woke with headache, nausea, and left\u2011sided weakness. On admission she was somnolent with a Glasgow Coma Scale score of 14; several skin bruises were noted. Neurologic exam demonstrated left\u2011sided hemiparalysis and facial nerve palsy. Initial cerebral CT revealed a right hemispheric parenchymal hemorrhage. Repeat cerebral imaging showed progression of venous infarction with parenchymal and subarachnoid hemorrhage and massive cerebral venous sinus thrombosis involving nearly all major venous sinuses.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC8572625_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "An 8-year-old boy with no significant past medical history sustained a closed supracondylar fracture of the left humerus after a fall. Initial radiographs showed a type III supracondylar fracture. Closed reduction failed and he underwent open reduction through a posterior approach with isolation of the ulnar nerve; the fracture was reduced and four crossed Kirschner wires were inserted under direct visualization. The patient was discharged the day after surgery.\n\nTwenty days after surgery he returned with pain and a large soft-tissue, mass-like lesion on the lateral aspect of the left elbow at the surgical site that had progressed gradually since discharge. He had no fever or other systemic symptoms. Physical examination showed tense swollen surgical sites with wound dehiscence and marginal necrosis but no evidence of infection or discharges. He was afebrile; blood pressure 110/70 mmHg, heart rate 79/min, and hemoglobin 8.3 g/dL. Neurovascular examination was reported as normal; the mass was tender and there was no bruit.\n\n\"Based on preliminary assumption of hematoma formation versus pseudoaneurysm,\" soft-tissue and duplex sonography were performed, which demonstrated normal arterial flow in all major arteries from the subclavian artery, brachial, and radial as well as ulnar arteries with a large collection in the posterior aspect of the elbow. \"However, based on the patient's history of recent trauma and physical examination, we were highly suspicious of pseudoaneurysm.\"",
+    "query_images": [
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC8572625_01/CRIOR2021-1768529.006.jpg"
+    ],
+    "image_path": "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC8572625_01/CRIOR2021-1768529.006.jpg",
+    "ground_truth": {
+      "diagnosis": "Non-Leishmaniasis",
+      "diagnosis_type": "Non-Leishmaniasis",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Profunda brachii artery pseudoaneurysm",
+      "diagnosis_type": "Other",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: An 8-year-old boy with no significant past medical history sustained a closed supracondylar fracture of the left humerus after a fall. Initial radiographs showed a type III supracondylar fracture. Closed reduction failed and he underwent open reduction through a posterior approach with isolation of the ulnar nerve; the fracture was reduced and four crossed Kirschner wires were inserted under direct visualization. The patient was discharged the day after surgery.\n\nTwenty days after surgery he returned with pain and a large soft-tissue, mass-like lesion on the lateral aspect of the left elbow at the surgical site that had progressed gradually since discharge. He had no fever or other systemic symptoms. Physical examination showed tense swollen surgical sites with wound dehiscence and marginal necrosis but no evidence of infection or discharges. He was afebrile; blood pressure 110/70 mmHg, heart rate 79/min, and hemoglobin 8.3 g/dL. Neurovascular examination was reported as normal; the mass was tender and there was no bruit.\n\n\"Based on preliminary assumption of hematoma formation versus pseudoaneurysm,\" soft-tissue and duplex sonography were performed, which demonstrated normal arteri",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC9152189_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 3-year-old boy was referred for left ankle swelling and refusal to walk. A few days earlier he had been unwell with abdominal pain and vomiting, rhinitis, and a catarrhal cough. No traumatic events were reported. Family history was unremarkable.\n\nOn examination there was a hyperemic pharynx and three small petechiae located on the left buttock, soft palate, and chest. The left external peri-malleolar region and the dorsal aspect of the left foot were significantly swollen with ecchymotic suffusion and pain on active and passive movement. Ultrasound showed moderate edema of periarticular soft tissues without joint effusion or synovial thickening. Initial blood and urine tests were negative. Nasopharyngeal swabs for SARS\u2011CoV\u20112 and group A \u03b2\u2011hemolytic Streptococcus were negative. After 24 hours of observation he improved and was discharged.\n\nA few days later he was readmitted with a markedly painful, warm swelling of the paravertebral lumbar region of the back (photographs provided). Subcutaneous edema of the right ankle and both knees was also present. Repeat blood and urine tests were negative. During hospitalization he developed fleeting swelling with a deep marked migrating livedo. He required on\u2011demand oral acetaminophen for abdominal pain (five doses); corticosteroids were not given. Because angioedema in the context of HSP was considered, oral antihistamine therapy was started with partial benefit and stopped after 72 hours. Autoimmunity tests were negative; C1q\u2011inhibitor and tryptase serum levels were normal. Platelet count and coagulation tests were within range except for a moderate reduction of plasma factor XIII activity (53%, n.v. 70%\u2013140%). Nasopharyngeal swab for an expanded panel of respiratory viruses was positive for Rhino/Enterovirus.",
+    "query_images": [
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC9152189_01/10.1177_2050313X221102112-fig1.jpg",
+      "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC9152189_01/10.1177_2050313X221102112-fig2.jpg"
+    ],
+    "image_path": "/home/ngocnt/Leishmaniasis_v3/data/leishmaniasis_multimodal/images/PMC9152189_01/10.1177_2050313X221102112-fig1.jpg",
+    "ground_truth": {
+      "diagnosis": "Non-Leishmaniasis",
+      "diagnosis_type": "Non-Leishmaniasis",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Henoch-Sch\u00f6nlein purpura",
+      "diagnosis_type": "Other",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 3-year-old boy was referred for left ankle swelling and refusal to walk. A few days earlier he had been unwell with abdominal pain and vomiting, rhinitis, and a catarrhal cough. No traumatic events were reported. Family history was unremarkable.\n\nOn examination there was a hyperemic pharynx and three small petechiae located on the left buttock, soft palate, and chest. The left external peri-malleolar region and the dorsal aspect of the left foot were significantly swollen with ecchymotic suffusion and pain on active and passive movement. Ultrasound showed moderate edema of periarticular soft tissues without joint effusion or synovial thickening. Initial blood and urine tests were negative. Nasopharyngeal swabs for SARS\u2011CoV\u20112 and group A \u03b2\u2011hemolytic Streptococcus were negative. After 24 hours of observation he improved and was discharged.\n\nA few days later he was readmitted with a markedly painful, warm swelling of the paravertebral lumbar region of the back (photographs provided). Subcutaneous edema of the right ankle and both knees was also present. Repeat blood and urine tests were negative. During hospitalization he developed fleeting swelling with a deep marked migrating live",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC9375728_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "An 81-year-old man had intentional inoculation with live Leishmania (leishmanization) at age 29 before travel to an endemic region. A typical lesion appeared at the inoculation site and healed to a scar approximately 2.5 cm in diameter after seven months. There were no local activities in the scar for about 15 years. Later, small recurrent ulcerations appeared in the leishmanial scar; these lesions were painless, self-curing with spontaneous epithelialization, and recurred multiple times, with ulceration periods progressively lengthening and erosion-free intervals shortening. He underwent surgery for a peptic ulcer and for a papillary thyroid carcinoma (the latter followed by X\u2011ray therapy), and received prostate brachytherapy in 2012. For the last four years he has had a permanently persistent indurated skin ulcer with elevated borders, varying in size from 2 to 3 cm; there were no surrounding inflammations, regional lymphadenopathies, or general symptoms. The use of antibiotics and antiseptics was ineffective. BCC was suspected and a standard wide surgical full-thickness excision within healthy tissue limits was performed in 2019; the patient recovered completely.",
+    "query_images": [],
+    "image_path": null,
+    "ground_truth": {
+      "diagnosis": "Non-Leishmaniasis",
+      "diagnosis_type": "Non-Leishmaniasis",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Basal cell carcinoma",
+      "diagnosis_type": "Other",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: An 81-year-old man had intentional inoculation with live Leishmania (leishmanization) at age 29 before travel to an endemic region. A typical lesion appeared at the inoculation site and healed to a scar approximately 2.5 cm in diameter after seven months. There were no local activities in the scar for about 15 years. Later, small recurrent ulcerations appeared in the leishmanial scar; these lesions were painless, self-curing with spontaneous epithelialization, and recurred multiple times, with ulceration periods progressively lengthening and erosion-free intervals shortening. He underwent surgery for a peptic ulcer and for a papillary thyroid carcinoma (the latter followed by X\u2011ray therapy), and received prostate brachytherapy in 2012. For the last four years he has had a permanently persistent indurated skin ulcer with elevated borders, varying in size from 2 to 3 cm; there were no surrounding inflammations, regional lymphadenopathies, or general symptoms. The use of antibiotics and antiseptics was ineffective. BCC was suspected and a standard wide surgical full-thickness excision within healthy tissue limits was performed in 2019; the patient recovered completely.",
+    "query_images_stripped": false
+  },
+  {
+    "case_id": "PMC9422881_01",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "question": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.",
+    "clinical_context": "A 56-year-old man who works 50 hours per week as a police officer presents with progressive balance difficulties and worsening strength. His medical history is notable for left-sided decompressive spine surgery at age 49 years to relieve L5 nerve root compression radiculopathy; this partially resolved lower-extremity weakness but resulted in persistent foot drop. He is able to ambulate independently in the community and perform self-care and activities of daily living. He reports progressive balance difficulties when walking on uneven terrain, difficulty ascending two flights of stairs consecutively, and a considerable decline in his ability to lift weights\u2014an occupational requirement.",
+    "query_images": [],
+    "image_path": null,
+    "ground_truth": {
+      "diagnosis": "Non-Leishmaniasis",
+      "diagnosis_type": "Non-Leishmaniasis",
+      "species": ""
+    },
+    "ground_truth_pseudolabel": {
+      "diagnosis": "Spinal and bulbar muscular atrophy",
+      "diagnosis_type": "Other",
+      "species": ""
+    },
+    "formatted_query": "Provide a ranked top-3 differential diagnosis for this patient. Clearly mark Rank 1 as the most likely diagnosis. If any rank is leishmaniasis, specify the clinical form (CL, VL, MCL, PKDL, DCL, DsCL, LCL, LR, Ocular, Veterinary, Non-Leishmaniasis). If evidence favors non-leish etiologies, include Non-Leishmaniasis in the ranked list and mark it Rank 1 when appropriate.\n\nClinical Context: A 56-year-old man who works 50 hours per week as a police officer presents with progressive balance difficulties and worsening strength. His medical history is notable for left-sided decompressive spine surgery at age 49 years to relieve L5 nerve root compression radiculopathy; this partially resolved lower-extremity weakness but resulted in persistent foot drop. He is able to ambulate independently in the community and perform self-care and activities of daily living. He reports progressive balance difficulties when walking on uneven terrain, difficulty ascending two flights of stairs consecutively, and a considerable decline in his ability to lift weights\u2014an occupational requirement.",
+    "query_images_stripped": false
+  }
+]

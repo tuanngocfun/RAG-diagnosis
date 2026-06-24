@@ -1,0 +1,90 @@
+{
+  "version": "V12d",
+  "comparison_label": "official Gemma 4 experiment-pipeline comparison",
+  "purpose": "Q&A-only backup evidence for retrieval effect inspection",
+  "rag_run": {
+    "run_dir": "/home/ngocnt/experiments/structured_cases_v4_2_2_rtx6000/runs/p14_v7_phase1b_tierAB_official_post_gemini_freeze_base_20260419_031439_seed42_gemma4_20260424_014935",
+    "run_id": "p14_v7_phase1b_tierAB_official_post_gemini_freeze_base_20260419_031439",
+    "is_rag": true,
+    "generator_model": "/mnt/data/hf/transformers/models--google--gemma-4-E4B-it/snapshots/83df0a889143b1dbfc61b591bbc639540fd9ce4c",
+    "query_file": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/eval_queries_v163_mixed56_v7_process14.jsonl",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "context_k": 3
+  },
+  "no_rag_run": {
+    "run_dir": "/home/ngocnt/experiments/structured_cases_v4_2_2_rtx6000/runs/p14_v7_phase1b_tierAB_official_latency_generation_only_multimodal_norag_gemma4_20260423_183411",
+    "run_id": "p14_v7_phase1b_tierAB_official_latency_generation_only_multimodal_norag_gemma4_20260423_183411",
+    "is_rag": false,
+    "generator_model": "/mnt/data/hf/transformers/models--google--gemma-4-E4B-it/snapshots/83df0a889143b1dbfc61b591bbc639540fd9ce4c",
+    "query_file": "/home/ngocnt/experiments/structured_cases_v4_2_2/leishmaniasis_verified_v2/eval_queries_v163_mixed56_v7_process14.jsonl",
+    "query_type": "Q1_Q3_multimodal_diagnosis",
+    "context_k": null
+  },
+  "cases": [
+    {
+      "case_id": "PMC7516301_01",
+      "silver_reference_type": "MCL",
+      "role": "retrieval-sensitive MCL example",
+      "interpretation": "Retrieval changed this selected backup example from Non-Leishmaniasis to MCL in the official Gemma 4 experiment-pipeline comparison.",
+      "rag": {
+        "rank1": "Mucosal Leishmaniasis (Mucocutaneous Leishmaniasis)",
+        "diagnosis_type": "MCL",
+        "confidence": "High",
+        "retrieved_context_count": "3",
+        "answer_source": "/home/ngocnt/experiments/structured_cases_v4_2_2_rtx6000/runs/p14_v7_phase1b_tierAB_official_post_gemini_freeze_base_20260419_031439_seed42_gemma4_20260424_014935/answers_latency.jsonl"
+      },
+      "no_rag": {
+        "rank1": "Non-Leishmaniasis",
+        "diagnosis_type": "Non-Leishmaniasis",
+        "confidence": "High",
+        "retrieved_context_count": "0",
+        "answer_source": "/home/ngocnt/experiments/structured_cases_v4_2_2_rtx6000/runs/p14_v7_phase1b_tierAB_official_latency_generation_only_multimodal_norag_gemma4_20260423_183411/answers_norag.jsonl"
+      },
+      "boundary": "Selected Q&A backup example only; aggregate thesis metrics remain the benchmark."
+    },
+    {
+      "case_id": "PMC7456484_01",
+      "silver_reference_type": "PKDL",
+      "role": "subtype challenge",
+      "interpretation": "Both conditions remain inside the leishmaniasis family but miss the PKDL subtype, so this remains a subtype-resolution challenge.",
+      "rag": {
+        "rank1": "Mucocutaneous Leishmaniasis (Mucocutaneous form)",
+        "diagnosis_type": "MCL",
+        "confidence": "High",
+        "retrieved_context_count": "1",
+        "answer_source": "/home/ngocnt/experiments/structured_cases_v4_2_2_rtx6000/runs/p14_v7_phase1b_tierAB_official_post_gemini_freeze_base_20260419_031439_seed42_gemma4_20260424_014935/answers_latency.jsonl"
+      },
+      "no_rag": {
+        "rank1": "Mucocutaneous Leishmaniasis (MCL)",
+        "diagnosis_type": "MCL",
+        "confidence": "High",
+        "retrieved_context_count": "0",
+        "answer_source": "/home/ngocnt/experiments/structured_cases_v4_2_2_rtx6000/runs/p14_v7_phase1b_tierAB_official_latency_generation_only_multimodal_norag_gemma4_20260423_183411/answers_norag.jsonl"
+      },
+      "boundary": "Selected Q&A backup example only; aggregate thesis metrics remain the benchmark."
+    },
+    {
+      "case_id": "PMC10026180_04",
+      "silver_reference_type": "verified Non-Leish / pseudolabel CL",
+      "role": "label-conflict stress test",
+      "interpretation": "The official comparison returns Non-Leishmaniasis in both conditions, but the full-text live demo and LLM council reviews make this a label-conflict/evidence-attribution stress test, not specificity proof.",
+      "rag": {
+        "rank1": "Mucocutaneous infection/Inflammatory dermatosis secondary to underlying immunodeficiency",
+        "diagnosis_type": "Non-Leishmaniasis",
+        "confidence": "High",
+        "retrieved_context_count": "0",
+        "answer_source": "/home/ngocnt/experiments/structured_cases_v4_2_2_rtx6000/runs/p14_v7_phase1b_tierAB_official_post_gemini_freeze_base_20260419_031439_seed42_gemma4_20260424_014935/answers_latency.jsonl"
+      },
+      "no_rag": {
+        "rank1": "Mucocutaneous infection/Inflammatory dermatosis secondary to underlying immunodeficiency",
+        "diagnosis_type": "Non-Leishmaniasis",
+        "confidence": "High",
+        "retrieved_context_count": "0",
+        "answer_source": "/home/ngocnt/experiments/structured_cases_v4_2_2_rtx6000/runs/p14_v7_phase1b_tierAB_official_latency_generation_only_multimodal_norag_gemma4_20260423_183411/answers_norag.jsonl"
+      },
+      "boundary": "Selected Q&A backup example only; aggregate thesis metrics remain the benchmark."
+    }
+  ],
+  "active_claim_boundary": "This file supports selected case-level discussion only. It must not be used as a three-case aggregate accuracy estimate.",
+  "supersedes": "The earlier demo-backend no-RAG attempt is not used because the backend still returned retrieved support chunks."
+}

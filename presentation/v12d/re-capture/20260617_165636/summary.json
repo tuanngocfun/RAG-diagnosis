@@ -1,0 +1,46 @@
+{
+  "timestamp": "20260617_165636",
+  "backend_url": "http://127.0.0.1:8010",
+  "case_count": 3,
+  "results": [
+    {
+      "case_id": "PMC7516301_01",
+      "role": "concordant MCL live-demo case",
+      "elapsed_seconds": 78.336,
+      "rank1": "Mucocutaneous Leishmaniasis (Mucosal involvement)",
+      "rank1_type": "MCL",
+      "rank1_confidence": "Medium",
+      "supported_option": "Mucocutaneous Leishmaniasis (Mucosal involvement)",
+      "safety_state": "generated_support",
+      "response_source_mode": "live_gpu",
+      "fresh_generation_executed": true,
+      "image_tensors": 1
+    },
+    {
+      "case_id": "PMC7456484_01",
+      "role": "PKDL subtype-resolution limitation",
+      "elapsed_seconds": 73.986,
+      "rank1": "Chronic Mucocutaneous Leishmaniasis (Mucocutaneous Leishmaniasis)",
+      "rank1_type": "MCL",
+      "rank1_confidence": "Medium",
+      "supported_option": "Chronic Mucocutaneous Leishmaniasis (Mucocutaneous Leishmaniasis)",
+      "safety_state": "generated_support",
+      "response_source_mode": "live_gpu",
+      "fresh_generation_executed": true,
+      "image_tensors": 1
+    },
+    {
+      "case_id": "PMC10026180_04",
+      "role": "AT/nose-rash full-text stress test",
+      "elapsed_seconds": 61.477,
+      "rank1": "Mucocutaneous Leishmaniasis (or other atypical infection)",
+      "rank1_type": "CL",
+      "rank1_confidence": "Medium",
+      "supported_option": "Mucocutaneous Leishmaniasis (or other atypical infection)",
+      "safety_state": "generated_support",
+      "response_source_mode": "live_gpu",
+      "fresh_generation_executed": true,
+      "image_tensors": 1
+    }
+  ]
+}

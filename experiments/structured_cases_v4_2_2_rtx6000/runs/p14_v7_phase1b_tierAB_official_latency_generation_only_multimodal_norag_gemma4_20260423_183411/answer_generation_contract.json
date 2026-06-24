@@ -1,0 +1,48 @@
+{
+  "is_rag": false,
+  "generator_type": "gemma4",
+  "generator_model": "/mnt/data/hf/transformers/models--google--gemma-4-E4B-it/snapshots/83df0a889143b1dbfc61b591bbc639540fd9ce4c",
+  "generator_model_requested": "/mnt/data/hf/transformers/models--google--gemma-4-E4B-it/snapshots/83df0a889143b1dbfc61b591bbc639540fd9ce4c",
+  "generator_model_resolved": "/mnt/data/hf/transformers/models--google--gemma-4-E4B-it/snapshots/83df0a889143b1dbfc61b591bbc639540fd9ce4c",
+  "generator_model_local_path_exists": true,
+  "prompt_mode": "balanced_no_context",
+  "prompt_contract_version": "balanced_no_context_shared_prompt_v1",
+  "prompt_contract_notes": "balanced_scaffold_patient_evidence_only_guardrail",
+  "answer_file": "answers_gemini.jsonl",
+  "record_count": 56,
+  "ablation_scope": "latency_generation_only_multimodal_norag",
+  "strip_query_images": false,
+  "generation_timing_summary": {
+    "n": 56,
+    "mean_seconds": 46.33229565872794,
+    "median_seconds": 45.9119216480176,
+    "p90_seconds": 55.00416072900407,
+    "min_seconds": 35.00112014496699,
+    "max_seconds": 61.022134196944535,
+    "warm_start_mean_seconds": 46.336433244359
+  },
+  "runtime_environment": {
+    "cuda_visible_devices": "0",
+    "hf_home": "/mnt/data/hf",
+    "huggingface_hub_cache": "/mnt/data/hf/hub",
+    "transformers_cache": "/mnt/data/hf/transformers",
+    "sentence_transformers_home": "/mnt/data/hf/sentence-transformers"
+  },
+  "gpu_telemetry_summary": {
+    "device_kind": "local_gpu",
+    "gpu_name": "NVIDIA TITAN RTX",
+    "cuda_visible_devices": "0",
+    "telemetry_window": "full_run_from_process_start",
+    "telemetry_source": "nvidia_smi_csv",
+    "sample_interval_seconds": 1.0,
+    "memory_total_mb": 24576,
+    "memory_peak_used_mb": 16355,
+    "gpu_util_mean_percent": 35.41362438840798,
+    "gpu_util_max_percent": 100.0,
+    "sample_count": 2657,
+    "quantization_mode": "4-bit",
+    "hf_device_placement": [
+      "cuda:0"
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+subject	predicate	object
+http://example.org/leishmania/Leishmania_donovani	http://purl.obolibrary.org/obo/RO_0002410	http://example.org/leishmania/VL
+http://example.org/leishmania/Leishmania_infantum	http://purl.obolibrary.org/obo/RO_0002410	http://example.org/leishmania/VL
+http://example.org/leishmania/Leishmania_infantum/chagasi	http://purl.obolibrary.org/obo/RO_0002410	http://example.org/leishmania/VL
+http://example.org/leishmania/Leishmania_major	http://purl.obolibrary.org/obo/RO_0002410	http://example.org/leishmania/CL
+http://example.org/leishmania/Leishmania_tropica	http://purl.obolibrary.org/obo/RO_0002410	http://example.org/leishmania/CL
+http://example.org/leishmania/Leishmania_aethiopica	http://purl.obolibrary.org/obo/RO_0002410	http://example.org/leishmania/CL
+http://example.org/leishmania/Leishmania_Viannia_braziliensis	http://purl.obolibrary.org/obo/RO_0002410	http://example.org/leishmania/CL
+http://example.org/leishmania/Leishmania_Viannia_guyanensis	http://purl.obolibrary.org/obo/RO_0002410	http://example.org/leishmania/CL
+http://example.org/leishmania/Leishmania_mexicana	http://purl.obolibrary.org/obo/RO_0002410	http://example.org/leishmania/CL
+http://example.org/leishmania/Leishmania_amazonensis	http://purl.obolibrary.org/obo/RO_0002410	http://example.org/leishmania/CL
+http://example.org/leishmania/Leishmania_infantum	http://purl.obolibrary.org/obo/RO_0002410	http://example.org/leishmania/CL
+http://example.org/leishmania/Leishmania_Viannia_braziliensis	http://purl.obolibrary.org/obo/RO_0002410	http://example.org/leishmania/ML
+http://example.org/leishmania/Leishmania_Viannia_panamensis	http://purl.obolibrary.org/obo/RO_0002410	http://example.org/leishmania/ML
+http://example.org/leishmania/Leishmania_Viannia_guyanensis	http://purl.obolibrary.org/obo/RO_0002410	http://example.org/leishmania/ML
+http://example.org/leishmania/Leishmania_infantum	http://purl.obolibrary.org/obo/RO_0002410	http://example.org/leishmania/ML
+http://example.org/leishmania/Leishmania_donovani	http://purl.obolibrary.org/obo/RO_0002410	http://example.org/leishmania/ML

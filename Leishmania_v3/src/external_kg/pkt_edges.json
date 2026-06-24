@@ -1,0 +1,82 @@
+[
+  {
+    "subject": "http://example.org/leishmania/Leishmania_donovani",
+    "predicate": "http://purl.obolibrary.org/obo/RO_0002410",
+    "object": "http://example.org/leishmania/VL"
+  },
+  {
+    "subject": "http://example.org/leishmania/Leishmania_infantum",
+    "predicate": "http://purl.obolibrary.org/obo/RO_0002410",
+    "object": "http://example.org/leishmania/VL"
+  },
+  {
+    "subject": "http://example.org/leishmania/Leishmania_infantum/chagasi",
+    "predicate": "http://purl.obolibrary.org/obo/RO_0002410",
+    "object": "http://example.org/leishmania/VL"
+  },
+  {
+    "subject": "http://example.org/leishmania/Leishmania_major",
+    "predicate": "http://purl.obolibrary.org/obo/RO_0002410",
+    "object": "http://example.org/leishmania/CL"
+  },
+  {
+    "subject": "http://example.org/leishmania/Leishmania_tropica",
+    "predicate": "http://purl.obolibrary.org/obo/RO_0002410",
+    "object": "http://example.org/leishmania/CL"
+  },
+  {
+    "subject": "http://example.org/leishmania/Leishmania_aethiopica",
+    "predicate": "http://purl.obolibrary.org/obo/RO_0002410",
+    "object": "http://example.org/leishmania/CL"
+  },
+  {
+    "subject": "http://example.org/leishmania/Leishmania_Viannia_braziliensis",
+    "predicate": "http://purl.obolibrary.org/obo/RO_0002410",
+    "object": "http://example.org/leishmania/CL"
+  },
+  {
+    "subject": "http://example.org/leishmania/Leishmania_Viannia_guyanensis",
+    "predicate": "http://purl.obolibrary.org/obo/RO_0002410",
+    "object": "http://example.org/leishmania/CL"
+  },
+  {
+    "subject": "http://example.org/leishmania/Leishmania_mexicana",
+    "predicate": "http://purl.obolibrary.org/obo/RO_0002410",
+    "object": "http://example.org/leishmania/CL"
+  },
+  {
+    "subject": "http://example.org/leishmania/Leishmania_amazonensis",
+    "predicate": "http://purl.obolibrary.org/obo/RO_0002410",
+    "object": "http://example.org/leishmania/CL"
+  },
+  {
+    "subject": "http://example.org/leishmania/Leishmania_infantum",
+    "predicate": "http://purl.obolibrary.org/obo/RO_0002410",
+    "object": "http://example.org/leishmania/CL"
+  },
+  {
+    "subject": "http://example.org/leishmania/Leishmania_Viannia_braziliensis",
+    "predicate": "http://purl.obolibrary.org/obo/RO_0002410",
+    "object": "http://example.org/leishmania/ML"
+  },
+  {
+    "subject": "http://example.org/leishmania/Leishmania_Viannia_panamensis",
+    "predicate": "http://purl.obolibrary.org/obo/RO_0002410",
+    "object": "http://example.org/leishmania/ML"
+  },
+  {
+    "subject": "http://example.org/leishmania/Leishmania_Viannia_guyanensis",
+    "predicate": "http://purl.obolibrary.org/obo/RO_0002410",
+    "object": "http://example.org/leishmania/ML"
+  },
+  {
+    "subject": "http://example.org/leishmania/Leishmania_infantum",
+    "predicate": "http://purl.obolibrary.org/obo/RO_0002410",
+    "object": "http://example.org/leishmania/ML"
+  },
+  {
+    "subject": "http://example.org/leishmania/Leishmania_donovani",
+    "predicate": "http://purl.obolibrary.org/obo/RO_0002410",
+    "object": "http://example.org/leishmania/ML"
+  }
+]

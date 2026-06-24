@@ -1,0 +1,66 @@
+# Docker Compose for Master Thesis LaTeX Compilation
+# 
+# Usage:
+#   docker-compose build     # Build the image (first time only)
+#   docker-compose run latex # Compile thesis.tex to thesis.pdf
+#   docker-compose run clean # Clean auxiliary files
+#
+# Author: Auto-generated for Leishmania RAG Thesis Project
+
+version: '3.8'
+
+services:
+  latex:
+    build:
+      context: .
+      dockerfile: Dockerfile.thesis
+    image: thesis-latex:latest
+    container_name: thesis-compiler
+    volumes:
+      - .:/thesis
+    working_dir: /thesis
+    command: ["latexmk", "-pdf", "-interaction=nonstopmode", "-file-line-error", "thesis.tex"]
+    
+  # Quick compile without full rebuild
+  quick:
+    image: thesis-latex:latest
+    container_name: thesis-quick
+    volumes:
+      - .:/thesis
+    working_dir: /thesis
+    command: ["pdflatex", "-interaction=nonstopmode", "thesis.tex"]
+    
+  # Full compilation with bibliography
+  full:
+    image: thesis-latex:latest
+    container_name: thesis-full
+    volumes:
+      - .:/thesis
+    working_dir: /thesis
+    command: >
+      sh -c "
+        pdflatex -interaction=nonstopmode thesis.tex &&
+        biber thesis || bibtex thesis &&
+        pdflatex -interaction=nonstopmode thesis.tex &&
+        pdflatex -interaction=nonstopmode thesis.tex
+      "
+    
+  # Clean auxiliary files
+  clean:
+    image: thesis-latex:latest
+    container_name: thesis-clean
+    volumes:
+      - .:/thesis
+    working_dir: /thesis
+    command: ["latexmk", "-C"]
+    
+  # Interactive shell for debugging
+  shell:
+    image: thesis-latex:latest
+    container_name: thesis-shell
+    volumes:
+      - .:/thesis
+    working_dir: /thesis
+    stdin_open: true
+    tty: true
+    entrypoint: ["/bin/bash"]

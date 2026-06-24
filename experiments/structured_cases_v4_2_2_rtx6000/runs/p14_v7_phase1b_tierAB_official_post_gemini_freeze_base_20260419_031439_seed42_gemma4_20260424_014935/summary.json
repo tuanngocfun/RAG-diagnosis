@@ -1,0 +1,731 @@
+{
+  "run_id": "p14_v7_phase1b_tierAB_official_post_gemini_freeze_base_20260419_031439",
+  "query_types": [
+    "Q1_diagnosis",
+    "Q3_image_diagnosis",
+    "Q1_Q3_multimodal_diagnosis"
+  ],
+  "query_stats": {
+    "Q1": {
+      "attempted": 0,
+      "success": 0
+    },
+    "Q2": {
+      "attempted": 0,
+      "success": 0
+    },
+    "Q3": {
+      "attempted": 0,
+      "success": 0
+    },
+    "skip_reasons": {
+      "no_text": 0,
+      "no_image_path": 0,
+      "image_not_found": 0,
+      "image_search_disabled": 0,
+      "no_results": 0
+    },
+    "MULTIMODAL": {
+      "attempted": 56,
+      "success": 56
+    }
+  },
+  "n_queries": 56,
+  "n_retrieved": 56,
+  "runtime_metadata": {
+    "project_root": "/data1t/lab/experiments/structured_cases_v4_2",
+    "legacy_project_root": "/data1t/lab/ngocnt/Leishmania_v3",
+    "env_file": "/data1t/lab/ngocnt/Leishmania_v3/.env",
+    "env_file_exists": true,
+    "split_dir": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2",
+    "split_dir_exists": true,
+    "data_root": "/data1t/lab/ngocnt/Leishmania_v3/data/leishmaniasis_multimodal",
+    "data_root_exists": true,
+    "images_dir": "/data1t/lab/ngocnt/Leishmania_v3/data/leishmaniasis_multimodal/images",
+    "images_dir_exists": true,
+    "runs_dir": "/data1t/lab/experiments/structured_cases_v4_2/runs",
+    "runs_dir_exists": true,
+    "dataset_version": "p14_v7_phase1b_tierAB_official",
+    "dataset_artifacts": {
+      "train": "nonleish_additions/generated/train_pseudolabel_v2_phase1b_tierAB.jsonl",
+      "test": "test_pseudolabel_v2_normalized_v7_process14.jsonl",
+      "query": "eval_queries_v163_pseudolabel_v2_v7_process14.jsonl",
+      "query_mixed56": "eval_queries_v163_mixed56_v7_process14.jsonl",
+      "qrels_verified": "qrels_pseudolabel_verified_v7_process14.json",
+      "qrels_pseudolabel": "qrels_pseudolabel_label_v7_process14.json"
+    },
+    "train_jsonl": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/nonleish_additions/generated/train_pseudolabel_v2_phase1b_tierAB.jsonl",
+    "train_jsonl_exists": true,
+    "train_jsonl_rows": 121,
+    "train_jsonl_hash": "61359d6b2fbc",
+    "train_jsonl_mtime": "2026-04-13T11:34:38+09:00",
+    "test_jsonl": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/test_pseudolabel_v2_normalized_v7_process14.jsonl",
+    "test_jsonl_exists": true,
+    "test_jsonl_rows": 56,
+    "test_jsonl_hash": "b011fef3aa95",
+    "test_jsonl_mtime": "2026-04-13T11:34:30+09:00",
+    "cuda_visible_devices": "1",
+    "transformers_cache": "/data4T/ngoc/hf-cache/transformers",
+    "hf_home": "/data4T/ngoc/hf-cache",
+    "silver_label_disclaimer": "Evaluation labels are silver labels derived from GPT-5-mini and Gemini 2.5 Pro pipeline outputs; they are not clinician ground truth."
+  },
+  "corpus_support": {
+    "train_diagnosis_type_counts": {
+      "CL": 20,
+      "DCL": 5,
+      "DsCL": 3,
+      "LCL": 1,
+      "LR": 1,
+      "MCL": 15,
+      "Non-Leishmaniasis": 15,
+      "Ocular": 2,
+      "PKDL": 4,
+      "VL": 51,
+      "Veterinary": 4
+    },
+    "test_diagnosis_type_counts": {
+      "CL": 5,
+      "DCL": 1,
+      "DsCL": 1,
+      "MCL": 4,
+      "Non-Leishmaniasis": 33,
+      "Ocular": 1,
+      "PKDL": 1,
+      "VL": 9,
+      "Veterinary": 1
+    },
+    "warnings": []
+  },
+  "evaluation_contract": {
+    "dataset_pack": "mixed56",
+    "qrels_file": "qrels_pseudolabel_verified_v7_process14.json",
+    "queries_file": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/eval_queries_v163_mixed56_v7_process14.jsonl",
+    "queries_file_name": "eval_queries_v163_mixed56_v7_process14.jsonl",
+    "image_search_mode": "images",
+    "baseline_equivalent": false,
+    "warnings": [
+      "queries_file=eval_queries_v163_mixed56_v7_process14.jsonl is not the baseline-equivalent 56-query pseudolabel pack.",
+      "dataset_pack=mixed56 is a multimodal-only subset and should not be compared directly to the full dataset pack."
+    ]
+  },
+  "ablation_scope": "",
+  "strip_query_images": false,
+  "context_k": 10,
+  "retrieval_top_k": 20,
+  "ordering_mode": "image_first",
+  "experiment_controls": {
+    "context_k": 10,
+    "retrieval_top_k": 20,
+    "ordering_mode": "image_first"
+  },
+  "silver_label_disclaimer": "Evaluation labels are silver labels derived from GPT-5-mini and Gemini 2.5 Pro pipeline outputs; they are not clinician ground truth.",
+  "qrels_audit": {
+    "primary_qrels_query_count": 56,
+    "primary_qrels_referenced_train_doc_count": 104,
+    "train_doc_count": 121,
+    "train_docs_missing_from_primary_qrels_count": 17,
+    "train_docs_missing_from_primary_qrels_examples": [
+      "PMC11165212_01",
+      "PMC11286409_01",
+      "PMC11303060_01",
+      "PMC11745281_01",
+      "PMC11745281_02",
+      "PMC11745282_01",
+      "PMC11770670_01",
+      "PMC2660685_01",
+      "PMC2730280_01",
+      "PMC2730280_02",
+      "PMC2841811_01",
+      "PMC3120277_01",
+      "PMC3140147_01",
+      "PMC3152968_01",
+      "PMC3310126_01",
+      "PMC5490479_01",
+      "PMC7304266_01"
+    ],
+    "missing_train_docs_by_diagnosis_type": {
+      "LCL": 1,
+      "LR": 1,
+      "Non-Leishmaniasis": 15
+    },
+    "nonleish_train_doc_count": 15,
+    "nonleish_train_docs_missing_from_primary_qrels_count": 15,
+    "nonleish_train_docs_missing_from_primary_qrels_examples": [
+      "PMC11165212_01",
+      "PMC11286409_01",
+      "PMC11303060_01",
+      "PMC11745281_01",
+      "PMC11745281_02",
+      "PMC11745282_01",
+      "PMC11770670_01",
+      "PMC2660685_01",
+      "PMC2730280_01",
+      "PMC2730280_02",
+      "PMC2841811_01",
+      "PMC3120277_01",
+      "PMC3140147_01",
+      "PMC3152968_01",
+      "PMC3310126_01"
+    ]
+  },
+  "metrics": {
+    "recall": {
+      "@5": 0.13520886615515773,
+      "@10": 0.23418584825234448
+    },
+    "ndcg": {
+      "@5": 0.5946455207375816,
+      "@10": 0.5888874702252853
+    },
+    "precision": {
+      "@5": 0.5826086956521739,
+      "@10": 0.5521739130434783
+    },
+    "mrr": 0.7154589371980675,
+    "map": 0.260807013573606,
+    "grounded_accuracy": null
+  },
+  "metrics_verified": {
+    "recall": {
+      "@5": 0.13520886615515773,
+      "@10": 0.23418584825234448
+    },
+    "ndcg": {
+      "@5": 0.5946455207375816,
+      "@10": 0.5888874702252853
+    },
+    "precision": {
+      "@5": 0.5826086956521739,
+      "@10": 0.5521739130434783
+    },
+    "mrr": 0.7154589371980675,
+    "map": 0.260807013573606
+  },
+  "pseudolabel_artifacts": {
+    "dataset_version": "p14_v7_phase1b_tierAB_official",
+    "train_source": "/data1t/lab/experiments/structured_cases_v4_2/rag/testing/multimodal/v7/out/p14_train_structure_only_main_v7_batch_single_repair/results.jsonl",
+    "test_source": "/data1t/lab/experiments/structured_cases_v4_2/rag/testing/multimodal/v7/out/p14_test_held_out_structure_only_v7_local_reaudit/results.jsonl",
+    "suffix": "",
+    "output_dir": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2",
+    "query_path": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/eval_queries_v163_pseudolabel_v2_v7_process14.jsonl",
+    "query_mixed56_path": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/eval_queries_v163_mixed56_v7_process14.jsonl",
+    "qrels_verified_path": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/qrels_pseudolabel_verified_v7_process14.json",
+    "qrels_pseudolabel_path": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/qrels_pseudolabel_label_v7_process14.json"
+  },
+  "metrics_pseudolabel": {
+    "recall": {
+      "@5": 0.08540764790764789,
+      "@10": 0.1442937023294166
+    },
+    "ndcg": {
+      "@5": 0.40103939355464163,
+      "@10": 0.40029483433789126
+    },
+    "precision": {
+      "@5": 0.39285714285714285,
+      "@10": 0.3875
+    },
+    "mrr": 0.5890802154195011,
+    "map": 0.14839718411634567
+  },
+  "metrics_active_corpus_verified": {
+    "recall": {
+      "@5": 0.057913165266106445,
+      "@10": 0.1009453781512605
+    },
+    "ndcg": {
+      "@5": 0.251871776900597,
+      "@10": 0.24946368203293076
+    },
+    "precision": {
+      "@5": 0.24642857142857144,
+      "@10": 0.23392857142857143
+    },
+    "mrr": 0.31929563492063495,
+    "map": 0.10881359486058814
+  },
+  "retrieval_contract": {
+    "dataset_version": "p14_v7_phase1b_tierAB_official",
+    "strict_mode": true,
+    "canonical_full_pilot": false,
+    "method": "hybrid",
+    "rerank": true,
+    "image_search_mode": "images",
+    "query_types": [
+      "Q1_diagnosis",
+      "Q3_image_diagnosis",
+      "Q1_Q3_multimodal_diagnosis"
+    ],
+    "required_resources": {
+      "dense_collection": {
+        "name": "cases_text_e5_1024_p14_v7_phase1b_tierAB_official",
+        "required_at_bootstrap": true,
+        "required_for_runtime_use": true,
+        "expected_vector_size": 1024
+      },
+      "caption_collection": {
+        "name": "captions_biomedclip_512_p14_v7_phase1b_tierAB_official",
+        "required_at_bootstrap": true,
+        "required_for_runtime_use": false,
+        "expected_vector_size": 512
+      },
+      "image_collection": {
+        "name": "images_biomedclip_512_p14_v7_phase1b_tierAB_official",
+        "required_at_bootstrap": true,
+        "required_for_runtime_use": true,
+        "expected_vector_size": 512
+      },
+      "bm25_index": {
+        "name": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/bm25_index_p14_v7_phase1b_tierAB_official.json",
+        "required_at_bootstrap": true,
+        "required_for_runtime_use": true
+      },
+      "expected_runtime_use": {
+        "dense_lane": true,
+        "bm25_lane": true,
+        "caption_lane": false,
+        "image_lane": true,
+        "rerank": true
+      },
+      "caption_coverage": {
+        "total_image_entries": 250,
+        "caption_entries": 28,
+        "caption_coverage_ratio": 0.112
+      },
+      "canonical_full_pilot": false,
+      "strict_mode": true
+    },
+    "artifacts": {
+      "train_jsonl": {
+        "path": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/nonleish_additions/generated/train_pseudolabel_v2_phase1b_tierAB.jsonl",
+        "exists": true,
+        "hash": "61359d6b2fbc",
+        "rows": 121,
+        "mtime": "2026-04-13T11:34:38+09:00"
+      },
+      "test_jsonl": {
+        "path": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/test_pseudolabel_v2_normalized_v7_process14.jsonl",
+        "exists": true,
+        "hash": "b011fef3aa95",
+        "rows": 56,
+        "mtime": "2026-04-13T11:34:30+09:00"
+      },
+      "queries_jsonl": {
+        "path": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/eval_queries_v163_mixed56_v7_process14.jsonl",
+        "exists": true,
+        "hash": "54d91d182500",
+        "rows": 56,
+        "mtime": "2026-04-13T11:34:30+09:00"
+      },
+      "qrels_json": {
+        "path": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/qrels_pseudolabel_verified_v7_process14.json",
+        "exists": true,
+        "hash": "0fd5642f1d12",
+        "rows": null,
+        "mtime": "2026-04-13T11:34:30+09:00"
+      }
+    },
+    "resolved_resources": {
+      "dense_collection": "cases_text_e5_1024_p14_v7_phase1b_tierAB_official",
+      "caption_collection": "captions_biomedclip_512_p14_v7_phase1b_tierAB_official",
+      "image_collection": "images_biomedclip_512_p14_v7_phase1b_tierAB_official",
+      "bm25_index": {
+        "strict_mode": true,
+        "dataset_version": "p14_v7_phase1b_tierAB_official",
+        "expected_path": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/bm25_index_p14_v7_phase1b_tierAB_official.json",
+        "resolved_path": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/bm25_index_p14_v7_phase1b_tierAB_official.json",
+        "exists": true,
+        "fallback_used": false,
+        "fallback_reason": "",
+        "candidate_paths": [
+          "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/bm25_index_p14_v7_phase1b_tierAB_official.json",
+          "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/bm25_index.json",
+          "/data1t/lab/ngocnt/Leishmania_v3/data/leishmaniasis_multimodal/bm25_index_p14_v7_phase1b_tierAB_official.json",
+          "/data1t/lab/ngocnt/Leishmania_v3/data/leishmaniasis_multimodal/bm25_index.json"
+        ],
+        "fingerprint": {
+          "path": "/data1t/lab/experiments/structured_cases_v4_2/leishmaniasis_verified_v2/bm25_index_p14_v7_phase1b_tierAB_official.json",
+          "exists": true,
+          "hash": "253a354c11bc",
+          "rows": null,
+          "mtime": "2026-04-16T11:48:38+09:00"
+        }
+      }
+    },
+    "collections_at_start": {
+      "dense_collection": {
+        "name": "cases_text_e5_1024_p14_v7_phase1b_tierAB_official",
+        "exists": true,
+        "points_count": 123,
+        "vector_size": 1024,
+        "error": null
+      },
+      "caption_collection": {
+        "name": "captions_biomedclip_512_p14_v7_phase1b_tierAB_official",
+        "exists": true,
+        "points_count": 28,
+        "vector_size": 512,
+        "error": null
+      },
+      "image_collection": {
+        "name": "images_biomedclip_512_p14_v7_phase1b_tierAB_official",
+        "exists": true,
+        "points_count": 222,
+        "vector_size": 512,
+        "error": null
+      }
+    },
+    "caption_support": {
+      "coverage": {
+        "total_image_entries": 250,
+        "caption_entries": 28,
+        "caption_coverage_ratio": 0.112
+      },
+      "collection_name": "captions_biomedclip_512_p14_v7_phase1b_tierAB_official",
+      "collection_exists": true,
+      "lane_expected": false,
+      "lane_exercised": false,
+      "required_at_bootstrap": true,
+      "absence_reason": null
+    },
+    "resource_events": [],
+    "usage": {
+      "dense_lane_query_count": 56,
+      "bm25_lane_query_count": 56,
+      "hybrid_lane_query_count": 56,
+      "caption_query_count": 0,
+      "image_query_count": 24,
+      "rerank_query_count": 56,
+      "rerank_pass_count": 56,
+      "fallback_event_count": 0,
+      "fallback_events": [],
+      "collection_queries": {
+        "cases_text_e5_1024_p14_v7_phase1b_tierAB_official": 56,
+        "images_biomedclip_512_p14_v7_phase1b_tierAB_official": 24
+      },
+      "resources_exercised": {
+        "dense_lane": true,
+        "bm25_lane": true,
+        "caption_lane": false,
+        "image_lane": true,
+        "rerank": true
+      }
+    },
+    "usage_expectations": {
+      "dense_lane": true,
+      "bm25_lane": true,
+      "caption_lane": false,
+      "image_lane": true,
+      "rerank": true
+    },
+    "strip_query_images": false,
+    "ablation_scope": ""
+  },
+  "retrieval_usage": {
+    "dense_lane_query_count": 56,
+    "bm25_lane_query_count": 56,
+    "hybrid_lane_query_count": 56,
+    "caption_query_count": 0,
+    "image_query_count": 24,
+    "rerank_query_count": 56,
+    "rerank_pass_count": 56,
+    "fallback_event_count": 0,
+    "fallback_events": [],
+    "collection_queries": {
+      "cases_text_e5_1024_p14_v7_phase1b_tierAB_official": 56,
+      "images_biomedclip_512_p14_v7_phase1b_tierAB_official": 24
+    },
+    "resources_exercised": {
+      "dense_lane": true,
+      "bm25_lane": true,
+      "caption_lane": false,
+      "image_lane": true,
+      "rerank": true
+    }
+  },
+  "caption_support": {
+    "coverage": {
+      "total_image_entries": 250,
+      "caption_entries": 28,
+      "caption_coverage_ratio": 0.112
+    },
+    "collection_name": "captions_biomedclip_512_p14_v7_phase1b_tierAB_official",
+    "collection_exists": true,
+    "lane_expected": false,
+    "lane_exercised": false,
+    "required_at_bootstrap": true,
+    "absence_reason": null
+  },
+  "generation_timing_summary": {
+    "n": 56,
+    "mean_seconds": 55.90178921967163,
+    "median_seconds": 55.02434738993179,
+    "p90_seconds": 72.99753635353409,
+    "min_seconds": 36.45801408798434,
+    "max_seconds": 83.50746565905865,
+    "warm_start_mean_seconds": 55.50745362559418
+  },
+  "answer_generation_contract": {
+    "is_rag": true,
+    "generator_type": "gemma4",
+    "generator_model": "/mnt/data/hf/transformers/models--google--gemma-4-E4B-it/snapshots/83df0a889143b1dbfc61b591bbc639540fd9ce4c",
+    "generator_model_requested": "/mnt/data/hf/transformers/models--google--gemma-4-E4B-it/snapshots/83df0a889143b1dbfc61b591bbc639540fd9ce4c",
+    "generator_model_path_requested": "/mnt/data/hf/transformers/models--google--gemma-4-E4B-it/snapshots/83df0a889143b1dbfc61b591bbc639540fd9ce4c",
+    "generator_model_resolved": "/mnt/data/hf/transformers/models--google--gemma-4-E4B-it/snapshots/83df0a889143b1dbfc61b591bbc639540fd9ce4c",
+    "generator_model_local_path_exists": true,
+    "prompt_mode": "balanced",
+    "prompt_mode_requested": "balanced",
+    "prompt_contract_version": "mixed",
+    "prompt_contract_notes": "multiple_prompt_contracts",
+    "prompt_contract_summary": {
+      "prompt_contract_version": "mixed",
+      "prompt_contract_notes": "multiple_prompt_contracts",
+      "mixed_contracts": true,
+      "by_version": {
+        "rag_balanced_image_grounding_v1": {
+          "count": 31,
+          "notes": "explicit_patient_image_grounding_required_when_images_present",
+          "image_grounding_required_count": 31
+        },
+        "balanced_no_context_shared_prompt_v1": {
+          "count": 25,
+          "notes": "shared_balanced_no_context_prompt_contract",
+          "image_grounding_required_count": 12
+        }
+      }
+    },
+    "prompt_image_grounding_required_any": true,
+    "prompt_image_grounding_required_count": 43,
+    "context_k": 3,
+    "ordering_mode": "image_first",
+    "use_context_image_tensors": true,
+    "support_image_tensor_budget": 2,
+    "answer_file": "answers_latency.jsonl",
+    "record_count": 56,
+    "generation_mode_counts": {
+      "rag_prompt": 31,
+      "norag_prompt": 25
+    },
+    "final_route_counts": {
+      "adaptive_rag": 31,
+      "balanced_no_context_fallback": 25
+    },
+    "fallback_reason_counts": {
+      "unsupported_nonleish_topk_bias": 24,
+      "low_support_no_confirmatory_context": 1
+    },
+    "generation_query_source_counts": {
+      "formatted_query": 56
+    },
+    "retrieval_support_status_counts": {
+      "weak_support": 9,
+      "supported": 20,
+      "unsupported_nonleish_topk_bias": 24,
+      "low_support_no_confirmatory_context": 3
+    },
+    "prompt_context_count_avg": 1.2678571428571428,
+    "retrieval_top_k_inherited": 20,
+    "multimodal_usage_summary": {
+      "rows_with_query_images": 24,
+      "rows_with_context_images_available": 31,
+      "rows_with_query_image_tensors": 24,
+      "rows_with_support_image_tensors": 31,
+      "mean_query_image_tensor_count": 0.7857142857142857,
+      "mean_support_image_tensor_count": 1.0714285714285714,
+      "image_tensor_fallback_count": 0,
+      "true_multimodal_support_active": true
+    },
+    "generation_timing_summary": {
+      "n": 56,
+      "mean_seconds": 55.90178921967163,
+      "median_seconds": 55.02434738993179,
+      "p90_seconds": 72.99753635353409,
+      "min_seconds": 36.45801408798434,
+      "max_seconds": 83.50746565905865,
+      "warm_start_mean_seconds": 55.50745362559418
+    },
+    "runtime_environment": {
+      "cuda_visible_devices": "0",
+      "hf_home": "/mnt/data/hf",
+      "huggingface_hub_cache": "/mnt/data/hf/hub",
+      "transformers_cache": "/mnt/data/hf/transformers",
+      "sentence_transformers_home": "/mnt/data/hf/sentence-transformers"
+    },
+    "rollout_policy": {
+      "stage": "official_primary",
+      "thesis_story": "family-level current standard comparison",
+      "dataset_policy": {
+        "dataset_version": "p14_v7_phase1b_tierAB_official",
+        "dataset_pack": "mixed56",
+        "official_structured_dataset_version": "p14_v7_phase1b_tierAB_official",
+        "official_structured_base_dataset_version": "p14_v7",
+        "official_alias_set": {
+          "train": "nonleish_additions/generated/train_pseudolabel_v2_phase1b_tierAB.jsonl",
+          "test": "test_pseudolabel_v2_normalized_v7_process14.jsonl",
+          "query": "eval_queries_v163_pseudolabel_v2_v7_process14.jsonl",
+          "query_mixed56": "eval_queries_v163_mixed56_v7_process14.jsonl",
+          "qrels_verified": "qrels_pseudolabel_verified_v7_process14.json",
+          "qrels_pseudolabel": "qrels_pseudolabel_label_v7_process14.json"
+        },
+        "primary_reasoning_recall_dataset_pack": "mixed56",
+        "secondary_reasoning_recall_dataset_pack": "auto"
+      },
+      "model_policy": {
+        "primary_matrix_label": "family-level current standard comparison",
+        "bridge_matrix_label": "backward-looking continuity baselines",
+        "primary_family_matrix": [
+          "gemini-2.5-flash-lite",
+          "google/medgemma-1.5-4b-it",
+          "google/gemma-4-E4B-it"
+        ],
+        "bridge_family_matrix": [
+          "google/gemma-3-4b-it",
+          "google/medgemma-4b-it",
+          "gemini-2.5-pro"
+        ],
+        "generator_model": "/mnt/data/hf/transformers/models--google--gemma-4-E4B-it/snapshots/83df0a889143b1dbfc61b591bbc639540fd9ce4c",
+        "generator_family_tier": "other"
+      },
+      "judge_policy": {
+        "planned_judge_model": "gemini-2.5-flash-lite",
+        "actual_judge_model": "gemini-2.5-flash-lite",
+        "fallback_judge_model": "gemini-2.5-flash-lite",
+        "sensitivity_judge_model": "gemini-2.5-pro"
+      },
+      "reasoning_recall": {
+        "release_status": "official_thesis_facing",
+        "thesis_facing": true,
+        "primary_metric": "reasoning_recall_top1_primary",
+        "secondary_metric": "reasoning_recall_top3_differential",
+        "canonical_source_policy": "v7_shared56_first",
+        "primary_dataset_scope": "mixed56",
+        "secondary_reporting_scope": "136-query pseudolabel_v2_v7_process14 stratified by query_type"
+      },
+      "visual_hallucination": {
+        "release_status": "coverage_limited_non_headline",
+        "reporting_labels": [
+          "compatibility-only",
+          "coverage-limited"
+        ],
+        "thesis_facing": false,
+        "headline_mean_allowed": false,
+        "requires_image_subset_reporting": true
+      },
+      "reporting_policy": {
+        "reasoning_recall_release_status": "official_thesis_facing",
+        "visual_hallucination_release_status": "coverage_limited_non_headline",
+        "visual_hallucination_labels": [
+          "compatibility-only",
+          "coverage-limited"
+        ],
+        "primary_table_dataset": "mixed56",
+        "secondary_appendix_dataset": "eval_queries_v163_pseudolabel_v2_v7_process14.jsonl"
+      }
+    },
+    "gpu_telemetry_summary": {
+      "device_kind": "local_gpu",
+      "gpu_name": "NVIDIA TITAN RTX",
+      "cuda_visible_devices": "0",
+      "telemetry_window": "full_run_from_process_start",
+      "telemetry_source": "nvidia_smi_csv",
+      "sample_interval_seconds": 1.0,
+      "memory_total_mb": 24576,
+      "memory_peak_used_mb": 19289,
+      "gpu_util_mean_percent": 36.74713010204081,
+      "gpu_util_max_percent": 100.0,
+      "sample_count": 3136,
+      "quantization_mode": "4-bit",
+      "hf_device_placement": [
+        "cuda:0"
+      ]
+    }
+  },
+  "rollout_policy": {
+    "stage": "official_primary",
+    "thesis_story": "family-level current standard comparison",
+    "dataset_policy": {
+      "dataset_version": "p14_v7_phase1b_tierAB_official",
+      "dataset_pack": "mixed56",
+      "official_structured_dataset_version": "p14_v7_phase1b_tierAB_official",
+      "official_structured_base_dataset_version": "p14_v7",
+      "official_alias_set": {
+        "train": "nonleish_additions/generated/train_pseudolabel_v2_phase1b_tierAB.jsonl",
+        "test": "test_pseudolabel_v2_normalized_v7_process14.jsonl",
+        "query": "eval_queries_v163_pseudolabel_v2_v7_process14.jsonl",
+        "query_mixed56": "eval_queries_v163_mixed56_v7_process14.jsonl",
+        "qrels_verified": "qrels_pseudolabel_verified_v7_process14.json",
+        "qrels_pseudolabel": "qrels_pseudolabel_label_v7_process14.json"
+      },
+      "primary_reasoning_recall_dataset_pack": "mixed56",
+      "secondary_reasoning_recall_dataset_pack": "auto"
+    },
+    "model_policy": {
+      "primary_matrix_label": "family-level current standard comparison",
+      "bridge_matrix_label": "backward-looking continuity baselines",
+      "primary_family_matrix": [
+        "gemini-2.5-flash-lite",
+        "google/medgemma-1.5-4b-it",
+        "google/gemma-4-E4B-it"
+      ],
+      "bridge_family_matrix": [
+        "google/gemma-3-4b-it",
+        "google/medgemma-4b-it",
+        "gemini-2.5-pro"
+      ],
+      "generator_model": "/mnt/data/hf/transformers/models--google--gemma-4-E4B-it/snapshots/83df0a889143b1dbfc61b591bbc639540fd9ce4c",
+      "generator_family_tier": "other"
+    },
+    "judge_policy": {
+      "planned_judge_model": "gemini-2.5-flash-lite",
+      "actual_judge_model": "gemini-2.5-flash-lite",
+      "fallback_judge_model": "gemini-2.5-flash-lite",
+      "sensitivity_judge_model": "gemini-2.5-pro"
+    },
+    "reasoning_recall": {
+      "release_status": "official_thesis_facing",
+      "thesis_facing": true,
+      "primary_metric": "reasoning_recall_top1_primary",
+      "secondary_metric": "reasoning_recall_top3_differential",
+      "canonical_source_policy": "v7_shared56_first",
+      "primary_dataset_scope": "mixed56",
+      "secondary_reporting_scope": "136-query pseudolabel_v2_v7_process14 stratified by query_type"
+    },
+    "visual_hallucination": {
+      "release_status": "coverage_limited_non_headline",
+      "reporting_labels": [
+        "compatibility-only",
+        "coverage-limited"
+      ],
+      "thesis_facing": false,
+      "headline_mean_allowed": false,
+      "requires_image_subset_reporting": true
+    },
+    "reporting_policy": {
+      "reasoning_recall_release_status": "official_thesis_facing",
+      "visual_hallucination_release_status": "coverage_limited_non_headline",
+      "visual_hallucination_labels": [
+        "compatibility-only",
+        "coverage-limited"
+      ],
+      "primary_table_dataset": "mixed56",
+      "secondary_appendix_dataset": "eval_queries_v163_pseudolabel_v2_v7_process14.jsonl"
+    }
+  },
+  "gpu_telemetry_summary": {
+    "device_kind": "local_gpu",
+    "gpu_name": "NVIDIA TITAN RTX",
+    "cuda_visible_devices": "0",
+    "telemetry_window": "full_run_from_process_start",
+    "telemetry_source": "nvidia_smi_csv",
+    "sample_interval_seconds": 1.0,
+    "memory_total_mb": 24576,
+    "memory_peak_used_mb": 19289,
+    "gpu_util_mean_percent": 36.74713010204081,
+    "gpu_util_max_percent": 100.0,
+    "sample_count": 3136,
+    "quantization_mode": "4-bit",
+    "hf_device_placement": [
+      "cuda:0"
+    ]
+  }
+}
